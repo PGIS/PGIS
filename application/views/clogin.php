@@ -28,7 +28,7 @@
                         Remember me
                     <input type="checkbox" value="remember-me" checked="chacked">
                     </label>
-                    <input class="subtn-large btn-primary" type="submit" name="sb" value="submit">
+                    <input class="subtn btn-large btn-primary" type="submit" name="sb" value="submit">
                     <?php
                      if(isset($errormsg)){
                          echo '<center><a href="'.site_url('register/passconfig').'">Forget password?</a></center>';
