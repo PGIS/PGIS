@@ -30,7 +30,7 @@
                </div>
                     <?php echo form_password(array('name'=>'password','placeholder'=>'password','class'=>'form-control'));?>
                      <?php echo form_error('password','<div class="error">', '</div>'); ?>
-                      <input type="submit" name="sub" value="Add" class='btn'>
+                      <input type="submit" name="sub" value="Add" class='subtn'>
                      <?php echo form_close();?>
                      <p style="margin-left: 150px"><?php echo anchor('admin_page/index','Back');?></p>
                 
