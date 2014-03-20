@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="<?php echo site_url('frontpage');?>">
-		<img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">    POSTGRADUATE IFORMATION SYSTEM
+		<img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">    POSTGRADUATE INFORMATION SYSTEM
 	  </a>
         </div>
 
