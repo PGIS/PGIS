@@ -33,7 +33,7 @@
             <input type="text" name="email" class="form-control" placeholder="Email" value="<?php echo set_value('email'); ?>"/>
              </p>
             <p>
-               <input type="submit" value="Create" class="btn btn-primary"/>  
+               <input type="submit" value="Create" class="subtn btn-primary"/>  
             </p>
            
             <?php form_close();?>
