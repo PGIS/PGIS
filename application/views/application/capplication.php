@@ -26,7 +26,9 @@
                 <a data-target=".settings" data-toggle="tab">Upload Documents</a>
               </li>
               <li>
-                  <button type="button" class="btn btn-success">Submit Application</button>
+                  <?php echo form_open('application/submitting'); ?>
+                  <button type="submit" class="btn btn-success">Submit Application</button>
+                  </form>
               </li>
             </ul>
         <div class="tab-content" style="display: block;">
@@ -120,7 +122,11 @@
             <?php include_once "additional.php";?>
             
             <?php include_once "upload.php";?>
+            <?php if(isset($submit)){
+               echo ''.$submit.'';
+            }?>
          </div>
+            
         </div> 
     </div>
 <?php

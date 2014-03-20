@@ -536,4 +536,18 @@ function details_preview(){
         $data = $data2 + $data1 + $data3;
         $this->load->view('application/details',$data);
 }
+
+function submitting(){
+        $data1 = $this->show_User_data();
+        $data2 = $this->show_user_history();
+        $data3 = $this->referee_spon_data();
+        $data = $data2 + $data1 + $data3;
+        
+        $this->load->model('Application_form');
+        Application_form::submiting();
+        $data['submit']='Your Application has been submitted and the '
+                . 'admision process will start soon.please visit your accout regulary to check for '
+                . 'admision progres ';
+        $this->load->view('application/capplication',$data);
+}
 }

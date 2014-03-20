@@ -161,4 +161,9 @@ function insert_addition(){
                 } 
      
         }
+        function submiting(){
+         $this->submited = "yes";
+        $this->db->where('userid',$this->session->userdata('userid'));
+        $this->db->update('tb_app_personal_info', $this); 
+        }
 }

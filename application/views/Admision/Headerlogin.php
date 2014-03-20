@@ -45,7 +45,7 @@
             <li><a href="<?php echo site_url('admision');?>"><span class="glyphicon glyphicon-list"></span>
 	    Unchecked Applications</a></li>
             <li><a href="<?php echo site_url('');?>">
-	    <span class="glyphicon glyphicon-book"></span> Rejected Applications</a></li>
+	    <span class="glyphicon glyphicon-tasks"></span> Rejected Applications</a></li>
 	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-list-alt"></span>
 	    Pending Application</a></li>
             <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-comment"></span>  Messaging</a></li>
