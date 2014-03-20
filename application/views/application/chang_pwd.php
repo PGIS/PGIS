@@ -17,7 +17,7 @@
                     <p><input type="password" class="form-control" placeholder="New password" name="npassword"></p>
                     <?php echo form_error('cpassword','<div class="error">', '</div>'); ?>
                     <p><input type="password" class="form-control" placeholder="Comfirm password" name="cpassword"></p>
-                    <button class="btn btn-large btn-primary" type="submit" name="change">Change</button>
+                    <button class="subtn btn-large btn-primary" type="submit" name="change">Change</button>
                   </form>
             </div>
          </div>      
