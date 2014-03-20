@@ -4,16 +4,31 @@
       <div class="span12">
         <div class="tabcordion tabs-left tabbable">
             <ul class="nav nav-tabs">
-              <li ><a data-target=".course" data-toggle="tab">Course selection</a></li>
-              <li><a data-target=".home" data-toggle="tab">Personal information</a></li>
-              <li><a data-target=".emprecod" data-toggle="tab">Employement Details</a></li>
-              <li><a data-target=".accadem" data-toggle="tab">Education Background</a></li>
-              <li><a data-target=".reff" data-toggle="tab">Refferees Details</a></li>
-              <li><a data-target=".addit" data-toggle="tab">Additional Details</a></li>
-              <li class="active"><a data-target=".settings" data-toggle="tab">Upload Documents</a></li>
+              <li class="<?php if(isset($active1)){echo 'active';}?>">
+                <a data-target=".course" data-toggle="tab">Course selection</a>
+              </li>
+              <li class="<?php if(isset($active2)){echo 'active';}?>">
+                <a data-target=".home" data-toggle="tab">Personal information</a>
+              </li>
+              <li class="<?php if(isset($active3)){echo 'active';}?>">
+                <a data-target=".emprecod" data-toggle="tab">Employement Details</a>
+              </li>
+              <li class="<?php if(isset($active4)){echo 'active';}?>">
+                <a data-target=".accadem" data-toggle="tab">Education Background</a>
+              </li>
+              <li class="<?php if(isset($active5)){echo 'active';}?>">
+                <a data-target=".reff" data-toggle="tab">Refferees Details</a>
+              </li>
+              <li class="<?php if(isset($active6)){echo 'active';}?>">
+                <a data-target=".addit" data-toggle="tab">Additional Details</a>
+              </li>
+              <li class="<?php if(isset($active7)){echo 'active';}?>">
+                <a data-target=".settings" data-toggle="tab">Upload Documents</a>
+              </li>
             </ul>
         <div class="tab-content" style="display: block;">
-             <div class="course  in tab-pane">
+            
+             <div class="course  in tab-pane <?php if(isset($active1)){echo 'active';}?>">
               <div class='pantop'><h4>Course selection</h4></div>
               <p >
                  <div class='tbs'> 
@@ -22,14 +37,15 @@
                 <div><p><?php echo form_error('college','<div class="error">','</div>'); ?>
                     <label for="college">College Selection</label>
                     <select name="college"  class="form-control">
-                      <option value=""<?php echo set_select('college','',TRUE);?>></option>
-                      <option value="administrator"<?php echo set_select('college','administrator');?>>College of Information and Communication Technology</option>
-                      <option value="Teaching staff"<?php echo set_select('college','Teaching staff');?>>College of Natural and Applied Scince</option>
-                      <option value="Admision staff"<?php echo set_select('college','Admision staff');?>>College of Engeneering</option>
+                        <option > <?php display_input('college',$Ucollege);?></option>
+                      <option >College of Information and Communication Technology</option>
+                      <option >College of Natural and Applied Scince</option>
+                      <option >College of Engeneering</option>
                     </select></p>
                </div>
-                <div><p><label for="course"> Select Course</label>
-                
+                <div><p>
+                    <?php echo form_error('course','<div class="error">','</div>'); ?>
+                     <label for="course"> Select Course</label>
                      <select class="form-control" name="course">
                         <option >
                                   <?php display_input('course',$Ucourse);?>
@@ -48,21 +64,40 @@
                         <table class="table col-md-3 table-striped">
                             <tr>
                                 <td> Regular </td>
-                                <td><input id="chkp1" name="chkp" type="radio" value="regular" ></td>
+                                <td><input  name="chkp" type="radio" value="regular" checked=""
+                                    <?php display_checks('chkp',$prog_mod,'regular');?> 
+                                 ></td>
                             </tr>
                             <tr>
                                 <td> Evening</td>
-                                <td><input id="chkp" name="chkp" type="radio" value="evening"></td>
+                                <td><input  name="chkp" type="radio" value="evening"
+                                <?php display_checks('chkp',$prog_mod,'evening');?>
+                                ></td>
                             </tr>
                             
                              <tr>
                                 <td>Other (Specify)</td>
-                                <td><input id="chkcp" name="chkp" type="radio" value="other"></td>
+                                <td><input  name="chkp" type="radio" value="other"
+                                 <?php display_checks('chkp',$prog_mod,'other');?>
+                                ></td>
                             </tr>
-                             <tr><td colspan=2><textarea class="form-control" rows="3" id="areatext"></textarea>
+                             <tr><td colspan=2>
+                             <?php echo form_error('checktext','<div class="error">','</div>'); ?>
+                             <textarea class="form-control" rows="3" name='checktext'>
+                                
+                             </textarea>
                              </td></tr>
+                             <tr>
+                                <td>
+                                 <input class="subtn btn-primary" type="submit" name="save" value="Save">   
+                                </td>
+                                <td>
+                                  <input class="subtn btn-primary" type="submit" name="savcont" value="Save and continue">
+                                </td>
+                             </tr>
                         </table>
-                         <input class="btn btn-primary" type="submit" name="save" value="Save">        
+                         
+                        
                     </p>
                    
                 </div>
@@ -94,15 +129,16 @@ function display_input($filname,$varname){
             }
 }
 function display_checks($filname,$varname,$value){
-         if(set_value($filname)){
+         if(isset($_POST[$filname])){
+             if($_POST[$filname]==$value){
                 echo 'checked=""';
+                }
             }elseif(isset($varname)){
                 if($varname==$value){
                 echo 'checked=""';
                 }
             }
-                           
-    }
+       }
 ?>
 
 </div>

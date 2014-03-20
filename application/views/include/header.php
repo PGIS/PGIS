@@ -28,17 +28,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo site_url('frontpage');?>">
+          <a class="navbar-brand visible-lg" href="<?php echo site_url('frontpage');?>">
 		<img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">    POSTGRADUATE IFORMATION SYSTEM
 	  </a>
+          <a class="navbar-brand hidden-lg" href='#'>
+	    <img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">PGIS
+          </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-            <li><a href="<?php echo site_url('frontpage');?>">Home</a></li>
-            <li><a href="<?php echo site_url('register');?>">Create account</a></li>
-            <li><a href="<?php echo site_url('login');?>">Login</a></li>
+            <li><a href="<?php echo site_url('frontpage');?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li><a href="<?php echo site_url('register');?>"><span class="glyphicon glyphicon-pencil"></span> Create account</a></li>
+            <li><a href="<?php echo site_url('login');?>"><span class="glyphicon glyphicon-user"></span> Login</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>

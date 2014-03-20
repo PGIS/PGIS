@@ -19,38 +19,26 @@ class Application extends CI_Controller {
     }
     
     function index() {
-        if (!$this->session->userdata('logged_in')) {
-
-            redirect('logout');
-        } else {
+       
             
             $data1 = $this->show_User_data();
             $data2 = $this->show_user_history();
             $data3 = $this->referee_spon_data();
             $data = $data2 + $data1 + $data3;
-
-
-
-            $this->load->helper(array('form', 'url'));
-            $this->load->library('form_validation');
-
+            $data['active1'] = TRUE;
+            
             $this->form_validation->set_rules('course', 'course', 'required|max_length[80]|xss_clean');
             $this->form_validation->set_rules('college', 'The college', 'required|max_length[80]|xss_clean');
             $this->form_validation->set_rules('chkp', 'Program mode', 'required');
+            if(isset($_POST['chkp'])){
+                if($_POST['chkp']=='other'){
+               $this->form_validation->set_rules('checktext', 'Specify program mode', 'required');
+                }
+            }
             $this->form_validation->run();
 
-            if ($this->form_validation->run() == TRUE) {
-                $data['proceed1'] = TRUE;
-            } else {
-                $data['data'] = '';
-            }
-
             if (isset($_POST['save'])) {
-                
-                   if(!is_dir('uploads/'.$this->session->userdata('userid'))) {
-                mkdir('./uploads/' . $this->session->userdata('userid'), 0777, TRUE);
-
-                  }
+               
                 $query = $this->db->get_where('tb_app_personal_info', array('userid' => $this->session->userdata('userid')));
 
                 if ($query->num_rows() == 1) {
@@ -62,17 +50,14 @@ class Application extends CI_Controller {
                     Application_form::insert_first_details();
                     $this->load->view('application/capplication', $data);
                 }
-            } elseif (isset($_POST['proceed'])) {
-                if(!is_dir('uploads/'.$this->session->userdata('userid'))) {
-                mkdir('./uploads/' . $this->session->userdata('userid'), 0777, TRUE);
-
-                  }
+            } elseif (isset($_POST['savcont'])) {
                 if ($this->form_validation->run() == FALSE) {
 
                     $this->load->view('application/capplication', $data);
                 } else {
-                    $data['proceed1'] = TRUE;
-                    $data['active'] = 'active';
+                    
+                   $data['active2'] = TRUE;
+                    unset($data['active1']);
                     $query = $this->db->get_where('tb_app_personal_info', array('userid' => $this->session->userdata('userid')));
 
                     if ($query->num_rows() == 1) {
@@ -89,7 +74,7 @@ class Application extends CI_Controller {
                 
                 $this->load->view('application/capplication', $data);
             }
-        }
+        
     }
 
     /* Application module function
@@ -110,6 +95,7 @@ class Application extends CI_Controller {
                 $value = array(
                     'Ucollege' => $row->college,
                     'Ucourse' => $row->prog_name,
+                    'prog_mod'=>$row->prog_mode,
                     'sname' => $row->surname,
                     'other_nam' => $row->other_name,
                     'title' => $row->title,
@@ -117,6 +103,7 @@ class Application extends CI_Controller {
                     'country' => $row->cob,
                     'nationalt' => $row->nationality,
                     'perm_addres' => $row->parm_address,
+                    'disability' => $row->disability,
                     'disab_natur' => $row->disab_nature,
                     'landlin' => $row->landline_no,
                     'mobil' => $row->mobile_no,
@@ -129,6 +116,7 @@ class Application extends CI_Controller {
             $value = array(
                 'Ucollege' => '',
                 'Ucourse' => '',
+                'prog_mod'=>'',
                 'sname' => '',
                 'other_nam' => '',
                 'title' => '',
@@ -137,6 +125,7 @@ class Application extends CI_Controller {
                 'nationalt' => '',
                 'perm_addres' => '',
                 'disab_natur' => '',
+                'disability' => '',
                 'landlin' => '',
                 'mobil' => '',
                 'fax' => '',
@@ -212,7 +201,7 @@ class Application extends CI_Controller {
         if ($query->num_rows() == 1) {
             foreach ($query->result() as $ro) {
                 $value2 = array(
-                    'fi_refname' => "$ro->first_refname",
+                    'fi_refname' => $ro->first_refname,
                     'se_refname' => $ro->second_refname,
                     'thr_refname' => $ro->Third_refname,
                     'fi_refemail' => $ro->first_email,
@@ -224,7 +213,6 @@ class Application extends CI_Controller {
                     'fi_refaddr' => $ro->first_address,
                     'se_refaddr' => $ro->second_address,
                     'thr_refaddr' => $ro->third_address,
-                    
                     'fprospec' => $ro->fio_rospectus,
                     'feduca' => $ro->fi_education_trade,
                     'fjournal' => $ro->fi_newspaper,
@@ -269,13 +257,11 @@ class Application extends CI_Controller {
             redirect('logout');
         }
         
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
-       
          $data1 = $this->show_User_data();
          $data2 = $this->show_user_history();
          $data3 = $this->referee_spon_data();
          $data = $data2 + $data1 + $data3;
+         $data['active2'] = TRUE;
 
         $this->form_validation->set_rules('surname', 'surname', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('other_name', 'Other name', 'required|max_length[40]|xss_clean');
@@ -290,52 +276,99 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('email', 'email', 'required|max_length[40]|xss_clean');
         $this->form_validation->set_rules('coun_birth', 'country', 'required|max_length[80]|xss_clean');
         $this->form_validation->set_rules('nation', 'nationality', 'required|max_length[40]|xss_clean');
-        $this->form_validation->set_rules('high_acade', 'accademic', 'required|max_length[40]|xss_clean');
-        $this->form_validation->set_rules('institution', 'institution', 'required|max_length[40]|xss_clean');
-        $this->form_validation->set_rules('graduation', 'graduation', 'required|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('specialization', 'specialization', 'required|max_length[40]|xss_clean');
-        $this->form_validation->set_rules('gpa', 'PGA', 'required|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('other_ac_prof', 'other Accademic Proffession', 'required|max_length[80]|xss_clean');
-        $this->form_validation->set_rules('current_employer', 'Employer', '|max_length[80]|xss_clean');
-        $this->form_validation->set_rules('responsbility', 'responsbility', '|max_length[255]|xss_clean');
-        $this->form_validation->set_rules('to', 'To', '|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('from', 'From', '|max_length[20]|xss_clean');
         $this->form_validation->run();
-        
-         
-         $data['proceed1'] = TRUE;
-         
-           if(isset($_POST['proceed2'])){
+               
+           if(isset($_POST['savcont'])){
                if($this->form_validation->run() == FALSE){
                 $this->load->view('application/capplication',$data);   
                   
                }else {
-                   $data['proceed2'] = TRUE;
-                   $data['active3'] = 'active';
-                    $data['active'] = 'active';
+                    
+                  $data['active3'] = TRUE;
+                  unset($data['active2']);
                   $this->load->model('Application_form');
                   Application_form::insert_other_info();
-                  Application_form::insert_hist_info();
                   $this->load->view('application/capplication',$data);
                }
                
            }elseif(isset($_POST['save'])){
                  $this->load->model('Application_form');
                  Application_form::insert_other_info();
-                 Application_form::insert_hist_info();
                 $this->load->view('application/capplication',$data);
             }else{
                $this->load->view('application/capplication',$data); 
             }
            }
+           
+           
+ function employement(){
+         $data1 = $this->show_User_data();
+         $data2 = $this->show_user_history();
+         $data3 = $this->referee_spon_data();
+         $data = $data2 + $data1 + $data3;
+         $data['active3'] = TRUE;
+       
+        
+        if(isset($_POST['skip'])){
+             $data['active4'] = TRUE;
+             unset($data['active3']);
+             $this->load->view('application/capplication',$data);
+           }elseif(isset($_POST['save'])){
+              
+        $this->form_validation->set_rules('current_employer', 'Employer', 'required|max_length[80]|xss_clean');
+        $this->form_validation->set_rules('responsbility', 'responsbility', 'required|max_length[255]|xss_clean');
+        $this->form_validation->set_rules('position', 'position', 'required|max_length[255]|xss_clean');
+        $this->form_validation->set_rules('to', 'To', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('from', 'From', 'required|max_length[20]|xss_clean');
+        $this->form_validation->run();
+        
+                 $this->load->model('Application_form');
+                 Application_form::insert_hist_info();
+                $this->load->view('application/capplication',$data);
+            }else{
+               $this->load->view('application/capplication',$data); 
+            }
+ }
  
  
+ function accademic(){
+         $data1 = $this->show_User_data();
+         $data2 = $this->show_user_history();
+         $data3 = $this->referee_spon_data();
+         $data = $data2 + $data1 + $data3;
+         $data['active4'] = TRUE;
+         
+        $this->form_validation->set_rules('high_acade', 'accademic', 'required|max_length[40]|xss_clean');
+        $this->form_validation->set_rules('institution', 'institution', 'required|max_length[40]|xss_clean');
+        $this->form_validation->set_rules('graduation', 'graduation', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('specialization', 'specialization', 'required|max_length[40]|xss_clean');
+        $this->form_validation->set_rules('gpa', 'GPA', 'required|max_length[30]|xss_clean');
+        $this->form_validation->set_rules('other_ac_prof', 'other Accademic Proffession', 'required|max_length[80]|xss_clean');
+        $this->form_validation->run();
+        
+         if(isset($_POST['savcont'])){
+                   if($this->form_validation->run() == FALSE){
+                $this->load->view('application/capplication',$data);   
+                  
+               }else {
+                    
+                  $data['active5'] = TRUE;
+                  unset($data['active4']);
+                  $this->load->model('Application_form');
+                Application_form::insert_acca_info();
+                $this->load->view('application/capplication',$data);
+               }
+               
+           }elseif(isset($_POST['save'])){
+                $this->load->model('Application_form');
+                Application_form::insert_acca_info();
+                $this->load->view('application/capplication',$data);
+            }else{
+               $this->load->view('application/capplication',$data); 
+            }  
+ }
 
     function referee_info() {
-        if (!$this->session->userdata('logged_in')) {
-            redirect('logout');
-        }
-
          $config=array(
             'protocol'=>'smtp',
             'smtp_host'=>'ssl://smtp.gmail.com',
@@ -350,11 +383,8 @@ class Application extends CI_Controller {
         $data2 = $this->show_user_history();
         $data3 = $this->referee_spon_data();
         $data = $data2 + $data1 + $data3;
-
-       
-
-        $this->load->library('form_validation');
-        $this->load->helper(array('form', 'url'));
+        $data['active5'] = TRUE;
+        
         $this->form_validation->set_rules('nm', 'Name', 'trim|required|max_length[80]|xss_clean');
         $this->form_validation->set_rules('nm1', 'Name', 'trim|required|max_length[80]|xss_clean');
         $this->form_validation->set_rules('nm2', 'Name', 'trim|required|max_length[80]|xss_clean');
@@ -364,15 +394,7 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('ad', 'Address', 'trim|required|max_length[30]|xss_clean');
         $this->form_validation->set_rules('ad1', 'Address', 'trim|required|max_length[30]|xss_clean');
         $this->form_validation->set_rules('ad2', 'Address', 'trim|required|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('chbx1', 'Sponsorship', 'required');
-        $this->form_validation->set_rules('namsponsor', 'Sponsor name', 'required|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('addr_spons', 'Sponsor adress', 'required|max_length[30]xss_clean|');
-        
-        
         $this->form_validation->run();
-        $data['active3'] = 'active';
-        $data['proceed2'] = TRUE;
-        $data['proceed1'] = TRUE;
         
         $this->load->library('email',$config);
         $this->email->set_newline("\r\n");
@@ -382,7 +404,7 @@ class Application extends CI_Controller {
         $message='<html>
                       <head><title></title></head>
                       <body>';
-        $message .='<p> Dear referee your are have been chosen to be on behalf of the  '.$this->session->userdata('userid'). ' as the referee </p>';
+        $message .='<p> Dear referee your have been chosen to be on behalf of the  '.$this->session->userdata('userid'). ' as the referee </p>';
         $message .='<p> Please find the the attached file for more description</p>';
         $message .='<p> Thanks !!</p>';
         $message .='<p> PGIS TEAM</p>';
@@ -390,49 +412,128 @@ class Application extends CI_Controller {
         $message .='</html>';
         $this->email->message($message);
         $path=  $this->config->item('server_root');
-        $file= $path.'/PGIS/attachments/refereeinfo.txt';
+        $file= $path.'./attachments/refereeinfo.txt';
         $this->email->attach($file);
-        if(@$this->email->send()){
-         if($this->form_validation->run() == TRUE){
-        $data['submit']='submit';
+        
+        if(isset($_POST['save'])){
+           if($this->form_validation->run() == FALSE){
+                $this->load->view('application/capplication', $data);
+            }else{
+                if(@$this->email->send()){
+                    $this->load->model('Application_form');
+                    Application_form::insert_referee_sponsor_details();
+                     $this->load->view('application/capplication', $data);
+                }else{
+                    $data['problem']='There is Conectivity problem.Please check the connection and try again letter';
+                    $this->load->view('application/capplication', $data);
+                }
+            } 
+        }elseif(isset($_POST['savcont'])){
+           if($this->form_validation->run() == FALSE){
+                $this->load->view('application/capplication', $data);
+            }else{
+                if(@$this->email->send()){
+                    $data['active6'] = TRUE;
+                    unset($data['active5']);
+                    $this->load->model('Application_form');
+                    Application_form::insert_referee_sponsor_details();
+                     $this->load->view('application/capplication', $data);
+                }else{
+                    $data['problem']='There is Conectivity problem.Please check the connection and try again letter';
+                    $this->load->view('application/capplication', $data);
+                }
+            }  
+            
+        }else{
+            $this->load->view('application/capplication', $data);
         }
-        $this->load->model('Application_form');
-        Application_form::insert_referee_sponsor_details();
-        $this->load->view('application/capplication', $data);
-        }  else {
-             $this->load->view('network_error');  
-        }
+        
     }
-    function do_upload(){
+    
+    
+function addition(){
+         $data1 = $this->show_User_data();
+         $data2 = $this->show_user_history();
+         $data3 = $this->referee_spon_data();
+         $data = $data2 + $data1 + $data3;
+         $data['active6'] = TRUE;
+         
+        $this->form_validation->set_rules('namsponsor', 'Sponsor name', 'required|max_length[30]|xss_clean');
+        $this->form_validation->set_rules('addr_spons', 'Sponsor adress', 'required|max_length[30]xss_clean|');
+        $this->form_validation->run();
+         if(isset($_POST['savcont'])){
+                if($this->form_validation->run() == FALSE){
+                $this->load->view('application/capplication',$data);   
+               }else {   
+                  $data['active7'] = TRUE;
+                  unset($data['active6']);
+                    $this->load->model('Application_form');
+                    Application_form::insert_addition();
+                    $this->load->view('application/capplication',$data);
+               }
+               
+           }elseif(isset($_POST['save'])){
+                    $this->load->model('Application_form');
+                    Application_form::insert_addition();
+                $this->load->view('application/capplication',$data);
+                
+            }else{
+               $this->load->view('application/capplication',$data); 
+            } 
+}
+
+
+function do_upload(){
+                $data1 = $this->show_User_data();
+                $data2 = $this->show_user_history();
+                $data3 = $this->referee_spon_data();
+                $data = $data2 + $data1 + $data3;
+                $data['active7'] = TRUE;
+         if(!is_dir('uploads/'.$this->session->userdata('userid'))) {
+            mkdir('./uploads/' .$this->session->userdata('userid'), 0777, TRUE);
+           }
+	   
+		$config['upload_path'] = './uploads/'.$this->session->userdata('userid');
+		$config['allowed_types'] = 'gif|jpg|png|pdf';
+		$config['max_size']	= '2048';
+		$config['remove_spaces']  = TRUE;
+                $config['overwrite'] = true;
+		$this->load->library('upload', $config);
+                 $this->upload->initialize($config);
+        if(! $this->upload->do_upload()){
+            $data['error'] = $this->upload->display_errors();
+            $this->load->view('application/capplication', $data);
+        }
+        else{
+                $data['upload_data'] = "Uploading was successful";
+                $this->load->view('application/capplication', $data);
+        }
+	}
+function delete($name){
+                $data1 = $this->show_User_data();
+                $data2 = $this->show_user_history();
+                $data3 = $this->referee_spon_data();
+                $data = $data2 + $data1 + $data3;
+                $data['active7'] = TRUE;
+    
+   $fileplace='./uploads/'.$this->session->userdata('userid').'/'.$name;
    
+    if(file_exists("$fileplace")){
+	$DIRNAME ='./uploads/'.$this->session->userdata('userid');
+    unlink($DIRNAME.DIRECTORY_SEPARATOR.$name);
+    $this->load->view('application/capplication', $data);
+    
+      }else{
+	$this->load->view('application/capplication', $data);
+      }
+      
+     }
+
+function details_preview(){
         $data1 = $this->show_User_data();
         $data2 = $this->show_user_history();
         $data3 = $this->referee_spon_data();
         $data = $data2 + $data1 + $data3;
-        $data['active0']='active';
-        $data['active3'] = 'active';
-        $data['proceed1']=TRUE;
-       
-        $config['upload_path'] = './uploads/'.$this->session->userdata('userid');
-	$config['allowed_types'] = 'gif|jpg|png|pdf';
-	$config['max_size'] = '1000';
-        $config['overwrite'] = FALSE;
-        
-        
-        $this->load->library('upload',$config);
-        $this->upload->initialize($config);
-       
-        if (!$this->upload->do_upload()){
-	   $error = array('error' => $this->upload->display_errors());
-           $data=$data+$error;
-          $this->load->view('application/capplication', $data);
-        }
-        else{
-            $data['success'] =' Your file was successfully uploaded!';
-            $this->load->view('application/capplication', $data);
-        }
-	
-        
-    }
-    
+        $this->load->view('application/details',$data);
+}
 }

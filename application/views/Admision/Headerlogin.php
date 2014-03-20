@@ -42,12 +42,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-            <li><a href="<?php echo site_url('application');?>"><span class="glyphicon glyphicon-edit"></span>
-	    Application form</a></li>
-            <li><a href="<?php echo site_url('application/details_preview');?>">
-	    <span class="glyphicon glyphicon-book"></span> Preview details</a></li>
-	    <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
-	    Change password</a></li>
+            <li><a href="<?php echo site_url('admision');?>"><span class="glyphicon glyphicon-list"></span>
+	    Unchecked Appliation</a></li>
+            <li><a href="<?php echo site_url('');?>">
+	    <span class="glyphicon glyphicon-book"></span> Rejected Applications</a></li>
+	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-wrench"></span>
+	    Pending Application</a></li>
+            <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-comment"></span>  Messaging</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
           </ul>
 	  

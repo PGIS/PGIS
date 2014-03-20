@@ -13,7 +13,7 @@ For more info and more free Bootstrap 3 HTML themes, visit http://startbootstrap
 body {
   margin-top: 50px;
   font-family: Verdana,Helvetica,Arial,sans-serif;
-  font-size: 130%;line-height: 1.6em;
+  font-size: 130%;line-height: 1.7em;
 }
 
 #wrapper {
@@ -99,7 +99,7 @@ table.tablesorter thead tr th:hover {
 .footer{
   position: relative;
   text-align: center;
-  
+  clear: both;
 }
   #page-wrapper {
 	padding: 5px 25px;
@@ -113,13 +113,14 @@ table.tablesorter thead tr th:hover {
 	left: 300px;
 	width: 231px;
 	position: fixed;
-	top: 50px;
+	top: 51px;
 	height: 84.3%;
 	border-radius: 0;
 	border: none;
 	background-color: #f8f8f8;
 	overflow-y: auto;
 	border-right: 1px solid #cccccc;
+	
 	
   }
 
@@ -151,6 +152,7 @@ table.tablesorter thead tr th:hover {
 
   .side-nav>li>a {
 	width: 230px;
+	
   }
 
   .navbar-inverse .navbar-nav>li>a:hover,
@@ -197,6 +199,7 @@ table.tablesorter thead tr th:hover {
   display: inline-block;
   text-align: center;
   white-space: nowrap;
+ padding: 4px 10px;
   vertical-align: middle;
   cursor: pointer;
   -webkit-user-select: none;
@@ -232,6 +235,8 @@ table.tablesorter thead tr th:hover {
     border-radius: 4px;
     
 }
+.dropdown-toggle{
+  position: relative;min-height: 50px; padding-bottom:-2px;}
 .tabs-below > .nav-tabs, .tabs-right > .nav-tabs, .tabs-left > .nav-tabs {
     border-bottom: 0 none;
 }
@@ -314,4 +319,45 @@ table.tablesorter thead tr th:hover {
   text-align: center;
   position: relative;
   color:#41bc81;
+}
+.tahead{
+  background-color: #93BA16;
+  
+}
+.glyphicon-chevron-right,.glyphicon-chevron-left {
+    font-size: 30px;
+}
+#nextail,#nextail2{
+  position: relative;
+ line-height: 30px;
+  top: -250px;
+  float: right;
+  color: #EAA119;
+}
+#nextail:hover,#nextail1:hover,#nextail2:hover,#nextail3:hover{
+  color: black;
+  cursor: pointer;
+}
+#nextail1{
+  position: relative;
+  line-height: 30px;
+  top: -70px;
+  float: left;
+  color: #EAA119;
+  left: -475px;
+}
+#nextail2{
+  position: relative;
+ line-height: 30px;
+  top: -70px;
+  float: right;
+  color: #EAA119;
+}
+#nextail3{
+  position: relative;
+  line-height: 30px;
+  top: -60px;
+  left: -25px;
+  float: left;
+  color: #EAA119;
 }

@@ -3664,6 +3664,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-collapse {
   max-height: 340px;
+  min-height: 50px;
   padding-right: 15px;
   padding-left: 15px;
   overflow-x: visible;
@@ -4043,11 +4044,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #999;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #37373A;
+  color: #050000;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
- color: #1C7EA8;
+ color: #468266;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,

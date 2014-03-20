@@ -35,7 +35,7 @@ class Application_form extends CI_Model{
     function update_first(){
         $this->userid = $this->session->userdata('userid');
         $this->prog_name = $_POST['course'];
-        
+        $this->prog_mode = $_POST['chkp'];
         $this->college = $_POST['college'];
         $this->db->where('userid',$this->session->userdata('userid'));
         $this->db->update('tb_app_personal_info', $this); 
@@ -68,18 +68,12 @@ class Application_form extends CI_Model{
        $mydata1 = array
         (
             'app_id' => $this->session->userdata('userid'),
-            'specialization' => $this->input->post('specialization'),
-            'gpa' => $this->input->post('gpa'),
-            'high_edu_attained' => $this->input->post('high_acade'),
-            'institution' => $this->input->post('institution'),
-            'year_of_gradu' => $this->input->post('graduation'),
-            'other_qualification' => $this->input->post('other_ac_prof'),
             'dof' => $this->input->post('from'),
             'dot' => $this->input->post('to'),
             'nature_of_work'=> $this->input->post('responsbility'),
             'comp_employed' => $this->input->post('current_employer'),
             'position' => $this->input->post('position'),
-            'comp_release_agre' => $this->input->post('emp_perm')
+            'comp_release_agre' => $this->input->post('empp')
          );
        $query = $this->db->get_where('tb_app_prev_info', array('app_id' => $this->session->userdata('userid')));
        
@@ -92,6 +86,29 @@ class Application_form extends CI_Model{
                 }
        
     }
+    
+    function insert_acca_info(){
+         $mydata1 = array
+        (
+            'app_id' => $this->session->userdata('userid'),
+            'specialization' => $this->input->post('specialization'),
+            'gpa' => $this->input->post('gpa'),
+            'high_edu_attained' => $this->input->post('high_acade'),
+            'institution' => $this->input->post('institution'),
+            'year_of_gradu' => $this->input->post('graduation'),
+            'other_qualification' => $this->input->post('other_ac_prof'),
+         );
+        $query = $this->db->get_where('tb_app_prev_info', array('app_id' => $this->session->userdata('userid')));
+        if ($query->num_rows()==1){
+                $this->db->where('app_id',$this->session->userdata('userid'));
+                $this->db->update('tb_app_prev_info', $mydata1); 
+           }  
+           else {
+               $this->db->insert('tb_app_prev_info', $mydata1); 
+                }
+    }
+    
+    
     function insert_referee_sponsor_details(){
         
         $redata=array(
@@ -104,21 +121,12 @@ class Application_form extends CI_Model{
                  'second_address'=>$this->input->post('ad1'),
                  'Third_refname'=>$this->input->post('nm2'),
                  'third_email'=>$this->input->post('em2'),
-                 'third_address'=>$this->input->post('ad2'),
-                 'sponser_name'=>$this->input->post('namsponsor'),
-                 'sponser_address'=>$this->input->post('addr_spons'),
-                 'sponsership_mode'=>$this->input->post('chbx1'),
-                 'fio_rospectus'=>$this->input->post('fprospec'),
-                 'fi_education_trade'=>$this->input->post('feduca'),
-                 'fi_www'=>$this->input->post('fwww'),
-                 'fi_newspaper'=>$this->input->post('fjournal'),
-                 'fi_university'=>$this->input->post('funiver'),
-                 'fi_other'=>$this->input->post('fother')
+                 'third_address'=>$this->input->post('ad2')
           );
         if(isset($_POST['save'])){
             $query = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
         
-        if ($query->num_rows()==1){
+         if ($query->num_rows()==1){
                 $this->db->where('referee_id',$this->session->userdata('userid'));
                 $this->db->update('tb_referee', $redata); 
            }  
@@ -130,4 +138,27 @@ class Application_form extends CI_Model{
        
     }
     
+function insert_addition(){
+    $redata = array(
+                 'referee_id' => $this->session->userdata('userid'),
+                 'sponser_name'=>$this->input->post('namsponsor'),
+                 'sponser_address'=>$this->input->post('addr_spons'),
+                 'sponsership_mode'=>$this->input->post('chbx1'),
+                 'fio_rospectus'=>$this->input->post('fprospec'),
+                 'fi_education_trade'=>$this->input->post('feduca'),
+                 'fi_www'=>$this->input->post('fwww'),
+                 'fi_newspaper'=>$this->input->post('fjournal'),
+                 'fi_university'=>$this->input->post('funiver'),
+                 'fi_other'=>$this->input->post('fother')  
+                    );
+     $query = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
+        if ($query->num_rows()==1){
+                $this->db->where('referee_id',$this->session->userdata('userid'));
+                $this->db->update('tb_referee', $redata); 
+           }  
+           elseif($query->num_rows()==0) {
+               $this->db->insert('tb_referee', $redata); 
+                } 
+     
+        }
 }

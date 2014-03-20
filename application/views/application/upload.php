@@ -1,9 +1,9 @@
-
- <div class="settings tab-pane active" style="padding-left: 3px;">
+<div class="settings tab-pane <?php if(isset($active7)){echo 'active';}?>" style="padding-left: 3px;">
     <div class='pantop'><h4>Document Upload</h4></div>
     <p >
       
        <h5>Documents to upload</h5>
+       
         <table class="mytable" border='1'>
        
         <?php
@@ -40,11 +40,11 @@
          </tr>
         </table>
         <div class="well">
-          <?php echo form_open_multipart('upload/do_upload');?>
+          <?php echo form_open_multipart('application/do_upload');?>
           <table>
             <tr>
                <td><input type="file" name="userfile" size="20" /></td>
-               <td> <input type="submit" value="upload" /></td>
+               <td> <span class="glyphicon glyphicon-circle-arrow-up"></span><input type="submit" value="upload" /></td>
             </tr>
           </table>
  
@@ -71,8 +71,8 @@
                      echo "<td> $value</td>";
                      echo "<td>View</td>";
                      ?>
-         <td><img src="<?php echo base_url('assets/photo/delete.png');?>">
-          <?php echo anchor('upload/delete/'.$value,'Remove',
+         <td><span class="glyphicon glyphicon-remove-circle"></span>
+          <?php echo anchor('application/delete/'.$value,'Remove',
             array('onclick'=>"return confirm('Are you sure you want to delete this person ?')"));?>
             </td>
             <?php

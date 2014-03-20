@@ -20,7 +20,7 @@ class Upload extends CI_Controller {
              
     }
 function do_upload(){
-                
+                $data['active7'] = TRUE;
          if(!is_dir('uploads/'.$this->session->userdata('userid'))) {
             mkdir('./uploads/' .$this->session->userdata('userid'), 0777, TRUE);
            }
