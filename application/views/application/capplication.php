@@ -25,6 +25,9 @@
               <li class="<?php if(isset($active7)){echo 'active';}?>">
                 <a data-target=".settings" data-toggle="tab">Upload Documents</a>
               </li>
+              <li>
+                  <button type="button" class="btn btn-success">Submit Application</button>
+              </li>
             </ul>
         <div class="tab-content" style="display: block;">
             
