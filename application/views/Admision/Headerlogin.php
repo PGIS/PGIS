@@ -43,10 +43,10 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li><a href="<?php echo site_url('admision');?>"><span class="glyphicon glyphicon-list"></span>
-	    Unchecked Appliation</a></li>
+	    Unchecked Applications</a></li>
             <li><a href="<?php echo site_url('');?>">
 	    <span class="glyphicon glyphicon-book"></span> Rejected Applications</a></li>
-	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-wrench"></span>
+	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-list-alt"></span>
 	    Pending Application</a></li>
             <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-comment"></span>  Messaging</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
