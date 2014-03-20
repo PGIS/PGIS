@@ -42,7 +42,7 @@
                     <select name="college"  class="form-control">
                         <option > <?php display_input('college',$Ucollege);?></option>
                       <option >College of Information and Communication Technology</option>
-                      <option >College of Natural and Applied Scince</option>
+                      <option >College of Natural and Applied Science</option>
                       <option >College of Engeneering</option>
                     </select></p>
                </div>
