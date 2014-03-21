@@ -137,9 +137,10 @@
             for(i=0; i<l; i++){
 		var g = p.elements[i].value;
 		if(g ===""){
-			n.style.display = "block";
-		}else{
 			n.style.display = "none";
+                        break;
+		}else{
+			n.style.display = "block";
 		}
 	    }
     </script>
