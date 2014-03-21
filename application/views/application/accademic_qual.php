@@ -2,7 +2,7 @@
     <div class='pantop'><h4>Academic and Professional Qualifications's</h4></div>
     <p>
       <table class="table table-striped">
-        <?php echo form_open('application/accademic'); ?>
+        <?php echo form_open('application/accademic',array("id"=>'form1')); ?>
         <tr>
             <td colspan='2'>
                 Highest Academic Qualification Attained

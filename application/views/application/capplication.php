@@ -27,7 +27,7 @@
               </li>
               <li>
                   <?php echo form_open('application/submitting'); ?>
-                  <button type="submit" class="btn btn-success">Submit Application</button>
+                  <button id="b" type="submit" class="btn btn-success">Submit Application</button>
                   </form>
               </li>
             </ul>
@@ -129,6 +129,20 @@
             
         </div> 
     </div>
+    <script>
+            var n = document.getElementById("b"); 
+            
+            var p=document.getElementById("form1");
+            var l = p.elements.length;
+            for(i=0; i<l; i++){
+		var g = p.elements[i].value;
+		if(g ===""){
+			n.style.display = "block";
+		}else{
+			n.style.display = "none";
+		}
+	    }
+    </script>
 <?php
 function display_input($filname,$varname){
          if(set_value($filname)){
