@@ -547,7 +547,7 @@ function submitting(){
         Application_form::submiting();
         $data['submit']='Your Application has been submitted and the '
                 . 'admision process will start soon.please visit your accout regulary to check for '
-                . 'admision progres ';
+                . 'admision progress';
         $this->load->view('application/capplication',$data);
 }
 }

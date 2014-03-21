@@ -9,7 +9,7 @@
     </p>
     <p>
         <table class="table table-striped">
-             <?php echo form_open('application/referee_info');?>
+             <?php echo form_open('application/referee_info',array("id"=>'form4'));?>
              <tr>
                 <td>Full Name:
                      <?php echo form_error('nm','<div class="error">', '</div>'); ?>

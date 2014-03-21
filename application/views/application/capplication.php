@@ -26,8 +26,9 @@
                 <a data-target=".settings" data-toggle="tab">Upload Documents</a>
               </li>
               <li>
-                  <?php echo form_open('application/submitting'); ?>
-                  <button id="b" type="submit" class="btn btn-success">Submit Application</button>
+                  <?php echo form_open('application/submitting',array("id"=>'form1')); ?>
+                  <button id="b" type="submit" class="subtn btn-success btn-large" data-target=".sub"  onclick="con_message()" >
+                      Submit Application</button>
                   </form>
               </li>
             </ul>
@@ -41,7 +42,7 @@
                     
                 <div><p><?php echo form_error('college','<div class="error">','</div>'); ?>
                     <label for="college">College Selection</label>
-                    <select name="college"  class="form-control">
+                    <select name="college"  class="form-control" id='1'>
                         <option > <?php display_input('college',$Ucollege);?></option>
                       <option >College of Information and Communication Technology</option>
                       <option >College of Natural and Applied Science</option>
@@ -51,7 +52,7 @@
                 <div><p>
                     <?php echo form_error('course','<div class="error">','</div>'); ?>
                      <label for="course"> Select Course</label>
-                     <select class="form-control" name="course">
+                     <select class="form-control" name="course" id="2">
                         <option >
                                   <?php display_input('course',$Ucourse);?>
                         </option>
@@ -123,27 +124,14 @@
             
             <?php include_once "upload.php";?>
             <?php if(isset($submit)){
-               echo ''.$submit.'';
+               echo '<div class="sub tab-pane active">';
+               echo '<div class="alert alert-success">'.$submit.'</div></div>';
             }?>
          </div>
             
         </div> 
     </div>
-    <script>
-            var n = document.getElementById("b"); 
-            
-            var p=document.getElementById("form1");
-            var l = p.elements.length;
-            for(i=0; i<l; i++){
-		var g = p.elements[i].value;
-		if(g ===""){
-			n.style.display = "none";
-                        break;
-		}else{
-			n.style.display = "block";
-		}
-	    }
-    </script>
+    <script src="<?php echo base_url('assets/js/submision_checking.js') ?>"></script>
 <?php
 function display_input($filname,$varname){
          if(set_value($filname)){
