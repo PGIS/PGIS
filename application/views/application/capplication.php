@@ -28,7 +28,7 @@
               <li>
                   <?php echo form_open('application/submitting',array("id"=>'form1')); ?>
                   <button id="b" type="submit" class="subtn btn-success btn-large" data-target=".sub"  onclick="con_message()" >
-                      Submit Application</button>
+                     <span class="glyphicon glyphicon-send"></span> Submit Application</button>
                   </form>
               </li>
             </ul>
