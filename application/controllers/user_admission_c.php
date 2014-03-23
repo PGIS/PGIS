@@ -7,5 +7,8 @@ class User_admission_c extends CI_Controller{
         $this->load->view('user_admission_v');
     }
     
-    
+    function do_upload(){
+        
+        
+    }
 }
