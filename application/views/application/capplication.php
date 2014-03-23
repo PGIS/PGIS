@@ -25,6 +25,12 @@
               <li class="<?php if(isset($active7)){echo 'active';}?>">
                 <a data-target=".settings" data-toggle="tab">Upload Documents</a>
               </li>
+              <li>
+                  <?php echo form_open('application/submitting',array("id"=>'form1')); ?>
+                  <button id="b" type="submit" class="subtn btn-success btn-large" data-target=".sub"  onclick="con_message()" >
+                     <span class="glyphicon glyphicon-send"></span> Submit Application</button>
+                  </form>
+              </li>
             </ul>
         <div class="tab-content" style="display: block;">
             
@@ -36,17 +42,17 @@
                     
                 <div><p><?php echo form_error('college','<div class="error">','</div>'); ?>
                     <label for="college">College Selection</label>
-                    <select name="college"  class="form-control">
+                    <select name="college"  class="form-control" id='1'>
                         <option > <?php display_input('college',$Ucollege);?></option>
                       <option >College of Information and Communication Technology</option>
-                      <option >College of Natural and Applied Scince</option>
+                      <option >College of Natural and Applied Science</option>
                       <option >College of Engeneering</option>
                     </select></p>
                </div>
                 <div><p>
                     <?php echo form_error('course','<div class="error">','</div>'); ?>
                      <label for="course"> Select Course</label>
-                     <select class="form-control" name="course">
+                     <select class="form-control" name="course" id="2">
                         <option >
                                   <?php display_input('course',$Ucourse);?>
                         </option>
@@ -117,9 +123,15 @@
             <?php include_once "additional.php";?>
             
             <?php include_once "upload.php";?>
+            <?php if(isset($submit)){
+               echo '<div class="sub tab-pane active">';
+               echo '<div class="alert alert-success">'.$submit.'</div></div>';
+            }?>
          </div>
+            
         </div> 
     </div>
+    <script src="<?php echo base_url('assets/js/submision_checking.js') ?>"></script>
 <?php
 function display_input($filname,$varname){
          if(set_value($filname)){
