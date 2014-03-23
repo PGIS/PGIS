@@ -33,7 +33,7 @@
           </button>
           <a class="navbar-brand visible-lg" href="#">
 		<img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">
-		POSTGRADUATE IFORMATION SYSTEM
+		POSTGRADUATE INFORMATION SYSTEM
 	  </a>
 	  <a class="navbar-brand hidden-lg" href='#'>
 	    <img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">PGIS</a>
@@ -43,10 +43,10 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li><a href="<?php echo site_url('admision');?>"><span class="glyphicon glyphicon-list"></span>
-	    Unchecked Appliation</a></li>
+	    Unchecked Applications</a></li>
             <li><a href="<?php echo site_url('');?>">
-	    <span class="glyphicon glyphicon-book"></span> Rejected Applications</a></li>
-	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-wrench"></span>
+	    <span class="glyphicon glyphicon-tasks"></span> Rejected Applications</a></li>
+	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-list-alt"></span>
 	    Pending Application</a></li>
             <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-comment"></span>  Messaging</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
