@@ -47,7 +47,7 @@
 	</div>
     </div>
     <div class='app'>
-	<a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Apply Now</button></a>
+	<a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Register Now</button></a>
     </div>
 </div><!-- /#page-wrapper -->
 
