@@ -9,6 +9,10 @@ class User_admission_c extends CI_Controller{
     
     function do_upload(){
         
+        $this->load->view('user_admission_v');
+    }
+    function do_download(){
         
+        $this->load->helper(download);
     }
 }
