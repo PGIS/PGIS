@@ -33,7 +33,7 @@ if(is_dir('uploads/'.$user)){
                   foreach ($map as $value){
                       echo "<tr class='mytable'>";
                      echo "<td>$i</td>";
-                   // echo "<td> $value</td>";
+                    echo "<td> $value</td>";
                      echo "<td>from $user</td>";
                      echo "<td><a href=''>Download to mark</a></td>";
                   }
