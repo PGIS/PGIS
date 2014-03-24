@@ -11,13 +11,13 @@
                 <a data-target=".home" data-toggle="tab">Personal information</a>
               </li>
               <li class="<?php if(isset($active3)){echo 'active';}?>">
-                <a data-target=".emprecod" data-toggle="tab">Employement Details</a>
+                <a data-target=".emprecod" data-toggle="tab">Employment Details</a>
               </li>
               <li class="<?php if(isset($active4)){echo 'active';}?>">
                 <a data-target=".accadem" data-toggle="tab">Education Background</a>
               </li>
               <li class="<?php if(isset($active5)){echo 'active';}?>">
-                <a data-target=".reff" data-toggle="tab">Refferees Details</a>
+                <a data-target=".reff" data-toggle="tab">Referees Details</a>
               </li>
               <li class="<?php if(isset($active6)){echo 'active';}?>">
                 <a data-target=".addit" data-toggle="tab">Additional Details</a>
@@ -46,7 +46,7 @@
                         <option > <?php display_input('college',$Ucollege);?></option>
                       <option >College of Information and Communication Technology</option>
                       <option >College of Natural and Applied Science</option>
-                      <option >College of Engeneering</option>
+                      <option >College of Engineering</option>
                     </select></p>
                </div>
                 <div><p>

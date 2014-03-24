@@ -11,6 +11,10 @@ class Admision extends CI_Controller{
     function __construct() {
         parent::__construct();
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+        $this->load->helper(array('form','html','url','array'));
+        $this->load->library(array('session'));
+        $this->load->helper('directory');
+        
         if(!$this->session->userdata('logged_in')){
             redirect('logout');
         }elseif ($this->session->userdata('user_role')!='Admision staff') {
@@ -19,17 +23,18 @@ class Admision extends CI_Controller{
     }
     
     function index(){
-        $data1 = $this->applicant_details();
-        $data=$data1;
+        
+        $query1 = $this->db->get_where('tb_app_personal_info', array('submited' => 'yes'));
+        $data['query']=$query1->result();
         $this->load->view('Admision/admision',$data);
     }
-    function applicant_details(){
+    function applicant_details($userid){
         
-	$userid=$this->session->userdata('userid');
-	
-        $query = $this->db->get_where('tb_app_personal_info', array('userid' => $userid));
+
+        $query = $this->db->get_where('tb_app_personal_info', array('userid' =>$userid));
          foreach ($query->result() as $row) {
-                $value = array(
+                $data = array(
+                    'userid'=>$row->userid,
                     'Ucollege' => $row->college,
                     'Ucourse' => $row->prog_name,
                     'prog_mod'=>$row->prog_mode,
@@ -47,9 +52,9 @@ class Admision extends CI_Controller{
                     'fax' => $row->fax_no,
                     'email' => $row->email
                 );
-                return $value;
+               
             } unset($row);
-            
+             $this->load->view('Admision/applicant_detail',$data);
     }
   
         
