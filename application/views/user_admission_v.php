@@ -29,14 +29,17 @@
 if(is_dir('uploads/'.$user)){
     
     $map = directory_map('./uploads/'.$user);
+    
                   $i=1;
+                 
                   foreach ($map as $value){
                       echo "<tr class='mytable'>";
                      echo "<td>$i</td>";
-                    echo "<td> $value</td>";
+                  echo "<td>$value</td>";
                      echo "<td>from $user</td>";
-                     echo "<td><a href=''>Download to mark</a></td>";
+                     echo "<td><a href='". site_url('user_admission_c/do_download/'.$user.'/'.$value)."'>Download to mark</a></td>";
                   }
+                  
 }
 ?>
         </table>
