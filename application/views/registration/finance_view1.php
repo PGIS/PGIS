@@ -27,7 +27,7 @@
         </table>
         </div>
         <div class="col-md-6">
-            <p class="btn btn-block btn-primary" align="center"><a href="" style="color:white;">View your document</a></p>
+            <p class="btn btn-block btn-primary" align="center"><a href="<?php echo site_url('finance_page/displayImage');?>" style="color:white;">View your document</a></p>
         <table class="table table-striped">
         </table>
         </div>
