@@ -47,6 +47,17 @@ class Finance_page extends CI_Controller{
             }
         } 
     }
+    function displayImage(){
+        $n=  $this->session->userdata('userid');
+        $res=  $this->db->query("select * from tb_finance where app_id='$n'");
+        foreach ($res->result() as $row){
+            $imageData=$row->image;
+           // $imageType=$row->name;
+            header("content-type:image/jpg");
+            echo '<img src="'.$imageData.'">';
+           
+        }
+    }
     }
 
 
