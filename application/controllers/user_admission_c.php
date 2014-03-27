@@ -27,4 +27,19 @@ class User_admission_c extends CI_Controller{
         force_download($name, $data);
 
     }
+    function read_content(){
+      
+        $this->load->model('user_admission_m');
+        $this->user_admission_m->get_students();
+        $result=$this->user_admission_m->get_students();
+        
+        foreach ($result as $row)
+{
+   echo $row->userid. '</br>';
+   
+}
+    }
+    public function load_data(){
+        
+    }
 }

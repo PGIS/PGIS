@@ -13,14 +13,13 @@
         </center>
     </div>
        <button type="button" class="btn btn-default btn-lg btn-block">Submitted Thesis</button>
-       <table class="mytable" border="2">
+       <table class="mytable table-hover" >
            
-           <?php
-           
-           //here i can put some td for more clarification
-           ?>
+           <tr class="mytable">
+               
+              
            </tr>
-       </table>
+                  </table>
        
         <table class='mytable table-hover' >
        <?php 
@@ -37,6 +36,7 @@ if(is_dir('uploads/'.$user)){
                      echo "<td>$i</td>";
                   echo "<td>$value</td>";
                      echo "<td>from $user</td>";
+                                          echo "<td>Document Description</td>";
                      echo "<td><a href='". site_url('user_admission_c/do_download/'.$user.'/'.$value)."'>Download to mark</a></td>";
                   }
                   

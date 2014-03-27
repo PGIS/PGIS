@@ -49,6 +49,7 @@
 	    <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+            
           </ul>
 	  
 	  <ul class="nav navbar-nav navbar-right navbar-user">

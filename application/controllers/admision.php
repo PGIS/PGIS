@@ -3,11 +3,11 @@
 
 /**
  * Description of admision
- *
+ *  
  * @author emanoble
  */
 class Admision extends CI_Controller{
-    
+        
     function __construct() {
         parent::__construct();
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
