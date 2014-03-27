@@ -1,8 +1,4 @@
-<?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-
+<?php if (!defined('BASEPATH'))exit('No direct script access allowed');
 class Application extends CI_Controller {
     
     public function __construct() {
@@ -395,16 +391,18 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('ad1', 'Address', 'trim|required|max_length[30]|xss_clean');
         $this->form_validation->set_rules('ad2', 'Address', 'trim|required|max_length[30]|xss_clean');
         $this->form_validation->run();
-        
         $this->load->library('email',$config);
         $this->email->set_newline("\r\n");
         $this->email->from('pgis@gmail.com','PGIS TEAM');
-        $this->email->to(set_value('em'),set_value('em1'),set_value('em2'));
+        $this->email->to(set_value('em'));
+        $this->email->cc(set_value('em1'));
+        $this->email->bcc(set_value('em2'));
         $this->email->subject('NOTIFICATION SMS');
         $message='<html>
                       <head><title></title></head>
                       <body>';
         $message .='<p> Dear referee your have been chosen to be on behalf of the  '.$this->session->userdata('userid'). ' as the referee </p>';
+        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page/referee_doc"> click here..!</a></strong></p>';
         $message .='<p> Please find the the attached file for more description</p>';
         $message .='<p> Thanks !!</p>';
         $message .='<p> PGIS TEAM</p>';
@@ -552,4 +550,5 @@ function submitting(){
                 . 'admision progres ';
         $this->load->view('application/capplication',$data);
 }
+
 }
