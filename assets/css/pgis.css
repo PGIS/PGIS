@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 h2{
 margin-left:5px;
 }
@@ -398,3 +399,38 @@ div #message_bar_in{
     padding-left: 4%;
     width: 100%;
 }
+=======
+    #formcenter{
+        position: relative;
+        width: 80%;
+        text-align: center;
+        right: 10%;
+    }
+    /*
+    customizing login page
+    */
+    
+     #login{
+        position: relative;
+        width: 50%;
+        left: 25%;
+        margin-top: 2%;
+    }
+      #regform{
+          position: relative;
+          width: 60%;
+          left: 20%;
+      }
+      .error{
+          color: red;
+      }
+       #rform{
+         width: 56%;
+         position: relative;
+         text-align: center;
+         margin-top: 1%;
+         left: 22%;
+         border-radius: 2%;
+       
+    }
+>>>>>>> origin/master

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
     <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+=======
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+>>>>>>> origin/master
 class Model_form extends CI_Model{
     public function __construct() {
          parent::__construct();

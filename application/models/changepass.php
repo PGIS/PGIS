@@ -1,7 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Changepass extends CI_Model{
     function isLogged() {
+<<<<<<< HEAD
         return $this->session->userdata('userid');
+=======
+        return   $this->session->userdata('userid');
+>>>>>>> origin/master
     }
     function change_pwd_db($opassword,$n) {
         if($this->isLogged()){

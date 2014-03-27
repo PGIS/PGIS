@@ -15,6 +15,7 @@
     <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
+<<<<<<< HEAD
     <script src="<?php echo base_url('assets/js/bootstrap-alert.js') ?>"></script>
   </head>
 
@@ -49,6 +50,39 @@
 	    <span class="glyphicon glyphicon-book"></span> Preview details</a></li>
             <li><a href="<?php echo site_url('finance_page/finance');?>">
 	    <span class="glyphicon glyphicon-folder-open"></span> Complete Registration</a></li>
+=======
+  </head>
+
+  <body>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand visible-lg" href="#">
+		<img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">
+		POSTGRADUATE INFORMATION SYSTEM
+	  </a>
+	  <a class="navbar-brand hidden-lg" href='#'>
+	    <img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">PGIS</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav side-nav">
+            <li><a href="<?php echo site_url('application');?>"><span class="glyphicon glyphicon-edit"></span>
+	    Application form</a></li>
+            <li><a href="<?php echo site_url('application/details_preview');?>">
+	    <span class="glyphicon glyphicon-book"></span> Preview details</a></li>
+>>>>>>> origin/master
 	    <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>

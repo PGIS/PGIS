@@ -41,6 +41,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
+<<<<<<< HEAD
           <ul class="nav navbar-nav side-nav">
             <li><a href="<?php echo site_url('admision');?>"><span class="glyphicon glyphicon-list"></span>
 	    Unchecked Applications</a></li>
@@ -49,6 +50,23 @@
 	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-list-alt"></span>
 	    Pending Application</a></li>
             <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-comment"></span>  Messaging</a></li>
+=======
+            
+          <ul class="nav navbar-nav side-nav">
+              <li>
+                    <button  class="mybtn btn-primary">
+                        <span class="glyphicon glyphicon-dashboard"></span>COICT ADMISSION PANEL
+                    </button>
+              </li> 
+            <li><a href="<?php echo site_url('admision');?>"><span class="glyphicon glyphicon-list"></span>
+	    Unchecked Applications</a></li>
+            <li><a href="<?php echo site_url('');?>">
+	    <span class="glyphicon glyphicon-tasks"></span> Rejected Applications</a></li>
+	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-list-alt"></span>
+	    Pending Application</a></li>
+             <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
+	    Change password</a></li>
+>>>>>>> origin/master
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
           </ul>
 	  

@@ -9,11 +9,16 @@
               <form class="form-signin"
                     action="<?php echo site_url('change_form/change');?>" method="post">
                 <?php if(!empty($error_message)){
+<<<<<<< HEAD
                  echo '<div class="alert alert-info">'.$error_message.'</div>';}
                  ?>
                   <?php if(!empty($error_mess)){
                  echo '<div class="alert alert-danger">'.$error_mess.'</div>';}
                  ?>
+=======
+                 echo $error_message;}
+                 ?> 
+>>>>>>> origin/master
                      <?php echo form_error('opassword','<div class="error">', '</div>'); ?>
                     <input type="password" class="form-control" placeholder="Current password" name="opassword">
                     <?php echo form_error('npassword','<div class="error">', '</div>'); ?>

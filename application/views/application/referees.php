@@ -6,6 +6,7 @@
          echo '<div class="alert alert-danger">'.$problem.'</div>';
        }
        ?>
+<<<<<<< HEAD
         <?php
        if(!empty($smg)){
          echo '<div class="alert alert-info">'.$smg.'</div>';
@@ -15,6 +16,12 @@
     <p>
         <table class="table table-striped">
              <?php echo form_open('application/referee_info');?>
+=======
+    </p>
+    <p>
+        <table class="table table-striped">
+             <?php echo form_open('application/referee_info',array("id"=>'form4'));?>
+>>>>>>> origin/master
              <tr>
                 <td>Full Name:
                      <?php echo form_error('nm','<div class="error">', '</div>'); ?>
