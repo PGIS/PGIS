@@ -48,7 +48,11 @@
     </div>
     <div class='app'>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Apply Now</button></a>
+=======
+	<a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Register Now</button></a>
+>>>>>>> origin/master
 =======
 	<a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Register Now</button></a>
 >>>>>>> origin/master

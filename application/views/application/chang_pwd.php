@@ -10,11 +10,16 @@
                     action="<?php echo site_url('change_form/change');?>" method="post">
                 <?php if(!empty($error_message)){
 <<<<<<< HEAD
+<<<<<<< HEAD
                  echo '<div class="alert alert-info">'.$error_message.'</div>';}
                  ?>
                   <?php if(!empty($error_mess)){
                  echo '<div class="alert alert-danger">'.$error_mess.'</div>';}
                  ?>
+=======
+                 echo $error_message;}
+                 ?> 
+>>>>>>> origin/master
 =======
                  echo $error_message;}
                  ?> 

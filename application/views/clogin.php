@@ -15,6 +15,7 @@
                      ?>
                     <?php if(isset($errormsg)) echo'<div class="error">'.$errormsg.'</div>';?>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <?php if(!empty($error_message)){ echo '<div class="alert alert-info">'. $error_message.'</div>';}?>
                     <p>
                     <?php echo form_error('us','<div class="error">', '</div>'); ?>
@@ -72,3 +73,36 @@
 </div>
 <?php include 'include/footer.php';?>
            
+=======
+                    <p>
+                    <?php echo form_error('us','<div class="error">', '</div>'); ?>
+                    <input type="text" class="form-control" placeholder="Username" name="us" value="<?php echo set_value('us'); ?>">
+                    </p>
+                    <p>
+                        <?php echo form_error('pd','<div class="error">', '</div>'); ?>
+
+                         <input type="password" class="form-control" placeholder="Password" name="pd">
+
+                    </p>
+                    <label class="checkbox">
+                        Remember me
+                    <input type="checkbox" value="remember-me" checked="chacked">
+                    </label>
+                    <input class="subtn btn-large btn-primary" type="submit" name="sb" value="submit">
+                    <?php
+                     if(isset($errormsg)){
+                         echo '<center><a href="'.site_url('register/passconfig').'">Forget password?</a></center>';
+                     }elseif (isset($active)) {
+                         echo '';
+                     }
+                     ?>
+            <?php form_close();?>
+               
+                   
+            </div>
+         </div>
+     </div>   
+</div>
+<?php include 'include/footer.php';?>
+           
+>>>>>>> origin/master

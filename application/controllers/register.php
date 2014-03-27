@@ -45,6 +45,7 @@ class Register extends CI_Controller {
                  . <head><title></title></head>
                     <body>';
 <<<<<<< HEAD
+<<<<<<< HEAD
       $message .='<p> Dear'.' <b>'.$username.'<b></p>';
       $message .='<p> Thanks for registaring and please <strong><a href="http://localhost/pgis/index.php/register/email_validation/'.$email.'/'.random_string('unique').'">click here</a></strong> to activate yoour account';
       $message .='<p> PGIS TEAM</p>';
@@ -144,6 +145,101 @@ class Register extends CI_Controller {
                     $this->load->view('password_retrival',$data);
                    }  else {
                      $data['error_mess1']='<font color=red><p align=center>Email-adress does not exist.!,please register agaion.!</p></font>';
+=======
+      $message .='<p> Dear'.' '.$username.'</p>';
+      $message .='<p> Thanks for registaring and please <strong><a href="http://localhost/PGIS/index.php/register/email_validation">click here</a></strong> to activate yoour account';
+      $message .='<p> PGIS TEAM</p>';
+      $message .='</body>';
+      $message .='</html>';
+      $this->email->message($message);
+      if(@$this->email->send()){
+      $data['smg']=$username;
+      $this->load->view('registration_confirmation',$data);
+      $this->model_form->model_form_db($username,$fname,$mname,$password,$email);
+      }else{
+      $this->load->view('network_error1');
+      }
+      }
+  }
+  function email_validation() {
+      $this->load->model('model_form');
+      $email= $this->session->userdata('email');
+      $validated=  $this->model_form->activate_account($email);
+      if($validated){
+       
+      }  else {
+      $data['error_message']='<font color=blue><p align=center>Successify registered </p><p align=center>You can login now.!</p></font>';
+      $this->load->view('clogin',$data);
+      }
+  }
+  function passconfig(){
+       $config=array(
+            'protocol'=>'smtp',
+            'smtp_host'=>'ssl://smtp.gmail.com',
+            'smtp_port'=>465,
+            'mailtype'=>'html',
+            'smtp_user'=>'tuzoengelbert@gmail.com',
+            'smtp_pass'=>'ngelageze',
+            'charset'=>'iso-8859-1'
+            
+        );
+      $this->form_validation->set_rules('email','E-mail','trim|required|valid_email|xss_clean');
+      if($this->form_validation->run()===FALSE){
+         $this->load->view('forget_pass');
+          }  else{
+           $this->load->model('model_form');
+           $email=  $this->input->post('email');
+           $result=$this->model_form->password_recovery($email);
+           if($result){
+           $this->load->library('email',$config);
+           $this->email->set_newline("\r\n");
+           $this->email->from('pgisteam@gmail.com','PGIS TEAM');
+           $this->email->to($email);
+           $this->email->subject('PASSWORD RECOVERY');
+           $message='<html>
+                    <head><title></title></head>
+                    <body>';
+           $message.='<p>Dear'.' '.$email.'</p>';
+           $message.='<p>To recover your password please <strong><a href="  http://localhost/PGIS/index.php/register/password_lost ">click here</a></strong> to retrive lost password</p>';
+           $message.='<p>Thanks !!!!</p>';
+           $message.='<p>PGIS TEAM</p>';
+           $message.='</body>';
+           $message.='</html>';
+           $this->email->message($message);
+           if(@$this->email->send()){
+           $data['error_message']='<font color=blue>E-mail sent !!</font>';
+           $this->load->view('forget_pass',$data);
+           }  else {
+               $this->load->view('network_error');   
+           }
+          }
+          else{
+           $data['error_message']='<font color=red>Invalid email</font>';
+           $this->load->view('forget_pass',$data);
+         }
+        
+          }
+         }
+         function password_lost(){
+             $this->form_validation->set_rules('email','E-mail','required|valid_email|xss_clean');
+             $this->form_validation->set_rules('npassword','New password','trim|required|matches[passwordconf]|xss_clean');
+             $this->form_validation->set_rules('passwordconf','Confirmation password','trim|required|xss_clean');
+               if($this->form_validation->run()===FALSE){
+                   $this->load->view('password_retrival'); 
+               } else {
+                   $email=  $this->input->post('email');
+                   $npassword=  md5($this->input->post('npassword'));
+                   $query="select email,userid from tb_user where email='{$email}' limit 1";
+                   $result=$this->db->query($query);
+                   $row=$result->row();
+                   if($result->num_rows()===1&& $row->userid){
+                    $this->load->model('model_form'); 
+                    $this->model_form->update_password($email,$npassword);
+                    $data['error_message']='<font color=blue><p align=center>Successify updated: </p><p align=center>You can login now.!</p></font>';
+                    $this->load->view('clogin',$data);
+                   }  else {
+                     $data['error_message']='<font color=red><p align=center>invalid email...!! </p></font>';
+>>>>>>> origin/master
 =======
       $message .='<p> Dear'.' '.$username.'</p>';
       $message .='<p> Thanks for registaring and please <strong><a href="http://localhost/PGIS/index.php/register/email_validation">click here</a></strong> to activate yoour account';

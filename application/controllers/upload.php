@@ -32,8 +32,13 @@ function do_upload(){
                 $config['overwrite'] = true;
 		$this->load->library('upload', $config);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $this->upload->initialize($config);
         if(!$this->upload->do_upload()){
+=======
+                 $this->upload->initialize($config);
+        if(! $this->upload->do_upload()){
+>>>>>>> origin/master
 =======
                  $this->upload->initialize($config);
         if(! $this->upload->do_upload()){

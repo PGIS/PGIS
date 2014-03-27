@@ -2,7 +2,11 @@
 class Changepass extends CI_Model{
     function isLogged() {
 <<<<<<< HEAD
+<<<<<<< HEAD
         return $this->session->userdata('userid');
+=======
+        return   $this->session->userdata('userid');
+>>>>>>> origin/master
 =======
         return   $this->session->userdata('userid');
 >>>>>>> origin/master
