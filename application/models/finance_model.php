@@ -31,5 +31,35 @@ class Finance_model extends CI_Model{
            return FALSE; 
         }
     }
+    public function registration_data($sn,$date_reg,$date_begin,$date_comp,$postponement,$date_postponement,$frezing,
+            $date_frez,$date_resume,$extension,$date_ext,$period_ext,$regist_fees,$regist_fee_amount,$regist_receiptno,
+            $studentship_fees,$studentship_amount,$studentship_receiptno){
+        $reg_data=array(
+            'regist_name'=>$sn,
+            'date_regist'=>$date_reg,
+            'date_begin'=>$date_begin,
+            'date_compt'=>$date_comp,
+            'postponement'=>$postponement,
+            'date_postponement'=>$date_postponement,
+            'freezing'=>$frezing,
+            'date_freezing'=>$date_frez,
+            'date_resume'=>$date_resume,
+            'extension'=>$extension,
+            'date_extension'=>$date_ext,
+            'month_extension'=>$period_ext,
+            'regist_fees'=>$regist_fees,
+            'regist_amount'=>$regist_fee_amount,
+            'regist_receipt_no'=>$regist_receiptno,
+            'studentship_fees'=>$studentship_fees,
+            'studentship_amount'=>$studentship_amount,
+            'studentship_receipt_no'=>$studentship_receiptno
+        );
+        $res=$this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
+        if($res->num_rows()===1){
+            $this->db->update('tb_studentReg',$reg_data);
+        }else{
+            $this->db->insert('tb_studentReg',$reg_data);
+        }
+    }
     }
 

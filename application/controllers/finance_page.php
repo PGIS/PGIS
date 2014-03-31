@@ -18,6 +18,7 @@ class Finance_page extends CI_Controller{
         $this->load->view('registration/finance_view1',$data);  
     }
     public function finance(){
+        $data['active1']=TRUE;
         $this->form_validation->set_rules('regist_id','Registration ID','trim|required|exact_length[13]|alpha_dash|xss_clean');
         $this->form_validation->set_rules('finance_id','Finance ID','trim|requied|xss_clean');
         $this->form_validation->set_rules('pay_no','Payment No','trim|required|xss_clean');
@@ -25,7 +26,7 @@ class Finance_page extends CI_Controller{
         $this->form_validation->set_rules('amount','Amount','trim|required|numeric|xss_clean');
         $this->form_validation->set_rules('date_payment','Payment date','trim|required|alpha_dash|xss_clean');
         if($this->form_validation->run()===FALSE){
-            $this->load->view('registration/finance_view');
+            $this->load->view('registration/finance_view',$data);
         }else{
             $this->load->model('finance_model');
             $application_id=  $this->session->userdata('userid');
@@ -46,8 +47,8 @@ class Finance_page extends CI_Controller{
             $data['results']='<font>Oops.! Not a image please try Again.!</font>';
             $this->load->view('registration/finance_view',$data); 
             }
-        } 
-    }
+        }
+        }
     function displayImage(){
         $n=  $this->session->userdata('userid');
         $res=  $this->db->query("select * from tb_finance where app_id='$n'");

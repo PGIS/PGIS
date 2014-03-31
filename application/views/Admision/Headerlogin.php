@@ -41,9 +41,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <ul class="nav navbar-nav side-nav">
+       <ul class="nav navbar-nav side-nav">
             <li><a href="<?php echo site_url('admision');?>"><span class="glyphicon glyphicon-list"></span>
 	    Unchecked Applications</a></li>
             <li><a href="<?php echo site_url('');?>">
@@ -51,26 +49,9 @@
 	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-list-alt"></span>
 	    Pending Application</a></li>
             <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-comment"></span>  Messaging</a></li>
-=======
-            
-          <ul class="nav navbar-nav side-nav">
-              <li>
-                    <button  class="mybtn btn-primary">
-                        <span class="glyphicon glyphicon-dashboard"></span>COICT ADMISSION PANEL
-                    </button>
-              </li> 
-            <li><a href="<?php echo site_url('admision');?>"><span class="glyphicon glyphicon-list"></span>
-	    Unchecked Applications</a></li>
-            <li><a href="<?php echo site_url('');?>">
-	    <span class="glyphicon glyphicon-tasks"></span> Rejected Applications</a></li>
-	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-list-alt"></span>
-	    Pending Application</a></li>
-             <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
-	    Change password</a></li>
->>>>>>> origin/master
+
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
           </ul>
-	  
 	  <ul class="nav navbar-nav navbar-right navbar-user">
 	    <li class="dropdown user-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -91,45 +72,3 @@
 	  
         </div><!-- /.navbar-collapse -->
       </nav>
-      
-=======
-            
-          <ul class="nav navbar-nav side-nav">
-              <li>
-                    <button  class="mybtn btn-primary">
-                        <span class="glyphicon glyphicon-dashboard"></span>COICT ADMISSION PANEL
-                    </button>
-              </li> 
-            <li><a href="<?php echo site_url('admision');?>"><span class="glyphicon glyphicon-list"></span>
-	    Unchecked Applications</a></li>
-            <li><a href="<?php echo site_url('');?>">
-	    <span class="glyphicon glyphicon-tasks"></span> Rejected Applications</a></li>
-	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-list-alt"></span>
-	    Pending Application</a></li>
-             <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
-	    Change password</a></li>
-            <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
-          </ul>
-	  
-	  <ul class="nav navbar-nav navbar-right navbar-user">
-	    <li class="dropdown user-dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		<span class="glyphicon glyphicon-user"></span>
-		<?php
-		 if($this->session->userdata('logged_in')){
-		    echo $this->session->userdata('userid');
-		}
-		?> <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
-                <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
-                
-              </ul>
-            </li>
-	  </ul>
-	  
-        </div><!-- /.navbar-collapse -->
-      </nav>
-      
->>>>>>> origin/master

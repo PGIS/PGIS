@@ -123,9 +123,7 @@ class Application_form extends CI_Model{
                  'third_email'=>$this->input->post('em2'),
                  'third_address'=>$this->input->post('ad2')
           );
-<<<<<<< HEAD
-<<<<<<< HEAD
-          $this->session->set_userdata($redata);
+        $this->session->set_userdata($redata);
         if(isset($_POST['save'])){
             $query = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
         
@@ -186,96 +184,6 @@ function insert_addition(){
                $this->db->update('tb_referee_doc',$ref);   
            }  else {
                $this->db->insert('tb_referee_doc',$ref); 
-           } 
-=======
-        if(isset($_POST['save'])){
-            $query = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
-        
-         if ($query->num_rows()==1){
-                $this->db->where('referee_id',$this->session->userdata('userid'));
-                $this->db->update('tb_referee', $redata); 
-           }  
-           elseif($query->num_rows()==0) {
-               $this->db->insert('tb_referee', $redata); 
-                } 
-        }
-            
-       
-    }
-    
-function insert_addition(){
-    $redata = array(
-                 'referee_id' => $this->session->userdata('userid'),
-                 'sponser_name'=>$this->input->post('namsponsor'),
-                 'sponser_address'=>$this->input->post('addr_spons'),
-                 'sponsership_mode'=>$this->input->post('chbx1'),
-                 'fio_rospectus'=>$this->input->post('fprospec'),
-                 'fi_education_trade'=>$this->input->post('feduca'),
-                 'fi_www'=>$this->input->post('fwww'),
-                 'fi_newspaper'=>$this->input->post('fjournal'),
-                 'fi_university'=>$this->input->post('funiver'),
-                 'fi_other'=>$this->input->post('fother')  
-                    );
-     $query = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
-        if ($query->num_rows()==1){
-                $this->db->where('referee_id',$this->session->userdata('userid'));
-                $this->db->update('tb_referee', $redata); 
-           }  
-           elseif($query->num_rows()==0) {
-               $this->db->insert('tb_referee', $redata); 
-                } 
-     
-        }
-        function submiting(){
-         $this->submited = "yes";
-        $this->db->where('userid',$this->session->userdata('userid'));
-        $this->db->update('tb_app_personal_info', $this); 
->>>>>>> origin/master
-        }
+      } 
+ }
 }
-=======
-        if(isset($_POST['save'])){
-            $query = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
-        
-         if ($query->num_rows()==1){
-                $this->db->where('referee_id',$this->session->userdata('userid'));
-                $this->db->update('tb_referee', $redata); 
-           }  
-           elseif($query->num_rows()==0) {
-               $this->db->insert('tb_referee', $redata); 
-                } 
-        }
-            
-       
-    }
-    
-function insert_addition(){
-    $redata = array(
-                 'referee_id' => $this->session->userdata('userid'),
-                 'sponser_name'=>$this->input->post('namsponsor'),
-                 'sponser_address'=>$this->input->post('addr_spons'),
-                 'sponsership_mode'=>$this->input->post('chbx1'),
-                 'fio_rospectus'=>$this->input->post('fprospec'),
-                 'fi_education_trade'=>$this->input->post('feduca'),
-                 'fi_www'=>$this->input->post('fwww'),
-                 'fi_newspaper'=>$this->input->post('fjournal'),
-                 'fi_university'=>$this->input->post('funiver'),
-                 'fi_other'=>$this->input->post('fother')  
-                    );
-     $query = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
-        if ($query->num_rows()==1){
-                $this->db->where('referee_id',$this->session->userdata('userid'));
-                $this->db->update('tb_referee', $redata); 
-           }  
-           elseif($query->num_rows()==0) {
-               $this->db->insert('tb_referee', $redata); 
-                } 
-     
-        }
-        function submiting(){
-         $this->submited = "yes";
-        $this->db->where('userid',$this->session->userdata('userid'));
-        $this->db->update('tb_app_personal_info', $this); 
-        }
-}
->>>>>>> origin/master

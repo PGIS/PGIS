@@ -5,6 +5,9 @@
          $this->load->helper('form','url','html');
          $this->load->library('form_validation');
      }
+     public function index(){
+     $this->load->view('application/referee_docu'); 
+     }
     public function referee_doc(){
     $this->form_validation->set_rules('addcoment','Addition comment','required');
     if(isset($_POST['sb'])){
