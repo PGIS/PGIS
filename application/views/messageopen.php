@@ -10,8 +10,8 @@ if($this->session->userdata('user_role')=='Admision staff'){
 <div id="page-wrapper">
     <div class="col-md-3 smsmenu">
         <div class="list-group">
-            <a href="#" class="list-group-item">New messages</a>
-            <a href="#" class="list-group-item">Older messages</a>
+            <a href="<?php echo site_url('messages/unread');?>" class="list-group-item">Unread Messages</a>
+            <a href="<?php echo site_url('messages');?>" class="list-group-item">all messages</a>
             <a href="#" class="list-group-item">Sent messages</a>
             
         </div >

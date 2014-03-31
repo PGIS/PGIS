@@ -31,4 +31,7 @@
             $this->db->update('tb_messeges', $dat2); 
       $this->load->view('messageopen',$data);
    } 
+   function unread(){
+        $this->load->view('unreadmsg');
+   }
  }
