@@ -77,23 +77,7 @@
                     <span class="glyphicon glyphicon-envelope"></span>
                     Messages
                     <span class="badge">
-                        <?php
-                        $toreach ($query->result() as $row) {
-                $value = array(
-                    'Ucollege' => $row->college,
-                    'Ucourse' => $row->prog_name,
-                    'prog_mod'=>$row->prog_mode,
-                    'sname' => $row->surname,
-                    'other_nam' => $row->other_name,
-                    'title' => $row->title,
-                    'datebirth' => $row->dob,
-                    'country' => $row->cob,
-             his->db->where('receiver',$this->session->userdata('userid'));
-                        $this->db->where('status','unchecked');
-                        $this->db->from('tb_messeges');
-                        $newsmg=$this->db->count_all_results();
-                        echo  $newsmg;
-                        ?>
+                        
                     </span>
                 <b class="caret"></b>
                 </a>
