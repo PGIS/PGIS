@@ -38,11 +38,6 @@ if($this->session->userdata('user_role')=='Admision staff'){
                 . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->sender.'</a></b></td>'
                 . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->subject.'</a></b></td>'         
                     . '</tr>';
-                }else{
-                        echo '<tr>'
-                . '<td><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->sender.'</a></td>'
-                . '<td><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->subject.'</a></td>'         
-                    . '</tr>';
                 }
                 
                 }
