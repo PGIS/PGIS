@@ -77,7 +77,13 @@
                     <span class="glyphicon glyphicon-envelope"></span>
                     Messages
                     <span class="badge">
-                        
+                        <?php
+                        $this->db->where('receiver',$this->session->userdata('userid'));
+                        $this->db->where('status','unchecked');
+                        $this->db->from('tb_messeges');
+                        $newsmg=$this->db->count_all_results();
+                        echo  $newsmg;
+                        ?>
                     </span>
                 <b class="caret"></b>
                 </a>
@@ -126,3 +132,13 @@
                     <li>
                     <a href="#">
                     View Inbox
+                    <span class="badge">7</span>
+                    </a>
+                    </li>
+                </ul>
+                </li>
+              </ul>
+	  
+        </div><!-- /.navbar-collapse -->
+      </nav>
+      
