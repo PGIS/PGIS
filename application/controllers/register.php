@@ -44,8 +44,8 @@ class Register extends CI_Controller {
       $message='<html>
                  . <head><title></title></head>
                     <body>';
-      $message .='<p> Dear'.' '.$username.'</p>';
-      $message .='<p> Thanks for registaring and please <strong><a href="http://localhost/PGIS/index.php/register/email_validation">click here</a></strong> to activate yoour account';
+      $message .='<p> Dear'.' <b>'.$username.'<b></p>';
+      $message .='<p> Thanks for registaring and please <strong><a href="http://localhost/pgis/index.php/register/email_validation/'.$email.'/'.random_string('unique').'">click here</a></strong> to activate yoour account';
       $message .='<p> PGIS TEAM</p>';
       $message .='</body>';
       $message .='</html>';
@@ -66,7 +66,7 @@ class Register extends CI_Controller {
       if($validated){
        
       }  else {
-      $data['error_message']='<font color=blue><p align=center>Successify registered </p><p align=center>You can login now.!</p></font>';
+      $data['error_message']='<font class=alert-success style=margin-left:80px;>Successify registered,You can login now.!</font>';
       $this->load->view('clogin',$data);
       }
   }
@@ -81,12 +81,13 @@ class Register extends CI_Controller {
             'charset'=>'iso-8859-1'
             
         );
-      $this->form_validation->set_rules('email','E-mail','trim|required|valid_email|xss_clean');
-      if($this->form_validation->run()===FALSE){
-         $this->load->view('forget_pass');
+        $this->form_validation->set_rules('email','E-mail','trim|required|valid_email|xss_clean');
+        if($this->form_validation->run()===FALSE){
+         $this->load->view('forgot_pass');
           }  else{
            $this->load->model('model_form');
            $email=  $this->input->post('email');
+           $this->session->set_userdata('email');
            $result=$this->model_form->password_recovery($email);
            if($result){
            $this->load->library('email',$config);
@@ -98,22 +99,22 @@ class Register extends CI_Controller {
                     <head><title></title></head>
                     <body>';
            $message.='<p>Dear'.' '.$email.'</p>';
-           $message.='<p>To recover your password please <strong><a href="  http://localhost/PGIS/index.php/register/password_lost ">click here</a></strong> to retrive lost password</p>';
+           $message.='<p>To recover your password please <strong><a href="http://localhost/pgis/index.php/register/password_lost/'.$email.'">click here</a></strong> to retrive lost password</p>';
            $message.='<p>Thanks !!!!</p>';
            $message.='<p>PGIS TEAM</p>';
            $message.='</body>';
            $message.='</html>';
            $this->email->message($message);
            if(@$this->email->send()){
-           $data['error_message']='<font color=blue>E-mail sent !!</font>';
-           $this->load->view('forget_pass',$data);
+           $data['error_message']='<font color=blue>E-mail sent !!,Visit your Email account to retrive lost password</font>';
+           $this->load->view('forgot_pass',$data);
            }  else {
                $this->load->view('network_error');   
            }
           }
           else{
-           $data['error_message']='<font color=red>Invalid email</font>';
-           $this->load->view('forget_pass',$data);
+           $data['error_mess']='<font color=red>Invalid email</font>';
+           $this->load->view('forgot_pass',$data);
          }
         
           }
@@ -131,12 +132,18 @@ class Register extends CI_Controller {
                    $result=$this->db->query($query);
                    $row=$result->row();
                    if($result->num_rows()===1&& $row->userid){
+                       $data=array(
+                       'userid'=>$row->userid,
+                       'email'=>$email
+                   );
+                   $this->session->set_userdata($data);
                     $this->load->model('model_form'); 
                     $this->model_form->update_password($email,$npassword);
-                    $data['error_message']='<font color=blue><p align=center>Successify updated: </p><p align=center>You can login now.!</p></font>';
-                    $this->load->view('clogin',$data);
+                    $data['smg']='<font color=blue><p align=center>Hey'.' '.ucfirst(strtolower(addslashes($this->session->userdata('userid')))).' '. 'you have successify updated your lost password:</font>';
+                    $this->load->view('password_retrival',$data);
                    }  else {
-                     $data['error_message']='<font color=red><p align=center>invalid email...!! </p></font>';
+                     $data['error_mess1']='<font color=red><p align=center>Email-adress does not exist.!,please register agaion.!</p></font>';
+
                     $this->load->view('password_retrival',$data);  
                    }
                }

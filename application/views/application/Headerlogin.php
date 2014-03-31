@@ -78,7 +78,17 @@
                     Messages
                     <span class="badge">
                         <?php
-                        $this->db->where('receiver',$this->session->userdata('userid'));
+                        $toreach ($query->result() as $row) {
+                $value = array(
+                    'Ucollege' => $row->college,
+                    'Ucourse' => $row->prog_name,
+                    'prog_mod'=>$row->prog_mode,
+                    'sname' => $row->surname,
+                    'other_nam' => $row->other_name,
+                    'title' => $row->title,
+                    'datebirth' => $row->dob,
+                    'country' => $row->cob,
+             his->db->where('receiver',$this->session->userdata('userid'));
                         $this->db->where('status','unchecked');
                         $this->db->from('tb_messeges');
                         $newsmg=$this->db->count_all_results();
@@ -132,13 +142,3 @@
                     <li>
                     <a href="#">
                     View Inbox
-                    <span class="badge">7</span>
-                    </a>
-                    </li>
-                </ul>
-                </li>
-              </ul>
-	  
-        </div><!-- /.navbar-collapse -->
-      </nav>
-      

@@ -6,11 +6,16 @@
          echo '<div class="alert alert-danger">'.$problem.'</div>';
        }
        ?>
+        <?php
+       if(!empty($smg)){
+         echo '<div class="alert alert-info">'.$smg.'</div>';
+       }
+       ?>
     </p>
     <p>
         <table class="table table-striped">
-             <?php echo form_open('application/referee_info',array("id"=>'form4'));?>
-             <tr>
+             <?php echo form_open('application/referee_info');?>
+                <tr>
                 <td>Full Name:
                      <?php echo form_error('nm','<div class="error">', '</div>'); ?>
                     <input type="text" name="nm"  class="form-control"

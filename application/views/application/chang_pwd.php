@@ -9,10 +9,15 @@
               <form class="form-signin"
                     action="<?php echo site_url('change_form/change');?>" method="post">
                 <?php if(!empty($error_message)){
-                 echo $error_message;}
-                 ?> 
+
+                echo '<div class="alert alert-info">'.$error_message.'</div>';}
+                 ?>
+                  <?php if(!empty($error_mess)){
+                 echo '<div class="alert alert-danger">'.$error_mess.'</div>';}
+                 ?>
+
                      <?php echo form_error('opassword','<div class="error">', '</div>'); ?>
-                  <p><input type="password" class="form-control" placeholder="Current password" name="opassword"></p>
+                    <input type="password" class="form-control" placeholder="Current password" name="opassword">
                     <?php echo form_error('npassword','<div class="error">', '</div>'); ?>
                     <p><input type="password" class="form-control" placeholder="New password" name="npassword"></p>
                     <?php echo form_error('cpassword','<div class="error">', '</div>'); ?>
