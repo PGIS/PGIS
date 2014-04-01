@@ -21,7 +21,8 @@ class Application extends CI_Controller {
                     $this->load->model('Application_form');
                     
               if(Application_form::redirect_message()=='submited'){
-                   $this->load->view('application/submitmsg');
+                  $data['lisubmited']=FALSE;
+                   $this->load->view('application/submitmsg',$data);
               }elseif(Application_form::redirect_message()=='started'){
                    $this->load->view('application/startsmg');
               }  else {
@@ -32,7 +33,11 @@ class Application extends CI_Controller {
     
     function apply() {
        
-            
+             $this->load->model('Application_form');
+              if(Application_form::redirect_message()=='submited'){
+              $data['lisubmited']=FALSE;
+              redirect('application');
+              }
             $data1 = $this->show_User_data();
             $data2 = $this->show_user_history();
             $data3 = $this->referee_spon_data();
