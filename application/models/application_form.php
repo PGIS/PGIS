@@ -166,6 +166,25 @@ function insert_addition(){
         $this->db->where('userid',$this->session->userdata('userid'));
         $this->db->update('tb_app_personal_info', $this); 
         }
+        public function referee_doc($sn,$referee,$intellectual,$thinking,$maturity,$language,$ability,$comment){
+            $ref=array(
+                'referee_id'=>$sn,
+                'referee_name'=>$referee,
+                'intellectual_ability'=>$intellectual,
+                'thinking_capacity'=>$thinking,
+                'maturity'=>$maturity,
+                'english_proficiency'=>$language,
+                'ability_work'=>$ability,
+                'comment'=>$comment
+            );
+           $res= $this->db->get_where('tb_referee_doc',array('referee_name'=>$referee));
+           if($res->num_rows()>0){
+               $this->db->where('referee_name',$referee);
+               $this->db->update('tb_referee_doc',$ref);   
+           }  else {
+               $this->db->insert('tb_referee_doc',$ref); 
+      } 
+ }
         function redirect_message(){
             $data=array(
                 'submited' => 'yes',
