@@ -34,4 +34,45 @@
    function unread(){
         $this->load->view('unreadmsg');
    }
+   
+   function send_sms($userid){
+       $data=  $this->appl_detils($userid);
+           $this->form_validation->set_rules('subject', 'Subject', 'required|max_length[80]|xss_clean');
+           $this->form_validation->set_rules('to', 'Receiver', 'required|max_length[40]|xss_clean');
+           $this->form_validation->set_rules('msgbody', 'Message body', 'required|xss_clean');
+           $this->form_validation->run();
+           
+           if(isset($_POST['send'])){
+                if($this->form_validation->run() == TRUE){
+                  $this->load->model('messaging');
+                  Messaging::add_message();
+                   Messaging::return_to_customer($userid);
+                  $data['sent']='Message sent';
+                }
+            }
+           $data['userid']=$userid;
+         $this->load->view('Admision/denied_appl_message',$data);
+   }
+   
+    function  appl_detils($id){
+         $query = $this->db->get_where('tb_app_personal_info', array('userid' =>$id));
+         foreach ($query->result() as $row) {
+                $dat = array(
+                    'userid'=>$row->userid,
+                    'sname' => $row->surname,
+                    'other_nam' => $row->other_name,
+                    'title' => $row->title,
+                    'appid'=>$row->app_id,
+                    'datebirth' => $row->dob,
+                    'country' => $row->cob
+                );
+           
+        }return $dat;
+        }
+        function create_message(){
+            $this->load->view('composemsg');
+        }
+        function send_to_email(){
+            
+        }
  }

@@ -13,7 +13,11 @@ if($this->session->userdata('user_role')=='Admision staff'){
             <a href="<?php echo site_url('messages/unread');?>" class="list-group-item">unread messages</a>
             <a href="<?php echo site_url('messages');?>" class="list-group-item">all messages</a>
             <a href="#" class="list-group-item">Sent messages</a>
-            
+            <?php 
+            if($this->session->userdata('user_role')!='applicant'){
+                echo '<a href="'.site_url('messages/create_message').'" class="list-group-item">Compose message</a>';
+            }
+            ?>
         </div >
     </div>
     <div class="col-md-9">
@@ -21,25 +25,27 @@ if($this->session->userdata('user_role')=='Admision staff'){
            <thead><center><h4>Received Messages</h4></center></thead>
             <?php
             $this->db->order_by("status", "desc");
-            $query = $this->db->get_where('tb_messeges', array('receiver' => $this->session->userdata('userid')));
+            $unchecked='unchecked';
+            $query = $this->db->get_where('tb_messeges', array('receiver' => $this->session->userdata('userid'),'status'=>$unchecked));
             if($query->num_rows() > 0){
-                ?>
-                    <tr>
+               ?>
+                   <tr>
                         <td>Sent by</td>
                         <td>Subject</td>
-                 </tr>
-                 <?php
+                    </tr>  
+                  <?php 
+                    
+            }else{
+                echo 'No any unread message';
             }
-            foreach ($query->result() as $row)
                 
+            foreach ($query->result() as $row)
+                 
                 {
-                if($row->status=='unchecked'){
                         echo '<tr>'
                 . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->sender.'</a></b></td>'
                 . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->subject.'</a></b></td>'         
                     . '</tr>';
-                }
-                
                 }
             ?>
         </table>

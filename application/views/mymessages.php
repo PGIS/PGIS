@@ -13,7 +13,11 @@ if($this->session->userdata('user_role')=='Admision staff'){
             <a href="<?php echo site_url('messages/unread');?>" class="list-group-item">unread messages</a>
             <a href="<?php echo site_url('messages');?>" class="list-group-item">all messages</a>
             <a href="#" class="list-group-item">Sent messages</a>
-            
+            <?php 
+            if($this->session->userdata('user_role')!='applicant'){
+                echo '<a href="'.site_url('messages/create_message').'" class="list-group-item">Compose message</a>';
+            }
+            ?>
         </div >
     </div>
     <div class="col-md-9">

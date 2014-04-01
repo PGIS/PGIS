@@ -22,4 +22,10 @@ class Messaging extends CI_Model{
               );
         $this->db->insert('tb_messeges',$message);
       }
+      
+      function return_to_customer($id){
+          $data1=array('submited'=>'');
+                $this->db->where('userid',$id);
+                $this->db->update('tb_app_personal_info', $data1); 
+      }
 }
