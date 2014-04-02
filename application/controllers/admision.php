@@ -196,5 +196,11 @@ class Admision extends CI_Controller{
            $this->load->view('Admision/admited_applicants',$data);
         }
         
+        function pending($userid){
+              $data=$this->appl_detils($userid);
+             $data['userid']=$userid;
+             $this->load->view('Admision/denied_appl_message',$data);
+        }
+        
     }
 

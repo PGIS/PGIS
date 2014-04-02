@@ -139,7 +139,7 @@
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                     <li><a href="">Doesn't meet requirement</a></li>
-                    <li><a href="">Incomplete Application</a></li>
+                    <li><a href="<?php echo site_url('admision/pending/'.$userid.'');?>">Incomplete Application</a></li>
                    
                 </ul>
                  

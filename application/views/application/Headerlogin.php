@@ -50,8 +50,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
+              <?php
+              if(!isset($lisubmited)){
+              ?>
             <li><a href="<?php echo site_url('application/apply');?>"><span class="glyphicon glyphicon-edit"></span>
 	    Application form</a></li>
+            <?php }?>
             <li><a href="<?php echo site_url('application/details_preview');?>">
 	    <span class="glyphicon glyphicon-book"></span> Preview details</a></li>
             <li><a href="<?php echo site_url('messages');?>">
