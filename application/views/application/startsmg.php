@@ -1,0 +1,25 @@
+<?php include 'Headerlogin.php';?>
+
+<div id="page-wrapper">
+    <div class="col-md-12">
+        <div class="col-md-6 well well-sm">Dear <?php echo $this->session->userdata('userid');?></div>
+        <div class="col-md-12">
+            <div>
+                <pre>You did not finish  the Application as some of the important information are still missing
+                Make sure that you finish the Application before deadline
+                Application will be closed on  June 2014.
+                </pre>
+            </div> 
+            
+    <div class='app'>
+        <a href="<?php echo site_url('application/apply');?>">
+            <button type="button" class="mybtn btn-primary">continue with online application
+            <span class="glyphicon glyphicon-new-window"></span>
+            </button>
+        </a>
+    </div>
+        
+        </div>
+    </div>
+</div>
+<?php include 'footer.php';?>

@@ -1,0 +1,75 @@
+
+    #formcenter{
+        position: relative;
+        width: 80%;
+        text-align: center;
+        right: 10%;
+    }
+    /*
+    customizing login page
+    */
+    
+     #login{
+        position: relative;
+        width: 50%;
+        left: 25%;
+        margin-top: 2%;
+    }
+      #regform{
+          position: relative;
+          width: 60%;
+          left: 20%;
+      }
+      .error{
+          font-family: cursive;
+          font-size: 11px;
+          color: red;
+      }
+       #rform{
+         width: 56%;
+         position: relative;
+         text-align: center;
+         margin-top: 1%;
+         left: 22%;
+         border-radius: 2%;
+       
+    }
+    .hver{
+        line-height: 1.0em;
+        font-size: 11px; 
+       
+    }
+    
+    .hver:hover{
+        cursor: pointer;
+    }
+    .modal img{
+        width: 100%;
+    }
+    #pers_info{
+        line-height: 1.8em;
+        height: 400px;
+        overflow-y: scroll;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        margin-bottom: 8px;
+    }
+    .cent{
+        left: 8%;
+    }
+   #tdbtn{
+        padding: 1px;
+        line-height: 10px;
+    }
+    .smsmenu{
+        position: relative;
+       padding-top: 20px;
+       top: 4px;
+    }
+    pre{
+        color: black;
+        font-family: Verdana,Helvetica,Arial,sans-serif;
+    }
+    .pre{
+        width: 660px;
+    }
