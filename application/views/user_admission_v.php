@@ -9,6 +9,7 @@
             <p>
 
             </p>
+           
         </center>
     </div>
     <button type="button" class="btn btn-default btn-lg btn-block">Submitted Thesis</button>
@@ -22,9 +23,6 @@
 
     <table class='mytable table-hover' >
         <?php
-        $user = $this->session->userdata('userid');
-        $this->load->helper('directory');
-
         foreach ($useridz as $valuez) {
             foreach ($valuez as $name) {
 
@@ -44,10 +42,11 @@
         }
         ?>
     </table>
-    <form action="http://localhost/pgis/index.php/user_admission_c/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">  
-        <table>
+    <form  action="<?php echo site_url('user_admission_c/do_upload/'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">  
+
+        <table class="table">
             <tbody><tr>
-                    <td><input type="file" name="userfile" size="20" style="padding-top: 29px"></td>
+                    <td><input type="file" name="userfile" size="20"></td>
                     <td> <span class="glyphicon glyphicon-circle-arrow-up"></span>
                         <input type="submit" value="upload results" ></td>
                 </tr>
@@ -55,6 +54,8 @@
         </table>
 
     </form> 
+
 </div>
+
 
 <?php include 'include/footer.php'; ?>   

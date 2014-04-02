@@ -11,11 +11,11 @@ class User_admission_c extends CI_Controller {
         $this->load->helper('download');
     }
 
-        
-
     function do_upload() {
+        $messages['messages'] = 'thank you for uploading';
 
-        $this->load->view('user_admission_v');
+        $this->load->view('user_admission_upload', $messages);
+        
     }
 
     function do_download($user, $valuez) {
@@ -29,9 +29,8 @@ class User_admission_c extends CI_Controller {
     function read_content() {
 
         $this->load->model('user_admission_m');
-        $this->user_admission_m->get_students();
         $result['useridz'] = $this->user_admission_m->get_students();
-        $resultz = $this->user_admission_m->get_students();
+//        $resultz = $this->user_admission_m->get_students();
         $this->load->view('user_admission_v', $result);
     }
 
