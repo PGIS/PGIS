@@ -281,7 +281,6 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('datebirth', 'birth date', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('disab', 'disable', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('perm_address', 'Permanet Address', 'required|max_length[30]|xss_clean');
-        //$this->form_validation->set_rules('disab_nature', 'disablity', 'required|max_length[100]|');
         $this->form_validation->set_rules('landline', 'landline', '|max_length[20]|xss_clean');
         $this->form_validation->set_rules('mobile', 'mobile', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('fax', 'fax', '|max_length[20]|xss_clean');
