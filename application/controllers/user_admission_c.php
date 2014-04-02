@@ -11,22 +11,19 @@ class User_admission_c extends CI_Controller {
         $this->load->helper('download');
     }
 
-    function load_view() {
-
-        $this->load->view('user_admission_v');
-    }
+        
 
     function do_upload() {
 
         $this->load->view('user_admission_v');
     }
 
-    function do_download($idname) {
-
-
-        $data = file_get_contents("uploads/emanoble/one.pdf"); // Read the file's contents
-        $name = 'dodoso.pdf';
-        force_download($name, $data);
+    function do_download($user, $valuez) {
+        $user_name = $this->uri->segment(3);
+        $file_name = $this->uri->segment(4);
+        $data = file_get_contents("uploads/" . $user_name . '/' . $file_name);
+        $name = $file_name;
+        force_download($file_name, $data);
     }
 
     function read_content() {
@@ -34,22 +31,8 @@ class User_admission_c extends CI_Controller {
         $this->load->model('user_admission_m');
         $this->user_admission_m->get_students();
         $result['useridz'] = $this->user_admission_m->get_students();
-        $resultz=$this->user_admission_m->get_students();
-
-
-//        foreach ($result as $row) {
-//
-//            if (is_dir('./uploads/' . $row->userid)) {
-//                
-//                $content['useridz'] = directory_map('./uploads/' . $row->userid);
-//            }
-//        }
+        $resultz = $this->user_admission_m->get_students();
         $this->load->view('user_admission_v', $result);
-
-    }
-
-    public function load_data() {
-        
     }
 
 }

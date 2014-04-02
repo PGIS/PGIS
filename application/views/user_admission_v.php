@@ -1,5 +1,4 @@
-<?php include 'include/header.php'; ?>
-
+<?php include_once 'Admision/Headerlogin.php'; ?>
 <div id="wrapper">
 
 </div>
@@ -25,27 +24,24 @@
         <?php
         $user = $this->session->userdata('userid');
         $this->load->helper('directory');
-        if (is_dir('uploads/' . $user)) {
 
-            $map = directory_map('./uploads/' . $user);
+        foreach ($useridz as $valuez) {
+            foreach ($valuez as $name) {
 
-            $i = 1;
+                $map_files = directory_map('./uploads/' . $name);
+                $j = 1;
+                foreach ($map_files as $valuez) {
+                    echo "<tr class='mytable'>";
+                    echo "<td>$j</td>";
+                    echo "<td>$valuez</td>";
+                    echo "<td>from $name</td>";
+                    echo "<td>Document Description</td>";
+                    echo "<td><a href='" . site_url('user_admission_c/do_download/' . $name . '/' . $valuez) . "'>Download to mark</a></td>";
 
-            foreach ($map as $value) {
-                echo "<tr class='mytable'>";
-                echo "<td>$i</td>";
-                echo "<td>$value</td>";
-                echo "<td>from $user</td>";
-                echo "<td>Document Description</td>";
-                echo "<td><a href='" . site_url('user_admission_c/do_download/' . $user . '/' . $value) . "'>Download to mark</a></td>";
+                    $j++;
+                }
             }
         }
-        foreach ($useridz as $valuez) {
-//            $map_files=  directory_map('./uploads/'.$valuez);
-            print_r($valuez);
-            echo '</br>';    
-        }
-       
         ?>
     </table>
     <form action="http://localhost/pgis/index.php/user_admission_c/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">  
