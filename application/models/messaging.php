@@ -14,13 +14,42 @@ class Messaging extends CI_Model{
               $sender=$this->session->userdata('userid');
           }
           
-          $message=array(
+          if($this->input->post('to')=='All Applicant'){
+              $query = $this->db->get_where('tb_user', array('designation' => "applicant"));
+              foreach ($query->result() as $row){
+                 $message=array(
+                          'sender'=>$sender,
+                          'receiver'=>  $row->userid,
+                          'message_body'=>  $this->input->post('msgbody'),
+                          'subject'=> $this->input->post('subject')
+                      );
+        $this->db->insert('tb_messeges',$message);     
+                } 
+              /*sending messages to applicant who ddnt submit the aplication form
+               */
+          } elseif($this->input->post('to')=='Applicants with un-submitted application') {
+              
+               $query = $this->db->get_where('tb_app_personal_info', array('submited' => NULL));
+                    foreach ($query->result() as $row){
+                 $message=array(
+                          'sender'=>$sender,
+                          'receiver'=>  $row->userid,
+                          'message_body'=>  $this->input->post('msgbody'),
+                          'subject'=> $this->input->post('subject')
+                      );
+        $this->db->insert('tb_messeges',$message);     
+                } 
+                
+          }else{
+             $message=array(
                   'sender'=>$sender,
                   'receiver'=>  $this->input->post('to'),
                   'message_body'=>  $this->input->post('msgbody'),
                   'subject'=> $this->input->post('subject')
               );
-        $this->db->insert('tb_messeges',$message);
+        $this->db->insert('tb_messeges',$message); 
+          }
+          
       }
       
       function return_to_customer($id){
@@ -28,4 +57,6 @@ class Messaging extends CI_Model{
                 $this->db->where('userid',$id);
                 $this->db->update('tb_app_personal_info', $data1); 
       }
+      
+   
 }

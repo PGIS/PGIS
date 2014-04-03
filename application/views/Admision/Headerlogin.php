@@ -52,8 +52,7 @@
 	    Unchecked Applications</a></li>
             <li><a href="<?php echo site_url('admision/admitted_applicants');?>">
 	    <span class="glyphicon glyphicon-tasks"></span> Admitted applicant's</a></li>
-	    <li><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-list-alt"></span>
-	    Pending Application</a></li>
+	    
             <li><a href="<?php echo site_url('messages');?>">
                     <span class="glyphicon glyphicon-envelope"></span> Messages</a>
             </li>

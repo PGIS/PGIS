@@ -14,19 +14,20 @@ if($this->session->userdata('user_role')=='Admision staff'){
              
              echo "<span class='alert-success'>".$sent."</span>";}?>
             <table class="table">
-                <?php echo form_open('admision/admit/'); ?>
+                 <?php echo form_open('messages/send_to_email'); ?>
                 <tr>
-                    <td colspan="2">Message Subject<?php echo form_error('subject','<div class="error">','</div>'); ?>
-                        <input type="text" class="form-control" placeholder="Message Subject" name="subject">
+                    <td colspan="2">Short message description<?php echo form_error('subject','<div class="error">','</div>'); ?>
+                        <input type="text" class="form-control" placeholder="Message Subject" name="subject" id='subject'>
                     </td>
                     
                 </tr>
                 <tr>
                     <td >To:<?php echo form_error('to','<div class="error">','</div>'); ?>
-                        <input type="text" class="form-control" placeholder="Receiver" name="to">
+                        <input type="text" class="form-control" placeholder="Receiver" name="">
                     </td>
                     <td>Choose receiver
-                        <select class="form-control">
+                        <select class="form-control" name="to">
+                            <option></option>
                             <option>All Applicant</option>
                             <option>Applicants with un-submitted application</option>
                             <option>Applicant with incomplete registration</option>
@@ -44,12 +45,15 @@ if($this->session->userdata('user_role')=='Admision staff'){
                     </td>
                 </tr>
                 <tr>
-                     <td><input type="file" name="userfile" size="20" /></td>
+                     <td><input type="file" name="userfile" id="userfile" size="20" />
+                      <div id="files"></div>
+                     </td>
                     <td>Attachment</td>
                  
                 </tr>
                 <tr>
-                    <td colspan="2"><button type="submit" class="btn btn-default" name="send">Send</button></td>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-default"  name="send">Send</button></td>
                  </tr>
             </table>
             </form>

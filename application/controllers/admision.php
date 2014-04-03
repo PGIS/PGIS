@@ -201,6 +201,24 @@ class Admision extends CI_Controller{
              $data['userid']=$userid;
              $this->load->view('Admision/denied_appl_message',$data);
         }
-        
+        function creating_pdf($userid){
+            
+            $html = '<html>
+				<head></head>
+				<body>
+					<center><h4>UNIVERSITY OF DAR ES SALAAM</h4></center>
+                                        <center><h4>OFFICE OF THE DEPUTY VICE CHANCELLOR</h4></center>
+                                        <center><h1>ACADEMIC</h1></center>
+                                        <p>Dear congratulation for being addmitted to the University of Dar 
+                                        collage of information and communicaation technlogy</p>
+				</body>
+				</html>
+				';
+		
+		$pdf_filename  = $userid.'.pdf';
+		$this->load->library('dompdf_lib');
+                $this->dompdf_lib->convert_html_to_pdf($html,$userid,$pdf_filename, TRUE);
+                 
+        }
     }
 

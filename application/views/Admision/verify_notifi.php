@@ -18,11 +18,19 @@
                                placeholder="<?php if(isset($reg)){echo $reg;}?>" disabled>
                     </td>
                 </tr>
-                
+                <tr>
+                    <td>
+                       <a href="<?php echo site_url('admision/creating_pdf/'.$userid)?>">Create admission letter letter </a> 
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
             </table>
-           
+          
         </div>
-        <div class="col-md-10 cent">
+        
+       <div class="col-md-10 cent">
             Success Notification   
          <?php if (isset($sent)){
              
