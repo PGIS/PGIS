@@ -16,12 +16,17 @@
         <table class="table table-striped">
             <?php foreach ($records as $row){
              echo '<tr><td>Application Name:<b>'.' '.ucfirst(strtolower(addslashes($row->app_id))).'</b></td></tr>';
-             echo '<tr><td>Registration ID:<b>'.' '.$row->registration_id.'</b></td></tr>';
-             echo '<tr><td>Finance ID:<b>'.' '.$row->finance_id.'</b></td></tr>';
-             echo '<tr><td>Payment No:<b>'.' '.$row->payment_no.'</b></td></tr>';
-             echo '<tr><td>Payment Details:<b>'.' '.ucfirst(strtolower(addslashes($row->payment_detail))).'</b></td></tr>';
-             echo '<tr><td>Amount:<b>'.' '.$row->amount.'</b></td></tr>';
-             echo '<tr><td>Payment Date:<b>'.' '.ucfirst(strtolower(addslashes($row->date_payment))).'</b></td></tr>';
+             echo '<tr><td>Registration Fees:<b>'.' '.$row->registration_fees_year.'</b></td></tr>';
+             echo '<tr><td>Registration Fees Amount:<b>'.' '.$row->registration_fees_amount.'</b></td></tr>';
+             echo '<tr><td>Registration Fess Receipt:<b>'.' '.$row->registration_fees_receipt.'</b></td></tr>';
+             echo '<tr><td>Studentship Fees:<b>'.' '.$row->studentship_fees_year.'</b></td></tr>';
+             echo '<tr><td>Studentship Fees Amount:<b>'.' '.$row->studentship_fees_amount.'</b></td></tr>';
+             echo '<tr><td>Studentship Fess Receipt:<b>'.' '.$row->studentship_fees_receipt.'</b></td></tr>';
+             echo '<tr><td>Payment Details:<b>'.' '.ucfirst(strtolower(addslashes($row->payment_Datails))).'</b></td></tr>';
+             echo '<tr><td>Payment Date:<b>'.' '.$row->date_payment.'</b></td></tr>';
+             echo '<tr><td>Registration Date:<b>'.' '.$row->date_registration.'</b></td></tr>';
+             echo '<tr><td>Beginning Date:<b>'.' '.$row->date_beginning.'</b></td></tr>';
+             echo '<tr><td>Completion Date:<b>'.' '.$row->date_completion.'</b></td></tr>';
              echo '<tr><td>Supported Document:<b>'.' '.ucfirst(strtolower(addslashes($row->name))).'</b></td></tr>';
             }?>
         </table>

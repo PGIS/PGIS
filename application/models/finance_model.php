@@ -3,15 +3,21 @@ class Finance_model extends CI_Model{
     public function __construct() {
         parent::__construct();
     }
-    public function finance_insert($application_id,$registration,$finance_id,$payment_no,$payment_details,$amount,$date_pay,$imageName,$imageData){
+    public function finance_insert($application_id,$registration,$rgistration_amount,$registration_receipt,$studentship,$studentship_amount,$studentship_receipt,
+            $payment,$payment_date,$date_register,$date_begine,$imageName,$date_complete,$imageData){
         $array_data=array(
             'app_id'=>$application_id,
-            'registration_id'=>$registration,
-            'finance_id'=>$finance_id,
-            'payment_no'=>$payment_no,
-            'payment_detail'=>$payment_details,
-            'amount'=>$amount,
-            'date_payment'=>$date_pay,
+            'registration_fees_year'=>$registration,
+            'registration_fees_amount'=>$rgistration_amount,
+            'registration_fees_receipt'=>$registration_receipt,
+            'studentship_fees_year'=>$studentship,
+            'studentship_fees_amount'=>$studentship_amount,
+            'studentship_fees_receipt'=>$studentship_receipt,
+            'payment_Datails'=>$payment,
+            'date_payment'=>$payment_date,
+            'date_registration'=>$date_register,
+            'date_beginning'=>$date_begine,
+            'date_completion'=>$date_complete,
             'name'=>$imageName,
             'image'=>$imageData
         );
@@ -31,34 +37,45 @@ class Finance_model extends CI_Model{
            return FALSE; 
         }
     }
-    public function registration_data($sn,$date_reg,$date_begin,$date_comp,$postponement,$date_postponement,$frezing,
-            $date_frez,$date_resume,$extension,$date_ext,$period_ext,$regist_fees,$regist_fee_amount,$regist_receiptno,
-            $studentship_fees,$studentship_amount,$studentship_receiptno){
+    public function registration_data($sn,$postponement,$date_postponement){
         $reg_data=array(
             'regist_name'=>$sn,
-            'date_regist'=>$date_reg,
-            'date_begin'=>$date_begin,
-            'date_compt'=>$date_comp,
             'postponement'=>$postponement,
             'date_postponement'=>$date_postponement,
-            'freezing'=>$frezing,
-            'date_freezing'=>$date_frez,
-            'date_resume'=>$date_resume,
-            'extension'=>$extension,
-            'date_extension'=>$date_ext,
-            'month_extension'=>$period_ext,
-            'regist_fees'=>$regist_fees,
-            'regist_amount'=>$regist_fee_amount,
-            'regist_receipt_no'=>$regist_receiptno,
-            'studentship_fees'=>$studentship_fees,
-            'studentship_amount'=>$studentship_amount,
-            'studentship_receipt_no'=>$studentship_receiptno
         );
         $res=$this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
         if($res->num_rows()===1){
             $this->db->update('tb_studentReg',$reg_data);
         }else{
             $this->db->insert('tb_studentReg',$reg_data);
+        }
+    }
+    public function register_remained($sn,$freezing,$freez_date,$freez_resume){
+        $reg_rem=array(
+            'regist_name'=>$sn,
+            'freezing'=>$freezing,
+            'date_freezing'=>$freez_date,
+            'date_resume'=>$freez_resume
+        );
+        $result=  $this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
+        if($result->num_rows()===1){
+            $this->db->update('tb_studentReg',$reg_rem);
+        }  else {
+            $this->db->insert('tb_studentReg',$reg_rem);
+        }
+    }
+    public function register_extension($sn,$extension,$ext_date,$period){
+        $reg_ext=array(
+            'regist_name'=>$sn,
+            'extension'=>$extension,
+            'date_extension'=>$ext_date,
+            'month_extension'=>$period
+        );
+        $query=  $this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
+        if($query->num_rows()===1){
+            $this->db->update('tb_studentReg',$reg_ext);
+        }  else {
+           $this->db->insert('tb_studentReg',$reg_ext);
         }
     }
     }
