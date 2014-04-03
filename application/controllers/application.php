@@ -422,7 +422,7 @@ class Application extends CI_Controller {
                       <head><title></title></head>
                       <body>';
         $message .='<p> Dear referee your have been chosen to be on behalf of the  '.$this->session->userdata('userid'). ' as the referee </p>';
-        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page/referee_doc"> click here..!</a></strong></p>';
+        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page"> click here..!</a></strong></p>';
         $message .='<p> Please find the the attached file for more description</p>';
         $message .='<p> Thanks !!</p>';
         $message .='<p> PGIS TEAM</p>';
