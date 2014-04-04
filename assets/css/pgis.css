@@ -73,3 +73,6 @@
     .pre{
         width: 660px;
     }
+    a,a:hover{
+       text-decoration: none;
+    }

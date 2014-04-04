@@ -3,9 +3,11 @@
     
         function __construct(){
          parent::__construct();
+         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+         
          $this->load->helper('form','html','url');
          $this->load->library('form_validation','session');
-         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+        
         
         if(!$this->session->userdata('logged_in')){
             redirect('logout');
@@ -69,10 +71,37 @@
            
         }return $dat;
         }
+        
         function create_message(){
             $this->load->view('composemsg');
         }
         function send_to_email(){
+            $data['null']='';
+            $this->form_validation->set_rules('subject', 'Subject', 'required|max_length[80]|xss_clean');
+            $this->form_validation->set_rules('to', 'Receiver', 'required|max_length[40]|xss_clean');
+            $this->form_validation->set_rules('msgbody', 'Message body', 'required|xss_clean');
+            $this->form_validation->run();
             
+            if(isset($_POST['send'])){
+                if($this->form_validation->run() == TRUE){
+                  $this->load->model('messaging');
+                   Messaging::add_message();
+                  
+                  $data['sent']='Message sent';
+                }
+            }
+           
+         $this->load->view('composemsg',$data);
         }
+        
+        function downlod_admsil(){
+            $this->load->helper('download');
+           $data['donlf']='Admssion letter has been downloaded';
+           $dat = file_get_contents("attachments/admission_letter/".$this->session->userdata('userid').".pdf");
+           
+            $name = 'admission_letter.pdf';
+            force_download($name, $dat);
+            $this->load->view('application/submitmsg',$data);
+        }
+     
  }

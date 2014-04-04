@@ -6,10 +6,11 @@ class Admision_model extends CI_Model{
         parent::__construct();
        
     }
-    function admit($appid,$addid){
+    function admit($appid,$addid,$user){
         $message=array(
                   'addmissionID'=>$addid,
-                  'app_id'=>$appid  
+                  'app_id'=>$appid,
+                  'userid'=>$user
               );
         $querying = $this->db->get_where('tb_admision', array('app_id' => $appid));
         if($querying->num_rows()==0){
