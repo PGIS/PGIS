@@ -69,11 +69,10 @@
                      echo "<tr class='mytable'>";
                      echo "<td>$i</td>";
                      echo "<td> $value</td>";
-                     echo "<td>View</td>";
                      ?>
          <td><span class="glyphicon glyphicon-remove-circle"></span>
           <?php echo anchor('application/delete/'.$value,'Remove',
-            array('onclick'=>"return confirm('Are you sure you want to delete this person ?')"));?>
+            array('onclick'=>"return confirm('Are you sure you want to delete this file ?')"));?>
             </td>
             <?php
                      echo "</tr>";

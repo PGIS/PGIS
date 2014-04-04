@@ -1,9 +1,9 @@
-<?php if (!defined('BASEPATH'))exit('No direct script access allowed');
-class Application extends CI_Controller {
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+  class Application extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->helper(array('form','html','url'));
+        $this->load->helper(array('form','html','url','directory'));
         $this->load->library(array('form_validation','session'));
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         
@@ -13,8 +13,27 @@ class Application extends CI_Controller {
              redirect('logout');
         }
     }
+    function index(){
+                    $this->load->model('Application_form');
+                    
+              if(Application_form::redirect_message()=='submited'){
+                  $data['lisubmited']=FALSE;
+                   $this->load->view('application/submitmsg',$data);
+              }elseif(Application_form::redirect_message()=='started'){
+                   $this->load->view('application/startsmg');
+              }  else {
+                   $this->load->view('application/welcomemsg');
+              }
+       
+    }
     
-    function index() {
+    function apply() {
+       
+             $this->load->model('Application_form');
+              if(Application_form::redirect_message()=='submited'){
+              $data['lisubmited']=FALSE;
+              redirect('application');
+              }
             $data1 = $this->show_User_data();
             $data2 = $this->show_user_history();
             $data3 = $this->referee_spon_data();
@@ -361,7 +380,7 @@ class Application extends CI_Controller {
             }  
  }
 
-    function referee_info() {
+     function referee_info() {
          $config=array(
             'protocol'=>'smtp',
             'smtp_host'=>'ssl://smtp.gmail.com',
@@ -399,7 +418,7 @@ class Application extends CI_Controller {
                       <head><title></title></head>
                       <body>';
         $message .='<p> Dear referee your have been chosen to be on behalf of the  '.$this->session->userdata('userid'). ' as the referee </p>';
-        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page/referee_doc"> click here..!</a></strong></p>';
+        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page"> click here..!</a></strong></p>';
         $message .='<p> Please find the the attached file for more description</p>';
         $message .='<p> Thanks !!</p>';
         $message .='<p> PGIS TEAM</p>';
@@ -494,7 +513,7 @@ function do_upload(){
 		$config['remove_spaces']  = TRUE;
                 $config['overwrite'] = true;
 		$this->load->library('upload', $config);
-                $this->upload->initialize($config);
+                 $this->upload->initialize($config);
         if(! $this->upload->do_upload()){
             $data['error'] = $this->upload->display_errors();
             $this->load->view('application/capplication', $data);
@@ -542,7 +561,7 @@ function submitting(){
         Application_form::submiting();
         $data['submit']='Your Application has been submitted and the '
                 . 'admision process will start soon.please visit your accout regulary to check for '
-                . 'admision progres ';
+                . 'admision progress';
         $this->load->view('application/capplication',$data);
 }
 }

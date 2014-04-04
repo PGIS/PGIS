@@ -30,10 +30,9 @@ function do_upload(){
 		$config['max_size']	= '2048';
 		$config['remove_spaces']  = TRUE;
                 $config['overwrite'] = true;
-
-          $this->upload->initialize($config);
-        if(!$this->upload->do_upload()){
-
+		$this->load->library('upload', $config);
+                 $this->upload->initialize($config);
+        if(! $this->upload->do_upload()){
             $data = array('error' => $this->upload->display_errors());
             $this->load->view('application/capplication', $data);
         }

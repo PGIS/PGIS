@@ -12,14 +12,14 @@
                  <?php if(!empty($add)){ 
                     echo '<div class="alert alert-success">'.$add.'</div>';}
                  ?>
-                 <?php echo form_input(array('name'=>'userid','placeholder'=>'Username','class'=>'form-control'));?>
-                 <?php echo form_error('userid','<div class="error">', '</div>'); ?>
-                 <?php echo form_input(array('name'=>'fname','placeholder'=>'First name','class'=>'form-control'));?>
+                <p> <?php echo form_input(array('name'=>'userid','placeholder'=>'Username','class'=>'form-control'));?></p>
+                <?php echo form_error('userid','<div class="error">', '</div>'); ?>
+                 <p><?php echo form_input(array('name'=>'fname','placeholder'=>'First name','class'=>'form-control'));?></p>
                  <?php echo form_error('fname','<div class="error">', '</div>'); ?> 
                  <?php echo form_input(array('name'=>'mname','placeholder'=>'Middle name','class'=>'form-control'));?>
                  <?php echo form_error('mname','<div class="error">', '</div>'); ?> 
                  <?php echo form_error('designation','<div class="error">', '</div>'); ?>  
-               <div><label for="designation">Designation</label>
+               <p><label for="designation">Designation</label>
                     <select name="designation"  class="form-control">
                       <option value=""<?php echo set_select('designation','',TRUE);?>></option>
                       <option value="administrator"<?php echo set_select('designation','administrator');?>>administrator</option>
@@ -27,8 +27,8 @@
                       <option value="Admision staff"<?php echo set_select('designation','Admision staff');?>>Admision staff</option>
                       <option value="Student"<?php echo set_select('designation','Student');?>>Student</option>
                   </select>
-               </div>
-                    <?php echo form_password(array('name'=>'password','placeholder'=>'password','class'=>'form-control'));?>
+               </p>
+                 <p><?php echo form_password(array('name'=>'password','placeholder'=>'password','class'=>'form-control'));?></p>
                      <?php echo form_error('password','<div class="error">', '</div>'); ?>
                       <input type="submit" name="sub" value="Add" class='subtn'>
                      <?php echo form_close();?>

@@ -14,7 +14,7 @@ class Admin extends CI_Model{
     }
     public function get_paged_list($limit=3,$offset=0) {
         $this->db->order_by('id','asc');
-      return $this->db->get($this->tb_user,$limit,$offset); 
+        return $this->db->get($this->tb_user,$limit,$offset); 
     }
     public function save(){
         $person=array(

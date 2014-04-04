@@ -5,7 +5,7 @@
         <table class="table table-striped">
             <p>
             
-          Eidence of spornsoship  
+          Evidence of sponsorship  
         </p>
             <tr><td>How do you intend to finance your studies?</</td>
                 <td><input type="radio" name="chbx1" value="self" checked=''
@@ -21,13 +21,13 @@
             <tr>
                 <td colspan=2>Name of the Sponsor
                  <?php echo form_error('namsponsor','<div class="error">', '</div>'); ?>
-                 <input type="text" name="namsponsor" class="form-control"
+                    <input type="text" name="namsponsor" class="form-control" id="14"
                      value="<?php display_input('namsponsor',$spon_name);?>" >
                 </td>
                 <td colspan=2>Address of the sponsor
                  <?php echo form_error('addr_spons','<div class="error">', '</div>'); ?>
-                     <input type="text" name="addr_spons" class="form-control"
-                 value="<?php display_input('addr_spons',$spon_addr);?>">
+                    <input type="text" name="addr_spons" class="form-control" id="15"
+                     value="<?php display_input('addr_spons',$spon_addr);?>">
                 </td>
             </tr>
             <tr>

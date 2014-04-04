@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  class Admin_page extends CI_Controller{
-     private $limit=14;
+     private $limit=4;
      
         function __construct() {
          parent::__construct();
          $this->load->helper('form','html','url');
          $this->load->library('form_validation');
-        $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         
         if(!$this->session->userdata('logged_in')){
             redirect('logout');
@@ -19,7 +19,7 @@
         $this->load->library('table');
         $this->load->library('pagination');
         $uri_segment=3;
-        $offset=$this->uri->segment('$uri_segment');
+        //$offset=$this->uri->segment('$uri_segment');
         $this->load->model('admin');
      // $data['results']= $this->admin->list_all();
         $data['results']= $this->admin->get_paged_list($this->limit,$offset)->result();

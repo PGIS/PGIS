@@ -7,10 +7,14 @@
     <meta name="author" content="">
 
     <title>PGIS</title>
+    
+    
+    
     <link href="<?php echo base_url('assets/css/bootstrap-combined.min.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
+    <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
     <link href="<?php echo base_url('assets/css/jquery.ui.datepicker.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/jquery.ui.all.css')?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
@@ -46,13 +50,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-            <li><a href="<?php echo site_url('application');?>"><span class="glyphicon glyphicon-edit"></span>
+              <?php
+              if(!isset($lisubmited)){
+              ?>
+            <li><a href="<?php echo site_url('application/apply');?>"><span class="glyphicon glyphicon-edit"></span>
 	    Application form</a></li>
+            <?php }?>
             <li><a href="<?php echo site_url('application/details_preview');?>">
 	    <span class="glyphicon glyphicon-book"></span> Preview details</a></li>
+            <li><a href="<?php echo site_url('messages');?>">
+                    <span class="glyphicon glyphicon-envelope"></span> Messages</a>
+            </li>
             <li><a href="<?php echo site_url('finance_page/finance');?>">
 	    <span class="glyphicon glyphicon-folder-open"></span> Complete Registration</a></li>
-           <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
+	    <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
           </ul>
@@ -73,8 +84,45 @@
                 
               </ul>
             </li>
-	  </ul>
+           
+            <li class="dropdown messages-dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    Messages
+                    <span class="badge">
+                        <?php
+                        $this->db->where('receiver',$this->session->userdata('userid'));
+                        $this->db->where('status','unchecked');
+                        $this->db->from('tb_messeges');
+                        $newsmg=$this->db->count_all_results();
+                        
+                        echo  $newsmg;
+                        ?>
+                    </span>
+                <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header"> <?php echo $newsmg;?> New Messages</li>
+                    <?php
+                    $this->db->where('receiver',$this->session->userdata('userid'));
+                    $query = $this->db->get_where('tb_messeges', array('status' => 'unchecked'),3);
+                    foreach ($query->result() as $messg){
+                       echo '<li class="message-preview">
+                        <a href="'.site_url('messages/opensms/'.$messg->message_id).'">
+                            <span class="avatar">
+                         
+                            <span class="name">'.$messg->sender.'</span>
+                            <span class="message">Hey there, I wanted to ask you something...</span>
+                            
+                        </a>
+                    </li>
+                    '; 
+                    }
+                    ?>
+                </ul>
+                </li>
+              </ul>
 	  
         </div><!-- /.navbar-collapse -->
       </nav>
-  
+      

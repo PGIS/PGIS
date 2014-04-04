@@ -10,7 +10,7 @@ For more info and more free Bootstrap 3 HTML themes, visit http://startbootstrap
 
 /* Global Styles */
 
-body {
+body  {
   margin-top: 50px;
   font-family: Verdana,Helvetica,Arial,sans-serif;
   font-size: 130%;line-height: 1.7em;
@@ -91,7 +91,7 @@ table.tablesorter thead tr th:hover {
 /* Edit Below to Customize Widths > 768px */
 @media (min-width:768px) {
 
-}  /* Wrappers */
+  /* Wrappers */
 
   #wrapper {
 	padding-left: 290px;
@@ -195,6 +195,23 @@ table.tablesorter thead tr th:hover {
   border: 1px solid transparent;background-color: #94A834;
  
 }
+.mnybtn{
+    padding: 6px 12px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;border: 1px solid transparent
+}
 .subtn{
   display: inline-block;
   text-align: center;
@@ -278,7 +295,7 @@ table.tablesorter thead tr th:hover {
     margin-right: 19px;
 }
 .tabs-left > .nav-tabs > li > a {
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px 0https://github.com/PGIS/PGIS-VER-1.git 0 4px;
     margin-right: -1px;
 }
 .tabs-left > .nav-tabs > li > a:hover {
@@ -358,7 +375,9 @@ table.tablesorter thead tr th:hover {
   line-height: 30px;
   top: -60px;
   left: -25px;
-  float: left;
+  float: left;https://github.com/PGIS/PGIS-VER-1.git
   color: #EAA119;
 }
-
+.dts{
+    color: #31b0d5;
+}

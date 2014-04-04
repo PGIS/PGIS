@@ -123,7 +123,6 @@ class Application_form extends CI_Model{
                  'third_email'=>$this->input->post('em2'),
                  'third_address'=>$this->input->post('ad2')
           );
-        $this->session->set_userdata($redata);
         if(isset($_POST['save'])){
             $query = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
         
@@ -186,4 +185,26 @@ function insert_addition(){
                $this->db->insert('tb_referee_doc',$ref); 
       } 
  }
+        function redirect_message(){
+            $data=array(
+                'submited' => 'yes',
+                
+            );
+            $query = $this->db->get_where('tb_app_personal_info', array('submited' => 'yes','userid'=>$this->session->userdata('userid')));
+            $query1 = $this->db->get_where('tb_app_personal_info', array('userid' => $this->session->userdata('userid')));
+            $query2 = $this->db->get_where('tb_app_prev_info', array('app_id' => $this->session->userdata('userid')));
+            $query3 = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
+            
+            if($query->num_rows()==1){
+                return 'submited';
+            }elseif($query1->num_rows()==1){
+                return 'started';
+            }elseif($query2->num_rows()==1){
+                return 'started';
+            }elseif($query3->num_rows()==1){
+                return 'started';
+            }  else {
+                return 'notstarted';
+            }
+        }
 }

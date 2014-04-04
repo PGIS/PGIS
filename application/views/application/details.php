@@ -9,49 +9,49 @@
                
                 <tr>
                     <td>
-                      Full name:<?php
+                        <strong class='dts'>Full name:  </strong><?php
                         echo '<strong>'.$title.'</strong>'.' '.$sname.' '.$other_nam;echo "<br>"
                          ?> 
                     </td>
                 </tr>
                 <tr>
-                    <td>Date of birth:<?php echo ' '.$datebirth; echo '<br>';?></td>
+                    <td> <strong class='dts'>Date of birth:</strong><?php echo ' '.$datebirth; echo '<br>';?></td>
                 </tr>
                 <tr>
-                    <td>Country of birth:<?php echo ' '.$country;?></td>
+                    <td><strong class='dts'>Country of birth:</strong><?php echo ' '.$country;?></td>
                 </tr>
                 <tr>
-                    <td>Nationality:<?php echo ' '.$nationalt;?></td>
+                    <td><strong class='dts'>Nationality:</strong><?php echo ' '.$nationalt;?></td>
                 </tr>
                 <tr>
-                    <td>Permanent address:<?php echo ' '.$perm_addres;?></td>
+                    <td><strong class='dts'>Permanent address:</strong><?php echo ' '.$perm_addres;?></td>
                 </tr>
                 <tr>
-                    <td>Mobile number:<?php echo ' '.$mobil;?></td>
+                    <td><strong class='dts'>Mobile number:</strong><?php echo ' '.$mobil;?></td>
                 </tr>
                 <tr>
-                    <td>Landlne number:<?php echo ' '.$landlin;?></td>
+                    <td><strong class='dts'>Land-line number:</strong><?php echo ' '.$landlin;?></td>
                 </tr>
                 <tr>
-                   <td>Fax number:<?php echo ' '.$fax;?></td>
+                   <td><strong class='dts'>Fax number:</strong><?php echo ' '.$fax;?></td>
                 </tr>
                 <tr>
-                    <td>Email:<?php echo ' '.$email;?></td>
+                    <td><strong class='dts'>Email:</strong><?php echo ' '.$email;?></td>
                 </tr>
                 <tr>
-                    <td>Disable:<?php echo ' '.$disability;?></td>
+                    <td><strong class='dts'>Disable:</strong><?php echo ' '.$disability;?></td>
                 </tr>
                 <tr>
-                    <td> Selected course:  <?php echo ' '.$Ucourse;?></td>
+                    <td> <strong class='dts'>Selected course:</strong>  <?php echo ' '.$Ucourse;?></td>
                 </tr>
                 <tr>
                     <td>
-                        Collage: <?php echo ' '.$Ucollege;?>
+                       <strong class='dts'>College:</strong><?php echo ' '.$Ucollege;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Program mode: <?php echo ' '.$prog_mod;?>
+                       <strong class='dts'>Program mode:</strong><?php echo ' '.$prog_mod;?>
                     </td>
                 </tr>
                
@@ -63,62 +63,62 @@
                 
                 <tr>
                     <td>
-                        Highest education attained: <?php echo ' '.$high_edu;?>
+                      <strong class='dts'>  Highest education attained: </strong><?php echo ' '.$high_edu;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Specialization: <?php echo ' '.$specializ;?>
+                       <strong class='dts'> Specialization:</strong> <?php echo ' '.$specializ;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Institute: <?php echo ' '.$institut;?>
+                       <strong class='dts'>Institute:</strong> <?php echo ' '.$institut;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       Year of graduation: <?php echo ' '.$gradu_year;?>
+                       <strong class='dts'>Year of graduation: </strong><?php echo ' '.$gradu_year;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       GPA: <?php echo ' '.$gpa;?>
+                      <strong class='dts'>GPA: </strong><?php echo ' '.$gpa;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       Other qualification: <?php echo ' '.$other_qualification;?>
+                      <strong class='dts'>Other qualification: </strong><?php echo ' '.$other_qualification;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       Employer: <?php echo ' '.$employer;?>
+                      <strong class='dts'> Employer: </strong><?php echo ' '.$employer;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       Position: <?php echo ' '.$position;?>
+                       <strong class='dts'>Position:</strong><?php echo ' '.$position;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       Start date: <?php echo ' '.$dof;?>
+                      <strong class='dts'> Start date: </strong><?php echo ' '.$dof;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       End date: <?php echo ' '.$dot;?>
+                       <strong class='dts'> End date: </strong><?php echo ' '.$dot;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       Responsibility: <?php echo ' '.$responsibility;?>
+                      <strong class='dts'>Responsibility:</strong> <?php echo ' '.$responsibility;?>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                      Do you think your employer will release you ? : <?php echo ' '.$release;?>
+                     <strong class='dts'>Do you think your employer will release you ?:</strong><?php echo ' '.$release;?>
                     </td>
                 </tr>
             </table>
@@ -128,31 +128,31 @@
     <div id='second' class="col-md-12">
         <div class="col-md-6">
             <table class='table'>
-               <th class="active"><h4>Refferes Information</h4></th>
-               <tr><th>Fisrt referee</th></tr>
-               <tr><td>Name:<?php echo ' '.$fi_refname;?></td></tr>
-               <tr><td>Email:<?php echo ' '.$fi_refemail;?></td></tr>
-               <tr><td>Phone:<?php echo ' '.$fi_refaddr;?></td></tr>
+               <th class="active"><h4>Referees Information</h4></th>
+               <tr><th>First referee</th></tr>
+               <tr><td><strong class='dts'>Name:</strong><?php echo ' '.$fi_refname;?></td></tr>
+               <tr><td><strong class='dts'>Email:</strong><?php echo ' '.$fi_refemail;?></td></tr>
+               <tr><td><strong class='dts'>Phone:</strong><?php echo ' '.$fi_refaddr;?></td></tr>
                
                <tr><th>Second referee</th></tr>
-               <tr><td>Name:<?php echo ' '.$se_refname;?></td></tr>
-               <tr><td>Email:<?php echo ' '.$se_refemail;?></td></tr>
-               <tr><td>Phone:<?php echo ' '.$se_refaddr;?></td></tr>
+               <tr><td><strong class='dts'>Name:</strong><?php echo ' '.$se_refname;?></td></tr>
+               <tr><td><strong class='dts'>Email:</strong><?php echo ' '.$se_refemail;?></td></tr>
+               <tr><td><strong class='dts'>Phone:</strong><?php echo ' '.$se_refaddr;?></td></tr>
 
                <tr><th>Third referee</th></tr>
-               <tr><td>Name:<?php echo ' '.$thr_refname;?></td></tr>
-               <tr><td>Email:<?php echo ' '.$thr_refemail;?></td></tr>
-               <tr><td>Phone:<?php echo ' '.$thr_refaddr;?></td></tr>
+               <tr><td><strong class='dts'>Name:</strong><?php echo ' '.$thr_refname;?></td></tr>
+               <tr><td><strong class='dts'>Email:</strong><?php echo ' '.$thr_refemail;?></td></tr>
+               <tr><td><strong class='dts'>Phone:</strong><?php echo ' '.$thr_refaddr;?></td></tr>
             </table>
         </div>
         
         <div class="col-md-6">
             <table class="table">
-                <th class="active"><h4>ponsorship and Additional Information</h4></th>
-                <tr><td>Sponsorship mode:<?php echo ' '.$spon_mode;?></td></tr>
-                <tr><td>Sponsors Name:<?php echo ' '.$spon_name;?></td></tr>
-                <tr><td>Sponsor Address:<?php echo ' '.$spon_addr;?></td></tr>
-                <tr><th>Where applicant found application information</th></tr>
+                <th class="active"><h4>Sponsorship and Additional Information</h4></th>
+                <tr><td><strong class='dts'>Sponsorship mode:</strong><?php echo ' '.$spon_mode;?></td></tr>
+                <tr><td><strong class='dts'>Sponsors Name:</strong><?php echo ' '.$spon_name;?></td></tr>
+                <tr><td><strong class='dts'>Sponsor Address:</strong><?php echo ' '.$spon_addr;?></td></tr>
+                <tr><th>Where you found application information</th></tr>
                 <?php
                 if($fwww!='' && $fwww!='0'){
                     echo '<tr><td>'.$fwww.'</td></tr>';
@@ -204,7 +204,25 @@
                      echo "<tr class='mytable'>";
                      echo "<td>$i</td>";
                      echo "<td> $value</td>";
-                     echo "<td>View</td>";
+                     echo '<td><a href="#" data-toggle="modal" data-target="#'.$i.'">View</a></td>';
+                     ?>
+             <div class="modal fade" id="<?php echo $i;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h6 class="modal-title" id="myModalLabel"><?php echo $value;?></h6>
+                        </div>
+                        <div class="modal-body">
+                            <img src="<?php echo base_url('uploads/'.$user.'/'.$value);?>" alt="some_text">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              <?php
                      echo "</tr>";
                   $i++;
                  }

@@ -14,7 +14,6 @@
                      }
                      ?>
                     <?php if(isset($errormsg)) echo'<div class="error">'.$errormsg.'</div>';?>
-                    <?php if(!empty($error_message)){ echo '<div class="alert alert-info">'. $error_message.'</div>';}?>
                     <p>
                     <?php echo form_error('us','<div class="error">', '</div>'); ?>
                     <input type="text" class="form-control" placeholder="Username" name="us" value="<?php echo set_value('us'); ?>">
@@ -38,9 +37,11 @@
                      }
                      ?>
             <?php form_close();?>
-             </div>
+               
+                   
+            </div>
          </div>
      </div>   
 </div>
 <?php include 'include/footer.php';?>
-        
+           
