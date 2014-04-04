@@ -1,4 +1,4 @@
-<?php include_once 'Admision/Headerlogin.php'; ?>
+<?php include_once 'Admision/Header_academic.php'; ?>
 <div id="wrapper">
 
 </div>
@@ -9,9 +9,10 @@
             <p>
 
             </p>
-           
+
         </center>
     </div>
+
     <button type="button" class="btn btn-default btn-lg btn-block">Submitted Thesis</button>
     <table class="mytable table-hover" >
 
@@ -30,11 +31,15 @@
                 $j = 1;
                 foreach ($map_files as $valuez) {
                     echo "<tr class='mytable'>";
-                    echo "<td>$j</td>";
+//                    echo "<td>$j</td>";
                     echo "<td>$valuez</td>";
                     echo "<td>from $name</td>";
                     echo "<td>Document Description</td>";
                     echo "<td><a href='" . site_url('user_admission_c/do_download/' . $name . '/' . $valuez) . "'>Download to mark</a></td>";
+
+                    echo "<td id='upload'><a href='#'><button type='button' class='btn btn-default'>upload results</button></a></td>";
+                    
+                    echo"</tr>";
 
                     $j++;
                 }
@@ -56,6 +61,15 @@
     </form> 
 
 </div>
+<script>
+$(document).ready(function(){
+ $("#form").hide();
+ $("#upload").click(function(){
+   $("#form").show();
+   $("#upload").hide();
+ });
+});
+</script>
 
 
 <?php include 'include/footer.php'; ?>   

@@ -12,7 +12,7 @@ class User_admission_c extends CI_Controller {
     }
 
     function do_upload() {
-        $messages['messages'] = 'thank you for uploading';
+        $messages['messages'] = 'You have successfully uploaded Your results';
 
         $this->load->view('user_admission_upload', $messages);
         
@@ -30,7 +30,6 @@ class User_admission_c extends CI_Controller {
 
         $this->load->model('user_admission_m');
         $result['useridz'] = $this->user_admission_m->get_students();
-//        $resultz = $this->user_admission_m->get_students();
         $this->load->view('user_admission_v', $result);
     }
 
