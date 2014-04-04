@@ -12,7 +12,7 @@
                  echo $error_message;}
                  ?> 
                   <?php if(!empty($suc_message)){
-                 echo $suc_message;}
+                 echo '<p class="alert alert-success">'.$suc_message.'</p>';}
                  ?> 
                      <?php echo form_error('opassword','<div class="error">', '</div>'); ?>
                     <input type="password" class="form-control" placeholder="Current password" name="opassword">

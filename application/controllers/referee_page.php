@@ -9,8 +9,8 @@
      $this->load->view('application/referee_docu'); 
      }
     public function referee_doc(){
-    $this->form_validation->set_rules('addcoment','Addition comment','required');
     if(isset($_POST['sb'])){
+    $this->form_validation->set_rules('addcoment','Addition comment','required');
     if($this->form_validation->run()===FALSE){
     $this->load->view('application/referee_docu');
     }else{
@@ -61,6 +61,11 @@
 }
 public function quit(){
      echo '<p align="center" style="padding-top:40px;"><b class="alert alert-info">Bye you have done your task.!</b></p>';
+}
+function pdf(){
+    $this->load->helper('dompdf','file');
+    $data="You are here plse stay calm";
+    pdf_create($data);
 }
  }
 

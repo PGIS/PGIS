@@ -27,54 +27,38 @@
             <p class="alert alert-success"><strong style="margin-left:50px">'.$result.'</strong></p>
         </div>
             </div>';}?>
-                    <?php if(!empty($results)){echo'<div class="bs-docs-example">
-        <div class="alert fade in">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p class="alert alert-danger"><strong style="margin-left:80px">'.$results.'</strong></p>
-        </div>
-            </div>';}?>
-                    <div class="col-md-5">
+                   <div class="col-md-7">
                         <?php echo form_open_multipart('finance_page/finance');?>
-                        <label>Program details*</label>
-                        <table class="table table-striped table-condensed">
-                            <tr><td><label for="dob">Date of beginning:</label></td><td><input type="text" class="form-control datepicker" name="dob" required ></td></tr>
-                            <tr><td><label for="doc">Date of completion:</label></td><td><input type="text" class="form-control datepicker" name="doc" required></td></tr>
-                            <tr><td><label for="dor">Date of registration:</label></td><td><input type="text" class="form-control datepicker" name="dor" required></td></tr>
-                        </table>
-                        
-                    </div>
-                    <div class="col-md-7">
                         <label>Fees*</label>
                         <table class="table table-condensed table-striped">
                             <tr><td><label>Registration fees:</label></td><td><select name="reg_fees" class="form-control" required>
-                                        <option id="yes"></option><option id="yes1">Year 1</option><option id="yes2">Year 2</option><option id="yes2">Year 3</option><option id="yes4">Year 4</option>
+                                        <option id="yes"></option><option id="yes1">Year 1</option><option id="yes2">Year 2</option><option id="yes3">Year 3</option><option id="yes4">Year 4</option>
                                     </select></td><td><table id="ye" class="table table-condensed table-striped"><tr><td><input type="text" class="form-control" placeholder="Amount" required name="amnt"></td><td><input type="text" class="form-control" placeholder="ReceiptNo" required name="rescpt"></td></tr></table></td></tr> 
-                            <tr><td><label>Studentship fees:</label></td><td><select name="stdship" class="form-control" required>
-                                        <option id="jm"></option><option id="jm1">Year 2</option><option id="jm2">Year 3</option><option id="jm3">Year 4</option>
-                                    </select></td><td><table id="hu" class="table table-condensed table-striped"><tr><td><input type="text" class="form-control" placeholder="Amount" required name="amnt1"></td><td><input type="text" class="form-control" placeholder="ReceiptNo" required name="rescpt1"></td></tr></table></td></tr> 
                         </table>
-                            <label for="payment_det">Payment Details*</label>
-                            <font class="alert-danger"><?php echo form_error('pay_details');?></font>
-                            <select name="pay_details" class="form-control" required>
+                        <table class="table">
+                            <tr><td><label for="payment_det">Mode of Payment*</label>
+                            <font class="alert-danger"><?php echo form_error('pay_mode');?></font>
+                            <select name="pay_mode" class="form-control" required>
                                 <option valu="0"></option>
                                 <option valu="1">Half semester</option>
                                 <option valu="2">Full(Whole) year</option>
-                            </select>
-                            <label for="dop">Date of payment*</label>
+                            </select></td></tr>
+                            <tr><td><label for="dop">Date of payment*</label>
                             <font class="alert-danger"><?php echo form_error('date_payment');?></font>
-                            <input type="text" name="date_payment" class="form-control datepicker" required>
-                            <label for="sup_doc">Upload supporting doc*</label>
-                            <input type="file" name="image" class="form-control" required><br>
+                            <input type="text" name="date_payment" class="form-control datepicker" required></td></tr>
+                            <tr><td><label for="sup_doc">Upload supporting doc*</label>
+                                    <input type="file" name="userfile" class="form-control" required></td></tr></table><br>
+                            <p align="right"><input type="submit" class="btn btn-info" value="submit" name="save" data-loading-text="loading..."></p>
+                           <?php echo form_close();?>
                     </div>
-                    <p align="right"><input type="submit" class="btn btn-info" value="submit" name="save"></p>
-                    <?php echo form_close();?>
+                    
                 </div>
               <div class="course in tab-pane <?php if(isset($active2)){ echo 'active';}?>">
               <div class="pantop"><h4>Request for Postponement:</h4></div>
-        <?php if(!empty($result)){echo'<div class="bs-docs-example">
+        <?php if(!empty($result1)){echo'<div class="bs-docs-example">
         <div class="alert fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p class="alert alert-success"><strong style="margin-left:50px">'.$result.'</strong></p>
+            <p class="alert alert-success"><strong style="margin-left:50px">'.$result1.'</strong></p>
         </div>
             </div>';}?>
         <label>Want to postpone?*</label>
@@ -90,13 +74,13 @@
     </div>
         <div class="ready in tab-pane <?php if(isset($active3)){ echo 'active';}?>">
         <div class="pantop"><h4>Request for Freezing:</h4></div>
-        <?php if(!empty($result)){echo'<div class="bs-docs-example">
+        <?php if(!empty($result2)){echo'<div class="bs-docs-example">
         <div class="alert fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p class="alert alert-success"><strong style="margin-left:50px">'.$result.'</strong></p>
+            <p class="alert alert-success"><strong style="margin-left:50px">'.$result2.'</strong></p>
         </div>
             </div>';}?>
-        <label>Want to freeze?*</label>
+             <label>Want to freeze?*</label>
             <?php echo form_open('registration_page/freezing');?>
                         <table class="table table-condensed table-striped">
                             <tr><td><label>Freezing:</label></td><td><select name="frz" class="form-control" required>
@@ -109,10 +93,10 @@
         
        <div class="forum in tab-pane <?php if(isset($active4)){ echo 'active';}?>">
         <div class="pantop"><h4>Request for Extension:</h4></div>
-        <?php if(!empty($result)){echo'<div class="bs-docs-example">
+        <?php if(!empty($result3)){echo'<div class="bs-docs-example">
         <div class="alert fade in">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p class="alert alert-success"><strong style="margin-left:50px">'.$result.'</strong></p>
+            <p class="alert alert-success"><strong style="margin-left:50px">'.$result3.'</strong></p>
         </div>
             </div>';}?>
         <label>Want to extend?*</label>
