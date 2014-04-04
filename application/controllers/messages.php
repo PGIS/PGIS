@@ -93,5 +93,15 @@
            
          $this->load->view('composemsg',$data);
         }
+        
+        function downlod_admsil(){
+            $this->load->helper('download');
+           $data['donlf']='Admssion letter has been downloaded';
+           $dat = file_get_contents("attachments/admission_letter/".$this->session->userdata('userid').".pdf");
+           
+            $name = 'admission_letter.pdf';
+            force_download($name, $dat);
+            $this->load->view('application/submitmsg',$data);
+        }
      
  }

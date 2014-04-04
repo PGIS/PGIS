@@ -25,6 +25,9 @@
               <li class="<?php if(isset($active7)){echo 'active';}?>">
                 <a data-target=".settings" data-toggle="tab">Upload Documents</a>
               </li>
+              <li class="<?php if(isset($active8)){echo 'active';}?>">
+                <a data-target=".pays" data-toggle="tab">Application fee Details</a>
+              </li>
               <li>
                   <?php echo form_open('application/submitting',array("id"=>'form1')); ?>
                   <button id="b" type="submit" class="subtn btn-success btn-large" data-target=".sub"  onclick="con_message()" >

@@ -7,7 +7,7 @@ class Application extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->helper(array('form','html','url'));
+        $this->load->helper(array('form','html','url','directory'));
         $this->load->library(array('form_validation','session'));
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         

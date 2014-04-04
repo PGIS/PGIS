@@ -95,6 +95,7 @@
                         $this->db->where('status','unchecked');
                         $this->db->from('tb_messeges');
                         $newsmg=$this->db->count_all_results();
+                        
                         echo  $newsmg;
                         ?>
                     </span>
@@ -102,52 +103,22 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-header"> <?php echo $newsmg;?> New Messages</li>
-                    <li class="message-preview">
-                        <a href="#">
+                    <?php
+                    $this->db->where('receiver',$this->session->userdata('userid'));
+                    $query = $this->db->get_where('tb_messeges', array('status' => 'unchecked'),3);
+                    foreach ($query->result() as $messg){
+                       echo '<li class="message-preview">
+                        <a href="'.site_url('messages/opensms/'.$messg->message_id).'">
                             <span class="avatar">
-                            <span class="name">John Smith:</span>
+                         
+                            <span class="name">'.$messg->sender.'</span>
                             <span class="message">Hey there, I wanted to ask you something...</span>
-                            <span class="time">
-                            <i class="fa fa-clock-o"></i>
-                            4:34 PM
-                            </span>
+                            
                         </a>
                     </li>
-                    <li class="divider"></li>
-                    <li class="message-preview">
-                    <a href="#">
-                        <span class="avatar">
-                        <img src="http://placehold.it/50x50">
-                        </span>
-                        <span class="name">John Smith:</span>
-                        <span class="message">Hey there, I wanted to ask you something...</span>
-                        <span class="time">
-                        <i class="fa fa-clock-o"></i>
-                        4:34 PM
-                        </span>
-                    </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="message-preview">
-                        <a href="#">
-                            <span class="avatar">
-                            <img src="http://placehold.it/50x50">
-                            </span>
-                            <span class="name">John Smith:</span>
-                            <span class="message">Hey there, I wanted to ask you something...</span>
-                            <span class="time">
-                            <i class="fa fa-clock-o"></i>
-                            4:34 PM
-                            </span>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                    <a href="#">
-                    View Inbox
-                    <span class="badge">7</span>
-                    </a>
-                    </li>
+                    '; 
+                    }
+                    ?>
                 </ul>
                 </li>
               </ul>

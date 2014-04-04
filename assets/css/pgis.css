@@ -73,7 +73,6 @@
     .pre{
         width: 660px;
     }
-    .subtn a{
-        color: white;
-        text-decoration: none;
+    a,a:hover{
+       text-decoration: none;
     }

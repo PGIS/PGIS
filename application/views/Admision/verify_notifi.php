@@ -12,26 +12,41 @@
                     <td>
                        
                         <button type="button" class="subtn btn-primary  btn-block"> Generated registration number for <?php echo $other_nam;?></button>
-                    </td>
-                    <td>
+                    </td >
+                    <td colspan="2">
                         <input class="form-control" id="disabledInput" type="text" 
-                               placeholder="<?php if(isset($reg)){echo $reg;}?>" disabled>
+                               placeholder="<?php 
+                               $this->db->select('addmissionID');
+                               $query = $this->db->get_where('tb_admision', array('app_id' => $appid));
+                               foreach ($query->result() as $rw)echo $rw->addmissionID;
+                               ?>" disabled>
                     </td>
                 </tr>
-                <tr>
+                <?php if (isset($appsent)){echo "<tr><td><span class='alert-success'>".$appsent."</span></td></tr>";}?>
+                <tr> 
+       
                     <td>
-                       <a href="<?php echo site_url('admision/creating_pdf/'.$userid)?>">Create admission letter letter </a> 
+                       <a href="<?php echo site_url('admision/creating_pdf/'.$userid)?>">Generating admission letter </a> 
                     </td>
-                    <td>
-                        
-                    </td>
+                   
+                       <?php
+                        echo form_open('admision/sendadmission/'.$userid);
+                       $map = directory_map('./attachments/admission_letter/');
+                            $i=1;
+                        foreach ($map as $value) {
+                          if($value==$userid.'.pdf'){
+                           echo "<td> $value</td>";
+                          echo "<td><button type='submit' name='submit'>Send Admision latter</button></td>";
+                        }}
+                       ?> 
+                    </form>
                 </tr>
             </table>
           
         </div>
         
        <div class="col-md-10 cent">
-            Success Notification   
+            Send success Notification   
          <?php if (isset($sent)){
              
              echo "<span class='alert-success'>".$sent."</span>";}?>
@@ -65,8 +80,7 @@
                     </td>
                 </tr>
                 <tr>
-                     <td><input type="file" name="userfile" size="20" /></td>
-                    <td>Attachment</td>
+                     
                  
                 </tr>
                 <tr>

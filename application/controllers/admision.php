@@ -127,12 +127,11 @@ class Admision extends CI_Controller{
            
            $data=$this->appl_detils($userid);
            
+          if(isset($_POST['send'])){
            $this->form_validation->set_rules('subject', 'Subject', 'required|max_length[80]|xss_clean');
            $this->form_validation->set_rules('to', 'Receiver', 'required|max_length[40]|xss_clean');
            $this->form_validation->set_rules('msgbody', 'Message body', 'required|xss_clean');
            $this->form_validation->run();
-           
-            if(isset($_POST['send'])){
                 if($this->form_validation->run() == TRUE){
                   $this->load->model('messaging');
                   Messaging::add_message();
@@ -152,9 +151,9 @@ class Admision extends CI_Controller{
         }elseif ($this->count_digit($z)==5) {
             $k=''.$z;
         }
-        $data["reg"]= '2010-04-'.$k;
+        $reg= '2010-04-'.$k;
          $this->load->model('admision_model');
-            Admision_model::admit($data['appid'],$data["reg"]);
+            Admision_model::admit($data['appid'],$reg,$userid);
             Admision_model::verify_form($userid);
         $this->load->view('Admision/verify_notifi',$data);
         
@@ -163,6 +162,20 @@ class Admision extends CI_Controller{
         function count_digit($number) {
             return strlen((string) $number);
         }
+        
+        
+      function sendadmission($userid){
+          $data=$this->appl_detils($userid);
+          $array = array(
+               'admision_letter' => 'sent'
+            );
+          $data['appsent']='admission letter Sent';
+          $this->db->where('app_id', $userid);
+          $this->db->update('tb_app_prev_info', $array); 
+          $this->load->view('Admision/verify_notifi',$data);
+      }
+      
+      
       
         function creating_pagination(){
             
