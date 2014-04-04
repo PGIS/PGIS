@@ -11,8 +11,7 @@ if($this->session->userdata('user_role')=='Admision staff'){
     <div class="col-md-11 cent">
         <button type="button" class="mybtn btn-primary">Sending messages to system users</button>
          <?php if (isset($sent)){
-             
-             echo "<span class='alert-success'>".$sent."</span>";}?>
+            echo "<span class='alert-success'>".$sent."</span>";}?>
             <table class="table">
                  <?php echo form_open('messages/send_to_email'); ?>
                 <tr>

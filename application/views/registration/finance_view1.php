@@ -10,33 +10,53 @@
 <div class="tab-content" style="display: block;">
     <div class="course in tab-pane active">
     <div class="home in tab-pane <?php if(isset($active2)){echo'active';}?>">
-        <div class="pantop"><h4>Payment Results</h4>
- </div>
+        <div class="pantop"><h4>Payment Results</h4></div>
+ 
         <div class="col-md-6">
         <table class="table table-striped">
             <?php foreach ($records as $row){
-             echo '<tr><td>Application Name:<b>'.' '.ucfirst(strtolower(addslashes($row->app_id))).'</b></td></tr>';
-             echo '<tr><td>Registration Fees:<b>'.' '.$row->registration_fees_year.'</b></td></tr>';
-             echo '<tr><td>Registration Fees Amount:<b>'.' '.$row->registration_fees_amount.'</b></td></tr>';
-             echo '<tr><td>Registration Fess Receipt:<b>'.' '.$row->registration_fees_receipt.'</b></td></tr>';
-             echo '<tr><td>Studentship Fees:<b>'.' '.$row->studentship_fees_year.'</b></td></tr>';
-             echo '<tr><td>Studentship Fees Amount:<b>'.' '.$row->studentship_fees_amount.'</b></td></tr>';
-             echo '<tr><td>Studentship Fess Receipt:<b>'.' '.$row->studentship_fees_receipt.'</b></td></tr>';
-             echo '<tr><td>Payment Details:<b>'.' '.ucfirst(strtolower(addslashes($row->payment_Datails))).'</b></td></tr>';
-             echo '<tr><td>Payment Date:<b>'.' '.$row->date_payment.'</b></td></tr>';
-             echo '<tr><td>Registration Date:<b>'.' '.$row->date_registration.'</b></td></tr>';
-             echo '<tr><td>Beginning Date:<b>'.' '.$row->date_beginning.'</b></td></tr>';
-             echo '<tr><td>Completion Date:<b>'.' '.$row->date_completion.'</b></td></tr>';
-             echo '<tr><td>Supported Document:<b>'.' '.ucfirst(strtolower(addslashes($row->name))).'</b></td></tr>';
+                $data=$row->amount_required-$row->amount_paid;
+             echo '<tr><td><strong class="dts">Application Name</strong>:<b>'.' '.ucfirst(strtolower(addslashes($row->registration_id))).'</b></td></tr>';
+             echo '<tr><td><strong class="dts">Registration Fees</strong>:<b>'.' '.$row->payment_details.'</b></td></tr>';
+             echo '<tr><td><strong class="dts">Registration Fees Amount</strong>:<b>'.' '.$row->amount_paid.'</b></td></tr>';
+             echo '<tr><td><strong class="dts">Registration Fess Receipt</strong>:<b>'.' '.$row->receipt_no.'</b></td></tr>';
+             echo '<tr><td><strong class="dts">Outstanding Fees</strong>:<b>'.' '.$data.'</b></td></tr>';
+             echo '<tr><td><strong class="dts">Payment Mode</strong>:<b>'.' '.ucfirst(strtolower(addslashes($row->mode_payment))).'</b></td></tr>';
+             echo '<tr><td><strong class="dts">Payment Date</strong>:<b>'.' '.$row->date_payment.'</b></td></tr>';
+             echo '<tr><td><strong class="dts">Supported Document</strong>:<b>'.' '.ucfirst(strtolower(addslashes($row->suporting_doc))).'</b></td></tr>';
             }?>
         </table>
         </div>
         <div class="col-md-6">
-            <p class="btn btn-block btn-primary" align="center"><a href="<?php echo site_url('finance_page/displayImage');?>" style="color:white;">View your document</a></p>
+            
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h6 class="modal-title" id="myModalLabel">image</h6>
+                        </div>
+                        <div class="modal-body">
+                            <?php foreach ($records as $row){
+                           echo' <img src="'.$row->suporting_doc.'" alt="some_text">';
+                            }?>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+         </div>
+            <div class="bs-docs-example" style="padding-bottom: 24px;">
+            <a data-toggle="modal" href="#myModal" style="color:white;" class="btn btn-primary btn-large">View your document</a></div>
         <table class="table table-striped">
+            <label>OPTIONAL CHOICES*</label>
+            <?php foreach ($records as $res){
+                echo '<tr><td></td><td></td></tr>';
+            }?>
         </table>
         </div>
-          </div>
+    </div>
 </div>
 <?php include_once 'footer.php';?>
 
