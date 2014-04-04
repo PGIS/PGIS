@@ -1,5 +1,5 @@
 <div class="home tab-pane <?php if(isset($active2)){echo 'active';}?>">
-     <div class='pantop'><h4>Personal informaton</h4></div>
+     <div class='pantop'><h4>Personal information</h4></div>
     <p>
         <?php echo form_open('application/personal_info'); ?>
             <table class="table table-striped">

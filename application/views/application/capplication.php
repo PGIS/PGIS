@@ -126,6 +126,8 @@
             <?php include_once "additional.php";?>
             
             <?php include_once "upload.php";?>
+            
+            <?php include_once "applipayment.php";?>
             <?php if(isset($submit)){
                echo '<div class="sub tab-pane active">';
                echo '<div class="alert alert-success">'.$submit.'</div></div>';
