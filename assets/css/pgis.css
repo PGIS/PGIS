@@ -73,3 +73,7 @@
     .pre{
         width: 660px;
     }
+    .subtn a{
+        color: white;
+        text-decoration: none;
+    }

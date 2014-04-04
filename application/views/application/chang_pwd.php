@@ -17,7 +17,7 @@
                  ?>
 
                      <?php echo form_error('opassword','<div class="error">', '</div>'); ?>
-                    <input type="password" class="form-control" placeholder="Current password" name="opassword">
+                  <p><input type="password" class="form-control" placeholder="Current password" name="opassword" required></p>
                     <?php echo form_error('npassword','<div class="error">', '</div>'); ?>
                     <p><input type="password" class="form-control" placeholder="New password" name="npassword"></p>
                     <?php echo form_error('cpassword','<div class="error">', '</div>'); ?>
