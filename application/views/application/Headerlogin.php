@@ -112,7 +112,7 @@
                             <span class="avatar">
                          
                             <span class="name">'.$messg->sender.'</span>
-                            <span class="message">Hey there, I wanted to ask you something...</span>
+                            <span class="message">'.$messg->subject.'</span>
                             
                         </a>
                     </li>

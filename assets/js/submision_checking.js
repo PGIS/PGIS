@@ -90,6 +90,6 @@ var n = document.getElementById("b");
     }
    } 
   function con_message(){
-      confirm('Make sure that all impontant information and uploaded documnt\n\
+    return confirm('Make sure that all impontant information and uploaded documnent\n\
 have been submitted,Are you sure you want to proceed?'); 
    }

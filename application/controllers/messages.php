@@ -48,7 +48,6 @@
                 if($this->form_validation->run() == TRUE){
                   $this->load->model('messaging');
                   Messaging::add_message();
-                   Messaging::return_to_customer($userid);
                   $data['sent']='Message sent';
                 }
             }

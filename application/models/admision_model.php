@@ -29,7 +29,7 @@ class Admision_model extends CI_Model{
     
     function count_all(){
          $array = array('submited' => 'yes');
-         $array1 = array('appl_status' => '');
+         $array1 = array('appl_status' => 'no');
          $this->db->from('tb_app_personal_info');
          $this->db->where($array);
          $this->db->where($array1);

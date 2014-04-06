@@ -28,8 +28,8 @@
                     </td>
                    <td>Date of Birth<br>
                         <?php echo form_error('datebirth','<div class="error">', '</div>'); ?>
-                        <input name="datebirth" type="text" id="7" class="form-control"
-                               value="<?php display_input('datebirth',$datebirth);?> ">
+                        <input name="datebirth" type="text" class="form-control" id="7"
+                               value="<?php display_input('datebirth',$datebirth);?>">
                    </td>
                 </tr>
                 <tr>

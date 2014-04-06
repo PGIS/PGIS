@@ -24,7 +24,7 @@ class Admision extends CI_Controller{
     function index($offset=0){
         
         $dat = array( 'submited'=>'yes');
-        $dat1 = array( 'appl_status'=>''); 
+        $dat1 = array( 'appl_status'=>'no'); 
         $this->db->where($dat1);
         $this->db->order_by('app_id','asc');
         
@@ -211,8 +211,11 @@ class Admision extends CI_Controller{
         
         function pending($userid){
               $data=$this->appl_detils($userid);
-             $data['userid']=$userid;
-             $this->load->view('Admision/denied_appl_message',$data);
+              $data['userid']=$userid;
+              $this->load->model('messaging');
+              Messaging::return_to_customer($userid);
+              $data['openappl']=TRUE;
+              $this->load->view('Admision/denied_appl_message',$data);
         }
         function creating_pdf($userid){
             
