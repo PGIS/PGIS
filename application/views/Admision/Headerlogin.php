@@ -7,9 +7,6 @@
     <meta name="author" content="">
     <link rel="icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>" type="image/gif">
     <title>PGIS</title>
-    
-    
-    
     <link href="<?php echo base_url('assets/css/bootstrap-combined.min.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
@@ -17,15 +14,27 @@
     <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
   </head>
 
+<body>
 
+    <div id="wrapper">
 
-        <link href="<?php echo base_url('assets/css/bootstrap-combined.min.css') ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
-        <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
-    </head>
-
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand visible-lg" href="#">
+		<img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">
+		POSTGRADUATE INFORMATION SYSTEM
+	  </a>
+	  <a class="navbar-brand hidden-lg" href='#'>
+	    <img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">PGIS</a>
+        </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             
