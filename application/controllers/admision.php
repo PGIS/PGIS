@@ -204,7 +204,6 @@ class Admision extends CI_Controller{
             $this->pagination->initialize($config);
             $data['pagination']=$this->pagination->create_links();
            
-           
            $data['query']=$query1->result();
            $this->load->view('Admision/admited_applicants',$data);
         }
@@ -225,7 +224,7 @@ class Admision extends CI_Controller{
 					<center><h4>UNIVERSITY OF DAR ES SALAAM</h4></center>
                                         <center><h4>OFFICE OF THE DEPUTY VICE CHANCELLOR</h4></center>
                                         <center><h1>ACADEMIC</h1></center>
-                                        <p>Dear congratulation for being addmitted to the University of Dar 
+                                        <p>Dear <strong>'.$userid.'</strong> congratulation for being addmitted to the University of Dar 
                                         collage of information and communicaation technlogy</p>
 				</body>
 				</html>

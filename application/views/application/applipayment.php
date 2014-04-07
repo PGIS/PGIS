@@ -6,7 +6,7 @@
             <tr>
                 <td colspan="2">
                     <p> Recept number:</p>
-                    <input  class="form-control" id="18" name="receptno" required autofocus>
+                    <input  class="form-control" id="20" name="receptno" required autofocus>
                 </td>
             </tr>
             <tr>

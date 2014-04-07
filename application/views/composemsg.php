@@ -20,12 +20,14 @@ if($this->session->userdata('user_role')=='Admision staff'){
                     </td>
                     
                 </tr>
+                
                 <tr>
                     <td >To:<?php echo form_error('to','<div class="error">','</div>'); ?>
-                        <input type="text" class="form-control" placeholder="Receiver" name="">
+                        <input type="text" class="form-control" placeholder="Receiver" name="to">
+                <?php  if(isset($toemail)){echo "<span class='alert-success'>".$toemail."</span>";}?>
                     </td>
                     <td>Choose receiver
-                        <select class="form-control" name="to">
+                        <select class="form-control" >
                             <option></option>
                             <option>All Applicant</option>
                             <option>Applicants with un-submitted application</option>

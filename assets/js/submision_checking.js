@@ -1,13 +1,15 @@
 var n = document.getElementById("b"); 
            
-      
-      
+      if(document.getElementById(20).value===""){
+          
+            n.style.display = "none";
+      }else{
        if(checking_form1() &&checking_form3() && checking_form2() && checking_form4()&& checking_form5()){
            n.style.display = "block";
        }else{
             n.style.display = "none";
        }
-   
+      }
   function checking_form1(){
         
        for(i=1; i<3; i++){
