@@ -7,7 +7,7 @@
  * @author emanoble
  */
 
-class Finance extends CI_Controller{
+class Financeadmin extends CI_Controller{
    
     function __construct() {
         parent::__construct();
@@ -23,4 +23,7 @@ class Finance extends CI_Controller{
       function  index(){
           $this->load->view('finance/finance');
       }
+     function applidetails($userid){
+         echo '<p><div class="well well-sm">Aplicatio fee detail for '.$userid.'</div></p>';
+     }
   }

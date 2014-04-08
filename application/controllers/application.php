@@ -573,4 +573,11 @@ function details_preview(){
                 . 'admision progress';
         $this->load->view('application/capplication',$data);
 }
+    
+    function applic_fee(){
+        $data1 = $this->show_User_data();
+        $data2 = $this->show_user_history();
+        $data3 = $this->referee_spon_data();
+        $data = $data2 + $data1 + $data3;
+    }
 }

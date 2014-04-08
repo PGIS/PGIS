@@ -205,6 +205,7 @@ function insert_addition(){
                 return 'started';
             }  else {
                 return 'notstarted';
+
             }
         }
 }

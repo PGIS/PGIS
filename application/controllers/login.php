@@ -59,7 +59,7 @@ class login extends CI_Controller {
         }elseif ($query4->num_rows() == 1) {
             $s_data = array('user_role' => 'Finance staff');
             $this->session->set_userdata($s_data);
-            redirect('finance');
+            redirect('financeadmin');
         }
     }
 

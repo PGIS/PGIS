@@ -80,5 +80,14 @@ class Finance_model extends CI_Model{
            $this->db->insert('tb_studentReg',$reg_ext);
         }
     }
+    
+    function application_fee(){
+        $details=array(
+            'userid'=>$this->session->userdata('userid'),
+            'recept_no'=>'',
+            'payment_date'=>'',
+            'supporting_doc'=>''
+        );  
+    }
     }
 
