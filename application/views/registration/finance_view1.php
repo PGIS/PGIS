@@ -10,33 +10,57 @@
 <div class="tab-content" style="display: block;">
     <div class="course in tab-pane active">
     <div class="home in tab-pane <?php if(isset($active2)){echo'active';}?>">
-        <div class="pantop"><h4>Payment Results</h4>
- </div>
+        <div class="pantop"><h4>Payment Results</h4></div>
+ 
         <div class="col-md-6">
         <table class="table table-striped">
-            <?php foreach ($records as $row){
-             echo '<tr><td>Application Name:<b>'.' '.ucfirst(strtolower(addslashes($row->app_id))).'</b></td></tr>';
-             echo '<tr><td>Registration Fees:<b>'.' '.$row->registration_fees_year.'</b></td></tr>';
-             echo '<tr><td>Registration Fees Amount:<b>'.' '.$row->registration_fees_amount.'</b></td></tr>';
-             echo '<tr><td>Registration Fess Receipt:<b>'.' '.$row->registration_fees_receipt.'</b></td></tr>';
-             echo '<tr><td>Studentship Fees:<b>'.' '.$row->studentship_fees_year.'</b></td></tr>';
-             echo '<tr><td>Studentship Fees Amount:<b>'.' '.$row->studentship_fees_amount.'</b></td></tr>';
-             echo '<tr><td>Studentship Fess Receipt:<b>'.' '.$row->studentship_fees_receipt.'</b></td></tr>';
-             echo '<tr><td>Payment Details:<b>'.' '.ucfirst(strtolower(addslashes($row->payment_Datails))).'</b></td></tr>';
-             echo '<tr><td>Payment Date:<b>'.' '.$row->date_payment.'</b></td></tr>';
-             echo '<tr><td>Registration Date:<b>'.' '.$row->date_registration.'</b></td></tr>';
-             echo '<tr><td>Beginning Date:<b>'.' '.$row->date_beginning.'</b></td></tr>';
-             echo '<tr><td>Completion Date:<b>'.' '.$row->date_completion.'</b></td></tr>';
-             echo '<tr><td>Supported Document:<b>'.' '.ucfirst(strtolower(addslashes($row->name))).'</b></td></tr>';
-            }?>
+            
+            <tr><td><strong class="dts">Application Name</strong>:<b><?php echo ' '.ucfirst(strtolower(addslashes($application_id)));?></b></td></tr>
+            <tr><td><strong class="dts">Registration Fees For</strong>:<b><?php echo ' '.$registration;?></b></td></tr>
+             <tr><td><strong class="dts">Registration Fees Amount</strong>:<b><?php echo' '.$registration_amount?></b></td></tr>
+             <tr><td><strong class="dts">Registration Fees Receipt</strong>:<b><?php echo ' '.$registration_receipt;?></b></td></tr>
+             <tr><td><strong class="dts">Outstanding Fees</strong>:<b><?php echo' '.($registration_total-$registration_amount);?></b></td></tr>
+             <tr><td><strong class="dts">Payment Mode</strong>:<b><?php echo ' '.$payment;?></b></td></tr>
+             <tr><td><strong class="dts">Payment Date</strong>:<b><?php echo ' '.$date_pay;?></b></td></tr>
+           
         </table>
         </div>
         <div class="col-md-6">
-            <p class="btn btn-block btn-primary" align="center"><a href="<?php echo site_url('finance_page/displayImage');?>" style="color:white;">View your document</a></p>
+            
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h6 class="modal-title" id="myModalLabel">image</h6>
+                        </div>
+                        <div class="modal-body">
+                            <img src="<?php echo ''.$support_doc;?>">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+         </div>
+            <div class="bs-docs-example" style="padding-bottom: 24px;">
+                <a data-toggle="modal" href="#myModal" style="color:white;" class="btn btn-primary btn-large">View your document</a><label>Supporting Document</label></div>
         <table class="table table-striped">
+            <label>OPTIONAL CHOICES*</label>
+            <tr><td><strong class="dts">Number of Postponement</strong></td><td><b><?php echo ''.$postponement;?></b></td></tr>
+            <tr><td><strong class="dts">Date of Postponement</strong></td><td><b><?php echo ''.$postponement_date;?></b></td></tr>
+            <tr><td><strong class="dts">Postponement Reasons</strong></td><td><b><?php echo ''.$post_reasons;?></b></td></tr>
+            <tr><td><strong class="dts">Number of Freezing</strong></td><td><b><?php echo ''.$freezing;?></b></td></tr>
+            <tr><td><strong class="dts">Date of Freezing</strong></td><td><b><?php echo ''.$freez_date;?></b></td></tr>
+            <tr><td><strong class="dts">Date of Resume</strong></td><td><b><?php echo''.$resume_date;?></b></td></tr>
+            <tr><td><strong class="dts">Reasons for Extension</strong></td><td><b><?php echo ''.$freez_reasons;?></b></td></tr>
+            <tr><td><strong class="dts">Number of Extension</strong></td><td><b><?php echo ''.$extension;?></b></td></tr>
+            <tr><td><strong class="dts">Date of Extension</strong></td><td><b><?php echo ''.$ext_date;?></b></td></tr>
+            <tr><td><strong class="dts">Extension Period</strong></td><td><b><?php echo ''.$period;?></b></td></tr>
+            <tr><td><strong class="dts">Reasons for Extending</strong></td><td><b><?php echo ''.$exte_reasons;?></b></td></tr>
         </table>
         </div>
-          </div>
+    </div>
 </div>
 <?php include_once 'footer.php';?>
 

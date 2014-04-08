@@ -63,7 +63,8 @@
             </li>
             <li><a href="<?php echo site_url('finance_page/finance');?>">
 	    <span class="glyphicon glyphicon-folder-open"></span> Complete Registration</a></li>
-            <li><a href="<?php echo site_url('seminary');?>"><span class="glyphicon glyphicon-folder-open"></span> Seminar register</a></li>
+            <li><a href="<?php echo site_url('calendar/display_cal');?>"><span class="glyphicon glyphicon-calendar"></span>
+	    Register your time table</a></li>
 	    <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
@@ -97,6 +98,7 @@
                         $this->db->where('status','unchecked');
                         $this->db->from('tb_messeges');
                         $newsmg=$this->db->count_all_results();
+                        
                         echo  $newsmg;
                         ?>
                     </span>
@@ -104,52 +106,22 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-header"> <?php echo $newsmg;?> New Messages</li>
-                    <li class="message-preview">
-                        <a href="#">
+                    <?php
+                    $this->db->where('receiver',$this->session->userdata('userid'));
+                    $query = $this->db->get_where('tb_messeges', array('status' => 'unchecked'),3);
+                    foreach ($query->result() as $messg){
+                       echo '<li class="message-preview">
+                        <a href="'.site_url('messages/opensms/'.$messg->message_id).'">
                             <span class="avatar">
-                            <span class="name">John Smith:</span>
-                            <span class="message">Hey there, I wanted to ask you something...</span>
-                            <span class="time">
-                            <i class="fa fa-clock-o"></i>
-                            4:34 PM
-                            </span>
+                         
+                            <span class="name">'.$messg->sender.'</span>
+                            <span class="message">'.$messg->subject.'</span>
+                            
                         </a>
                     </li>
-                    <li class="divider"></li>
-                    <li class="message-preview">
-                    <a href="#">
-                        <span class="avatar">
-                        <img src="http://placehold.it/50x50">
-                        </span>
-                        <span class="name">John Smith:</span>
-                        <span class="message">Hey there, I wanted to ask you something...</span>
-                        <span class="time">
-                        <i class="fa fa-clock-o"></i>
-                        4:34 PM
-                        </span>
-                    </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="message-preview">
-                        <a href="#">
-                            <span class="avatar">
-                            <img src="http://placehold.it/50x50">
-                            </span>
-                            <span class="name">John Smith:</span>
-                            <span class="message">Hey there, I wanted to ask you something...</span>
-                            <span class="time">
-                            <i class="fa fa-clock-o"></i>
-                            4:34 PM
-                            </span>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                    <a href="#">
-                    View Inbox
-                    <span class="badge">7</span>
-                    </a>
-                    </li>
+                    '; 
+                    }
+                    ?>
                 </ul>
                 </li>
               </ul>

@@ -18,8 +18,7 @@
     <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-1.10.2.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-ui.core.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-ui.widget.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/bootstrap-modal.js')?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
   </head>
 
@@ -53,6 +52,8 @@
             <li><a href="<?php echo site_url('seminary');?>"><span class="glyphicon glyphicon-folder-open"></span> Seminar register</a></li>
             <li><a href="<?php echo site_url('finance_page');?>">
 	    <span class="glyphicon glyphicon-book"></span> Summary preview</a></li>
+            <li><a href="<?php echo site_url('calendar/display_cal');?>"><span class="glyphicon glyphicon-calendar"></span>
+	    Register your time table</a></li>
             <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>

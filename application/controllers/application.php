@@ -1,13 +1,9 @@
-<?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-
-class Application extends CI_Controller {
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+  class Application extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->helper(array('form','html','url'));
+        $this->load->helper(array('form','html','url','directory'));
         $this->load->library(array('form_validation','session'));
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         
@@ -555,12 +551,21 @@ function details_preview(){
         $this->load->view('application/details',$data);
 }
 
-function submitting(){
+        function applifinance(){
         $data1 = $this->show_User_data();
         $data2 = $this->show_user_history();
         $data3 = $this->referee_spon_data();
         $data = $data2 + $data1 + $data3;
+        $data['active8'] = TRUE;
+        $this->load->view('application/capplication',$data);
+        }
         
+        
+        function submitting(){
+        $data1 = $this->show_User_data();
+        $data2 = $this->show_user_history();
+        $data3 = $this->referee_spon_data();
+        $data = $data2 + $data1 + $data3;
         $this->load->model('Application_form');
         Application_form::submiting();
         $data['submit']='Your Application has been submitted and the '

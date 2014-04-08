@@ -19,7 +19,6 @@
             <div>Nationality: <strong class='dts'><?php echo $nationalt;?></strong></div>
             <div>Permanent address: <strong class='dts'><?php echo $perm_addres;?></strong></div>
             <div>Disable: <strong class='dts'><?php echo $disability;?></strong></div>
-            <div>Date of birth: <strong class='dts'><?php echo $datebirth;?></strong></div>
             <div>Mobile Number: <strong class='dts'><?php echo $mobil;?></strong></div>
             <div>Email: <strong class='dts'><?php echo $email;?></strong></div>
             
@@ -84,7 +83,7 @@
        <div class="pleft col-md-4">
            <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Documents Comparison</h3>
+                  <h3 class="panel-title">Supporting Documents</h3>
                 </div>
                 <div class="panel-body">
                  <?php
@@ -123,16 +122,7 @@
            </div>
        </div>
        <div class="col-md-8">
-           <div class="col-md-4">
-               
-               <a href="<?php echo site_url('admision/admit/'.$userid.'');?>">
-               <button type="button" class="mybtn btn-success">
-                   <span class="glyphicon glyphicon-ok-sign"></span>Valid
-               </button>
-                 </a>
-               
-           </div>
-            <div class="dropdown col-md-4">
+           <div class="dropdown col-md-4">
                 <button type="submit" class="mnybtn btn-warning" data-toggle="dropdown" href="#" value="valid">
                     <span class="glyphicon glyphicon-ban-circle"></span>
                     Invalid <span class="caret"></span>
@@ -144,6 +134,17 @@
                 </ul>
                  
             </div>
+           <div class="col-md-4">
+               
+               <button class="mybtn btn-success" id="pop"
+                       data-html="true"
+                       data-content="<a  href='<?php echo site_url('admision/admit/'.$userid.'');?>'><button class='btn btn-success'>Yes</button></a>         <button class='btn btn-danger' onclick='$(&quot;#pop&quot;).popover(&quot;hide&quot;);'>Cancel</button>" 
+                       data-placement="top" data-toggle="popover" 
+                       data-container="body" type="button" 
+                       data-original-title="Are you sure its valid?"
+                       title=""><span class="glyphicon glyphicon-ok-sign"></span> Valid </button>
+           </div>
+            
        </div>
     </div>
 <?php include_once 'footer.php';?>

@@ -16,7 +16,7 @@
                     <?php if(isset($errormsg)) echo'<div class="error">'.$errormsg.'</div>';?>
                     <p>
                     <?php echo form_error('us','<div class="error">', '</div>'); ?>
-                    <input type="text" class="form-control" placeholder="Username" name="us" value="<?php echo set_value('us'); ?>">
+                        <input type="text" class="form-control" placeholder="Username" name="us" value="<?php echo set_value('us'); ?>" autofocus>
                     </p>
                     <p>
                         <?php echo form_error('pd','<div class="error">', '</div>'); ?>

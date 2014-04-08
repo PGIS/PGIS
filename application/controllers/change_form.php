@@ -16,7 +16,11 @@ class Change_form extends CI_Controller{
               $this->load->view('application/chang_pwd'); 
         }elseif ($this->session->userdata('user_role')=='Admision staff') {
             $this->load->view('Admision/chang_pwd'); 
-        }
+        }elseif ($this->session->userdata('user_role')=='Finance staff') {
+            $this->load->view('finance/chang_pwd'); 
+        }elseif ($this->session->userdata('user_role')=='administrator') {
+            $this->load->view('admin/chang_pwd');
+    }
     }
     function change() {
         $this->load->helper('form','url');
@@ -37,11 +41,10 @@ class Change_form extends CI_Controller{
               $query=$this->db->query("update tb_user set password='$npassword' where password='{$opassword}' and userid='$sn'");
               if($query){  
               $data['suc_message']='<font color=blue>Password changed successively</font>';
-             
               if ($this->session->userdata('user_role')=='applicant') {
                  $this->load->view('application/chang_pwd',$data); 
                 }elseif ($this->session->userdata('user_role')=='Admision staff') {
-                $this->load->view('Admision/chang_pwd',$data); 
+                    $this->load->view('Admision/chang_pwd',$data);
                 }
               }
             }

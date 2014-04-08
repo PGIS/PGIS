@@ -3,26 +3,22 @@ class Finance_model extends CI_Model{
     public function __construct() {
         parent::__construct();
     }
-    public function finance_insert($application_id,$registration,$rgistration_amount,$registration_receipt,$studentship,$studentship_amount,$studentship_receipt,
-            $payment,$payment_date,$date_register,$date_begine,$imageName,$date_complete,$imageData){
-        $array_data=array(
-            'app_id'=>$application_id,
-            'registration_fees_year'=>$registration,
-            'registration_fees_amount'=>$rgistration_amount,
-            'registration_fees_receipt'=>$registration_receipt,
-            'studentship_fees_year'=>$studentship,
-            'studentship_fees_amount'=>$studentship_amount,
-            'studentship_fees_receipt'=>$studentship_receipt,
-            'payment_Datails'=>$payment,
+    public function finance_insert($application_id,$registration,$rgistration_amount,$registration_receipt,
+            $payment,$payment_date,$imageName,$academic){
+            $array_data=array(
+            'registration_id'=>$application_id,
+            'payment_details'=>$registration,
+            'amount_paid'=>$rgistration_amount,
+            'receipt_no'=>$registration_receipt,
+            'mode_payment'=>$payment,
             'date_payment'=>$payment_date,
-            'date_registration'=>$date_register,
-            'date_beginning'=>$date_begine,
-            'date_completion'=>$date_complete,
-            'name'=>$imageName,
-            'image'=>$imageData
+            'suporting_doc'=>$imageName,
+            'academic_year'=>$academic
         );
-        $res=$this->db->get_where('tb_finance',array('app_id'=>  $this->session->userdata('userid')));
+        $this->session->set_userdata($array_data);
+        $res=$this->db->get_where('tb_finance',array('registration_id'=>  $this->session->userdata('userid'),'payment_details'=>$registration));
         if($res->num_rows()===1){
+            $this->db->where('payment_details',$registration);
         $this->db->update('tb_finance',$array_data);
         }  else {
         $result= $this->db->insert('tb_finance',$array_data);
@@ -30,18 +26,28 @@ class Finance_model extends CI_Model{
         }
     }
     public function display(){
-        $query=$this->db->get_where('tb_finance',array('app_id'=>  $this->session->userdata('userid')));
+        $query=$this->db->get_where('tb_finance',array('registration_id'=>  $this->session->userdata('userid')));
         if($this->db->affected_rows()==1){
         return $query->result();
         }  else {
            return FALSE; 
         }
     }
-    public function registration_data($sn,$postponement,$date_postponement){
+    public function show_result(){
+        $result=  $this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
+        if($result->affected_rows()===1){
+         return $result->result();   
+        }  else {
+            return FALSE;
+        }
+    }
+
+    public function registration_data($sn,$postponement,$date_postponement,$postponement_resons){
         $reg_data=array(
             'regist_name'=>$sn,
             'postponement'=>$postponement,
             'date_postponement'=>$date_postponement,
+             'postponemet_reason'=>$postponement_resons   
         );
         $res=$this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
         if($res->num_rows()===1){
@@ -50,12 +56,13 @@ class Finance_model extends CI_Model{
             $this->db->insert('tb_studentReg',$reg_data);
         }
     }
-    public function register_remained($sn,$freezing,$freez_date,$freez_resume){
+    public function register_remained($sn,$freezing,$freez_date,$freez_resume,$freezing_reasons){
         $reg_rem=array(
             'regist_name'=>$sn,
             'freezing'=>$freezing,
             'date_freezing'=>$freez_date,
-            'date_resume'=>$freez_resume
+            'date_resume'=>$freez_resume,
+            'freezing_reason'=>$freezing_reasons
         );
         $result=  $this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
         if($result->num_rows()===1){
@@ -64,12 +71,13 @@ class Finance_model extends CI_Model{
             $this->db->insert('tb_studentReg',$reg_rem);
         }
     }
-    public function register_extension($sn,$extension,$ext_date,$period){
+    public function register_extension($sn,$extension,$ext_date,$period,$extension_reasons){
         $reg_ext=array(
             'regist_name'=>$sn,
             'extension'=>$extension,
             'date_extension'=>$ext_date,
-            'month_extension'=>$period
+            'month_extension'=>$period,
+            'extending_reason'=>$extension_reasons
         );
         $query=  $this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
         if($query->num_rows()===1){

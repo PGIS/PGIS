@@ -5,7 +5,14 @@
      Application is missing some important information
     </div>
     <div>
-        
+        <div class="col-md-10 cent">
+               <?php
+               if(isset($openappl)){
+                   echo '<div class="well-sm alert-info">The Application form for applicant has been reopened</div>';  
+               }
+               ?>
+            
+        </div>
         <div class="col-md-10 cent">
              
          <?php if (isset($sent)){

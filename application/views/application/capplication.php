@@ -25,12 +25,18 @@
               <li class="<?php if(isset($active7)){echo 'active';}?>">
                 <a data-target=".settings" data-toggle="tab">Upload Documents</a>
               </li>
+              <li class="<?php if(isset($active8)){echo 'active';}?>">
+                <a data-target=".pays" data-toggle="tab">Application fee Details</a>
+              </li>
               <li>
-                  <?php echo form_open('application/submitting',array("id"=>'form1')); ?>
-                  <button id="b" type="submit" class="subtn btn-success btn-large" data-target=".sub"  onclick="con_message()" >
+                 
+                  <form action="<?php echo site_url('application/submitting');?>" method="post" onsubmit='return con_message()'>
+                  <button id="b" type="submit" class="subtn btn-success btn-large" data-target=".sub">
                      <span class="glyphicon glyphicon-send"></span> Submit Application</button>
                   </form>
+                  
               </li>
+              
             </ul>
         <div class="tab-content" style="display: block;">
             
@@ -123,6 +129,8 @@
             <?php include_once "additional.php";?>
             
             <?php include_once "upload.php";?>
+            
+            <?php include_once "applipayment.php";?>
             <?php if(isset($submit)){
                echo '<div class="sub tab-pane active">';
                echo '<div class="alert alert-success">'.$submit.'</div></div>';
