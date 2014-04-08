@@ -56,6 +56,20 @@
        $data['error_message']='<font color=blue>successively deleted</font>';
        redirect('admin_page',$data);
     }
+    function seminar(){
+         $this->form_validation->set_rules('day', 'day', 'required');
+          $this->form_validation->set_rules('hr', 'hour', 'required');
+          if ($this->form_validation->run() == FALSE){
+        $this->load->view('admin/seminar_reg');
+        }else{
+              $this->load->model('seminar_register');
+              $day = $this->input->post('day');
+              $hour = $this->input->post('hr');
+              $this->seminar_register->insert_seminar($day, $hour);
+               $data['smg']='<font> Thanks you have already registered your time</font>';
+               $this->load->view('admin/seminar_reg',$data);
+    }
+        }
     function search(){
         if(isset($_POST['sub'])){
         $search=trim($_POST['searchterm']);
