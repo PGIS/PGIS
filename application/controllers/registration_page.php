@@ -22,7 +22,8 @@
              $sn=  $this->session->userdata('userid');
              $postponement=  $this->input->post('post');
              $date_postponement=  $this->input->post('dt');
-             $this->finance_model->registration_data($sn,$postponement,$date_postponement);
+             $postponement_reasons=  $this->input->post('rsp');
+             $this->finance_model->registration_data($sn,$postponement,$date_postponement,$postponement_reasons);
              $data['result1']='<font>Thanks'.' '.ucfirst(strtolower(addslashes($this->session->userdata('userid')))).' for your request.! please keep visiting while your form is still processing.</font>';
              $this->load->view('registration/finance_view',$data);
          }
@@ -40,7 +41,8 @@
              $freezing=  $this->input->post('frz');
              $freez_date=  $this->input->post('frzd');
              $freez_resume=  $this->input->post('rsud');
-             $this->finance_model->register_remained($sn,$freezing,$freez_date,$freez_resume);
+             $freezing_reasons=  $this->input->post('rsf');
+             $this->finance_model->register_remained($sn,$freezing,$freez_date,$freez_resume,$freezing_reasons);
              $data['result2']='<font>Thanks'.' '.ucfirst(strtolower(addslashes($this->session->userdata('userid')))).' for your request.! please keep visiting while your form is still processing.</font>';
              $this->load->view('registration/finance_view',$data);
          }
@@ -58,7 +60,8 @@
               $extension=  $this->input->post('ext');
               $ext_date=  $this->input->post('exdate');
               $period=  $this->input->post('period');
-              $this->finance_model->register_extension($sn,$extension,$ext_date,$period);
+              $extension_reasons=  $this->input->post('rsex');
+              $this->finance_model->register_extension($sn,$extension,$ext_date,$period,$extension_reasons);
               $data['result3']='<font>Thanks'.' '.ucfirst(strtolower(addslashes($this->session->userdata('userid')))).' for your request.! please keep visiting while your form is still processing.</font>';
               $this->load->view('registration/finance_view',$data);
          }

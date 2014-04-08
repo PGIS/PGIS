@@ -31,9 +31,10 @@
                         <?php echo form_open_multipart('finance_page/finance');?>
                         <label>Fees*</label>
                         <table class="table table-condensed table-striped">
-                            <tr><td><label>Registration fees:</label></td><td><select name="reg_fees" class="form-control" required>
+                            <tr><td><label>Registration Fees For:</label></td><td><select name="reg_fees" class="form-control check" required>
                                         <option id="yes"></option><option id="yes1">Year 1</option><option id="yes2">Year 2</option><option id="yes3">Year 3</option><option id="yes4">Year 4</option>
                                     </select></td><td><table id="ye" class="table table-condensed table-striped"><tr><td><input type="text" class="form-control" placeholder="Amount" required name="amnt"></td><td><input type="text" class="form-control" placeholder="ReceiptNo" required name="rescpt"></td></tr></table></td></tr> 
+                            <tr><td><label>Academic Year:</label></td><td><input type="text" name="acy" placeholder="2014/2015" class="form-control" required></td></tr> 
                         </table>
                         <table class="table">
                             <tr><td><label for="payment_det">Mode of Payment*</label>
@@ -65,8 +66,11 @@
                     <?php echo form_open('registration_page/student');?>
                         <table class="table table-condensed table-striped">
                             <tr><td><label>Postponement:</label></td><td><select name="post" class="form-control" required autofocus>
-                                        <option id="cl3" ></option><option id="cl">1st postponement</option><option id="cl1">2nd postponement</option>
-                                    </select></td><td><table id="p" class="table table-condensed table-striped"><tr><td><label>Date:</label></td><td><input type="text" class="form-control datepicker" placeholder="dd-Mm-YYY"  name="dt" required autofocus></td></tr></table>
+                                        <option id="cl3"></option><option id="cl">1st postponement</option><option id="cl1">2nd postponement</option>
+                                    </select></td><td><table id="p" class="table table-condensed table-striped">
+                                            <tr><td><label>Date:</label></td><td><input type="text" class="form-control datepicker" placeholder="dd-Mm-YYY"  name="dt" required autofocus></td></tr>
+                                            <tr><td><label>Reasons for postponement:</label></td><td><textarea name="rsp" required rows="2" class="form-control" placeholder="Type something here.."></textarea></td></tr>
+                                        </table>
                                     </td></tr>
                         </table>
         <p align="center"><input type="submit" class="btn btn-info" value="submit"></p>
@@ -85,7 +89,10 @@
                         <table class="table table-condensed table-striped">
                             <tr><td><label>Freezing:</label></td><td><select name="frz" class="form-control" required>
                                         <option id="pf0"></option><option id="pf">1st freezing</option><option id="pf1">2nd freezing</option>
-                                    </select></td><td><table id="fd" class="table table-condensed table-striped"><tr><td><input type="text" class="form-control datepicker" placeholder="Date:frez" name="frzd" required></td><td><input type="text" class="form-control datepicker" placeholder="Date:resu"  name="rsud" required></td></tr></table></td></tr>
+                                    </select></td><td><table id="fd" class="table table-condensed table-striped">
+                                            <tr><td><input type="text" class="form-control datepicker" placeholder="Date:frez" name="frzd" required></td><td><input type="text" class="form-control datepicker" placeholder="Date:resu"  name="rsud" required></td></tr>
+                                             <tr><td><label>Reasons for Freezing:</label></td><td><textarea name="rsf" required rows="2" class="form-control" placeholder="Type something here.."></textarea></td></tr>
+                                        </table></td></tr>
                         </table>
         <p align="center"><input type="submit" class="btn btn-info" value="submit"></p>
         <?php echo form_close();?>
@@ -104,7 +111,10 @@
                         <table class="table table-condensed table-striped">
                             <tr><td><label>Extension:</label></td><td><select name="ext" class="form-control" required>
                                         <option id="ext0"></option><option id="ext">1st extension</option><option id="ext1">2nd extension</option><option id="ext2">3rd extension</option><option id="ext3">4th extension</option>
-                                    </select></td><td><table id="exd" class="table table-condensed table-striped"><tr><td><input type="text" class="form-control datepicker" placeholder="Date:ext"  name="exdate" required></td><td><input type="text" class="form-control" placeholder="Month(perd)" name="period" required></td></tr></table></td></tr>
+                                    </select></td><td><table id="exd" class="table table-condensed table-striped">
+                                            <tr><td><input type="text" class="form-control datepicker" placeholder="Date:ext"  name="exdate" required></td><td><input type="text" class="form-control" placeholder="Month(perd)" name="period" required></td></tr>
+                                            <tr><td><label>Reasons for Extending:</label></td><td><textarea name="rsex" required rows="2" class="form-control" placeholder="Type something here.."></textarea></td></tr>
+                                        </table></td></tr>
                         </table>
         <p align="center"><input type="submit" class="btn btn-info" value="submit"></p>
         <?php echo form_close();?>
@@ -128,6 +138,9 @@ $(document).ready(function(){
       $("#p").show();  
     });
     $("#cl2").click(function(){
+       $("#p").hide(); 
+    });
+    $("#cl3").click(function(){
        $("#p").hide(); 
     });
     $("#pf0").click(function(){
@@ -183,6 +196,20 @@ $(document).ready(function(){
     });
 });
 $('.datepicker').datepicker();
+$('.check').keyup(function(){
+    if($('.check').val()){
+       $.ajax({
+          type:'POST',
+          url: '<?php echo base_url();?>index.php/finance_page/finance',
+          data: 'name='+$('.check').val(),
+          success: function(smg){
+              if(smg===true){
+                $('#yes1').hide();  
+              }
+          }
+       }); 
+    }
+});
 </script>
 
 <?php include_once 'footer.php';?>
