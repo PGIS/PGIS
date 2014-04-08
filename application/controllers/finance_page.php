@@ -20,7 +20,7 @@ class Finance_page extends CI_Controller{
     }
     public function finance(){
         $data['active']=TRUE;
-        $config['upload_path']='./image/';
+        $config['upload_path']='./upload_docs/';
         $config['allowed_types']='jpg|png|gif|pdf|jpeg';
         $config['overwrite']=TRUE;
         $this->load->library('upload',$config);
