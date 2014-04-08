@@ -17,7 +17,7 @@
                         <th>Action</th>
                         <tr>
                             <?php
-                            $query = $this->db->get_where('tb_user', array('designation' =>'applicant'));
+                            $query = $this->db->get_where('tb_app_personal_info', array('submited' =>'yes'));
                             if($query->num_rows()>0){
                                 $i=1;
                                 foreach ($query->result() as $list){

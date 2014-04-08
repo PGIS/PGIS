@@ -24,6 +24,6 @@ class Financeadmin extends CI_Controller{
           $this->load->view('finance/finance');
       }
      function applidetails($userid){
-         echo '<p><div class="well well-sm">Aplicatio fee detail for '.$userid.'</div></p>';
+         echo '<p><div class="well well-sm">Aplication fee detail for '.$userid.'</div></p>';
      }
   }
