@@ -14,17 +14,15 @@
  
         <div class="col-md-6">
         <table class="table table-striped">
-            <?php foreach ($records as $row){
-                $data=$row->amount_required-$row->amount_paid;
-             echo '<tr><td><strong class="dts">Application Name</strong>:<b>'.' '.ucfirst(strtolower(addslashes($row->registration_id))).'</b></td></tr>';
-             echo '<tr><td><strong class="dts">Registration Fees</strong>:<b>'.' '.$row->payment_details.'</b></td></tr>';
-             echo '<tr><td><strong class="dts">Registration Fees Amount</strong>:<b>'.' '.$row->amount_paid.'</b></td></tr>';
-             echo '<tr><td><strong class="dts">Registration Fess Receipt</strong>:<b>'.' '.$row->receipt_no.'</b></td></tr>';
-             echo '<tr><td><strong class="dts">Outstanding Fees</strong>:<b>'.' '.$data.'</b></td></tr>';
-             echo '<tr><td><strong class="dts">Payment Mode</strong>:<b>'.' '.ucfirst(strtolower(addslashes($row->mode_payment))).'</b></td></tr>';
-             echo '<tr><td><strong class="dts">Payment Date</strong>:<b>'.' '.$row->date_payment.'</b></td></tr>';
-             echo '<tr><td><strong class="dts">Supported Document</strong>:<b>'.' '.ucfirst(strtolower(addslashes($row->suporting_doc))).'</b></td></tr>';
-            }?>
+            
+            <tr><td><strong class="dts">Application Name</strong>:<b><?php echo ' '.ucfirst(strtolower(addslashes($application_id)));?></b></td></tr>
+            <tr><td><strong class="dts">Registration Fees For</strong>:<b><?php echo ' '.$registration;?></b></td></tr>
+             <tr><td><strong class="dts">Registration Fees Amount</strong>:<b><?php echo' '.$registration_amount?></b></td></tr>
+             <tr><td><strong class="dts">Registration Fees Receipt</strong>:<b><?php echo ' '.$registration_receipt;?></b></td></tr>
+             <tr><td><strong class="dts">Outstanding Fees</strong>:<b><?php echo' '.($registration_total-$registration_amount);?></b></td></tr>
+             <tr><td><strong class="dts">Payment Mode</strong>:<b><?php echo ' '.$payment;?></b></td></tr>
+             <tr><td><strong class="dts">Payment Date</strong>:<b><?php echo ' '.$date_pay;?></b></td></tr>
+           
         </table>
         </div>
         <div class="col-md-6">
@@ -37,9 +35,7 @@
                           <h6 class="modal-title" id="myModalLabel">image</h6>
                         </div>
                         <div class="modal-body">
-                            <?php foreach ($records as $row){
-                           echo' <img src="'.$row->suporting_doc.'" alt="some_text">';
-                            }?>
+                            <img src="<?php echo ''.$support_doc;?>">
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -48,12 +44,20 @@
                     </div>
          </div>
             <div class="bs-docs-example" style="padding-bottom: 24px;">
-            <a data-toggle="modal" href="#myModal" style="color:white;" class="btn btn-primary btn-large">View your document</a></div>
+                <a data-toggle="modal" href="#myModal" style="color:white;" class="btn btn-primary btn-large">View your document</a><label>Supporting Document</label></div>
         <table class="table table-striped">
             <label>OPTIONAL CHOICES*</label>
-            <?php foreach ($records as $res){
-                echo '<tr><td></td><td></td></tr>';
-            }?>
+            <tr><td><strong class="dts">Number of Postponement</strong></td><td><b><?php echo ''.$postponement;?></b></td></tr>
+            <tr><td><strong class="dts">Date of Postponement</strong></td><td><b><?php echo ''.$postponement_date;?></b></td></tr>
+            <tr><td><strong class="dts">Postponement Reasons</strong></td><td><b><?php echo ''.$post_reasons;?></b></td></tr>
+            <tr><td><strong class="dts">Number of Freezing</strong></td><td><b><?php echo ''.$freezing;?></b></td></tr>
+            <tr><td><strong class="dts">Date of Freezing</strong></td><td><b><?php echo ''.$freez_date;?></b></td></tr>
+            <tr><td><strong class="dts">Date of Resume</strong></td><td><b><?php echo''.$resume_date;?></b></td></tr>
+            <tr><td><strong class="dts">Reasons for Extension</strong></td><td><b><?php echo ''.$freez_reasons;?></b></td></tr>
+            <tr><td><strong class="dts">Number of Extension</strong></td><td><b><?php echo ''.$extension;?></b></td></tr>
+            <tr><td><strong class="dts">Date of Extension</strong></td><td><b><?php echo ''.$ext_date;?></b></td></tr>
+            <tr><td><strong class="dts">Extension Period</strong></td><td><b><?php echo ''.$period;?></b></td></tr>
+            <tr><td><strong class="dts">Reasons for Extending</strong></td><td><b><?php echo ''.$exte_reasons;?></b></td></tr>
         </table>
         </div>
     </div>
