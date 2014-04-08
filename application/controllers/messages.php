@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  class Messages extends CI_Controller{
-    
+     private $limit=14;
         function __construct(){
          parent::__construct();
          $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
          
-         $this->load->helper('form','html','url');
-         $this->load->library('form_validation','session');
+         $this->load->helper('form','html','url','array','string');
+         $this->load->library('form_validation','session','pagination');
         
         
         if(!$this->session->userdata('logged_in')){
@@ -14,7 +14,7 @@
         }
      }
  function index(){
-      $this->load->view('mymessages');
+            $this->load->view('mymessages');
     }
    function opensms($msgid){
        
@@ -48,7 +48,6 @@
                 if($this->form_validation->run() == TRUE){
                   $this->load->model('messaging');
                   Messaging::add_message();
-                   Messaging::return_to_customer($userid);
                   $data['sent']='Message sent';
                 }
             }
@@ -88,7 +87,16 @@
                    Messaging::add_message();
                   
                   $data['sent']='Message sent';
+                   if(isset($_POST['tomail'])){
+                      
+                      $to=$this->find_sender_email($this->input->post('to'));
+                      $subject=$this->input->post('subject');
+                      $message=$this->input->post('msgbody');
+                      $data['toemail']=$this->send_email($to, $subject, $message);
+                      
+                   }
                 }
+                
             }
            
          $this->load->view('composemsg',$data);
@@ -104,4 +112,47 @@
             $this->load->view('application/submitmsg',$data);
         }
      
+        
+        function find_sender_email($to){
+            $this->db->select('email');
+           $query = $this->db->get_where('tb_user', array('userid' => $to),1);
+            foreach ($query->result() as $email){
+                return $email->email;
+            }
+            
+        }
+        
+        function send_email($to,$subject,$message){
+            $config=array(
+            'protocol'=>'smtp',
+            'smtp_host'=>'ssl://smtp.gmail.com',
+            'smtp_port'=>465,
+            'mailtype'=>'html',
+            'smtp_user'=>'tuzoengelbert@gmail.com',
+            'smtp_pass'=>'ngelageze',
+            'charset'=>'iso-8859-1'
+        );
+                $this->load->library('email',$config);
+                $this->email->set_newline("\r\n");
+                $this->email->from('pgis@gmail.com','PGIS TEAM');
+                $this->email->to($to);
+                $this->email->subject($subject);
+                $this->email->message($message);
+        if($this->email->send()){
+           return 'message sent to email'; 
+        }else{
+            return 'not sent to email';
+        }
+        }
+      
+        function creating_pagination(){
+            $this->load->model('admision_model');
+            $count= Admision_model::count_all();
+            $config['base_url'] = site_url('messages/index');
+            $config['total_rows'] = $count;
+            $config['per_page'] = $this->limit; 
+            $config['uri_segment'] = 3;
+            $this->pagination->initialize($config); 
+  
+        }  
  }

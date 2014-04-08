@@ -1,8 +1,6 @@
 <?php include 'Headerlogin.php';?>
 <div id="page-wrapper">
     
-        <div class="well well-sm">Name::<?php echo $this->session->userdata('userid');?></div>
-
     <p><h3 align="center">Already registered</h3></p>
     <p style="margin-left: 30px;"><?php echo anchor('admin_page',' Registered Members');?></p>
      

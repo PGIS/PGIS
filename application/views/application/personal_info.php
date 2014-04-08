@@ -1,5 +1,5 @@
 <div class="home tab-pane <?php if(isset($active2)){echo 'active';}?>">
-     <div class='pantop'><h4>Personal informaton</h4></div>
+     <div class='pantop'><h4>Personal information</h4></div>
     <p>
         <?php echo form_open('application/personal_info'); ?>
             <table class="table table-striped">
@@ -28,8 +28,8 @@
                     </td>
                    <td>Date of Birth<br>
                         <?php echo form_error('datebirth','<div class="error">', '</div>'); ?>
-                        <input name="datebirth" type="text" id="7" class="form-control"
-                               value="<?php display_input('datebirth',$datebirth);?> ">
+                        <input name="datebirth" type="text" class="form-control" id="7"
+                               value="<?php display_input('datebirth',$datebirth);?>">
                    </td>
                 </tr>
                 <tr>

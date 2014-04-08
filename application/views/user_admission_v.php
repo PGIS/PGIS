@@ -1,5 +1,4 @@
-<?php include 'include/header.php'; ?>
-
+<?php include_once 'Admision/Header_academic.php'; ?>
 <div id="wrapper">
 
 </div>
@@ -10,8 +9,10 @@
             <p>
 
             </p>
+
         </center>
     </div>
+
     <button type="button" class="btn btn-default btn-lg btn-block">Submitted Thesis</button>
     <table class="mytable table-hover" >
 
@@ -23,35 +24,34 @@
 
     <table class='mytable table-hover' >
         <?php
-        $user = $this->session->userdata('userid');
-        $this->load->helper('directory');
-        if (is_dir('uploads/' . $user)) {
+        foreach ($useridz as $valuez) {
+            foreach ($valuez as $name) {
 
-            $map = directory_map('./uploads/' . $user);
+                $map_files = directory_map('./uploads/' . $name);
+                $j = 1;
+                foreach ($map_files as $valuez) {
+                    echo "<tr class='mytable'>";
+//                    echo "<td>$j</td>";
+                    echo "<td>$valuez</td>";
+                    echo "<td>from $name</td>";
+                    echo "<td>Document Description</td>";
+                    echo "<td><a href='" . site_url('user_admission_c/do_download/' . $name . '/' . $valuez) . "'>Download to mark</a></td>";
 
-            $i = 1;
+                    echo "<td id='upload'><a href='#'><button type='button' class='btn btn-default'>upload results</button></a></td>";
+                    
+                    echo"</tr>";
 
-            foreach ($map as $value) {
-                echo "<tr class='mytable'>";
-                echo "<td>$i</td>";
-                echo "<td>$value</td>";
-                echo "<td>from $user</td>";
-                echo "<td>Document Description</td>";
-                echo "<td><a href='" . site_url('user_admission_c/do_download/' . $user . '/' . $value) . "'>Download to mark</a></td>";
+                    $j++;
+                }
             }
         }
-        foreach ($useridz as $valuez) {
-//            $map_files=  directory_map('./uploads/'.$valuez);
-            print_r($valuez);
-            echo '</br>';    
-        }
-       
         ?>
     </table>
-    <form action="http://localhost/pgis/index.php/user_admission_c/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">  
-        <table>
+    <form  action="<?php echo site_url('user_admission_c/do_upload/'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">  
+
+        <table class="table">
             <tbody><tr>
-                    <td><input type="file" name="userfile" size="20" style="padding-top: 29px"></td>
+                    <td><input type="file" name="userfile" size="20"></td>
                     <td> <span class="glyphicon glyphicon-circle-arrow-up"></span>
                         <input type="submit" value="upload results" ></td>
                 </tr>
@@ -59,6 +59,17 @@
         </table>
 
     </form> 
+
 </div>
+<script>
+$(document).ready(function(){
+ $("#form").hide();
+ $("#upload").click(function(){
+   $("#form").show();
+   $("#upload").hide();
+ });
+});
+</script>
+
 
 <?php include 'include/footer.php'; ?>   

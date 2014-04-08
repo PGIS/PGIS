@@ -7,9 +7,6 @@
     <meta name="author" content="">
     <link rel="icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>" type="image/gif">
     <title>PGIS</title>
-    
-    
-    
     <link href="<?php echo base_url('assets/css/bootstrap-combined.min.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
@@ -17,7 +14,7 @@
     <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
   </head>
 
-  <body>
+<body>
 
     <div id="wrapper">
 
@@ -38,7 +35,6 @@
 	  <a class="navbar-brand hidden-lg" href='#'>
 	    <img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">PGIS</a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             

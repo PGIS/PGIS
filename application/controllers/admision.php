@@ -24,7 +24,7 @@ class Admision extends CI_Controller{
     function index($offset=0){
         
         $dat = array( 'submited'=>'yes');
-        $dat1 = array( 'appl_status'=>''); 
+        $dat1 = array( 'appl_status'=>'no'); 
         $this->db->where($dat1);
         $this->db->order_by('app_id','asc');
         
@@ -204,15 +204,17 @@ class Admision extends CI_Controller{
             $this->pagination->initialize($config);
             $data['pagination']=$this->pagination->create_links();
            
-           
            $data['query']=$query1->result();
            $this->load->view('Admision/admited_applicants',$data);
         }
         
         function pending($userid){
               $data=$this->appl_detils($userid);
-             $data['userid']=$userid;
-             $this->load->view('Admision/denied_appl_message',$data);
+              $data['userid']=$userid;
+              $this->load->model('messaging');
+              Messaging::return_to_customer($userid);
+              $data['openappl']=TRUE;
+              $this->load->view('Admision/denied_appl_message',$data);
         }
         function creating_pdf($userid){
             
@@ -222,7 +224,7 @@ class Admision extends CI_Controller{
 					<center><h4>UNIVERSITY OF DAR ES SALAAM</h4></center>
                                         <center><h4>OFFICE OF THE DEPUTY VICE CHANCELLOR</h4></center>
                                         <center><h1>ACADEMIC</h1></center>
-                                        <p>Dear congratulation for being addmitted to the University of Dar 
+                                        <p>Dear <strong>'.$userid.'</strong> congratulation for being addmitted to the University of Dar 
                                         collage of information and communicaation technlogy</p>
 				</body>
 				</html>

@@ -23,6 +23,7 @@ class Admin extends CI_Model{
                   'mname'=>  $this->input->post('mname'),
                   'password'=> md5($this->input->post('password')),
                   'designation'=>  $this->input->post('designation'),
+                  'email'=>  $this->input->post('email'),
                   'enable'=>'1'
               );
         $this->db->insert('tb_user',$person);
