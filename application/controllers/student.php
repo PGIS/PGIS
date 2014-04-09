@@ -15,10 +15,10 @@
   }
 
   function index(){
-      $this->load->view('registered/welcome');
+      $this->load->view('registration/welcome');
   }
   function firstin(){
       $data['firstin']=TRUE;
-       $this->load->view('registered/welcome',$data);
+       $this->load->view('registration/welcome',$data);
   }
  }
