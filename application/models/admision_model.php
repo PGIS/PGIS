@@ -44,4 +44,11 @@ class Admision_model extends CI_Model{
          $query = $this->db->count_all_results();
         return $query;
     }
+    function fulladmsion(){
+        $data = array(
+               'designation' => 'Student'
+            );
+        $this->db->where('userid', $this->session->userdata('userid'));
+        $this->db->update('tb_user', $data); 
+    }
 }

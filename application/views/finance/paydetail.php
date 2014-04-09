@@ -3,20 +3,39 @@
         <div class="well well-sm">
             Application fee detail for <strong><?php echo $title.' '.$sname.' '.$other_nam;?></strong>
         </div>
-    </p>
-    <p>Recept Number/Transaction Id :
-        <input class="" id="disabledInput" type="text" placeholder="<?php echo $receptno;?>" disabled>
-    </p>
-    <p>payment date :<?php echo $paydate;?>
-    <input class="" id="disabledInput" type="text" placeholder="<?php echo $paydate;?>" disabled>
-    </p>
-    <p>Required Amount is 20000/=</p>
-    <p><a href="#" data-toggle="modal" data-target="#<?php echo $receptno;?>"><button class="btn btn-default">
-             view Supporting Document</button></a><p>
-    <p>
-        <button class="btn btn-success">Accept</button>    
-        <button class="btn btn-warning">Deny</button>
-    </p>
+    <table class="table">
+        <tr>
+            <td>Recept Number/Transaction Id :</td>
+            <td>
+                <input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $receptno;?>" disabled>
+            </td>
+        </tr> 
+         <tr>
+            <td>payment date :<?php echo $paydate;?></td>
+            <td>
+                <input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $paydate;?>" disabled>
+            </td>
+        </tr> 
+         <tr>
+             <td colspan="2">Required Amount is 20000/=</td>
+         </tr> 
+         <tr>
+             <td >
+                <a href="#" data-toggle="modal" data-target="#<?php echo $receptno;?>">
+                    <button class="btn btn-default"> view Supporting Document</button>
+                </a>
+            </td>
+         </tr>
+         <tr>
+             <td colspan="2" >
+                 <p class="pull-right">
+                     <button class="btn btn-success">Accept</button>    
+                     <button class="btn btn-warning">Deny</button> 
+                 </p>
+             </td>
+         </tr>
+    </table>
+   
     <div class="modal fade" id="<?php echo $receptno;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">

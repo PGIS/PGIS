@@ -24,6 +24,7 @@ class Financeadmin extends CI_Controller{
       function  index(){
           $this->load->view('finance/finance');
       }
+      
      function applidetails($userid){
          $data=  $this->usdetail($userid);
           $query = $this->db->get_where('tb_finance_application', array('userid' =>$userid));
@@ -38,6 +39,13 @@ class Financeadmin extends CI_Controller{
                     echo '<p><div class="alert alert-warning">no any information found</div></p>';
                 } 
      }
+     
+     function registrdetails($userid){
+         $data = $this->usdetail($userid);
+         $data['regno']=$userid;
+         $this->load->view('finance/regpaydetail',$data);
+     }
+     
      function usdetail($id){
          $query = $this->db->get_where('tb_app_personal_info', array('userid' =>$id));
          if($query->num_rows()>0){
@@ -49,5 +57,6 @@ class Financeadmin extends CI_Controller{
          );
                 return $dat;
          }
-        } }
+        }
+        }
   }

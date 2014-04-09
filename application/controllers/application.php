@@ -610,4 +610,11 @@ function details_preview(){
          
         }
     }
+    function fulladmision(){
+            $this->load->model('Admision_model');
+            Admision_model::fulladmsion();
+            $s_data = array('user_role' => 'Student');
+            $this->session->set_userdata($s_data);
+            redirect('student/firstin');
+        }
 }
