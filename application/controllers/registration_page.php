@@ -53,7 +53,7 @@
          $this->form_validation->set_rules('exdate','Extension date','required|xss_clean');
          $this->form_validation->set_rules('period','Month period','trim|required|xss_clean');
          if($this->form_validation->run()===FALSE){
-             $this->load->view('registration/finance_view',$data);
+            $this->load->view('registration/finance_view',$data);
          }  else {
              $this->load->model('finance_model');
               $sn=  $this->session->userdata('userid');

@@ -40,7 +40,7 @@ class Finance_page extends CI_Controller{
             $payment_date=  $this->input->post('date_payment');
             $academic=  $this->input->post('acy');
             $payment=  $this->input->post('pay_mode');
-            $imageName= base_url().'image/'.pg_escape_string($_FILES['userfile']['name']);
+            $imageName= base_url().'upload_docs/'.pg_escape_string($_FILES['userfile']['name']);
             $this->finance_model->finance_insert($application_id,$registration,$rgistration_amount,$registration_receipt,
             $payment,$payment_date,$imageName,$academic);
             $data['result']='<font>Thanks'.' '.ucfirst(strtolower(addslashes($this->session->userdata('userid')))).' For registration.!</font>';
@@ -89,6 +89,7 @@ class Finance_page extends CI_Controller{
           
       }
       function finance_detail(){
+          $this->load->model('finance_model');
           $sn=  $this->session->userdata('userid');
           $query=  $this->db->get_where('tb_finance',array('registration_id'=>$sn));
           if($query->num_rows()>0){
