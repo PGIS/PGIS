@@ -6,26 +6,27 @@
             <tr>
                 <td colspan="2">
                     <p> Recept number:</p>
-                    <input  class="form-control" id="20" name="receptno" required autofocus>
+                    <input  class="form-control" id="20" name="receptno" required autofocus
+                            value="<?php if(isset($receptno)) echo $receptno;?>">
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <p>Payment date:</p>
-                    <input class="form-control" name="receptno" required>
+                    <input class="form-control" name="paydate" required 
+                           value="<?php if(isset($paydate)) echo $paydate;?>">
                 </td>
             </tr>
             <tr>
-                <td colspan="2"><p>supporting Document</p>
+                <td colspan="2"><p>supporting Document <span name="flname"></span></p>
+                    <?php if(isset($uperror)){echo '<div class="error">'.$uperror.'</div>';}?>
                 <input type="file" name="userfile" size="20" >
                 </td>
             </tr>
             <tr>
                 <td>
                     <input class="subtn btn-primary" type="submit" name="save" value="Save"></td>
-                <td>
-                   <input class="subtn btn-primary" type="submit" name="savcont" value="Save and continue">
-                </td>
+                
              </tr>
         </table>
     </form>

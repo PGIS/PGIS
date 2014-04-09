@@ -38,7 +38,7 @@
               </li>
               
             </ul>
-        <div class="tab-content" style="display: block;">
+        <div class="tab-content tb" style="display: block;">
             
              <div class="course  in tab-pane <?php if(isset($active1)){echo 'active';}?>">
               <div class='pantop'><h4>Course selection</h4></div>

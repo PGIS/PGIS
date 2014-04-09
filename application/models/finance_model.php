@@ -89,5 +89,28 @@ class Finance_model extends CI_Model{
            $this->db->insert('tb_studentReg',$reg_ext);
         }
     }
+    
+    function application_fee($filename){
+        
+        $details=array(
+            'userid'=>$this->session->userdata('userid'),
+            'recept_no'=>$this->input->post('receptno'),
+            'payment_date'=>$this->input->post('paydate'),
+            'supporting_doc'=>$filename
+        );
+         $query=  $this->db->get_where('tb_finance_application',array('userid'=>  $this->session->userdata('userid')));
+        if($query->num_rows()===1){
+            if(isset($_POST['save'])){
+                $this->db->where('userid',$this->session->userdata('userid'));
+                $this->db->update('tb_finance_application',$details); 
+            }
+           
+        }  else {
+            if(isset($_POST['save'])){
+           $this->db->insert('tb_finance_application',$details);
+           
+            }
+        }
+    }
     }
 

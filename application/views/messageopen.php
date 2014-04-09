@@ -3,6 +3,8 @@ if($this->session->userdata('user_role')=='Admision staff'){
       include_once 'Admision/Headerlogin.php';
     }elseif ($this->session->userdata('user_role')=='administrator') {
       include_once 'admin/Headerlogin.php';
+    }elseif ($this->session->userdata('user_role')=='Student') {
+      include_once 'registered/Headerlogin.php';
     }else {
       include_once 'application/Headerlogin.php';
       }

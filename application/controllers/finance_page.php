@@ -7,7 +7,7 @@ class Finance_page extends CI_Controller{
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         if(!$this->session->userdata('logged_in')){
             redirect('logout');  
-        }elseif (!$this->session->userdata('userid')=='applicant') {
+        }elseif (!$this->session->userdata('userid')=='Student') {
             redirect('logout'); 
         }
     }

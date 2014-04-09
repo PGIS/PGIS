@@ -43,7 +43,7 @@ class login extends CI_Controller {
         $query2 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'applicant'));
         $query3 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Admision staff'));
         $query4 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Finance staff'));
-        
+        $query5 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Student'));
         if ($query1->num_rows() == 1) {
             $s_data = array('user_role' => 'administrator');
             $this->session->set_userdata($s_data);
@@ -59,7 +59,11 @@ class login extends CI_Controller {
         }elseif ($query4->num_rows() == 1) {
             $s_data = array('user_role' => 'Finance staff');
             $this->session->set_userdata($s_data);
-            redirect('finance');
+            redirect('financeadmin');
+        }elseif ($query5->num_rows() == 1) {
+            $s_data = array('user_role' => 'Student');
+            $this->session->set_userdata($s_data);
+            redirect('student');
         }
     }
 
