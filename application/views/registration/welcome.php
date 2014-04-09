@@ -3,7 +3,7 @@
     <?php
     if(isset($firstin)){
         echo ''
-        . '<div class="alert alert-success">Congratulation You can know continue with registartion</div>';
+        . '<div class="alert alert-success">Congratulation You can now continue with registration</div>';
     }
     ?>
 </div>
