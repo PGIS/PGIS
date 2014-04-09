@@ -37,11 +37,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-              <li><button  class="mybtn btn-primary">
-                        <span class="glyphicon glyphicon-dashboard"></span>FINANCE PANEL
+              <li><button  class="mybtn btn-primary btn-block">
+                        <span class="glyphicon glyphicon-dashboard"></span> FINANCE PANEL
                  </button>
               </li>
-                       <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span> Change password</a></li>
+            <li><a href="<?php echo site_url('financeadmin');?>">
+                    <span class="glyphicon glyphicon-usd"></span> Finance Management</a>
+            </li>
+            <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span> Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
           </ul>
             <ul class="nav navbar-nav navbar-right navbar-user">

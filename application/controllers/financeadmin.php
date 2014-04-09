@@ -20,10 +20,34 @@ class Financeadmin extends CI_Controller{
              redirect('logout');
         }
       }
+      
       function  index(){
           $this->load->view('finance/finance');
       }
      function applidetails($userid){
-         echo '<p><div class="well well-sm">Aplication fee detail for '.$userid.'</div></p>';
+         $data=  $this->usdetail($userid);
+          $query = $this->db->get_where('tb_finance_application', array('userid' =>$userid));
+                if($query->num_rows()>0){
+                    foreach ($query->result() as $rstd){
+                          $data['receptno']=$rstd->recept_no;
+                          $data['paydate']=$rstd->payment_date;
+                          $data['filename']=$rstd->supporting_doc;
+                    }
+                    $this->load->view('finance/paydetail',$data);
+                }else{
+                    echo '<p><div class="alert alert-warning">no any information found</div></p>';
+                } 
      }
+     function usdetail($id){
+         $query = $this->db->get_where('tb_app_personal_info', array('userid' =>$id));
+         if($query->num_rows()>0){
+         foreach ($query->result() as $row) {
+                $dat = array(
+                    'sname' => $row->surname,
+                    'other_nam' => $row->other_name,
+                    'title' => $row->title
+         );
+                return $dat;
+         }
+        } }
   }
