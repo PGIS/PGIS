@@ -4,9 +4,8 @@
         function __construct(){
          parent::__construct();
          $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
-         
          $this->load->helper('form','html','url','array','string');
-         $this->load->library('form_validation','session','pagination');
+         $this->load->library(array('form_validation','session','pagination'));
         
         
         if(!$this->session->userdata('logged_in')){

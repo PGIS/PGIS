@@ -7,7 +7,7 @@ class Finance_page extends CI_Controller{
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         if(!$this->session->userdata('logged_in')){
             redirect('logout');  
-        }elseif (!$this->session->userdata('userid')=='applicant') {
+        }elseif ($this->session->userdata('user_role')!='Student') {
             redirect('logout'); 
         }
     }
@@ -20,7 +20,7 @@ class Finance_page extends CI_Controller{
     }
     public function finance(){
         $data['active']=TRUE;
-        $config['upload_path']='./image/';
+        $config['upload_path']='./upload_docs/';
         $config['allowed_types']='jpg|png|gif|pdf|jpeg';
         $config['overwrite']=TRUE;
         $this->load->library('upload',$config);
@@ -40,7 +40,7 @@ class Finance_page extends CI_Controller{
             $payment_date=  $this->input->post('date_payment');
             $academic=  $this->input->post('acy');
             $payment=  $this->input->post('pay_mode');
-            $imageName= base_url().'image/'.pg_escape_string($_FILES['userfile']['name']);
+            $imageName= base_url().'upload_docs/'.pg_escape_string($_FILES['userfile']['name']);
             $this->finance_model->finance_insert($application_id,$registration,$rgistration_amount,$registration_receipt,
             $payment,$payment_date,$imageName,$academic);
             $data['result']='<font>Thanks'.' '.ucfirst(strtolower(addslashes($this->session->userdata('userid')))).' For registration.!</font>';
@@ -89,6 +89,7 @@ class Finance_page extends CI_Controller{
           
       }
       function finance_detail(){
+          $this->load->model('finance_model');
           $sn=  $this->session->userdata('userid');
           $query=  $this->db->get_where('tb_finance',array('registration_id'=>$sn));
           if($query->num_rows()>0){
@@ -101,7 +102,8 @@ class Finance_page extends CI_Controller{
                       'registration_total'=>$row->amount_required,
                       'payment'=>$row->mode_payment,
                       'date_pay'=>$row->date_payment,
-                      'support_doc'=>$row->suporting_doc
+                      'support_doc'=>$row->suporting_doc,
+                      'academic'=>$row->academic_year
                   );
               }unset($row);
               return $array;

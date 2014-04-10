@@ -20,7 +20,9 @@ class Change_form extends CI_Controller{
             $this->load->view('finance/chang_pwd'); 
         }elseif ($this->session->userdata('user_role')=='administrator') {
             $this->load->view('admin/chang_pwd');
-    }
+         }elseif ($this->session->userdata('user_role')=='Student') {
+            $this->load->view('registration/chang_pwd');
+         }
     }
     function change() {
         $this->load->helper('form','url');

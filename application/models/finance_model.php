@@ -17,18 +17,18 @@ class Finance_model extends CI_Model{
         );
         $this->session->set_userdata($array_data);
         $res=$this->db->get_where('tb_finance',array('registration_id'=>  $this->session->userdata('userid'),'payment_details'=>$registration));
-        if($res->num_rows()===1){
-            $this->db->where('payment_details',$registration);
+        if($res->num_rows()>0){
+        $this->db->where('payment_details',$registration);
         $this->db->update('tb_finance',$array_data);
         }  else {
         $result= $this->db->insert('tb_finance',$array_data);
         return $result;  
         }
     }
-    public function display(){
-        $query=$this->db->get_where('tb_finance',array('registration_id'=>  $this->session->userdata('userid')));
-        if($this->db->affected_rows()==1){
-        return $query->result();
+    public function display($year){
+        $this->db->get_where('tb_finance',array('registration_id'=>  $this->session->userdata('userid'),'payment_details'=>$year));
+        if($this->db->affected_rows()>0){
+        return TRUE;
         }  else {
            return FALSE; 
         }
@@ -51,6 +51,7 @@ class Finance_model extends CI_Model{
         );
         $res=$this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
         if($res->num_rows()===1){
+            
             $this->db->update('tb_studentReg',$reg_data);
         }else{
             $this->db->insert('tb_studentReg',$reg_data);
@@ -66,6 +67,7 @@ class Finance_model extends CI_Model{
         );
         $result=  $this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
         if($result->num_rows()===1){
+            $this->db->where('regist_name',  $this->session->userdata('userid'));
             $this->db->update('tb_studentReg',$reg_rem);
         }  else {
             $this->db->insert('tb_studentReg',$reg_rem);
@@ -81,9 +83,33 @@ class Finance_model extends CI_Model{
         );
         $query=  $this->db->get_where('tb_studentReg',array('regist_name'=>  $this->session->userdata('userid')));
         if($query->num_rows()===1){
+            $this->db->where('regist_name',  $this->session->userdata('userid'));
             $this->db->update('tb_studentReg',$reg_ext);
         }  else {
            $this->db->insert('tb_studentReg',$reg_ext);
+        }
+    }
+    
+    function application_fee($filename){
+        
+        $details=array(
+            'userid'=>$this->session->userdata('userid'),
+            'recept_no'=>$this->input->post('receptno'),
+            'payment_date'=>$this->input->post('paydate'),
+            'supporting_doc'=>$filename
+        );
+         $query=  $this->db->get_where('tb_finance_application',array('userid'=>  $this->session->userdata('userid')));
+        if($query->num_rows()===1){
+            if(isset($_POST['save'])){
+                $this->db->where('userid',$this->session->userdata('userid'));
+                $this->db->update('tb_finance_application',$details); 
+            }
+           
+        }  else {
+            if(isset($_POST['save'])){
+           $this->db->insert('tb_finance_application',$details);
+           
+            }
         }
     }
     }

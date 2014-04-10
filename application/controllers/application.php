@@ -34,10 +34,10 @@
               $data['lisubmited']=FALSE;
               redirect('application');
               }
-            $data1 = $this->show_User_data();
+            $data1 = $this->show_User_data();$data4 = $this->applifinan_data();
             $data2 = $this->show_user_history();
             $data3 = $this->referee_spon_data();
-            $data = $data2 + $data1 + $data3;
+            $data = $data2 + $data1 + $data3 +$data4;
             $data['active1'] = TRUE;
             
             $this->form_validation->set_rules('course', 'course', 'required|max_length[80]|xss_clean');
@@ -204,11 +204,26 @@
      * which were stored in the database
      * this function particulary deals with tb_referee table
      */
-
-    function referee_spon_data() {
-        if (!$this->session->userdata('logged_in')) {
-            redirect('logout');
+  function applifinan_data(){
+       $aquery = $this->db->get_where('tb_finance_application', array('userid' => $this->session->userdata('userid')));     
+       if ($aquery->num_rows() == 1) {
+            foreach ($aquery->result() as $mro) {
+                $myvalue=array(
+                  'receptno'=> $mro->recept_no,
+                   'paydate'=>$mro->payment_date
+                );
+            }
+            return $myvalue;
+        }else{
+                $myvalue=array(
+                  'receptno'=>'',
+                   'paydate'=>''
+                );
+          return $myvalue;
         }
+      }
+            
+ function referee_spon_data() {
         $id = $this->session->userdata('userid');
         $query = $this->db->get_where('tb_referee', array('referee_id' => $id));
         if ($query->num_rows() == 1) {
@@ -260,6 +275,8 @@
             return $value2;
         }
     }
+    
+    
 
     /*
      * function fo the persoal information validation
@@ -270,10 +287,10 @@
             redirect('logout');
         }
         
-         $data1 = $this->show_User_data();
-         $data2 = $this->show_user_history();
-         $data3 = $this->referee_spon_data();
-         $data = $data2 + $data1 + $data3;
+            $data1 = $this->show_User_data();$data4 = $this->applifinan_data();
+            $data2 = $this->show_user_history();
+            $data3 = $this->referee_spon_data();
+            $data = $data2 + $data1 + $data3 +$data4;
          $data['active2'] = TRUE;
 
         $this->form_validation->set_rules('surname', 'surname', 'required|max_length[20]|xss_clean');
@@ -314,11 +331,11 @@
            
            
  function employement(){
-         $data1 = $this->show_User_data();
-         $data2 = $this->show_user_history();
-         $data3 = $this->referee_spon_data();
-         $data = $data2 + $data1 + $data3;
-         $data['active3'] = TRUE;
+            $data1 = $this->show_User_data();$data4 = $this->applifinan_data();
+            $data2 = $this->show_user_history();
+            $data3 = $this->referee_spon_data();
+            $data = $data2 + $data1 + $data3 +$data4;
+            $data['active3'] = TRUE;
        
         
         if(isset($_POST['skip'])){
@@ -344,10 +361,10 @@
  
  
  function accademic(){
-         $data1 = $this->show_User_data();
-         $data2 = $this->show_user_history();
-         $data3 = $this->referee_spon_data();
-         $data = $data2 + $data1 + $data3;
+            $data1 = $this->show_User_data();$data4 = $this->applifinan_data();
+            $data2 = $this->show_user_history();
+            $data3 = $this->referee_spon_data();
+            $data = $data2 + $data1 + $data3 +$data4;
          $data['active4'] = TRUE;
          
         $this->form_validation->set_rules('high_acade', 'accademic', 'required|max_length[40]|xss_clean');
@@ -372,7 +389,7 @@
                }
                
            }elseif(isset($_POST['save'])){
-                $this->load->model('Application_form');
+                 $this->load->model('Application_form');
                 Application_form::insert_acca_info();
                 $this->load->view('application/capplication',$data);
             }else{
@@ -391,10 +408,10 @@
             'charset'=>'iso-8859-1'
             
         );
-        $data1 = $this->show_User_data();
-        $data2 = $this->show_user_history();
-        $data3 = $this->referee_spon_data();
-        $data = $data2 + $data1 + $data3;
+            $data1 = $this->show_User_data();$data4 = $this->applifinan_data();
+            $data2 = $this->show_user_history();
+            $data3 = $this->referee_spon_data();
+            $data = $data2 + $data1 + $data3 +$data4;
         $data['active5'] = TRUE;
         
         $this->form_validation->set_rules('nm', 'Name', 'trim|required|max_length[80]|xss_clean');
@@ -466,10 +483,10 @@
     
     
 function addition(){
-         $data1 = $this->show_User_data();
-         $data2 = $this->show_user_history();
-         $data3 = $this->referee_spon_data();
-         $data = $data2 + $data1 + $data3;
+            $data1 = $this->show_User_data();$data4 = $this->applifinan_data();
+            $data2 = $this->show_user_history();
+            $data3 = $this->referee_spon_data();
+            $data = $data2 + $data1 + $data3 +$data4;
          $data['active6'] = TRUE;
          
         $this->form_validation->set_rules('namsponsor', 'Sponsor name', 'required|max_length[30]|xss_clean');
@@ -498,10 +515,10 @@ function addition(){
 
 
 function do_upload(){
-                $data1 = $this->show_User_data();
-                $data2 = $this->show_user_history();
-                $data3 = $this->referee_spon_data();
-                $data = $data2 + $data1 + $data3;
+            $data1 = $this->show_User_data();$data4 = $this->applifinan_data();
+            $data2 = $this->show_user_history();
+            $data3 = $this->referee_spon_data();
+            $data = $data2 + $data1 + $data3 +$data4;
                 $data['active7'] = TRUE;
          if(!is_dir('uploads/'.$this->session->userdata('userid'))) {
             mkdir('./uploads/' .$this->session->userdata('userid'), 0777, TRUE);
@@ -544,23 +561,12 @@ function delete($name){
      }
 
 function details_preview(){
-        $data1 = $this->show_User_data();
-        $data2 = $this->show_user_history();
-        $data3 = $this->referee_spon_data();
-        $data = $data2 + $data1 + $data3;
+             $data1 = $this->show_User_data();$data4 = $this->applifinan_data();
+            $data2 = $this->show_user_history();
+            $data3 = $this->referee_spon_data();
+            $data = $data2 + $data1 + $data3 +$data4;
         $this->load->view('application/details',$data);
 }
-
-        function applifinance(){
-        $data1 = $this->show_User_data();
-        $data2 = $this->show_user_history();
-        $data3 = $this->referee_spon_data();
-        $data = $data2 + $data1 + $data3;
-        $data['active8'] = TRUE;
-        $this->load->view('application/capplication',$data);
-        }
-        
-        
         function submitting(){
         $data1 = $this->show_User_data();
         $data2 = $this->show_user_history();
@@ -573,4 +579,42 @@ function details_preview(){
                 . 'admision progress';
         $this->load->view('application/capplication',$data);
 }
+    
+    function applifinance(){
+            $data1 = $this->show_User_data();$data4 = $this->applifinan_data();
+            $data2 = $this->show_user_history();
+            $data3 = $this->referee_spon_data();
+            $data = $data2 + $data1 + $data3 +$data4;
+        $data['active8'] = TRUE;
+        
+        $this->form_validation->set_rules('receptno', 'Recept number', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('paydate', 'Payment date', 'required|max_length[20]xss_clean|');
+        $this->form_validation->run();
+        
+        $config['upload_path'] = './upload_docs/';
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['max_size']	= '2048';
+        $config['remove_spaces']  = TRUE;
+        $config['overwrite'] = true;
+        $this->load->library('upload',$config);
+        
+        if(!$this->upload->do_upload()||$this->form_validation->run()==FALSE){
+           $data['uperror'] = $this->upload->display_errors();
+           $this->load->view('application/capplication',$data);
+        }  else {
+           $filename= base_url().'upload_docs/'.pg_escape_string($_FILES['userfile']['name']);
+             $this->load->model('Finance_model');
+            Finance_model::application_fee($filename);
+          
+           $this->load->view('application/capplication',$data); 
+         
+        }
+    }
+    function fulladmision(){
+            $this->load->model('Admision_model');
+            Admision_model::fulladmsion();
+            $s_data = array('user_role' => 'Student');
+            $this->session->set_userdata($s_data);
+            redirect('student/firstin');
+        }
 }

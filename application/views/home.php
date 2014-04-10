@@ -5,7 +5,7 @@
 	<button type="button" class="mybtn btn-primary">Postgraduate Course Advertisement</button>
 	<div>
 	    For more information about the postgraduate courses offered,minimum requirement for the course and the collage in which the course
-	    is offered please visit the <a href='http://postgraduate.udsm.ac.tz/'>Directorate of postgraduate studies</a>
+	    is offered please visit the <a href='http://postgraduate.udsm.ac.tz/' target="_blank">Directorate of postgraduate studies</a>
 	</div>
     </div>
     <div>
@@ -15,7 +15,7 @@
 		 In order to apply online for postgraduate course one must first Create account with unique username,then you can be able
 	    to login into the system and continue with course application
 	    </p>
-	    <p>
+	    
 		<strong>Non refundable application fees:</strong> 
                 <ol type='i'>
                     <li>
@@ -35,7 +35,7 @@
                 </ol>
                     All application fees should be paid through the bank as follows: <strong>Bank name: NBC Bank</strong>, 
                     Mlimani Branch.A/C Name: <strong>University of Dar es Salaam</strong>. <strong>A/C Number: 040103001709</strong>.
-	    </p>
+	    
 	    in addition to the submission of a completed application form and the application fee, the following materials will be required
 	    to be uploaded.
 	<ul>
@@ -46,7 +46,7 @@
 	</ul>
 	</div>
     </div>
-    <div class='app'>
+    <div class='pull-right'>
 	<a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Register Now</button></a>
     </div>
 </div><!-- /#page-wrapper -->
