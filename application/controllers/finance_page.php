@@ -102,7 +102,8 @@ class Finance_page extends CI_Controller{
                       'registration_total'=>$row->amount_required,
                       'payment'=>$row->mode_payment,
                       'date_pay'=>$row->date_payment,
-                      'support_doc'=>$row->suporting_doc
+                      'support_doc'=>$row->suporting_doc,
+                      'academic'=>$row->academic_year
                   );
               }unset($row);
               return $array;
