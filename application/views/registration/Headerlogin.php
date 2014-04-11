@@ -53,7 +53,7 @@
             <li><a href="<?php echo site_url('finance_page');?>">
 	    <span class="glyphicon glyphicon-book"></span> Summary preview</a></li>
             <li><a href="<?php echo site_url('calendar/display_cal');?>"><span class="glyphicon glyphicon-calendar"></span>
-	    Register your time table</a></li>
+	    Posted events</a></li>
             <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>

@@ -28,7 +28,8 @@ class login extends CI_Controller {
                 } elseif ($query->num_rows() == 1) {
                     $s_data = array('userid' => $username, 'logged_in' => TRUE);
                     $this->session->set_userdata($s_data);
-
+                    
+                    $this->studentsession($username);
                     $this->login_verify($username);
                 } else {
                     $data['errormsg'] = '<div class="alert alert-danger">Password and Username combination does not match</div>';
@@ -61,10 +62,21 @@ class login extends CI_Controller {
             $this->session->set_userdata($s_data);
             redirect('financeadmin');
         }elseif ($query5->num_rows() == 1) {
-            $s_data = array('user_role' => 'Student');
-            $this->session->set_userdata($s_data);
-            redirect('student');
+           $s_data = array('user_role'=>'Student');
+           $this->session->set_userdata($s_data);
+           redirect('student/firstin');
+            }
+        }
+        
+        function studentsession($id){
+            $qury = $this->db->get_where('tb_admision', array('userid' => $id), 1);
+            if($qury->num_rows() == 1){
+                foreach ($qury->result() as $ip){
+                   $sdata = array('registration_id' =>$ip->addmissionID ); 
+                   $this->session->set_userdata($sdata);
+                }
+            } 
         }
     }
 
-}
+
