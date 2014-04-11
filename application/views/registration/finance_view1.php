@@ -19,7 +19,7 @@
                
             <table class="table table-striped cont"> 
                 <tr><td><label class="dts">Academic Year </label> </td><td><b><?php echo ' '.$academic;?></b></td></tr>
-             <tr><td><strong class="dts">Application Name</strong></td><td><b><?php echo ' '.ucfirst(strtolower(addslashes($application_id)));?></b></td></tr>
+             <tr><td><strong class="dts">RegistrationID</strong></td><td><b><?php echo ' '.ucfirst(strtolower(addslashes($application_id)));?></b></td></tr>
              <tr><td><strong class="dts">Registration Fees For</strong></td><td><b><?php echo ' '.$registration;?></b></td></tr>
              <tr><td><strong class="dts">Registration Fees Amount</strong></td><td><b><?php echo' '.$registration_amount?></b></td></tr>
              <tr><td><strong class="dts">Registration Fees Receipt</strong></td><td><b><?php echo ' '.$registration_receipt;?></b></td></tr>

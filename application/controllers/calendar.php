@@ -7,7 +7,7 @@
          $this->load->model('calendar_model');
          if(!$this->session->userdata('logged_in')){
              redirect('logout');
-         }elseif ($this->session->userdata('userid')=='applicant') {
+         }elseif ($this->session->userdata('userid')=='Student') {
              redirect('logout');
         }
      }
@@ -20,12 +20,6 @@
          }
          if(!$month){
             $month=  date('m'); 
-         }
-         $sn=  $this->session->userdata('userid');
-         $day= $this->input->post('day');
-         $data=  $this->input->post('data');
-         if($day ){
-          $this->calendar_model->add_calendar_data($sn,"$year-$month-$day",$data); 
          }
         $data['calendar']=$this->calendar_model->calendar($year,$month);
         $this->load->view('academic/calendar_view',$data);

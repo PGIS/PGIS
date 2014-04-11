@@ -86,7 +86,7 @@
     }
     .calendar .days td {
         width: 120px;
-        height: 90px;
+        height: 75px;
         padding: 2px;
         border: 1px solid #999;
         vertical-align: top;

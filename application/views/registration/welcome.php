@@ -4,8 +4,8 @@
     if(isset($firstin)){
         echo ''
         . '<div class="alert alert-success">Congratulation You can now continue with registration</div>';
+        
     }
     ?>
 </div>
-
 <?php include_once 'footer.php';?>

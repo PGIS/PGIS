@@ -3,21 +3,21 @@ class Finance_model extends CI_Model{
     public function __construct() {
         parent::__construct();
     }
-    public function finance_insert($application_id,$registration,$rgistration_amount,$registration_receipt,
-            $payment,$payment_date,$imageName,$academic){
+    public function finance_insert($rgistration_id,$registration,$rgistration_amount,$registration_receipt,
+            $payment,$payment_date,$imageName,$academic,$application_id){
             $array_data=array(
-            'registration_id'=>$application_id,
+            'registration_id'=>$rgistration_id,
             'payment_details'=>$registration,
             'amount_paid'=>$rgistration_amount,
             'receipt_no'=>$registration_receipt,
             'mode_payment'=>$payment,
             'date_payment'=>$payment_date,
             'suporting_doc'=>$imageName,
-            'academic_year'=>$academic
+            'academic_year'=>$academic,
+            'application_id'=>$application_id
         );
-        $this->session->set_userdata($array_data);
-        $res=$this->db->get_where('tb_finance',array('registration_id'=>  $this->session->userdata('userid'),'payment_details'=>$registration));
-        if($res->num_rows()>0){
+        $res=$this->db->get_where('tb_finance',array('application_id'=>$application_id,'payment_details'=>$registration));
+        if($res->num_rows()===1){
         $this->db->where('payment_details',$registration);
         $this->db->update('tb_finance',$array_data);
         }  else {
