@@ -9,18 +9,17 @@ class Seminary extends CI_Controller{
     }
 
     public function index(){
-          $this->form_validation->set_rules('usn', 'Regno', 'required');
-          $this->form_validation->set_rules('day', 'day', 'required');
-          $this->form_validation->set_rules('hr', 'hour', 'required');
+          $this->form_validation->set_rules('day', 'seminar_day', 'required');
+          $this->form_validation->set_rules('hr', 'seminar_hour', 'required');
           if ($this->form_validation->run() == FALSE){
-	  $this->load->view('academic/seminar');
-          }else{
+	  $this->load->view('academic/seminar_reg');
+      }else{
               $this->load->model('seminar_register');
-               $username = $this->input->post('usn');
-               $day = $this->input->post('day');
-               $hour = $this->input->post('hr');
-               $sum=$day.', '.$hour;
-               $this->seminar_register->insert_student($username,$sum);
+               $day = $this->input->post('day1');
+               $hr = $this->input->post('data');
+               $cos=  $this->input->post('day');
+               $id=  $this->session->userdata('');
+               $this->seminar_register->insert_seminar($day,$hr);
                $data['smg']='<font> Thanks you have already registered your time</font>';
                $this->load->view('academic/seminar',$data);
                
