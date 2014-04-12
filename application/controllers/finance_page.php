@@ -33,7 +33,8 @@ class Finance_page extends CI_Controller{
            $this->load->view('registration/finance_view',$data);
         }  else {
             $this->load->model('finance_model');
-            $application_id=  $this->session->userdata('userid');
+            $registration_id= $this->session->userdata('registration_id');
+            $application_id= $this->session->userdata('userid');
             $registration=  $this->input->post('reg_fees');
             $rgistration_amount=  $this->input->post('amnt');
             $registration_receipt=  $this->input->post('rescpt');
@@ -41,8 +42,8 @@ class Finance_page extends CI_Controller{
             $academic=  $this->input->post('acy');
             $payment=  $this->input->post('pay_mode');
             $imageName= base_url().'upload_docs/'.pg_escape_string($_FILES['userfile']['name']);
-            $this->finance_model->finance_insert($application_id,$registration,$rgistration_amount,$registration_receipt,
-            $payment,$payment_date,$imageName,$academic);
+            $this->finance_model->finance_insert($registration_id,$registration,$rgistration_amount,$registration_receipt,
+            $payment,$payment_date,$imageName,$academic,$application_id);
             $data['result']='<font>Thanks'.' '.ucfirst(strtolower(addslashes($this->session->userdata('userid')))).' For registration.!</font>';
             $this->load->view('registration/finance_view',$data);
         }
@@ -89,9 +90,8 @@ class Finance_page extends CI_Controller{
           
       }
       function finance_detail(){
-          $this->load->model('finance_model');
           $sn=  $this->session->userdata('userid');
-          $query=  $this->db->get_where('tb_finance',array('registration_id'=>$sn));
+          $query=  $this->db->get_where('tb_finance',array('application_id'=>$sn));
           if($query->num_rows()>0){
               foreach ($query->result() as $row){
                   $array=array(
@@ -102,7 +102,8 @@ class Finance_page extends CI_Controller{
                       'registration_total'=>$row->amount_required,
                       'payment'=>$row->mode_payment,
                       'date_pay'=>$row->date_payment,
-                      'support_doc'=>$row->suporting_doc
+                      'support_doc'=>$row->suporting_doc,
+                      'academic'=>$row->academic_year
                   );
               }unset($row);
               return $array;
@@ -115,7 +116,8 @@ class Finance_page extends CI_Controller{
                   'registration_total'=>'',
                   'payment'=>'',
                   'date_pay'=>'',
-                  'support_doc'=>''
+                  'support_doc'=>'',
+                  'academic'=>''
              );
              return $array;
           }

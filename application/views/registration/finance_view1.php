@@ -13,19 +13,20 @@
         <div class="pantop"><h4>Payment Results</h4></div>
  
         <div class="col-md-6">
-            <?php echo form_open('finance_page');?>
+            <?php echo form_open('finace_page/ajax');?>
             <table class="table table-striped table-condensed"><tr><td><label>Select year</label></td><td><select name="data" id="chose">
                             <option class="norow"></option><option class="year1">Year 1</option><option class="year2">Year 2</option><option class="year3">Year 3</option><option class="year4">Year 4</option>
-                          </select></td></tr></table>
-               <?php echo form_close();?>
-            <table class="table table-striped cont">
-             <tr><td><strong class="dts">Application Name</strong></td><td>:<b><?php echo ' '.ucfirst(strtolower(addslashes($application_id)));?></b></td></tr>
-             <tr><td><strong class="dts">Registration Fees For</strong></td><td>:<b><?php echo ' '.$registration;?></b></td></tr>
-             <tr><td><strong class="dts">Registration Fees Amount</strong></td><td>:<b><?php echo' '.$registration_amount?></b></td></tr>
-             <tr><td><strong class="dts">Registration Fees Receipt</strong></td><td>:<b><?php echo ' '.$registration_receipt;?></b></td></tr>
-             <tr><td><strong class="dts">Outstanding Fees</strong></td><td>:<b><?php echo' '.($registration_total-$registration_amount);?></b></td></tr>
-             <tr><td><strong class="dts">Payment Mode</strong></td><td>:<b><?php echo ' '.$payment;?></b></td></tr>
-             <tr><td><strong class="dts">Payment Date</strong></td><td>:<b><?php echo ' '.$date_pay;?></b></td></tr>
+                        </select></td></tr></table><?php echo form_close();?>
+               
+            <table class="table table-striped cont"> 
+                <tr><td><label class="dts">Academic Year </label> </td><td><b><?php echo ' '.$academic;?></b></td></tr>
+             <tr><td><strong class="dts">RegistrationID</strong></td><td><b><?php echo ' '.ucfirst(strtolower(addslashes($application_id)));?></b></td></tr>
+             <tr><td><strong class="dts">Registration Fees For</strong></td><td><b><?php echo ' '.$registration;?></b></td></tr>
+             <tr><td><strong class="dts">Registration Fees Amount</strong></td><td><b><?php echo' '.$registration_amount?></b></td></tr>
+             <tr><td><strong class="dts">Registration Fees Receipt</strong></td><td><b><?php echo ' '.$registration_receipt;?></b></td></tr>
+             <tr><td><strong class="dts">Outstanding Fees</strong></td><td><b><?php echo' '.($registration_total-$registration_amount);?></b></td></tr>
+             <tr><td><strong class="dts">Payment Mode</strong></td><td><b><?php echo ' '.$payment;?></b></td></tr>
+             <tr><td><strong class="dts">Payment Date</strong></td><td><b><?php echo ' '.$date_pay;?></b></td></tr>
            
         </table>
         </div>
@@ -79,7 +80,7 @@
        $('#chose').on('change',function(){
             var year = $(this).val();
             $.ajax({
-                url: window.location,
+                url: "<?php echo site_url('finance_page/');?>",
                 type:"POST",
                 data:{
                    data:year 
