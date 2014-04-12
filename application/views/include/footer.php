@@ -7,12 +7,13 @@
    <script src="<?php echo base_url('assets/js/jquery.dataTables.min.js') ?>"></script>
 <script> 
     $(document).ready(function(){ 
-        $('#mytable').dataTable(); 
+        $('#mytable2').dataTable(); 
     });
-    
+</script> 
+<script>
      $(document).ready(function(){ 
-        $('#mytable1').dataTable(); 
+        $('#mytable3').dataTable(); 
     });
-</script>   
+</script>
   </body>
 </html>

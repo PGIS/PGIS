@@ -4,7 +4,7 @@ if($this->session->userdata('user_role')=='Admision staff'){
     }elseif ($this->session->userdata('user_role')=='administrator') {
       include_once 'admin/Headerlogin.php';
     }elseif ($this->session->userdata('user_role')=='Student') {
-      include_once 'registered/Headerlogin.php';
+      include_once 'registration/Headerlogin.php';
     }else {
       include_once 'application/Headerlogin.php';
       }
@@ -23,33 +23,30 @@ if($this->session->userdata('user_role')=='Admision staff'){
         </div >
     </div>
     <div class="col-md-9">
-        <table class="table table table-striped">
-           <thead><center><h4>Received Messages</h4></center></thead>
+        <table class="table" id="mytable3">
+           <thead>
+                <center><h4>Received Messages</h4></center>
+                    <tr>
+                        <th>Sent by</th>
+                        <th>Subject</th>
+                    </tr>
+           </thead>
+           <tbody>
             <?php
             $this->db->order_by("status", "desc");
             $unchecked='unchecked';
             $query = $this->db->get_where('tb_messeges', array('receiver' => $this->session->userdata('userid'),'status'=>$unchecked));
             if($query->num_rows() > 0){
-               ?>
-                   <tr>
-                        <td>Sent by</td>
-                        <td>Subject</td>
-                    </tr>  
-                  <?php 
-                    
-            }else{
-                echo 'No any unread message';
-            }
-                
-            foreach ($query->result() as $row)
-                 
-                {
+            
+            foreach ($query->result() as $row) {
                         echo '<tr>'
                 . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->sender.'</a></b></td>'
                 . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->subject.'</a></b></td>'         
                     . '</tr>';
                 }
+            }
             ?>
+           </tbody>
         </table>
     </div>
 </div>

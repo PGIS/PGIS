@@ -15,10 +15,8 @@
     <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
-    <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
     <link href="<?php echo base_url('assets/css/jquery.ui.datepicker.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/jquery.ui.all.css')?>" rel="stylesheet">
-    <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap-alert.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-1.10.2.js')?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-ui.core.js')?>"></script>
@@ -62,10 +60,6 @@
             <li><a href="<?php echo site_url('messages');?>">
                     <span class="glyphicon glyphicon-envelope"></span> Messages</a>
             </li>
-            <li><a href="<?php echo site_url('finance_page/finance');?>">
-	    <span class="glyphicon glyphicon-folder-open"></span> Complete Registration</a></li>
-            <li><a href="<?php echo site_url('calendar/display_cal');?>"><span class="glyphicon glyphicon-calendar"></span>
-	    Register your time table</a></li>
 	    <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
