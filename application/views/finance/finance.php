@@ -1,8 +1,14 @@
 <?php include 'Headerlogin.php';?>
 
 <div id="page-wrapper">
-    <ul class="nav nav-tabs">
-        <li  class="active"><a href="#appl" data-toggle="tab">Applicants fee</a></li>
+    <ul id="myTab" class="nav nav-tabs">
+        <li  class="dropdown">
+             <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Applicants fee<b class="caret"></b></a>
+             <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                <li ><a href="#appl" tabindex="-1" data-toggle="tab">Fee verification</a></li>
+                <li><a href="#aplist" tabindex="-1" data-toggle="tab">Payed fee</a></li>
+              </ul>
+        </li>   
         <li><a href="#reg" data-toggle="tab">Registration fee</a></li>
         <li><a href="#inst" data-toggle="tab">instructors’ payment</a></li>
     </ul>
@@ -12,21 +18,27 @@
             <div class="col-md-12">
                 <div class="col-md-5">
                     <table class="table table-striped">
-                        <thead><h5>List of applicants need verification</h5></thead>
-                        <th>Username</th>
-                        <th>Action</th>
-                        <tr>
+                        <thead><h5>List of applicants need verification</h5>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </thead>
                             <?php
                             $this->db->where('appl_status', 'no'); 
                             $query = $this->db->get_where('tb_app_personal_info', array('submited' =>'yes'));
                             if($query->num_rows()>0){
                                 $i=1;
                                 foreach ($query->result() as $list){
-                                    echo '<tr>';
-                                    echo '<td>'.$list->userid.'</td>';?>
-                                     <td><button onclick="ajaxFunction('<?php echo $list->userid;?>')" class="btn-info subtn">verify</button></td>
+                                    $this->db->where('appl_status', 'unchecked');
+                                    $mquery = $this->db->get_where('tb_finance_application', array('userid' =>$list->userid));
+                                    if($mquery->num_rows()>0){
+                                    foreach ($mquery->result() as $mlist){
+                                     echo '<tr>';
+                                    echo '<td>'.$mlist->userid.'</td>';?>
+                                     <td><button onclick="ajaxFunction('<?php echo $mlist->userid;?>')" class="btn-info subtn">verify</button></td>
                                      <?php
-                                    echo '</tr>';
+                                    echo '</tr>';   
+                                    }
+                                }
                                     $i++;
                                 }
                             }else{
@@ -34,15 +46,17 @@
                                 
                             }
                             ?>
-                        </tr>
                     </table>
                 </div>
                 <div class="col-md-7 " id="resajax">
-                   Application fee detailed
+                   
                 </div>
             </div>
         </div>
         
+        <div class="tab-pane" id="aplist">
+            
+        </div >
         
         <div class="tab-pane" id="reg">
             <div class="col-md-12">

@@ -96,7 +96,8 @@ class Finance_model extends CI_Model{
             'userid'=>$this->session->userdata('userid'),
             'recept_no'=>$this->input->post('receptno'),
             'payment_date'=>$this->input->post('paydate'),
-            'supporting_doc'=>$filename
+            'supporting_doc'=>$filename,
+            'appl_status'=>'unchecked'
         );
          $query=  $this->db->get_where('tb_finance_application',array('userid'=>  $this->session->userdata('userid')));
         if($query->num_rows()===1){
@@ -110,6 +111,17 @@ class Finance_model extends CI_Model{
            $this->db->insert('tb_finance_application',$details);
            
             }
+        }
+    }
+    
+    function updateapplfee($userid,$value){
+        
+        if($value=='accepted'){
+                $this->db->where('userid',$userid);
+                $this->db->update('tb_finance_application',array('appl_status'=>$value)); 
+        }else{
+                 $this->db->where('userid',$userid);
+                $this->db->update('tb_finance_application',array('appl_status'=>'invalid'));
         }
     }
     }

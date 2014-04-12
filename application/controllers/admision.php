@@ -217,18 +217,8 @@ class Admision extends CI_Controller{
               $this->load->view('Admision/denied_appl_message',$data);
         }
         function creating_pdf($userid){
-            
-            $html = '<html>
-				<head></head>
-				<body>
-					<center><h4>UNIVERSITY OF DAR ES SALAAM</h4></center>
-                                        <center><h4>OFFICE OF THE DEPUTY VICE CHANCELLOR</h4></center>
-                                        <center><h1>ACADEMIC</h1></center>
-                                        <p>Dear <strong>'.$userid.'</strong> congratulation for being addmitted to the University of Dar 
-                                        collage of information and communicaation technlogy</p>
-				</body>
-				</html>
-				';
+             $data=$this->appl_detils($userid);
+             $html = $this->load->view('Admision/admissionletter',$data,TRUE);
 		
 		$pdf_filename  = $userid.'.pdf';
 		$this->load->library('dompdf_lib');

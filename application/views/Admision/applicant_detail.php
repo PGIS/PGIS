@@ -121,6 +121,18 @@
                
            </div>
        </div>
+       <div class="col-md-4 pull-right">
+           <?php
+           $this->db->where('userid', $userid);
+            $thquery = $this->db->get_where('tb_finance_application', array('appl_status' =>'accepted'));
+            if($thquery->num_rows()==1){
+               echo '<button type="button" class="btn btn-success">Application fee Valid</button>';
+            }  else {
+            echo '<button type="button" class="btn btn-warning">Application fee not yet Verified</button>';    
+            }
+           ?>
+           
+       </div>
        <div class="col-md-8">
            <div class="dropdown col-md-4">
                 <button type="submit" class="mnybtn btn-warning" data-toggle="dropdown" href="#" value="valid">

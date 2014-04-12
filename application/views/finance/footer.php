@@ -1,75 +1,49 @@
 
 <footer class='footer'><p><strong><i>&copy;  PGIS rights Reserved</i></strong></p></footer>
-    </div><!-- /#wrapper -->
+</div><!-- /#wrapper -->
+
+<script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/bootstrap.js') ?>"></script>
+
+<script>
+
+    function ajaxFunction(id) {
+        var url = "financeadmin/applidetails/" + id;
+        $.get(url, function(data) {
+            $('#resajax').html(data);
+        });
+    }
     
-    <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
-   <script src="<?php echo base_url('assets/js/bootstrap.js') ?>"></script>
-   
-<script>
-   
-  function ajaxFunction(id){
- try{
-   // Opera 8.0+, Firefox, Safari
-   ajaxRequest = new XMLHttpRequest();
- }catch (e){
-   // Internet Explorer Browsers
-   try{
-      ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-   }catch (e) {
-      try{
-         ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-      }catch (e){
-         // Something went wrong
-         alert("Your browser broke!");
-         return false;
-      }
-   }
- }
- 
- ajaxRequest.onreadystatechange = function(){
-   if(ajaxRequest.readyState === 4){
-      var ajaxDisplay = document.getElementById('resajax');
-      ajaxDisplay.innerHTML = ajaxRequest.responseText;
-   }
- }
- ajaxRequest.open("GET", "financeadmin/applidetails/"+id, true);
- ajaxRequest.send(); 
- 
-}  
+    function verifying(id){
+        var url = "financeadmin/verifyappfee/"+id+"/accepted";
+        $.get(url, function(data) {
+            $('#resajax').html(data);
+            alert("You have chosen to accept the information provided")
+            window.location.reload(true);
+        });
+    }
+    $(document).ready(function() {
+       
+        //4 methods implementing ajax using jquery
+        // $.post(url, {json} , callback );
+        // $.get(url,  callback );
+        // $.ajax({});
+        // $.load(url, opt, callback);
+        
+    });
+    $("#yes").click(function(){
+       $('#resajax').html('null'); 
+        });
 
 </script>
 <script>
-   
-  function retrivedetails(id){
- try{
-   // Opera 8.0+, Firefox, Safari
-   ajaxRequest = new XMLHttpRequest();
- }catch (e){
-   // Internet Explorer Browsers
-   try{
-      ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-   }catch (e) {
-      try{
-         ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-      }catch (e){
-         // Something went wrong
-         alert("Your browser broke!");
-         return false;
-      }
-   }
- }
- 
- ajaxRequest.onreadystatechange = function(){
-   if(ajaxRequest.readyState === 4){
-      var ajaxDisplay = document.getElementById('regfindet');
-      ajaxDisplay.innerHTML = ajaxRequest.responseText;
-   }
- }
- ajaxRequest.open("GET", "financeadmin/registrdetails/"+id, true);
- ajaxRequest.send(); 
- 
-}  
-
+    function retrivedetails(id) {
+         var url = "financeadmin/registrdetails/" + id;
+        $.get(url, function(data) {
+            $('#regfindet').html(data);
+        });
+       
+        }
 </script>
-  </body>
+</body>
 </html>
