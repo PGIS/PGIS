@@ -90,6 +90,7 @@ class Finance_page extends CI_Controller{
           
       }
       function finance_detail(){
+          $year=  $this->input->post('data_year');
           $sn=  $this->session->userdata('userid');
           $query=  $this->db->get_where('tb_finance',array('application_id'=>$sn));
           if($query->num_rows()>0){
@@ -122,6 +123,7 @@ class Finance_page extends CI_Controller{
              return $array;
           }
       }
+   
       
     }
 

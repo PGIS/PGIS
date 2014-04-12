@@ -13,10 +13,9 @@
         <div class="pantop"><h4>Payment Results</h4></div>
  
         <div class="col-md-6">
-            <?php echo form_open('finace_page/ajax');?>
-            <table class="table table-striped table-condensed"><tr><td><label>Select year</label></td><td><select name="data" id="chose">
-                            <option class="norow"></option><option class="year1">Year 1</option><option class="year2">Year 2</option><option class="year3">Year 3</option><option class="year4">Year 4</option>
-                        </select></td></tr></table><?php echo form_close();?>
+            <?php echo form_open('finace_page');?>
+            <table class="table table-striped table-condensed"><tr><td><label>Enter the year of study</label></td><td><input type="text" name="data_year" id="chose" class="form-control" placeholder="Year 1">
+                            </td></tr></table><?php echo form_close();?>
                
             <table class="table table-striped cont"> 
                 <tr><td><label class="dts">Academic Year </label> </td><td><b><?php echo ' '.$academic;?></b></td></tr>
@@ -73,24 +72,23 @@
 </div>
     <script>
    $(document).ready(function(){
-      $('.norow').click(function(){
-        $('.cont').hide();
-          alert('You must select registration year');
-       }); 
-       $('#chose').on('change',function(){
-            var year = $(this).val();
-            $.ajax({
-                url: "<?php echo site_url('finance_page/');?>",
-                type:"POST",
-                data:{
-                   data:year 
-                },
-                success:function(smg){
-                    location.reload();
-            }
-            });
-       });
-       
+      $('#chose').keypress(function(){
+          year=prompt("Enter the year of study",$(this).html());
+          if(year!==''){
+          $.ajax({
+              url:window.location,
+              type:"GET",
+              data:{
+                 data_year:year 
+              },
+                      success:function(smg){
+                          location.reload();
+                      }
+          });
+  }
+    
+      });
+            
     });
     
     </script>
