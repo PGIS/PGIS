@@ -1,75 +1,45 @@
 
 <footer class='footer'><p><strong><i>&copy;  PGIS rights Reserved</i></strong></p></footer>
-    </div><!-- /#wrapper -->
+</div><!-- /#wrapper -->
+
+<script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/bootstrap.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery.dataTables.min.js') ?>"></script>
+<script> 
+    $(document).ready(function(){ 
+        $('#mytable').dataTable(); 
+    });
     
-    <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
-   <script src="<?php echo base_url('assets/js/bootstrap.js') ?>"></script>
-   
-<script>
-   
-  function ajaxFunction(id){
- try{
-   // Opera 8.0+, Firefox, Safari
-   ajaxRequest = new XMLHttpRequest();
- }catch (e){
-   // Internet Explorer Browsers
-   try{
-      ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-   }catch (e) {
-      try{
-         ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-      }catch (e){
-         // Something went wrong
-         alert("Your browser broke!");
-         return false;
-      }
-   }
- }
- 
- ajaxRequest.onreadystatechange = function(){
-   if(ajaxRequest.readyState === 4){
-      var ajaxDisplay = document.getElementById('resajax');
-      ajaxDisplay.innerHTML = ajaxRequest.responseText;
-   }
- }
- ajaxRequest.open("GET", "financeadmin/applidetails/"+id, true);
- ajaxRequest.send(); 
- 
-}  
-
+     $(document).ready(function(){ 
+        $('#mytable1').dataTable(); 
+    });
 </script>
 <script>
-   
-  function retrivedetails(id){
- try{
-   // Opera 8.0+, Firefox, Safari
-   ajaxRequest = new XMLHttpRequest();
- }catch (e){
-   // Internet Explorer Browsers
-   try{
-      ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-   }catch (e) {
-      try{
-         ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-      }catch (e){
-         // Something went wrong
-         alert("Your browser broke!");
-         return false;
-      }
-   }
- }
- 
- ajaxRequest.onreadystatechange = function(){
-   if(ajaxRequest.readyState === 4){
-      var ajaxDisplay = document.getElementById('regfindet');
-      ajaxDisplay.innerHTML = ajaxRequest.responseText;
-   }
- }
- ajaxRequest.open("GET", "financeadmin/registrdetails/"+id, true);
- ajaxRequest.send(); 
- 
-}  
 
+    function ajaxFunction(id) {
+        var url = "financeadmin/applidetails/" + id;
+        $.get(url, function(data) {
+            $('#resajax').html(data);
+        });
+    }
+    
+    function verifying(id){
+        var url = "financeadmin/verifyappfee/"+id+"/accepted";
+        $.get(url, function(data) {
+            $('#resajax').html(data);
+            alert("You have chosen to accept the information provided")
+            window.location.reload(true);
+        });
+    }
 </script>
-  </body>
+<script>
+    function retrivedetails(id) {
+         var url = "financeadmin/registrdetails/" + id;
+        $.get(url, function(data) {
+            $('#regfindet').html(data);
+        });
+       
+        }
+</script>
+</body>
 </html>

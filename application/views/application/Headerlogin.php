@@ -14,6 +14,7 @@
     <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
     <link href="<?php echo base_url('assets/css/jquery.ui.datepicker.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/jquery.ui.all.css')?>" rel="stylesheet">

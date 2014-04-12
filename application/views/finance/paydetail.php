@@ -29,7 +29,7 @@
          <tr>
              <td colspan="2" >
                  <p class="pull-right">
-                     <button class="btn btn-success">Accept</button>    
+                     <a ><button class="btn btn-success" id="yes" onclick="verifying('<?php echo $id;?>')">Accept</button></a>    
                      <button class="btn btn-warning">Deny</button> 
                  </p>
              </td>

@@ -4,20 +4,21 @@
     
     <div class="well well-sm">Admitted applicants</div>
     <div >
-    <table class="table table-striped table-condensed">
-       
+        <table class="table table-striped table-condensed" id="mytable1">
+        <thead>
+            <tr>
+              <th>Mark/Unmark</th>
+              <th>Application id</th>
+              <th>Username</th>    
+              <th>Other names</th>
+              <th>Sur name</th>
+              <th>Action<b class="caret"></b></th>  
+            </tr>
+        </thead>
         
         <?php
         if(isset($query)){
-            echo "
-           <tr>
-           <th>Mark/Unmark</th>
-            <th>Application id</th>
-            <th>Username</th>    
-            <th>Other names</th>
-            <th>Sur name</th>
-            <th>Action<b class=\"caret\"></b></th>
-           </tr>";
+           
           foreach ($query as $row){
                 echo '<tr>';
                 echo'<td><input type="checkbox" name="ckbx" class="checkbox"></td>';
@@ -32,7 +33,6 @@
       
         ?>
     </table>
-      <?php  echo $pagination; ?>
     </div>
         
 </div>

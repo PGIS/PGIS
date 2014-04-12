@@ -13,6 +13,7 @@
     <link href="<?php echo base_url('assets/css/font-awesome.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
   </head>
 
   <body>

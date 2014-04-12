@@ -27,6 +27,7 @@ class Financeadmin extends CI_Controller{
       
      function applidetails($userid){
          $data=  $this->usdetail($userid);
+         $data['id']=$userid;
           $query = $this->db->get_where('tb_finance_application', array('userid' =>$userid));
                 if($query->num_rows()>0){
                     foreach ($query->result() as $rstd){
@@ -41,9 +42,20 @@ class Financeadmin extends CI_Controller{
      }
      
      function registrdetails($userid){
-         $data = $this->usdetail($userid);
+         $data = $this->usdetail($this->finduserid($userid));
          $data['regno']=$userid;
+         $query = $this->db->get_where('tb_finance', array('registration_id' =>$userid));
+          if($query->num_rows()>0){
+                    foreach ($query->result() as $rstd){
+                          $data['rectno']=$rstd->receipt_no;
+                          $data['paytdate']=$rstd->date_payment;
+                          $data['filname']=$rstd->suporting_doc;
+                          $data['amountpaid']=$rstd->amount_paid;
+                          $data['paymode']=$rstd->mode_payment;
+                          $data['amntreq']=$rstd->amount_required;
+                    }
          $this->load->view('finance/regpaydetail',$data);
+          }
      }
      
      function usdetail($id){
@@ -58,5 +70,18 @@ class Financeadmin extends CI_Controller{
                 return $dat;
          }
         }
-        }
+       }
+       function finduserid($id){
+            $quer = $this->db->get_where('tb_admision', array('addmissionID' =>$id));
+            if($quer->num_rows()>0){
+            foreach ($quer->result() as $row) {
+                   $dat =  $row->userid;
+            }return $dat;
+       }
+       }
+       function verifyappfee($userid,$value){
+                   $this->load->model('finance_model');
+                  Finance_model::updateapplfee($userid,$value);
+                  echo '<div class="alert alert-success">The infomation is already validated</div>';
+       }
   }
