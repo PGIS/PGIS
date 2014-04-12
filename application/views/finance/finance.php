@@ -16,12 +16,13 @@
     <div class="tab-content">
         <div class="tab-pane active" id="appl">
             <div class="col-md-12">
-                <div class="col-md-5">
-                    <table class="table table-striped">
+                <div class="col-md-6">
+                    <table class="table table-condensed table-striped" id="mytable">
                         <thead><h5>List of applicants need verification</h5>
                             <th>Username</th>
                             <th>Action</th>
                         </thead>
+                        <tbody>
                             <?php
                             $this->db->where('appl_status', 'no'); 
                             $query = $this->db->get_where('tb_app_personal_info', array('submited' =>'yes'));
@@ -46,9 +47,10 @@
                                 
                             }
                             ?>
+                        </tbody>
                     </table>
                 </div>
-                <div class="col-md-7 " id="resajax">
+                <div class="col-md-6 " id="resajax">
                    
                 </div>
             </div>
@@ -60,16 +62,19 @@
         
         <div class="tab-pane" id="reg">
             <div class="col-md-12">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="tp">Verification for registration fee</div>
-                    <table class="table">
+                    <table class="table table-responsive table-striped" id="mytable1">
+                        <thead>
+                            <tr>
+                              <th>Student ID</th>
+                              <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <?php
                             $mquery = $this->db->get_where('tb_finance', array('regstatus' =>'unchecked'));
                             if($mquery->num_rows()>0){
-                                echo '<tr>'
-                                . '<th>Student ID</th>'
-                                .'<th>Action</th>'
-                                . '</tr>';
                                 $i=1;
                                 foreach ($mquery->result() as $mlist){
                                     echo '<tr>';
@@ -84,9 +89,10 @@
                                 
                             }
                             ?>
+                            </tbody>
                     </table>
                 </div>
-                    <div class="col-md-8"id="regfindet" >
+                    <div class="col-md-6"id="regfindet" >
 
                     </div>
             </div>

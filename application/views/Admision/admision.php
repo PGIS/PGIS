@@ -4,15 +4,17 @@
     
     <div class="well well-sm">Unchecked Applications</div>
     <div >
-    <table class="table table-striped table-condensed">
-        <tr>
-            <th>Application id</th>
-            <th>Username</th>    
-            <th>Other names</th>
-            <th>Sur name</th>
-            <th>Action</th>
-        </tr>
-        
+        <table class="table table-striped table-condensed" id="mytable">
+        <thead>
+           <tr>
+                <th>Application id</th>
+                <th>Username</th>    
+                <th>Other names</th>
+                <th>Sur name</th>
+                <th>Action</th>
+            </tr> 
+        </thead>
+        <tbody>
         <?php
         if(isset($query)){
             
@@ -30,6 +32,7 @@
         }
       
         ?>
+        </tbody>
     </table>
         <?php  echo $pagination; ?>
     </div>

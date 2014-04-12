@@ -4,7 +4,16 @@
 
 <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/bootstrap.js') ?>"></script>
-
+<script src="<?php echo base_url('assets/js/jquery.dataTables.min.js') ?>"></script>
+<script> 
+    $(document).ready(function(){ 
+        $('#mytable').dataTable(); 
+    });
+    
+     $(document).ready(function(){ 
+        $('#mytable1').dataTable(); 
+    });
+</script>
 <script>
 
     function ajaxFunction(id) {
@@ -22,19 +31,6 @@
             window.location.reload(true);
         });
     }
-    $(document).ready(function() {
-       
-        //4 methods implementing ajax using jquery
-        // $.post(url, {json} , callback );
-        // $.get(url,  callback );
-        // $.ajax({});
-        // $.load(url, opt, callback);
-        
-    });
-    $("#yes").click(function(){
-       $('#resajax').html('null'); 
-        });
-
 </script>
 <script>
     function retrivedetails(id) {
