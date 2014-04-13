@@ -38,12 +38,13 @@
     }
 
     function verifying(id) {
+        if(confirm('You have chosen to accept the information provided.click ok to continue')){
         var url = "financeadmin/verifyappfee/" + id + "/accepted";
         $.get(url, function(data) {
             $('#resajax').html(data);
-            alert("You have chosen to accept the information provided");
             window.location.reload(true);
         });
+    }
     }
 
     function denying(id) {

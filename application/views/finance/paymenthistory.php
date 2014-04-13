@@ -1,6 +1,6 @@
 <div id="fndetail">
     <div class="well-sm alert-info">
-        Finance history for
+        Finance history for <?php echo $regno;?>
     </div>
     <div>
         <?php

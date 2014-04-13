@@ -29,7 +29,8 @@ class Financehistory extends CI_Controller {
     function historyfinance($reg) {
          $querystring = $this->db->get_where('tb_finance', array('registration_id' => $reg));
          $data['history']=$querystring;
+         $data['regno']=$reg;
          $this->load->view('finance/paymenthistory',$data);
     }
     
-}
+    }
