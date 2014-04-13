@@ -33,5 +33,22 @@ class Seminary extends CI_Controller{
            }  
             
 }
+function table_data(){
+   $this->form_validation->set_rules('day1', 'seminar_day', 'required');
+      $this->form_validation->set_rules('day2', 'seminar_hour', 'required');
+      if($this->form_validation->run() === FALSE){
+      $this->load->view('academic/seminar_reg');
+      }else{
+           $this->load->model('seminar_register');
+           $day = $this->input->post('day2');
+           $hours = $this->input->post('data1');
+           $course=  $this->input->post('day1');
+           $sn=  $this->session->userdata('userid');
+           $username=  $this->session->userdata('registration_id');
+           $this->seminar_register->insert_student($username,$course,$day,$hours,$sn);
+           $data['smg']='<font class="alert alert-success">Thanks for registrating to our seminar</font>';
+           $this->load->view('academic/seminar_reg',$data);
+           }   
+}
 }
 
