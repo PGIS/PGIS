@@ -43,8 +43,8 @@
         <tr>
             <td colspan="2">
                 <p class="pull-right">
-                  <button class="btn btn-success">Accept</button>    
-                  <button class="btn btn-warning">Deny</button>
+                  <button class="btn btn-success" onclick="tuitverifying('<?php echo $regno;?>')">Accept</button>   
+                  <button class="btn btn-warning" onclick="tutdenying('<?php echo $regno;?>')">Deny</button> 
                 </p>  
             </td>
         </tr>

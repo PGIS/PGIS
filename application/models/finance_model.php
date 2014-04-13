@@ -137,5 +137,16 @@ class Finance_model extends CI_Model {
         $this->db->where('userid', $userid);
         $this->db->update('tb_app_personal_info', $array);
     }
+    
+    function updatetutionfee($id, $value) {
+
+        if ($value =='accepted') {
+            $this->db->where('registration_id', $id);
+            $this->db->update('tb_finance', array('regstatus' => $value));
+        } else {
+            $this->db->where('registration_id', $id);
+            $this->db->update('tb_finance', array('regstatus' => 'rejected'));
+        }
+    }
 
 }
