@@ -85,15 +85,15 @@ class Financeadmin extends CI_Controller {
     function verifyappfee($userid, $value) {
         $this->load->model('finance_model');
         Finance_model::updateapplfee($userid, $value);
-        if($value=='rejected'){
+        if ($value == 'rejected') {
             Finance_model::returnformtouser($userid);
         }
         echo '<div class="alert alert-success">The infomation is already processed</div>';
     }
 
     function tutionfeeverify($id, $value) {
-             $this->load->model('finance_model');
-         Finance_model::updatetutionfee($id, $value);
+        $this->load->model('finance_model');
+        Finance_model::updatetutionfee($id, $value);
     }
 
 }

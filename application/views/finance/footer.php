@@ -13,10 +13,20 @@
     $(document).ready(function() {
         $('#mytable1').dataTable();
         $('#appfeevalid').dataTable();
+       
     });
     $(document).ready(function() {
+         $('#fincedetail').dataTable();
         $('input').addClass('tablesearch');
     });
+</script>
+<script>
+    function finahistory(regid) {
+         var url = "financehistory/historyfinance/"+regid;
+        $.get(url, function(data) {
+            $('#finhisto').html(data);
+        });
+    }
 </script>
 <script>
 
@@ -73,7 +83,6 @@
             });
         }
     }
-
 
 </script>
 </body>
