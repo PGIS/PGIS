@@ -10,7 +10,14 @@
                 Application will be closed on  June 2014.
                 </pre>
             </div> 
-            
+            <?php
+            $thiquery = $this->db->get_where('tb_finance_application', array('userid' => $this->session->userdata('userid'),'appl_status'=>'rejected'));
+            if($thiquery->num_rows()>0){
+                echo '<div class="alert alert-danger"><p><h4>Plese note</h4></p>The information you have provided about application fee'
+                . ' is not correct.please recheck and submit again.Your application wont be processed untill the'
+                        . ' valid information is sent.</div>';
+            }
+            ?>
     <div class='app'>
         <a href="<?php echo site_url('application/apply');?>">
             <button type="button" class="mybtn btn-primary">continue with online application

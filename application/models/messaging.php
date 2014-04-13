@@ -53,7 +53,7 @@ class Messaging extends CI_Model{
       }
       
       function return_to_customer($id){
-          $data1=array('submited'=>'');
+          $data1=array('submited'=>'no');
                 $this->db->where('userid',$id);
                 $this->db->update('tb_app_personal_info', $data1); 
       }

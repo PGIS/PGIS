@@ -27,7 +27,16 @@
         var url = "financeadmin/verifyappfee/"+id+"/accepted";
         $.get(url, function(data) {
             $('#resajax').html(data);
-            alert("You have chosen to accept the information provided")
+            alert("You have chosen to accept the information provided");
+            window.location.reload(true);
+        });
+    }
+    
+    function denying(id){
+        var url = "financeadmin/verifyappfee/"+id+"/rejected";
+        $.get(url, function(data) {
+            $('#resajax').html(data);
+            alert("You have chosen to alert the user that infrormation provided is Wrong");
             window.location.reload(true);
         });
     }

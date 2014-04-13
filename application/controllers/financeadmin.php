@@ -81,7 +81,8 @@ class Financeadmin extends CI_Controller{
        }
        function verifyappfee($userid,$value){
                    $this->load->model('finance_model');
-                  Finance_model::updateapplfee($userid,$value);
-                  echo '<div class="alert alert-success">The infomation is already validated</div>';
+                   Finance_model::updateapplfee($userid,$value);
+                   Finance_model::returnformtouser($userid);
+                  echo '<div class="alert alert-success">The infomation is already processed</div>';
        }
   }
