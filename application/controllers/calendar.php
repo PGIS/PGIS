@@ -7,7 +7,7 @@
          $this->load->model('calendar_model');
          if(!$this->session->userdata('logged_in')){
              redirect('logout');
-         }elseif ($this->session->userdata('userid')=='Student') {
+         }elseif ($this->session->userdata('user_role')!='Student') {
              redirect('logout');
         }
      }
