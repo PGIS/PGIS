@@ -43,60 +43,75 @@
                 </table>
                    <div id="load"></div>
             </div>
+            <script>
+            $(document).ready(function(){
+                $('.lc1').click(function(){
+                    $('#form').submit(function(e){
+                        $('#load').html('<img src="<?php echo base_url('assets/img/moving .gif');?>">');
+                        var formdata=$(this).serializeArray();
+                        var formhelper=$(this).attr('action');
+                          if(formdata){
+                         $.ajax({
+                             url:formhelper,
+                             type:"POST",
+                             data:formdata,
+                             success:function(data,textstatus,jqXHR){
+                                 $('.tab').hide('slow');
+                               $('#load').html('<p class="alert alert-success">Thanks for Your registration</p>').show();
+                             },
+                            error:function(jqXHR,textstatus,errorThrown){
+                            $('#load').html('<p class="alert alert-danger">Failed.!</p>');
+                            }
+                         });
+                         e.preventDefault();
+                         e.unbind();
+                         location.reload();
+                         }else{
+                           $('#load').html('<p class="alert alert-danger">Oops fill all the fields</p>');
+                           return false;
+                         }
+                    });
+                });
+            });
+            
+            
+            </script>
             
         </div>
     </div>
 </div>
     <script>
         $(document).ready(function(){
-            $('.tab').hide();
+           $('.tab').hide();
            $('.lc').click(function(){
                $('#form1').submit(function(e){
                   $('#load').html('<img src="<?php echo base_url('assets/img/moving .gif');?>">');
                   var postdata=$(this).serializeArray();
                   var formurl=$(this).attr('action');
-                  $.ajax({
+                  if(postdata){
+                    $.ajax({
                       url:formurl,
                       type:"POST",
                       data:postdata,
                       success:function(data,textstastus,jqXHR){
-                         $('.tab1').hide();
+                          $('.tab1').hide();
                           $('.tab').show('slow');
-                          $('#load').html('<font class="alert alert-success">Thanks.!please continue</font>').fadeOut(4000);
-                      },
+                          $('#load').html('<p class="alert alert-success">Thanks.!please continue</p>').fadeOut(6000);
+                          },
                       error:function(jqXHR,textstatus,errorThrown){
-                          $('#load').html('<font class="alert alert-danger">Oops.! Failled textstatus='+textstatus+',errorThrown='+errorThrown+'</font>');
+                          $('#load').html('<p class="alert alert-danger">Oops.! Failled textstatus='+textstatus+',errorThrown='+errorThrown+'</p>');
                       }
                   });
-                  e.preventDefault();
+              }else{
+                  alert('noooo');
+              }
+                 e.preventDefault();
                   e.unbind();
-                  e.exit();
-               });
+                  location.reload();
+                });
                $('#form1').submit();
                 
            });
-           $('.lc1').click(function(){
-            $('#form').submit(function(e){
-               $('#load').html('<img src="<?php echo base_url('assets/img/moving .gif');?>">');
-               var dataposted=$(this).serializeArray();
-               var dataurl=$(this).attr('action');
-               $.ajax({
-                   url:dataurl,
-                   type:"POST",
-                   data:dataposted,
-                   success:function(data,textstatus,jqXHR){
-                       $('#load').html('<font class="alert alert-success">Thanks.!</font>').fadeOut(6000);
-                   },
-                   error:function(jqXHR,textstatus,errorThrown){
-                     $('#load').html('<font class="alert alert-danger">Oops.! Failled</font>').fadeOut(6000);  
-                   }
-               });
-               e.preventDefault();
-               e.unbind();
-               e.exit();
-            });
-            $('#form').submit();
-        });
            $("#yes").show();
            $("#yes1").show();
            $("#no").show();
