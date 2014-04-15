@@ -3,7 +3,7 @@ class Finance_page extends CI_Controller{
     function __construct() {
         parent::__construct();
         $this->load->helper('form','url','html');
-        $this->load->library('form_validation');
+        $this->load->library('form_validation','session');
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         if(!$this->session->userdata('logged_in')){
             redirect('logout');  
@@ -11,14 +11,15 @@ class Finance_page extends CI_Controller{
             redirect('logout'); 
         }
     }
-    public function index(){
-        $data['active']=TRUE;
-        $data1=  $this->finance_detail();
-        $data2=  $this->show_data();
-        $data=$data1+$data2;
+    public function index($se=''){
+        $data['se']=$se;
+        $data['regid']=$this->session->userdata('userid');
         $this->load->view('registration/finance_view1',$data);  
     }
     public function finance(){
+        $data1=  $this->finance_detail();
+        $data2=  $this->show_data();
+        $data=$data1+$data2;
         $data['active']=TRUE;
         $config['upload_path']='./upload_docs/';
         $config['allowed_types']='jpg|png|gif|pdf|jpeg';
