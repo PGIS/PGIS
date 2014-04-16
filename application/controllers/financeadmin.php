@@ -42,9 +42,10 @@ class Financeadmin extends CI_Controller {
         }
     }
 
-    function registrdetails($userid) {
+    function registrdetails($userid,$recn) {
         $data = $this->usdetail($this->finduserid($userid));
         $data['regno'] = $userid;
+        $this->db->where('receipt_no', $recn); 
         $query = $this->db->get_where('tb_finance', array('registration_id' => $userid));
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $rstd) {
@@ -91,9 +92,10 @@ class Financeadmin extends CI_Controller {
         echo '<div class="alert alert-success">The infomation is already processed</div>';
     }
 
-    function tutionfeeverify($id, $value) {
-        $this->load->model('finance_model');
-        Finance_model::updatetutionfee($id, $value);
+    function tutionfeeverify($id, $value,$recto) {
+        echo $recto;
+       $this->load->model('finance_model');
+      Finance_model::updatetutionfee($id, $value,$recto);
     }
 
 }

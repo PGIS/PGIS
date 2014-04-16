@@ -21,7 +21,7 @@ class Finance_model extends CI_Model {
             'academic_year' => $academic,
             'application_id' => $application_id
         );
-        $res = $this->db->get_where('tb_finance', array('application_id' => $application_id, 'payment_details' => $registration));
+        $res = $this->db->get_where('tb_finance', array('receipt_no' => $registration_receipt));
         if ($res->num_rows() === 1) {
             $this->db->where('payment_details', $registration);
             $this->db->update('tb_finance', $array_data);
@@ -138,13 +138,15 @@ class Finance_model extends CI_Model {
         $this->db->update('tb_app_personal_info', $array);
     }
     
-    function updatetutionfee($id, $value) {
+    function updatetutionfee($id, $value,$rec) {
 
         if ($value =='accepted') {
             $this->db->where('registration_id', $id);
+             $this->db->where('receipt_no', $rec);
             $this->db->update('tb_finance', array('regstatus' => $value));
         } else {
             $this->db->where('registration_id', $id);
+             $this->db->where('receipt_no', $rec);
             $this->db->update('tb_finance', array('regstatus' => 'rejected'));
         }
     }

@@ -3,8 +3,9 @@
       <div class="span12">
         <div class="tabcordion tabs-left tabbable">
             <ul class="nav nav-tabs">
-                <li class="<?php if(isset($active)){ echo'active';}?>">
-                    <a data-target=".home" data-toggle="tab">Registration Form</a>
+                <li class="<?php if(isset($active)){ echo'active';}?> ">
+                    <a data-target=".home" data-toggle="tab" <?php if(isset($recept_no)){ echo'class="red"';}?>>
+                       Registration Form  <?php if(isset($recept_no)){ echo'<span class="red glyphicon glyphicon-warning-sign"></span>';}?></a>
                 </li>
             <ul class="alert-info">
                 <li><label>Options Links</label></li>
@@ -24,16 +25,23 @@
             </ul>
             <div class="tab-content tb" style="display:block">
                 <div class="home in tab-pane <?php if(isset($active)){ echo 'active';}?>">
-                    <div class="pantop"><h4>Complete the details*</h4></div>
+                    <div class="pantop"><h4>Tuition fee detail*</h4></div>
                     <?php if(!empty($result)){echo'<div class="bs-docs-example">
         <div class="alert fade in">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <a type="button" class="close" data-dismiss="alert">&times;</a>
             <p class="alert alert-success"><strong style="margin-left:50px">'.$result.'</strong></p>
         </div>
             </div>';}?>
-                   <div class="col-md-8 col-lg-offset-1">
+                <?php if(isset($recept_no)){
+                          echo '<div class="alert alert-danger fade in">
+                        <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+                        Information you provided lately wasnt correct
+                        please correct the information and submit
+                    </div>';
+                      }?>    
+                   <div class="col-md-10 col-lg-offset-1">
                         <?php echo form_open_multipart('finance_page/finance');?>
-                        <label>Fees*</label>
+                      
                         <table class="table table-condensed table-striped">
                             <tr>
                                 <td>
@@ -41,7 +49,7 @@
                                 </td>
                                 <td>
                                     <select name="reg_fees" class="form-control check" required>
-                                        <option></option>
+                                        <option><?php if(isset($year)){echo $year;}?></option>
                                         <option  value="year_one">Year 1</option>
                                         <option value="year_one">Year 2</option>
                                         <option value="year_three">Year 3</option>
@@ -51,35 +59,47 @@
                             </tr>
                             <tr>
                                 <td>
-                                  <input type="text" class="form-control" placeholder="Amount" required name="amnt">
+                                    <input type="text" class="form-control" placeholder="Amount" required name="amnt"
+                                           value="<?php if(isset($amount)){echo $amount;}?>">
                                  </td>
                                 <td>
-                                  <input type="text" class="form-control" placeholder="ReceiptNo" required name="rescpt">
+                                  <input type="text" class="form-control" placeholder="ReceiptNo" required name="rescpt"
+                                         value="<?php if(isset($recept_no)){echo $recept_no;}?>">
                                 </td>
                             </tr> 
-                            <tr><td><label>Academic Year:</label></td><td><input type="text" name="acy" placeholder="2014/2015" class="form-control" required></td></tr> 
+                            <tr><td><label>Academic Year:</label>
+                                </td>
+                                <td><input type="text" name="acy" placeholder="2014/2015" class="form-control" required
+                                               value="<?php if(isset($accyear)){echo $accyear;}?>"></td></tr> 
                        
                             <tr>
-                                <td colspan="2"><label for="payment_det">Mode of Payment*</label>
+                                <td >
+                                    <label for="payment_det">Mode of Payment*</label>
+                                </td>
+                                <td>
                                     <font class="alert-danger"><?php echo form_error('pay_mode');?></font>
                                     <select name="pay_mode" class="form-control" required>
-                                        <option valu="0"></option>
-                                        <option valu="1">Half semester</option>
-                                        <option valu="2">Full(Whole) year</option>
+                                        <option ><?php if(isset($modepay)){echo $modepay;}?></option>
+                                        <option >Half semester</option>
+                                        <option >Full(Whole) year</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td>
                                     <label for="dop">Date of payment*</label>
+                                </td>
+                                <td>
                                     <font class="alert-danger"><?php echo form_error('date_payment');?></font>
-                                    <input type="text" name="date_payment" class="form-control datepicker" required>
+                                    <input type="text" name="date_payment" class="form-control datepicker" required
+                                           value="<?php if(isset($pay_date)){echo $pay_date;}?>">
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <label for="sup_doc">Upload supporting doc*</label>
-                                    <input type="file" name="userfile" class="form-control" required>
+                                    <label for="sup_doc">Upload supporting doc*
+                                    <?php if(isset($recept_no)){echo '<div class="red">new</div>';}?></label>
+                                    <input type="file" name="userfile"  required>
                                 </td>
                             </tr>
                         </table>
@@ -235,10 +255,11 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div id="yearlydetail">
+                           
+                    </div>
+                         <div  class="col-md-12" id="yearlydetail">
                                 
                             </div>
-                    </div>
                 </div>
         </div>
   </div>

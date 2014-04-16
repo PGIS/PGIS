@@ -30,9 +30,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="">
-                        <img src="<?php echo base_url('assets/img/mwenge.gif'); ?>"class="imge" height="35">    POSTGRADUATE INFORMATION SYSTEM
-                    </a>
+                    <a class="navbar-brand visible-lg" href="#">
+                            <img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">
+                            POSTGRADUATE INFORMATION SYSTEM
+                      </a>
+                      <a class="navbar-brand hidden-lg" href='#'>
+                        <img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">PGIS</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->

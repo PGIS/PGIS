@@ -13,7 +13,8 @@
             </thead>
             <tbody>
                 <?php
-                $this->db->distinct();
+               
+                $this->db->order_by("registration_id"); 
                 $sudentlist = $this->db->get('tb_finance');
                 if ($sudentlist->num_rows() > 0) {
                     foreach ($sudentlist->result() as $stlist) {

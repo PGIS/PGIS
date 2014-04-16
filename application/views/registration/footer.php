@@ -1,5 +1,5 @@
 
-<footer class='footer'><p><strong><i>&copy;  PGIS rights Reserved</i></strong></p></footer>
+<div class="col-md-12"><footer class='footer'><p><strong><i>&copy;  PGIS rights Reserved</i></strong></p></footer></div>
 </div><!-- /#wrapper -->
 <script>
     window.brunch = window.brunch || {};

@@ -116,13 +116,19 @@ table.calendar{
 #fincedetail a:hover{
     cursor: pointer;
 }
-div #fndetail{
-    position: relative;
+#fndetail{
     border: 1px solid #cccccc;
     border-radius: 4px;
     height: 470px;
     overflow-y: scroll;
+     clear: both;
 }
 #dtl{
     color: #5bc0de;
+}
+#yearlydetail{
+   clear: both; position: relative;
+}
+.red{
+    color: red;
 }

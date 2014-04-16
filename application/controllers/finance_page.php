@@ -17,9 +17,7 @@ class Finance_page extends CI_Controller{
         $this->load->view('registration/finance_view1',$data);  
     }
     public function finance(){
-        $data1=  $this->finance_detail();
-        $data2=  $this->show_data();
-        $data=$data1+$data2;
+        $data=  $this->changeinvalid();
         $data['active']=TRUE;
         $config['upload_path']='./upload_docs/';
         $config['allowed_types']='jpg|png|gif|pdf|jpeg';
@@ -50,7 +48,7 @@ class Finance_page extends CI_Controller{
         }
       }
       function show_data(){
-          $sn=  $this->session->userdata('userid');
+          $sn = $this->session->userdata('userid');
           $res=  $this->db->get_where('tb_studentReg',array('regist_name'=>$sn));
           if($res->num_rows()===1){
               foreach ($res->result() as $ro){
@@ -88,44 +86,27 @@ class Finance_page extends CI_Controller{
               );
               return $array_data;
           }
-          
       }
-      function finance_detail(){
-          $year=  $this->input->post('data_year');
-          $sn=  $this->session->userdata('userid');
-          $query=  $this->db->get_where('tb_finance',array('application_id'=>$sn));
-          if($query->num_rows()>0){
-              foreach ($query->result() as $row){
-                  $array=array(
-                      'application_id'=>$row->registration_id,
-                      'registration_receipt'=>$row->receipt_no,
-                      'registration'=>$row->payment_details,
-                      'registration_amount'=>$row->amount_paid,
-                      'registration_total'=>$row->amount_required,
-                      'payment'=>$row->mode_payment,
-                      'date_pay'=>$row->date_payment,
-                      'support_doc'=>$row->suporting_doc,
-                      'academic'=>$row->academic_year
-                  );
-              }unset($row);
-              return $array;
-          }else {
-              $array=array(
-                  'application_id'=>'',
-                  'registration_receipt'=>'',
-                  'registration'=>'',
-                  'registration_amount'=>'',
-                  'registration_total'=>'',
-                  'payment'=>'',
-                  'date_pay'=>'',
-                  'support_doc'=>'',
-                  'academic'=>''
-             );
-             return $array;
-          }
+      function changeinvalid(){
+            $this->db->where('registration_id',$this->session->userdata('registration_id'));
+            $change=  $this->db->get_where('tb_finance',array('regstatus'=>'rejected'),1);
+            if($change->num_rows()>0){
+                foreach ($change->result() as $list){
+                    $result=array(
+                        'recept_no'=>$list->receipt_no,
+                        'year'=>$list->payment_details,
+                        'amount'=>$list->amount_paid,
+                        'modepay'=>$list->mode_payment,
+                        'accyear'=>$list->academic_year,
+                        'pay_date'=>$list->date_payment
+                    );
+                }
+                return $result;
+            }  else {
+                return array();  
+            }
       }
-   
-      
+     
     }
 
 

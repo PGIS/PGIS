@@ -103,7 +103,7 @@
                                     echo '<tr>';
                                     echo '<td>' . $mlist->registration_id . '</td>';
                                     ?>
-                                <td><button onclick="retrivedetails('<?php echo $mlist->registration_id; ?>')" class="btn-info subtn">verify</button></td>
+                                <td><button onclick="retrivedetails('<?php echo $mlist->registration_id; ?>','<?php echo $mlist->receipt_no; ?>')" class="btn-info subtn">verify</button></td>
                                 <?php
                                 echo '</tr>';
                                 $i++;

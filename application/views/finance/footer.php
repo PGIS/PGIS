@@ -1,5 +1,7 @@
 
-<footer class='footer'><p><strong><i>&copy;  PGIS rights Reserved</i></strong></p></footer>
+<div class="col-md-12">
+    <footer class='footer'><p><strong><i>&copy;  PGIS rights Reserved</i></strong></p></footer>
+</div>
 </div><!-- /#wrapper -->
 
 <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
@@ -57,17 +59,17 @@
     }
 </script>
 <script>
-    function retrivedetails(id) {
-        var url = "financeadmin/registrdetails/" + id;
+    function retrivedetails(id,rec) {
+        var url = "financeadmin/registrdetails/" + id+"/"+rec;
         $.get(url, function(data) {
             $('#regfindet').html(data);
         });
 
     }
-    function tuitverifying(id) {
+    function tuitverifying(id,rc) {
 
         if (confirm('You about to accept the tution fee datail.are you sure?')) {
-            var url = "financeadmin/tutionfeeverify/" + id + "/accepted";
+            var url = "financeadmin/tutionfeeverify/" + id + "/accepted/"+rc;
             $.get(url, function(data) {
                 $('#regfindet').html(data);
                 window.location.reload(true);
@@ -75,9 +77,9 @@
 
         }
     }
-    function tutdenying(id) {
+    function tutdenying(id,rc) {
         if (confirm('You about to Reject the tution fee datail.are you sure?')) {
-            var url = "financeadmin/tutionfeeverify/" + id + "/rejected";
+            var url = "financeadmin/tutionfeeverify/" + id + "/rejected/"+rc;
             $.get(url, function(data) {
                 $('#regfindet').html(data);
                 window.location.reload(true);

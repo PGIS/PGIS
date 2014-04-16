@@ -1,3 +1,4 @@
+<div class="col-md-12">
 <?php
     $myarray = array(
         'application_id' =>$regid,
@@ -14,34 +15,34 @@
         <td class="success"><b><?php echo ' ' . $fndetail->date_payment; ?></b></td>
     </tr>
     <tr>
-        <td><label class="dts">Academic Year </label></td>
-        <td><b><?php echo ' ' . $fndetail->academic_year; ?></b></td>
+        <td><div class="dts">Academic Year </div></td>
+        <td><?php echo ' ' . $fndetail->academic_year; ?></td>
     </tr>
     <tr>
-        <td><strong class="dts">Registration Fees For</strong></td>
-        <td><b><?php echo ' ' . $fndetail->payment_details; ?></b></td></tr>
+        <td><div class="dts">Registration Fees For</div></td>
+        <td><?php echo ' ' . $fndetail->payment_details; ?></td></tr>
     <tr>
-        <td><strong class="dts">Registration Fees Amount</strong>
-        </td><td><b><?php echo' ' .$fndetail->amount_paid ?></b></td>
+        <td><div class="dts">Registration Fees Amount</div>
+        </td><td><?php echo' ' .$fndetail->amount_paid ?></td>
     </tr>
     <tr>
-        <td><strong class="dts">Registration Fees Receipt</strong></td>
-        <td><b><?php echo ' ' . $fndetail->receipt_no; ?></b></td>
+        <td><div class="dts">Registration Fees Receipt</div></td>
+        <td><?php echo ' ' . $fndetail->receipt_no; ?></td>
     </tr>
     <tr>
-        <td><strong class="dts">Payment Mode</strong></td>
-        <td><b><?php echo ' ' . $fndetail->mode_payment; ?></b></td>
+        <td><div class="dts">Payment Mode</strong></div>
+        <td><?php echo ' ' . $fndetail->mode_payment; ?></td>
     </tr>
     
     
-    <tr><td><strong class="dts">Payment status</strong></td>
+    <tr><td><div class="dts">Payment status</strong></div>
         <td>
             <?php if($fndetail->regstatus=='rejected'){
-                echo '<b class="alert-danger">Can not be verified(wrong information)*please repeat</b>';
+                echo '<div class="alert-danger">Can not be verified(wrong information)*please repeat</div>';
             }elseif($fndetail->regstatus=='accepted'){
-                 echo '<b class="alert-success">Verified (Valid)</b>';
+                 echo '<div class="alert-success">Verified (Valid)</div>';
             }  else {
-                echo '<b class="alert-warning">Not yet verified</b>';
+                echo '<div class="alert-warning">Not yet verified</div>';
             } ?></td>
     </tr>
     <tr>
@@ -79,4 +80,5 @@
        echo '<div class="alert alert-warning"><p><span class="glyphicon glyphicon-exclamation-sign"></span> No Any information found</p></div>';
 }
 ?>
-</table> 
+</table>     
+</div>
