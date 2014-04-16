@@ -1,6 +1,4 @@
-<?php
-
- include_once 'Headerlogin.php';?>
+<?php include_once 'Headerlogin.php';?>
 <div id="page-wrapper">
   <div class="panel panel-default ">
             <div class="panel-heading">

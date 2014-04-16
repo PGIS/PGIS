@@ -7,5 +7,8 @@
         
     }
     ?>
+    <div class="well well-sm">
+        
+    </div>
 </div>
 <?php include_once 'footer.php';?>

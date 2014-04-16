@@ -13,7 +13,7 @@
             <tr>
                 <td colspan="2">
                     <p>Payment date:</p>
-                    <input class="form-control" name="paydate" required 
+                    <input class="form-control datepicker" name="paydate" required 
                            value="<?php if(isset($paydate)) echo $paydate;?>">
                 </td>
             </tr>

@@ -1,4 +1,4 @@
-<div id="fndetail">
+<div id="fndetail" class="col-lg-12">
     <div class="well-sm alert-info">
         Finance history for <?php echo $regno;?>
     </div>

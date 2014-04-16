@@ -10,7 +10,7 @@ class Admision_model extends CI_Model{
         $message=array(
                   'addmissionID'=>$addid,
                   'app_id'=>$appid,
-                  'useemanoblerid'=>$user
+                  'userid'=>$user
               );
         $querying = $this->db->get_where('tb_admision', array('app_id' => $appid));
         if($querying->num_rows()==0){

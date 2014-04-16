@@ -1,4 +1,4 @@
-<?php include_once 'Headerlogincal.php'; ?>
+<?php include_once 'Headerlogin.php'; ?>
 <div id="page-wrapper">
     <div class="well well-sm"><p align="center"><b>Seminar Registration in a Week</b></p></div>
         <div class="panel panel-default">

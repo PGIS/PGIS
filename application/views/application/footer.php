@@ -15,6 +15,7 @@ enabled: true
     $(function() {
     $('.tabcordion').tabcordion()
     });
+    $('.datepicker').datepicker();
     </script>
    
     

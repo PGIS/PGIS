@@ -1,4 +1,4 @@
-<div>
+<div >
     <p>
       <div class="well well-sm">
             Registration fee detail for <strong><?php echo $title.' '.$sname.' '.$other_nam;?></strong>
@@ -43,8 +43,8 @@
         <tr>
             <td colspan="2">
                 <p class="pull-right">
-                  <button class="btn btn-success" onclick="tuitverifying('<?php echo $regno;?>')">Accept</button>   
-                  <button class="btn btn-warning" onclick="tutdenying('<?php echo $regno;?>')">Deny</button> 
+                  <button class="btn btn-success" onclick="tuitverifying('<?php echo $regno;?>','<?php echo $rectno;?>')">Accept</button>   
+                  <button class="btn btn-warning" onclick="tutdenying('<?php echo $regno;?>','<?php echo $rectno;?>')">Deny</button> 
                 </p>  
             </td>
         </tr>

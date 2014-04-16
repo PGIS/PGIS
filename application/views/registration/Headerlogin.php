@@ -18,7 +18,6 @@
         <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
         <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
-        <script src="<?php echo base_url('assets/js/bootstrap-modal.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
     </head>
 
@@ -50,8 +49,6 @@
                         <li><a href="<?php echo site_url('finance_page/finance'); ?>"><span class="glyphicon glyphicon-folder-open"></span>
                                 Complete Registration</a></li>
                         <li><a href="<?php echo site_url('seminary'); ?>"><span class="glyphicon glyphicon-briefcase"></span> Seminar register</a></li>
-                        <li><a href="<?php echo site_url('finance_page'); ?>">
-                                <span class="glyphicon glyphicon-book"></span> Summary preview</a></li>
                         <li><a href="<?php echo site_url('calendar/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
                                 Posted events</a></li>
                         <li><a href="<?php echo site_url('messages'); ?>">
