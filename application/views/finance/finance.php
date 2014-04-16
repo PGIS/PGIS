@@ -19,7 +19,7 @@
                 <div class="col-md-6">
                     <table class="table table-condensed table-striped" id="mytable">
                         <thead><h5>List of applicants need verification</h5>
-                        <th>Username</th>
+                        <th>Applicant Name</th>
                         <th>Action</th>
                         </thead>
                         <tbody>
@@ -34,7 +34,7 @@
                                     if ($mquery->num_rows() > 0) {
                                         foreach ($mquery->result() as $mlist) {
                                             echo '<tr>';
-                                            echo '<td>' . $mlist->userid . '</td>';
+                                            echo '<td>' . $list->surname.' '.$list->other_name. '</td>';
                                             ?>
                                         <td><button onclick="ajaxFunction('<?php echo $mlist->userid; ?>')" class="btn-info subtn">verify</button></td>
                                         <?php
