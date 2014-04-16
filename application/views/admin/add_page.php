@@ -25,6 +25,8 @@
                       <option value="Admision staff"<?php echo set_select('designation','Admision staff');?>>Admision staff</option>
                       <option value="Student"<?php echo set_select('designation','Student');?>>Student</option>
                       <option value="Finance staff"<?php echo set_select('designation','Finance staff');?>>Finance staff</option>
+                      <option value="Supervisor"<?php echo set_select('designation','Supervisor');?>>Supervisor</option>
+                      <option value="external supervisor"<?php echo set_select('designation','external supervisor');?>>External supervisor</option>
                   </select>
                 </p> <?php echo form_error('password','<div class="error">', '</div>'); ?>
                  <p><?php echo form_password(array('name'=>'password','placeholder'=>'password','class'=>'form-control'));?></p>

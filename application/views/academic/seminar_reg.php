@@ -1,16 +1,15 @@
 <?php include_once 'Headerlogin.php'; ?>
 <div id="page-wrapper">
     <div class="well well-sm"><p align="center"><b>Seminar Registration in a Week</b></p></div>
-    <div id="regform">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><center>Seminar register</center></h3>
             </div>
             <div class="panel-body">
-                <p>The table below shows the seminars with respective day and hours,be carefully to chose and registering your seminar day 
+                <p class="alert alert-info hd">The table below shows the seminars with respective day and hours,be carefully to chose and registering your seminar day 
                 day goes with respective hour indicate,be carefully otherwise you will not be enrolled the what mistake you have done. Thanks!</p>
                 <?php echo form_open('seminary/seminary_form',array('id'=>'form1')); ?>
-                <table border="1" width="90%" align="center" class="table table-striped table-bordered tab1">
+                <table class="table table-striped table-bordered tab1">
                 <tr><td width="30%" align="center">Courses</td><td width="30%" align="center">Day</td><td width="30%" align="center">Hour</td></tr>
                 <tr class="td1">
                     <td rowspan="2" align="center" id="main">IS 654&nbsp;<input type="checkbox" name="day" value="IS 654"></td>
@@ -23,7 +22,7 @@
                         <td align="center" id="no1">1000-1100&nbsp;<input type="radio" name="data" value="1000-1100"><br>
                             1400-1500<input type="radio" name="data" value="1400-1500"></td>
                     </tr>
-                    <tr><td colspan="3"><table style="margin-left: 200px;"><tr><td ><input type="submit" name="sub" value="Register and continue" class="btn btn-primary lc"></td></tr></table></td></tr>
+                    <tr><td colspan="3"><table style="margin-left: 600px;"><tr><td ><input type="submit" name="sub" value="Register and continue" class="btn btn-primary lc"></td></tr></table></td></tr>
                 </table><?php echo form_close();?>
                 <table class="table table-striped table-bordered tab">
                        <?php echo form_open('seminary/table_data',array('id'=>'form'));?>
@@ -38,7 +37,7 @@
                        <td align="center" id="sev1">1000-1100&nbsp;<input type="radio" name="data1" value="1000-1100"><br>                     
                            1400-1500&nbsp;<input type="radio" name="data1" value="1400-1500">
                    </tr><br>
-                   <tr><td colspan="3"><table style="margin-left: 400px;"><tr><td ><input type="submit" name="sub" value="Register" class="btn btn-primary lc1"></td></tr></table></td></tr>
+                   <tr><td colspan="3"><table style="margin-left: 600px;"><tr><td ><input type="submit" name="sub" value="Register" class="btn btn-primary lc1"></td></tr></table></td></tr>
                 <?php echo form_close();?>
                 </table>
                    <div id="load"></div>
@@ -56,9 +55,10 @@
                              type:"POST",
                              data:formdata,
                              success:function(data,textstatus,jqXHR){
+                                 $('.hd').hide('slow');
                                  $('.tab').hide('slow');
-                               $('#load').html('<p class="alert alert-success">Thanks for Your registration</p>').show();
-                             },
+                               $('#load').html('<p class="alert alert-success">Thanks for Your registration.!</p>').show();
+                              },
                             error:function(jqXHR,textstatus,errorThrown){
                             $('#load').html('<p class="alert alert-danger">Failed.!</p>');
                             }
@@ -76,8 +76,6 @@
             
             
             </script>
-            
-        </div>
     </div>
 </div>
     <script>
@@ -88,7 +86,7 @@
                   $('#load').html('<img src="<?php echo base_url('assets/img/moving .gif');?>">');
                   var postdata=$(this).serializeArray();
                   var formurl=$(this).attr('action');
-                  if(postdata){
+                  if(postdata!==null){
                     $.ajax({
                       url:formurl,
                       type:"POST",
@@ -96,18 +94,18 @@
                       success:function(data,textstastus,jqXHR){
                           $('.tab1').hide();
                           $('.tab').show('slow');
+                          setTimeout(function(){
                           $('#load').html('<p class="alert alert-success">Thanks.!please continue</p>').fadeOut(6000);
+                      },2000);
                           },
                       error:function(jqXHR,textstatus,errorThrown){
-                          $('#load').html('<p class="alert alert-danger">Oops.! Failled textstatus='+textstatus+',errorThrown='+errorThrown+'</p>');
+                          $('#load').html('<p class="alert alert-danger">Oops.! Failled </p>');
                       }
                   });
               }else{
                   alert('noooo');
               }
                  e.preventDefault();
-                  e.unbind();
-                  location.reload();
                 });
                $('#form1').submit();
                 

@@ -397,7 +397,7 @@ class Application extends CI_Controller {
         }
     }
 
-    function referapplication_feeee_info() {
+    function referee_info() {
         $config = array(
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.gmail.com',

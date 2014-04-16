@@ -53,6 +53,7 @@
                                 <span class="glyphicon glyphicon-book"></span> Summary preview</a></li>
                         <li><a href="<?php echo site_url('calendar/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
                                 Posted events</a></li>
+                        <li><a href="<?php echo site_url('project_page'); ?>"><span class="glyphicon glyphicon-th"></span> Projects</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
                         <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
