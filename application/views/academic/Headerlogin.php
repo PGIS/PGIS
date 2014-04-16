@@ -54,9 +54,6 @@
                         <li><a href="<?php echo site_url('messages'); ?>">
                                 <span class="glyphicon glyphicon-envelope"></span> Messages</a>
                         </li>
-                        <li><a href="<?php echo site_url('finance_page/finance'); ?>">
-                                <span class="glyphicon glyphicon-folder-open"></span> Complete Registration</a></li>
-                        <li><a href="<?php echo site_url('seminary'); ?>"><span class="glyphicon glyphicon-folder-open"></span> Seminar register</a></li>
                         <li><a href="<?php echo site_url('project_page'); ?>"><span class="glyphicon glyphicon-th"></span> Projects</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>

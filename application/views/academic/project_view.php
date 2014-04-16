@@ -51,6 +51,7 @@
 <script>
     $(document).ready(function(){
        $('.td').click(function(){
+           
          $('form').submit(function(e){
             $('.load').html('<img src="<?php echo base_url('assets/img/loading.gif');?>">');
            var projectdata=$(this).serializeArray();

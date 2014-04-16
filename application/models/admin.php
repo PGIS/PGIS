@@ -12,9 +12,9 @@ class Admin extends CI_Model{
         $query=  $this->db->query("select * from tb_user");
         return $query->result();
     }
-    public function get_paged_list($limit=3,$offset=0) {
+    public function get_paged_list() {
         $this->db->order_by('id','asc');
-        return $this->db->get($this->tb_user,$limit,$offset); 
+        return $this->db->get($this->tb_user); 
     }
     public function save(){
         $person=array(
