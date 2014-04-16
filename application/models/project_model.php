@@ -3,11 +3,12 @@
      function __construct() {
          parent::__construct();
      }
-     function project_form($project_id,$project_title,$project_description){
+     function project_form($project_id,$project_title,$project_description,$email){
          $array_data=array(
              'registration_id'=>$project_id,
              'project_title'=>$project_title,
-             'project_description'=>$project_description
+             'project_description'=>$project_description,
+             'Internal_supervisor'=>$email
          );
          $query=  $this->db->get_where('tb_project',array('registration_id'=>$project_id));
          if($query->num_rows()===1){

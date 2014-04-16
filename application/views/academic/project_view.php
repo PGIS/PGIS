@@ -17,6 +17,7 @@
                     <table class="table">
                         <tr><td><label>Project Title*</label></td><td><input type="text" name="prj" class="form-control"></td></tr>
                         <tr><td><label>Description*</label></td><td><textarea class="form-control" cols="4"name="prd"></textarea></td></tr>
+                        <tr><td><label>Internal Supervisor Email-Address*</label></td><td><input type="text" name="pis" class="form-control" required></td></tr>
                     </table> 
                     <div class="text-right"><button class="btn btn-primary td">submit</button></div>
                      <?php echo form_close();?>
@@ -29,9 +30,9 @@
                     <table class="table table-bordered table-striped table-hover">
                         <?php if(isset($smg)){echo $smg;}?>
                     <?php if(isset($records)){
+                           echo '<tr><th>INTERNAL SUP</th><th>EXTERNAL SUP</th><th>COMMENTS</th><th>STATUS<b class="caret"></b></th></tr>';
                               foreach ($records->result() as $row){
-                                  echo '<tr><th>INTERNAL SUP</th><th>EXTERNAL SUP</th><th>COMMENTS</th><th>STATUS<b class="caret"></b></th></tr>';
-                                  echo '<tr><td>'.$row->Internal_supervisor.'</td><td>'.$row->external_supervisor.'</td><td>'.$row->comments.'</td><td class="text text-info">'.$row->status.'</td></tr>';
+                              echo '<tr><td>'.$row->Internal_supervisor.'</td><td>'.$row->external_supervisor.'</td><td>'.$row->comments.'</td><td class="text text-info">'.$row->status.'</td></tr>';
                               }
                     }?>
                     </table>

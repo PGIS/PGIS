@@ -47,7 +47,8 @@
                     'id'=>$row->id,
                     'registrationID'=>$row->registration_id,
                     'project_title'=>$row->project_title,
-                    'project_description'=>$row->project_description
+                    'project_description'=>$row->project_description,
+                    'internal_supervisor'=>$row->Internal_supervisor
                 );
             }
             $this->session->set_userdata($array_data);
@@ -56,17 +57,15 @@
       }
      }
      public function data_records() {
-         $this->form_validation->set_rules('int','Internal supervisor','trim|required|xss_clean');
          $this->form_validation->set_rules('ext','External supervisor','trim|required|xss_clean');
          if($this->form_validation->run()===FALSE){
              $this->load->view('academic/supervisor_assign');
          }  else {
              $id=  $this->session->userdata('id');
              $this->load->model('supervisor_model');
-             $internal=  $this->input->post('int');
              $external=  $this->input->post('ext');
              $comment=  $this->input->post('cmt');
-             $this->supervisor_model->insert_supervisor($id,$internal,$external,$comment);
+             $this->supervisor_model->insert_supervisor($id,$external,$comment);
              
          }
      }

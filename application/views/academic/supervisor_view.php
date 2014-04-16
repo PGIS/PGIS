@@ -12,8 +12,8 @@
                     <table class="table table-bordered table-striped table-hover">
                          <?php if(isset($query)){echo'<p class="alert-info">No records found.</p>';}?>
                              <?php if(isset($records)){
+                           echo'<tr><th>ID</th><th>REGISTRATION ID</th><th>PROJECT TITLE</th><th>ACTION<b class="caret"></b></th></tr>';
                         foreach ($records->result() as $row){
-                            echo'<tr><th>ID</th><th>REGISTRATION ID</th><th>PROJECT TITLE</th><th>ACTION<b class="caret"></b></th></tr>';
                             echo '<tr><td>'.$row->id.'</td><td>'.$row->registration_id.'</td><td>'.$row->project_title.'</td><td><b class="glyphicon glyphicon-hand-right"></b>' .' '.anchor('supervisor/assign/'.$row->id, 'assign').'</td></tr>';
                         }
                              }?>
@@ -26,9 +26,9 @@
                     <table class="table table-bordered table-striped">
                         <?php if(isset($records)){ echo '<p class="alert-info">No records found.</p>';}?>
                         <?php if(isset($query)){
+                               echo '<tr><th>ID</th><th>REGISTRATION ID</th><th>PROJECT TITLE</th><th>INTERNAL SUP</th><th>EXTERNAL SUP</th><th>STATUS<b class="caret"></b></th></tr>';
                               foreach ($query->result() as $row1){
-                                  echo '<tr><th>ID</th><th>REGISTRATION ID</th><th>PROJECT TITLE</th><th>INTERNAL SUP</th><th>EXTERNAL SUP</th><th>STATUS<b class="caret"></b></th></tr>';
-                                  echo '<tr><td>'.$row1->id.'</td><td>'.$row1->registration_id.'</td><td>'.$row1->project_title.'</td><td>'.$row1->Internal_supervisor.'</td><td>'.$row1->external_supervisor.'</td><td class="text text-info"><b class="glyphicon glyphicon-ok"></b>assigned</td></tr>';
+                               echo '<tr><td>'.$row1->id.'</td><td>'.$row1->registration_id.'</td><td>'.$row1->project_title.'</td><td>'.$row1->Internal_supervisor.'</td><td>'.$row1->external_supervisor.'</td><td class="text text-info"><b class="glyphicon glyphicon-ok"></b>assigned</td></tr>';
                               }
                         }?>
                     </table>

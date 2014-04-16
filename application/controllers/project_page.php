@@ -26,13 +26,15 @@
           $this->load->model('project_model');
           $this->form_validation->set_rules('prj','Project Title','required|xss_clean');
           $this->form_validation->set_rules('prd','Project Description','required|xss_clean');
+          $this->form_validation->set_rules('pis','Email-address','trim|required|valid_email|xss_clean');
           if($this->form_validation->run()===FALSE){
               $this->load->view('academic/project_view');
           }  else {
             $project_id=  $this->session->userdata('registration_id');
             $project_title=  $this->input->post('prj');
+            $email=  $this->input->post('pis');
             $project_description=  $this->input->post('prd');
-            $this->project_model->project_form($project_id,$project_title,$project_description);
+            $this->project_model->project_form($project_id,$project_title,$project_description,$email);
           }
       }
   }

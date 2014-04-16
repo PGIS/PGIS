@@ -16,6 +16,11 @@
                             <p class="alert alert-warning">PROJECT DESCRIPTION</p>
                             <?php echo ''.$project_description;?>
                         </div>
+                        <div>
+                            
+                            <p class="alert alert-warning">PROPOSED INTERNAL SUPERVISOR</p>
+                            <?php echo ''.$internal_supervisor;?>
+                        </div>
                         <div><table class="table table-responsive">
                                 <tr><td class="acpt1"><button class="btn btn-primary acpt">accept</button></td><td class="dnial"><button class="btn btn-danger dnial1">Reject</button></td></tr>
                             </table>
@@ -28,8 +33,6 @@
                     <div style="padding-top: 30px;"><table class="table"><tr><td class="text-success">Assign Internal and External Supervisors*</td></tr></table></div>
                     <?php echo form_open('supervisor/data_records');?>
                     <table class="table">
-                        
-                        <tr><td><label>Internal Supervisor</label></td><td><input type="text" class="form-control" name="int"></td></tr>
                         <tr><td><label>External Supervisor</label></td><td><input type="text" class="form-control" name="ext"></td></tr>
                         <tr><td><label>Comments</label></td><td><textarea class="form-control" name="cmt"></textarea></td></tr>
                         

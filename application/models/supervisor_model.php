@@ -3,10 +3,9 @@
      function __construct() {
          parent::__construct();
      }
-     public function insert_supervisor($id,$internal,$external,$comment){
+     public function insert_supervisor($id,$external,$comment){
          $data=array(
                'id'=>$id,
-               'Internal_supervisor'=>$internal,
                'external_supervisor'=>$external,
                'comments'=>$comment,
                'status'=>'assigned'
