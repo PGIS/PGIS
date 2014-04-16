@@ -14,11 +14,16 @@
  
         <div class="col-md-6">
             <?php echo form_open('finace_page');?>
-            <table class="table table-striped table-condensed"><tr><td><label>Enter the year of study</label></td><td><input type="text" name="data_year" id="chose" class="form-control" placeholder="Year 1">
+            <table class="table table-striped table-condensed"><tr><td><label>View payment status for respective year</label></td><td><select name="post" id="cont"><option id="opt1"></option>
+                            <option value="Year 1">Year 1</option>
+                            <option value="Year 2">Year 2</option>
+                            <option value="Year 3">Year 3</option>
+                            <option value="Year 4">Year 4</option>
+                        </select>
                             </td></tr></table><?php echo form_close();?>
                
             <table class="table table-striped cont"> 
-                <tr><td><label class="dts">Academic Year </label> </td><td><b><?php echo ' '.$academic;?></b></td></tr>
+            <tr><td><label class="dts">Academic Year </label> </td><td><b><?php echo ' '.$academic;?></b></td></tr>
              <tr><td><strong class="dts">RegistrationID</strong></td><td><b><?php echo ' '.ucfirst(strtolower(addslashes($application_id)));?></b></td></tr>
              <tr><td><strong class="dts">Registration Fees For</strong></td><td><b><?php echo ' '.$registration;?></b></td></tr>
              <tr><td><strong class="dts">Registration Fees Amount</strong></td><td><b><?php echo' '.$registration_amount?></b></td></tr>
@@ -72,23 +77,23 @@
 </div>
     <script>
    $(document).ready(function(){
-      $('#chose').keypress(function(){
-          year=prompt("Enter the year of study",$(this).html());
-          if(year!==''){
-          $.ajax({
-              url:window.location,
-              type:"GET",
-              data:{
-                 data_year:year 
-              },
-                      success:function(smg){
-                          location.reload();
-                      }
-          });
-  }
-    
+       $('.cont').hide();
+      $('#cont').on('change',function(){
+          var year=$('#cont').val();
+          if(year===''){
+              $('.cont').hide();
+              alert('Chose the valid year');
+          }else{
+              $.ajax({
+                  url:"<?php echo site_url('finance');?>",
+                  type:"POST",
+                  data:year,
+                  success:function(text){
+                   $('.cont').show(); 
+                  }
+              });
+       }
       });
-            
     });
     
     </script>

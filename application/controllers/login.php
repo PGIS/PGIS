@@ -1,7 +1,4 @@
-<?php
-
-if (!defined('BASEPATH'))
-    exit('No irect script access allowed');
+<?php if (!defined('BASEPATH'))exit('No irect script access allowed');
 
 class login extends CI_Controller {
 
@@ -45,6 +42,8 @@ class login extends CI_Controller {
         $query3 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Admision staff'));
         $query4 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Finance staff'));
         $query5 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Student'));
+        $query6=  $this->db->get_where('tb_user', array('userid'=>  $username, 'designation'=>'Supervisor'));
+        $query7=  $this->db->get_where('tb_user', array('userid'=>  $username, 'designation'=>'external supervisor'));
         if ($query1->num_rows() == 1) {
             $s_data = array('user_role' => 'administrator');
             $this->session->set_userdata($s_data);
@@ -65,7 +64,15 @@ class login extends CI_Controller {
            $s_data = array('user_role'=>'Student');
            $this->session->set_userdata($s_data);
            redirect('student/firstin');
-            }
+        }elseif ($query6->num_rows()===1) {
+            $s_data=array('user_role'=>'Supervisor');
+            $this->session->set_userdata($s_data);
+            redirect('supervisor');
+        }elseif ($query7->num_rows()===1) {
+            $s_data=array('user_role'=>'extenal supervisor');
+            $this->session->set_userdata($s_data);
+        }
+            
         }
         
         function studentsession($id){

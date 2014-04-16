@@ -12,11 +12,11 @@ class Seminar_register extends CI_model {
               'semina_hour'=>$hours,
               'semina_id'=>$sn
           );
-          $res=  $this->db->get_where('tb_seminar',array('registration_id'=>$username,'course'=>$course),1);
+          $res=  $this->db->get_where('tb_seminar',array('registration_id'=>$username,'course'=>$course));
           if ($res->num_rows()===1){
-              $this->db->where('course',$course);
+              $this->db->where($data);
               $this->db->update('tb_seminar',$data);
-          }  else {
+          }else {
               $this->db->insert('tb_seminar',$data);
           }
           

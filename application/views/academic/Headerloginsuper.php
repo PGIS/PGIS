@@ -47,13 +47,12 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li><a href="<?php echo site_url('finance_page/finance'); ?>"><span class="glyphicon glyphicon-folder-open"></span>
-                                Complete Registration</a></li>
-                        <li><a href="<?php echo site_url('finance_page'); ?>">
-                                <span class="glyphicon glyphicon-book"></span> Summary preview</a></li>
-                        <li><a href="<?php echo site_url('calendar/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
-                                Posted events</a></li>
-                        <li><a href="<?php echo site_url('project_page'); ?>"><span class="glyphicon glyphicon-th"></span> Projects</a></li>
+                        <li><button class="mybtn btn-block btn-group-lg" style="margin-left: 4px;">
+                                <span class="glyphicon glyphicon-dashboard"></span>  PROJECT COORDINATOR</button></li>
+                        <li><a href="<?php echo site_url('supervisor'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
+                                Unsigned supervisor</a></li>
+                         <li><a href="<?php echo site_url('calendar/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
+                                Post Event</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
                         <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
@@ -79,3 +78,4 @@
 
                 </div><!-- /.navbar-collapse -->
             </nav>
+
