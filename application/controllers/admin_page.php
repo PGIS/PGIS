@@ -63,4 +63,20 @@ class Admin_page extends CI_Controller {
     function addcourse(){
         $this->load->view('admin/addcourse');
     }
+    function courseadd(){
+        $this->form_validation->set_rules('coursename', 'Programme name', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('foundcollage', 'programme college', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('department', 'department', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('durati', 'programme duration', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('normfee', 'programme fee', 'trim|required|numeric|xss_clean');
+        $this->form_validation->set_rules('forefee', 'programme fee', 'trim|required|numeric|xss_clean');
+         if ($this->form_validation->run() == FALSE) {
+            $this->load->view('admin/addcourse');
+        } else {
+            $this->load->view('admin/addcourse');
+        }
+    }
+    function manageprograme() {
+        $this->load->view('admin/manageprogramme');
+    }
 }
