@@ -97,6 +97,7 @@
 <script>
     $(document).ready(function(){
        $('.td').click(function(){
+           
          $('form').submit(function(e){
              if($('.crt').val()===''||$('.crt1').val()===''||$('.crt2').val()===''){
                 alert('Cant be Empty.!');

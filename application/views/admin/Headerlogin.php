@@ -13,6 +13,7 @@
     <link href="<?php echo base_url('assets/css/font-awesome.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
   </head>
 
   <body>
@@ -29,9 +30,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo site_url('frontpage');?>">
-		<img src="<?php echo base_url('assets/img/mwenge.gif');?>"class="imge" height="35">    POSTGRADUATE INFORMATION SYSTEM
-	  </a>
+           <a class="navbar-brand visible-lg" href="<?php echo site_url('admin_page');?>">
+                        <img src="<?php echo base_url('assets/img/mwenge.gif'); ?>"class="imge" height="35">
+                        POSTGRADUATE INFORMATION SYSTEM
+                    </a>
+              <a class="navbar-brand hidden-lg" href='#'>
+                        <img src="<?php echo base_url('assets/img/mwenge.gif'); ?>"class="imge" height="35">PGIS</a>            
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -42,6 +46,7 @@
                  </button>
               </li>
             <li><a href="<?php echo site_url('admin_page/add');?>"><span class="glyphicon glyphicon-plus-sign"></span>  Add user</a></li>
+            <li><a href="<?php echo site_url('admin_page/addcourse');?>"><span class="glyphicon glyphicon-plus"></span> Add Programme</a></li>
             <li><a href="<?php echo site_url('admin_page/seminar_reg');?>"><span class="glyphicon glyphicon-folder-open"></span>  Seminars</a></li>
             <li><a href="<?php echo site_url('register');?>"><span class="glyphicon glyphicon-wrench"></span> Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
