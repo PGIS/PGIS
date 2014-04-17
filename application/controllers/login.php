@@ -42,8 +42,9 @@ class login extends CI_Controller {
         $query3 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Admision staff'));
         $query4 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Finance staff'));
         $query5 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Student'));
-        $query6=  $this->db->get_where('tb_user', array('userid'=>  $username, 'designation'=>'Supervisor'));
-        $query7=  $this->db->get_where('tb_user', array('userid'=>  $username, 'designation'=>'external supervisor'));
+        $query6=  $this->db->get_where('tb_user', array('userid'=> $username,  'designation'=>'Supervisor'));
+        $query7=  $this->db->get_where('tb_user', array('userid'=> $username,  'designation'=>'external supervisor'));
+        $query8=  $this->db->get_where('tb_user', array('userid'=>  $username, 'designation'=>'Teaching staff'));
         if ($query1->num_rows() == 1) {
             $s_data = array('user_role' => 'administrator');
             $this->session->set_userdata($s_data);
@@ -71,6 +72,10 @@ class login extends CI_Controller {
         }elseif ($query7->num_rows()===1) {
             $s_data=array('user_role'=>'extenal supervisor');
             $this->session->set_userdata($s_data);
+        }elseif ($query8->num_rows()===1) {
+            $s_data=array('user_role'=>'Teaching staff');
+            $this->session->set_userdata($s_data);
+            redirect('teaching');
         }
             
         }

@@ -8,18 +8,18 @@
                     <fieldset>
                         <div class="pantop"><legend style="padding-top: 30px;" class="text text-justify text-info"><p>Details For: <?php echo ''.$registrationID;?></p></legend></div>
                         <div>
-                            <p class="alert alert-info">PROJECT TITLE</p>
-                            <?php echo ''.$project_title;?>
+                            <label>PROJECT TITLE</label>
+                            <p class="dts"><?php echo ''.$project_title;?></p>
                         </div>
                         <div>
                             
-                            <p class="alert alert-warning">PROJECT DESCRIPTION</p>
-                            <?php echo ''.$project_description;?>
+                            <label>PROJECT DESCRIPTION</label>
+                            <p class="dts"><?php echo ''.$project_description;?></p>
                         </div>
                         <div>
                             
-                            <p class="alert alert-warning">PROPOSED INTERNAL SUPERVISOR</p>
-                            <?php echo ''.$internal_supervisor;?>
+                            <label>PROPOSED INTERNAL SUPERVISOR</label>
+                            <p class="dts"><?php echo ''.$internal_supervisor;?></p>
                         </div>
                         <div><table class="table table-responsive">
                                 <tr><td class="acpt1"><button class="btn btn-primary acpt">accept</button></td><td class="dnial"><button class="btn btn-danger dnial1">Reject</button></td></tr>
@@ -30,11 +30,11 @@
                 <div class="col-lg-6">
                     <div class="hd">
                     <div class="tr">
-                    <div style="padding-top: 30px;"><table class="table"><tr><td class="text-success">Assign Internal and External Supervisors*</td></tr></table></div>
+                    <div style="padding-top: 30px;"><table class="table"><tr><td class="text-success">Assign External Supervisors*</td></tr></table></div>
                     <?php echo form_open('supervisor/data_records');?>
                     <table class="table">
-                        <tr><td><label>External Supervisor</label></td><td><input type="text" class="form-control" name="ext"></td></tr>
-                        <tr><td><label>Comments</label></td><td><textarea class="form-control" name="cmt"></textarea></td></tr>
+                        <tr><td><label>External Supervisor</label></td><td><input type="text" class="form-control qt" name="ext"></td></tr>
+                        <tr><td><label>Comments</label></td><td><textarea class="form-control qt1" name="cmt"></textarea></td></tr>
                         
                     </table>
                     <div><table class="table table-responsive">
@@ -64,6 +64,10 @@
                     $(document).ready(function(){
                         $('.ass').click(function(){
                             $('form').submit(function(event){
+                                if($('.qt').val()===''||$('.qt1').val()===''){
+                                alert('You mast Enter all the space');
+                                return false;
+                                }
                                 $('.loading').html('<img src="<?php echo base_url('assets/img/loading.gif');?>">');
                                 var formdata=$(this).serializeArray();
                                 var path=$(this).attr('action');
@@ -79,7 +83,7 @@
                                     }
                                 });
                                 event.preventDefault();
-                            });
+                             });
                             $('form').submit();
                         });
                     });
