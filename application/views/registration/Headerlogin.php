@@ -51,7 +51,6 @@
                         <li><a href="<?php echo site_url('seminary'); ?>"><span class="glyphicon glyphicon-briefcase"></span> Seminar register</a></li>
                         <li><a href="<?php echo site_url('calendar/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
                                 Posted events</a></li>
-                        <li><a href="<?php echo site_url('project_page'); ?>"><span class="glyphicon glyphicon-th"></span> Projects</a></li>
                         <li><a href="<?php echo site_url('messages'); ?>">
                                 <span class="glyphicon glyphicon-envelope"></span> Messages</a>
                         </li>
