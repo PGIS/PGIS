@@ -23,13 +23,13 @@ if ($this->session->userdata('user_role') == 'Admision staff') {
         </div >
     </div>
     <div class="col-md-9">
-        <table class="table" id="mytable2">
+        <table class="table table-striped" id="messagelist">
             <thead>
-            <center><h4>Received Messages</h4></center>
-            <tr>
-                <th>Sent by</th>
-                <th>Subject</th>
-            </tr>
+                <center><h4>Received Messages</h4></center>
+                <tr>
+                    <th>Sent by</th>
+                    <th>Subject</th>
+                </tr>
             </thead>
             <tbody>
                 <?php
@@ -38,14 +38,17 @@ if ($this->session->userdata('user_role') == 'Admision staff') {
                 if ($query->num_rows() > 0) {
                     foreach ($query->result() as $row) {
                         if ($row->status == 'unchecked') {
-                            echo '<tr>'
-                            . '<td><a href="' . site_url('messages/opensms/' . $row->message_id) . '"><strong>' . $row->sender . '</strong></a></td>'
-                            . '<td><a href="' . site_url('messages/opensms/' . $row->message_id) . '">' . $row->subject . '</a></td>'
+                            $subject=character_limiter($row->subject, 20);
+                             echo '<tr>'
+                            
+                            . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->sender.'</a></b></td>'
+                            . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$subject.'</a></b></td>'         
                             . '</tr>';
                         } else {
+                            $subject=character_limiter($row->subject, 20);
                             echo '<tr>'
                             . '<td><a href="' . site_url('messages/opensms/' . $row->message_id) . '">' . $row->sender . '</a></td>'
-                            . '<td><a href="' . site_url('messages/opensms/' . $row->message_id) . '">' . $row->subject . '</a></td>'
+                            . '<td><a href="' . site_url('messages/opensms/' . $row->message_id) . '">' . $subject . '</a></td>'
                             . '</tr>';
                         }
                     }

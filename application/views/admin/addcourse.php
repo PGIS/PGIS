@@ -4,9 +4,17 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<?php echo site_url('admin_page/addcourse');?>">Add Programme</a></li>
             <li><a href="<?php echo site_url('admin_page/manageprograme');?>">Manage programmes</a></li>
+            <li><a href="<?php echo site_url('admin_page/changestudentprogramme');?>">Change Student course</a></li>
         </ol>
         <div class="well-sm alert-info">
             Please enter course information
+            <?php 
+            if(isset($padded)){
+                echo '<div class="alert alert-success">Progrmme added successfully</div>';
+            }elseif(isset($edited)){
+                echo '<div class="alert alert-success">Progrmme adited successfully</div>';
+            }
+            ?>
         </div>
         <div class="col-md-9 col-lg-offset-1">
            <table class="table">
@@ -38,11 +46,19 @@
                 <tr>
                     <td>
                      Tanzanian programme fee <?php echo form_error('normfee','<div class="error">', '</div>'); ?>
-                      <input type="text" class="form-control" id="fee" name="normfee" required>
+                      
+                       <div class="form-group input-group">
+                            <input type="text" class="form-control" id="fee" name="normfee" required>
+                            <span class="input-group-addon">Tsh</span>
+                       </div>
                     </td>
                     <td>
                       Non-Tanzania programme fee <?php echo form_error('forefee','<div class="error">', '</div>'); ?>
-                      <input type="text" class="form-control" id="fee" name="forefee" required>
+                      
+                      <div class="form-group input-group">
+                        <input type="text" class="form-control" id="fee" name="forefee" required>
+                        <span class="input-group-addon">USD</span>
+                      </div>
                     </td>
                 </tr>
                 <tr>

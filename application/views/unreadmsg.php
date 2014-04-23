@@ -39,9 +39,10 @@ if($this->session->userdata('user_role')=='Admision staff'){
             if($query->num_rows() > 0){
             
             foreach ($query->result() as $row) {
+                $subject=character_limiter($row->subject, 20);
                         echo '<tr>'
                 . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->sender.'</a></b></td>'
-                . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$row->subject.'</a></b></td>'         
+                . '<td><b><a href="'.site_url('messages/opensms/'.$row->message_id).'">'.$subject.'</a></b></td>'         
                     . '</tr>';
                 }
             }

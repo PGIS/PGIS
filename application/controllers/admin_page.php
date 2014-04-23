@@ -1,9 +1,10 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')){exit('No direct script access allowed');}
 
 class Admin_page extends CI_Controller {
+
     function __construct() {
         parent::__construct();
-        $this->load->helper('form', 'html', 'url');
+        $this->load->helper(array('form', 'html', 'url', 'text'));
         $this->load->library(array('form_validation', 'pagination', 'table'));
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
 
@@ -60,7 +61,8 @@ class Admin_page extends CI_Controller {
             $this->load->view('admin/seminar_reg', $data);
         }
     }
-    function addcourse(){
+
+    function addcourse() {
         $this->load->view('admin/addcourse');
     }
     function courseadd(){
@@ -70,13 +72,54 @@ class Admin_page extends CI_Controller {
         $this->form_validation->set_rules('durati', 'programme duration', 'trim|required|xss_clean');
         $this->form_validation->set_rules('normfee', 'programme fee', 'trim|required|numeric|xss_clean');
         $this->form_validation->set_rules('forefee', 'programme fee', 'trim|required|numeric|xss_clean');
-         if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('admin/addcourse');
         } else {
-            $this->load->view('admin/addcourse');
+        if(isset($_POST['edit'])){
+                $this->load->model('admin');
+                Admin::addprogramme();
+                echo '<div class="alert alert-success">Changes has been saved<div>';
+            } else {
+                $this->load->model('admin');
+                Admin::addprogramme();
+                $data['padded'] = TRUE;
+                $this->load->view('admin/addcourse', $data);   
+            }
+            
         }
     }
+
     function manageprograme() {
         $this->load->view('admin/manageprogramme');
     }
-}
+
+    function deleteprograme($id) {
+        $this->load->model('admin');
+        Admin::pgdelete($id);
+        $data['prdelete'] = TRUE;
+        $this->load->view('admin/manageprogramme', $data);
+    }
+
+    function editprograme($prid) {
+        $res=  $this->db->get_where('tb_programmes',array('prog_id'=>$prid));
+         foreach ($res->result() as $detail){
+             $data=array(
+                 'pname'=>$detail->programme_name,
+                 'pcollege'=>$detail->programme_college,
+                 'pdepart'=>$detail->department,
+                 'pduration'=>$detail->progr_duration,
+                 'tzfee'=>$detail->tz_fee,
+                 'nontzfee'=>$detail->non_tz_fee
+                 );
+         }
+        $this->load->view('admin/editprogramme',$data);
+    }
+    
+    function changestudentprogramme(){
+        $this->load->view('admin/changeprogramme');
+    }
+    function changeProgramme(){
+        $this->load->view('admin/studentprogramme');
+    }
+  }
+

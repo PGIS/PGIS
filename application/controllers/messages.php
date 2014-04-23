@@ -4,7 +4,7 @@
         function __construct(){
          parent::__construct();
          $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
-         $this->load->helper('form','html','url','array','string');
+         $this->load->helper(array('form','html','url','array','string','text'));
          $this->load->library(array('form_validation','session','pagination'));
         
         
