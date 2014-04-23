@@ -18,5 +18,37 @@
              $this->db->insert('tb_project',$array_data);    
          }
      }
+     function project_prog($sn,$internal,$external,$document,$date_sub){
+            $this->set_session();
+                 $data=array(
+                 'registrationID'=>$sn,
+                 'supervisor'=>$internal,
+                 'external_examiner'=>$external,
+                 'document'=>$document,
+                 'submission_date'=>$date_sub
+             );
+             $this->session->set_userdata($data);
+             $query=  $this->db->get_where('tb_student_desert',array('registrationID'=>$sn));
+              if($query->num_rows()===1){
+                  $this->db->where('registrationID',$sn);
+                  $this->db->update('tb_student_desert',$data);
+              }else{
+                  $this->db->insert('tb_student_desert',$data);
+              }
+     }
+     function set_session(){
+         $sn=  $this->session->userdata('registration_id');
+         $res=  $this->db->select('Internal_supervisor,external_supervisor')->from('tb_project')->where(array('registration_id'=>$sn,'status'=>'assigned'),1)->limit(1)->get();
+         $row=$res->row();
+         if($res->num_rows()===1){
+             $data=array(
+                 'internal'=>$row->Internal_supervisor,
+                 'external'=>$row->external_supervisor
+             );
+             $this->session->set_userdata($data);
+           }  else {
+        return FALSE; 
+           }
+    }
  }
 

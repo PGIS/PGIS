@@ -51,7 +51,7 @@
                                 <span class="glyphicon glyphicon-dashboard"></span>  PROJECT COORDINATOR</button></li>
                         <li><a href="<?php echo site_url('supervisor'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
                                 Unsigned supervisor</a></li>
-                         <li><a href="<?php echo site_url('calendar/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
+                         <li><a href="<?php echo site_url('supervisor_event/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
                                 Post Event</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>

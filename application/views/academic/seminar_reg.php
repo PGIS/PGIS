@@ -1,6 +1,6 @@
 <?php include_once 'Headerlogin.php'; ?>
 <div id="page-wrapper">
-    <div class="well well-sm"><p align="center"><b>Seminar Registration in a Week</b></p></div>
+    <div class="well well-sm"><p align="center"><b class="text text-success">Seminar Registration in a Week</b></p></div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><center>Seminar register</center></h3>
@@ -12,7 +12,7 @@
                 <table class="table table-striped table-bordered tab1">
                 <tr><td width="30%" align="center">Courses</td><td width="30%" align="center">Day</td><td width="30%" align="center">Hour</td></tr>
                 <tr class="td1">
-                    <td rowspan="2" align="center" id="main">IS 654&nbsp;<input type="checkbox" name="day" value="IS 654"></td>
+                    <td rowspan="2" align="center" id="main">IS 654&nbsp;<input type="checkbox" name="day" value="IS 654" id="ch1"></td>
                     <td align="center" id="yes">Monday&nbsp;<input type="radio" name="day1" value="Monday"></td>
                     <td align="center" id="yes1">0700-0800&nbsp;<input type="radio" name="data" value="0700-0800"><br>
                         1100-1200&nbsp;<input type="radio" name="data" value="1100-1200"></td>
@@ -27,7 +27,7 @@
                 <table class="table table-striped table-bordered tab">
                        <?php echo form_open('seminary/table_data',array('id'=>'form'));?>
                     <tr class="td">
-                        <td rowspan="2" align="center" id="main1">IS 643&nbsp<input type="checkbox" name="day1" value="IS 643"></td>
+                        <td rowspan="2" align="center" id="main1">IS 643&nbsp<input type="checkbox" name="day1" value="IS 643" id="ch"></td>
                         <td align="center" id="sel">Monday&nbsp;<input type="radio" name="day2" value="Monday"></td>
                         <td align="center" id="sel1">1000-1100&nbsp;<input type="radio" name="data1" value="1000-1100"><br>                     
                             1600-1700&nbsp;<input type="radio" name="data1" value="1600-1700">
@@ -46,30 +46,27 @@
             $(document).ready(function(){
                 $('.lc1').click(function(){
                     $('#form').submit(function(e){
+                        if(!($('#ch').is(':checked'))){
+                       alert('Select the course');
+                       return false;
+                   }
                         $('#load').html('<img src="<?php echo base_url('assets/img/moving .gif');?>">');
                         var formdata=$(this).serializeArray();
                         var formhelper=$(this).attr('action');
-                          if(formdata){
                          $.ajax({
                              url:formhelper,
                              type:"POST",
                              data:formdata,
                              success:function(data,textstatus,jqXHR){
-                                 $('.hd').hide('slow');
-                                 $('.tab').hide('slow');
-                               $('#load').html('<p class="alert alert-success">Thanks for Your registration.!</p>').show();
-                              },
-                            error:function(jqXHR,textstatus,errorThrown){
-                            $('#load').html('<p class="alert alert-danger">Failed.!</p>');
-                            }
+                                 $('.hd').hide('');
+                                 $('.tab').hide('');
+                                 setTimeout(function(){
+                               $('#load').html('<p class="alert alert-success">Thanks for Your registration.!</p>');
+                           },2000);
+                              }
                          });
                          e.preventDefault();
                          e.unbind();
-                         location.reload();
-                         }else{
-                           $('#load').html('<p class="alert alert-danger">Oops fill all the fields</p>');
-                           return false;
-                         }
                     });
                 });
             });
@@ -83,29 +80,26 @@
            $('.tab').hide();
            $('.lc').click(function(){
                $('#form1').submit(function(e){
+                   if(!($('#ch1').is(':checked'))){
+                       alert('Select the course');
+                       return false;
+                   }
                   $('#load').html('<img src="<?php echo base_url('assets/img/moving .gif');?>">');
                   var postdata=$(this).serializeArray();
                   var formurl=$(this).attr('action');
-                  if(postdata!==null){
-                    $.ajax({
+                     $.ajax({
                       url:formurl,
                       type:"POST",
                       data:postdata,
                       success:function(data,textstastus,jqXHR){
                           $('.tab1').hide();
-                          $('.tab').show('slow');
                           setTimeout(function(){
-                          $('#load').html('<p class="alert alert-success">Thanks.!please continue</p>').fadeOut(6000);
+                          $('#load').html('<p class="alert alert-success">Thanks.!please continue</p>');
+                          $('.tab').fadeIn('slow');
                       },2000);
-                          },
-                      error:function(jqXHR,textstatus,errorThrown){
-                          $('#load').html('<p class="alert alert-danger">Oops.! Failled </p>');
-                      }
+                     }
                   });
-              }else{
-                  alert('noooo');
-              }
-                 e.preventDefault();
+                  e.preventDefault();
                 });
                $('#form1').submit();
                 

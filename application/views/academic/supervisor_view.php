@@ -3,7 +3,7 @@
     <div class="span12">
         <div class="col-lg-11">
             <ul class="nav nav-tabs nav-justified nav-tabs-justified">
-                <li class="<?php if(isset($active)){echo'active';}?>"><a data-target=".unchecked" tab-toggle="tab"><label class="glyphicon glyphicon-eye-open">Unchecked</label></a></li>
+                <li class="active"><a data-target=".unchecked" tab-toggle="tab"><label class="glyphicon glyphicon-eye-open">Unchecked</label></a></li>
                 <li class="<?php if(isset($active1)){echo'active';}?>"><a data-target=".checked" data-toggle="tab"><label class="glyphicon glyphicon-eye-close">Assigned</label></a></li>
             </ul>
             <div class="tab-content" style="display: block">
