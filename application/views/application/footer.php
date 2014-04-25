@@ -31,4 +31,14 @@ enabled: true
                         }); 
                     </script>
   </body>
+  <script>
+    $("#1").change(function() {
+        var f = document.getElementById("1").value;
+       
+        var url = "application/courses/"+$.trim(f);
+        $.get(url, function(data) {
+            $('#2').append(data);
+        });
+    });
+</script>
 </html>

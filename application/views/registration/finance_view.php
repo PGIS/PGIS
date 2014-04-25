@@ -39,17 +39,17 @@
                         please correct the information and submit
                     </div>';
                       }?>    
-                   <div class="col-md-10 col-lg-offset-1">
+                   <div class="col-md-12">
                         <?php echo form_open_multipart('finance_page/finance');?>
                       
                         <table class="table table-condensed table-striped">
                             <tr>
                                 <td>
-                                    <label>Registration Fees For:</label>
+                                    Registration Fees For:
                                 </td>
                                 <td>
                                     <select name="reg_fees" class="form-control check" required>
-                                        <option><?php if(isset($year)){echo $year;}?></option>
+                                        
                                         <option  value="year_one">Year 1</option>
                                         <option value="year_one">Year 2</option>
                                         <option value="year_three">Year 3</option>
@@ -58,23 +58,30 @@
                                 </td>
                             </tr>
                             <tr>
+                                 <td>
+                                  Amount payed
+                                </td>
                                 <td>
                                     <input type="text" class="form-control" placeholder="Amount" required name="amnt"
                                            value="<?php if(isset($amount)){echo $amount;}?>">
                                  </td>
+                               
+                            </tr>
+                            <tr>
+                                <td>Recept number/Transaction id</td>
                                 <td>
-                                  <input type="text" class="form-control" placeholder="ReceiptNo" required name="rescpt"
+                                    <input type="text" class="form-control" placeholder="ReceiptNo" required name="rescpt"
                                          value="<?php if(isset($recept_no)){echo $recept_no;}?>">
                                 </td>
-                            </tr> 
-                            <tr><td><label>Academic Year:</label>
+                            </tr>
+                            <tr><td>Academic Year:
                                 </td>
                                 <td><input type="text" name="acy" placeholder="2014/2015" class="form-control" required
                                                value="<?php if(isset($accyear)){echo $accyear;}?>"></td></tr> 
                        
                             <tr>
                                 <td >
-                                    <label for="payment_det">Mode of Payment*</label>
+                                    Mode of Payment
                                 </td>
                                 <td>
                                     <font class="alert-danger"><?php echo form_error('pay_mode');?></font>
@@ -87,7 +94,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="dop">Date of payment*</label>
+                                    Date of payment
                                 </td>
                                 <td>
                                     <font class="alert-danger"><?php echo form_error('date_payment');?></font>
@@ -97,13 +104,13 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <label for="sup_doc">Upload supporting doc*
-                                    <?php if(isset($recept_no)){echo '<div class="red">new</div>';}?></label>
+                                    Upload supporting doc*
+                                    <?php if(isset($recept_no)){echo '<div class="red">new</div>';}?>
                                     <input type="file" name="userfile"  required>
                                 </td>
                             </tr>
                         </table>
-                            <p align="right"><input type="submit" class="btn btn-info" value="submit" name="save" data-loading-text="loading..."></p>
+                            <p align="right"><input type="submit" class="btn btn-info" value="submit" name="feesave" data-loading-text="loading..."></p>
                            <?php echo form_close();?>
                             
                     </div>

@@ -1,7 +1,4 @@
-<?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Application extends CI_Controller {
 
@@ -615,6 +612,9 @@ class Application extends CI_Controller {
         $s_data = array('user_role' => 'Student');
         $this->session->set_userdata($s_data);
         redirect('student/firstin');
+    }
+    function courses($coll){
+        echo '<option>fool</option>';
     }
 
 }

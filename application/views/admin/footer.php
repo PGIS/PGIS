@@ -22,6 +22,7 @@
 <script>
     $("#changeprogramme").submit(function(event) {
         event.preventDefault();
+        $('#studentprogamme').html('<img src="<?php echo base_url('assets/img/loading.gif');?>">');
         var url = "<?php echo site_url('admin_page/changeProgramme'); ?>";
         var fdata = $('#changeprogramme').serializeArray();
         $.post(url, fdata, function(data) {

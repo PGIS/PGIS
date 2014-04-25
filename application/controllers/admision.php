@@ -21,17 +21,13 @@ class Admision extends CI_Controller{
         }
     }
     
-    function index($offset=0){
-        
+    function index(){
         $dat = array( 'submited'=>'yes');
         $dat1 = array( 'appl_status'=>'no'); 
         $this->db->where($dat1);
         $this->db->order_by('app_id','asc');
-        
-        $query1 = $this->db->get_where('tb_app_personal_info', $dat,$this->limit, $offset);
+        $query1 = $this->db->get_where('tb_app_personal_info', $dat);
         $data['query']=$query1->result();
-        $this->creating_pagination();
-        $data['pagination']=$this->pagination->create_links();
         $this->load->view('Admision/admision',$data);
      
     }
@@ -153,7 +149,7 @@ class Admision extends CI_Controller{
         }
         $reg= '2010-04-'.$k;
          $this->load->model('admision_model');
-            Admision_model::admit($data['appid'],$reg,$userid,$data['Ucourse']);
+            Admision_model::admit($data['appid'],$reg,$userid,$data['Ucourse'],$data['sname'],$data['other_nam'],$data['nationalt']);
             Admision_model::verify_form($userid);
         $this->load->view('Admision/verify_notifi',$data);
         
@@ -174,20 +170,6 @@ class Admision extends CI_Controller{
           $this->db->update('tb_app_prev_info', $array); 
           $this->load->view('Admision/verify_notifi',$data);
       }
-      
-      
-      
-        function creating_pagination(){
-            
-            $this->load->model('admision_model');
-            $count= Admision_model::count_all();
-            $config['base_url'] = site_url('admision/index');
-            $config['total_rows'] = $count;
-            $config['per_page'] = $this->limit; 
-            $config['uri_segment'] = 3;
-            $this->pagination->initialize($config); 
-  
-        }
         
         function admitted_applicants(){
            $dat = array( 'appl_status'=>'yes');

@@ -63,7 +63,7 @@
                         var date=$('#tds').val();
                         if(date===''){
                             alert('Date is important');
-                            return false;
+                      33      return false;
                         }
                         $('#loader').html('<img src="<?php echo base_url('assets/img/loading.gif');?>">');
                         var filedata=$(this).serializeArray();

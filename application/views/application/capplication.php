@@ -50,9 +50,16 @@
                     <label for="college">College Selection</label>
                     <select name="college"  class="form-control" id='1'>
                         <option > <?php display_input('college',$Ucollege);?></option>
-                      <option >College of Information and Communication Technology</option>
-                      <option >College of Natural and Applied Science</option>
-                      <option >College of Engineering</option>
+                        <?php
+                        $this->db->select('programme_college');
+                        $this->db->group_by('programme_college');
+                        $collage = $this->db->get('tb_programmes');
+                        if($collage->num_rows()>0){
+                            foreach ($collage->result()as $co){
+                                echo '<option >'.$co->programme_college.'</option>';
+                            }
+                        }
+                        ?>
                     </select></p>
                </div>
                 <div><p>
