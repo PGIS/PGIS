@@ -614,7 +614,13 @@ class Application extends CI_Controller {
         redirect('student/firstin');
     }
     function courses($coll){
-        echo '<option>fool</option>';
+      $course= str_replace('%20', ' ',$coll);
+      $tquery = $this->db->get_where('tb_programmes', array('programme_college' => $course));
+      if($tquery->num_rows()>0){
+          foreach ($tquery->result() as $courlist) {
+              echo '<option>'.$courlist->programme_name.'</option>';
+          }
+      }
     }
 
 }

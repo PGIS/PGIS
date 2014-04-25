@@ -65,15 +65,10 @@
                 <div><p>
                     <?php echo form_error('course','<div class="error">','</div>'); ?>
                      <label for="course"> Select Course</label>
-                     <select class="form-control" name="course" id="2">
+                     <select class="form-control" name="course" id="2" >
                         <option >
                                   <?php display_input('course',$Ucourse);?>
                         </option>
-                        <option >Master of Science in Computer Science</option>
-                        <option >Master of Science in Health Informatics</option>
-                        <option >Master of Science in Electronics Engineering and Information Technology</option>
-                        <option >Master of Science in Electronics Science and Communication</option>
-                        <option >Master of Science in Telecommunications Engineering</option>
                      </select>
                      </p>
                </div>

@@ -9,19 +9,19 @@
         <table class="table table-striped" id="fincedetail">
             <thead>
             <th>Registration #</th>
-            <th>Recept #</th>
+            <th>Name #</th>
             </thead>
             <tbody>
                 <?php
                
-                $this->db->order_by("registration_id"); 
-                $sudentlist = $this->db->get('tb_finance');
+                $this->db->order_by("registrationID"); 
+                $sudentlist = $this->db->get('tb_student');
                 if ($sudentlist->num_rows() > 0) {
                     foreach ($sudentlist->result() as $stlist) {
                         ?>
                         <tr>
-                            <td><a onclick="finahistory('<?php echo $stlist->registration_id; ?>')"><?php echo $stlist->registration_id; ?></a></td>
-                            <td><a onclick="finahistory('<?php echo $stlist->registration_id; ?>')"><?php echo $stlist->receipt_no; ?></a></td>
+                            <td><a onclick="finahistory('<?php echo $stlist->registrationID; ?>')"><?php echo $stlist->registrationID; ?></a></td>
+                            <td><a onclick="finahistory('<?php echo $stlist->registrationID; ?>')"><?php echo $stlist->other_name; ?></a></td>
                         </tr>
                         <?php
                     }
