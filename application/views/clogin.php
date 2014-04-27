@@ -18,7 +18,7 @@
                     <?php echo form_error('us','<div class="error">', '</div>'); ?>
                 <div class="form-group input-group col-md-11">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" class="form-control" placeholder="Username" name="us" value="<?php echo set_value('us'); ?>" autofocus>
+                        <input type="text" class="form-control" placeholder="Username or email" name="us" value="<?php echo set_value('us'); ?>" autofocus>
                 </div>
                 Password
                      <?php echo form_error('pd','<div class="error">', '</div>'); ?>

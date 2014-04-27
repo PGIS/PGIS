@@ -132,3 +132,11 @@ table.calendar{
 .red{
     color: red;
 }
+#alco{
+    width: 100%;
+    text-align:center;
+    margin-top: 4px;
+    padding-bottom: 3px;
+    padding-top: 5px;color: whitesmoke;
+    background-color: #94A834;
+}

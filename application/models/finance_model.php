@@ -167,7 +167,7 @@ class Finance_model extends CI_Model {
                    $tz=$pfee->tz_fee;
                    $nontz=$pfee->non_tz_fee;
             }
-            if($natinality=='Tanzanian'){
+            if(strtolower($natinality)==='tanzanian'){
                 return $tz;
             }  else {
                 return $nontz;

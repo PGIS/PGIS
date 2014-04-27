@@ -36,7 +36,7 @@
                                             echo '<tr>';
                                             echo '<td>' . $list->surname.' '.$list->other_name. '</td>';
                                             ?>
-                                        <td><button onclick="ajaxFunction('<?php echo $mlist->userid; ?>')" class="btn-info subtn">verify</button></td>
+                                        <td><button onclick="ajaxFunction('<?php echo $mlist->userid; ?>')" class="btn-info btn btn-xs"> verify</button></td>
                                         <?php
                                         echo '</tr>';
                                     }
@@ -103,7 +103,7 @@
                                     echo '<tr>';
                                     echo '<td>' . $mlist->registration_id . '</td>';
                                     ?>
-                                <td><button onclick="retrivedetails('<?php echo $mlist->registration_id; ?>','<?php echo $mlist->receipt_no; ?>')" class="btn-info subtn">verify</button></td>
+                                <td><button onclick="retrivedetails('<?php echo $mlist->registration_id; ?>','<?php echo $mlist->receipt_no; ?>')" class="btn-info btn btn-xs">verify</button></td>
                                 <?php
                                 echo '</tr>';
                                 $i++;
@@ -122,7 +122,10 @@
 
         <div class="tab-pane" id="inst">
             <div class="col-md-12">
-
+                Instructor payments information
+                <table>
+                   
+                </table>
             </div>
         </div>
     </div>

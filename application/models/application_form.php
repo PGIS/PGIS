@@ -10,7 +10,7 @@ class Application_form extends CI_Model {
     var $prog_name = '';
     var $prog_mode = '';
     var $college = '';
-
+    var $academ_year= '';
     //other applicant personla information
 
 
@@ -20,19 +20,22 @@ class Application_form extends CI_Model {
     }
 
     function insert_first_details() {
-
+        $year= date("Y");
         $this->userid = $this->session->userdata('userid');
         $this->prog_name = $_POST['course'];
         $this->prog_mode = $_POST['chkp'];
         $this->college = $_POST['college'];
+        $this->academ_year=$year.'/'.$year+1;
         $this->db->insert('tb_app_personal_info', $this);
     }
 
     function update_first() {
+        $year= date("Y");
         $this->userid = $this->session->userdata('userid');
         $this->prog_name = $_POST['course'];
         $this->prog_mode = $_POST['chkp'];
         $this->college = $_POST['college'];
+        $this->academ_year=$year.'/'.$year+1;
         $this->db->where('userid', $this->session->userdata('userid'));
         $this->db->update('tb_app_personal_info', $this);
     }
