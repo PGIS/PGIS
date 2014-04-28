@@ -31,12 +31,23 @@ class AdminAlumni extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('admin/alumnievents');
         } else {
-            if(isset($_POST['posevents'])){
+            if (isset($_POST['posevents'])) {
                 $this->load->model('admin');
                 Admin:: saveventpost();
-                $data['posted']=TRUE;
-               $this->load->view('admin/alumnievents',$data);
+                $data['posted'] = TRUE;
+                $this->load->view('admin/alumnievents', $data);
             }
+        }
+    }
+
+    function sendtoemail() {
+        foreach ($list as $name =>$address) {
+            $this->email->clear();
+            $this->email->to($address);
+            $this->email->from('your@example.com');
+            $this->email->subject('Here is your info ' . $name);
+            $this->email->message('Hi ' . $name . ' Here is the info you requested.');
+            $this->email->send();
         }
     }
 
