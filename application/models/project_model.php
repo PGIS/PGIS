@@ -50,5 +50,20 @@
         return FALSE; 
            }
     }
+    function comment($reg_id,$header,$content,$date){
+        $ses_array=array(
+            'registrationID'=>$reg_id,
+            'comments'=>$header,
+            'presentation_date'=>$date,
+            'conclusion'=>$content
+        );
+        $res=  $this->db->get_where('tb_pprogress',array('registrationID'=>$reg_id));
+        if($res->num_rows()===1){
+            $this->db->where('registrationID',$reg_id);
+            $this->db->update('tb_pprogress',$ses_array);
+        }  else {
+            $this->db->insert('tb_pprogress',$ses_array);
+        }
+    }
  }
 
