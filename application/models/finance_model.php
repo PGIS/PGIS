@@ -19,10 +19,12 @@ class Finance_model extends CI_Model {
             'date_payment' => $payment_date,
             'suporting_doc' => $imageName,
             'academic_year' => $academic,
-            'application_id' => $application_id
+            'application_id' => $application_id,
+            'regstatus'=> 'unchecked',
+            'amount_required'=> $this->findfee($rgistration_id)
         );
         $res = $this->db->get_where('tb_finance', array('receipt_no' => $registration_receipt));
-        if ($res->num_rows() === 1) {
+        if ($res->num_rows() == 1) {
             $this->db->where('payment_details', $registration);
             $this->db->update('tb_finance', $array_data);
         } else {
@@ -150,5 +152,27 @@ class Finance_model extends CI_Model {
             $this->db->update('tb_finance', array('regstatus' => 'rejected'));
         }
     }
-
+    
+    //finding the fee amount required for the course
+    function findfee($regid){
+        $thquery = $this->db->get_where('tb_student', array('registrationID' => $regid),1);
+        if($thquery->num_rows()>0){
+            foreach ($thquery->result() as $fee){
+                $pr=$fee->program;
+                $natinality=$fee->nationality;
+            }
+            $feequery = $this->db->get_where('tb_programmes', array('programme_name' => $pr),1);
+            if($feequery->num_rows()>0){
+               foreach ($feequery->result() as $pfee){
+                   $tz=$pfee->tz_fee;
+                   $nontz=$pfee->non_tz_fee;
+            }
+            if(strtolower($natinality)==='tanzanian'){
+                return $tz;
+            }  else {
+                return $nontz;
+            }
+            }
+        }
+    }
 }

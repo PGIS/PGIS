@@ -119,7 +119,16 @@ class Admin_page extends CI_Controller {
         $this->load->view('admin/changeprogramme');
     }
     function changeProgramme(){
-        $this->load->view('admin/studentprogramme');
+        $post=  trim($_POST['chcouname']);
+        $find= $this->db->get_where('tb_student',array('registrationID'=> $post));
+    if($find->num_rows()>0){
+        $data['result']=$find->result();
+        $this->load->view('admin/studentprogramme',$data);
+    }else{
+        echo '<div class="alert alert-warning">'
+        . '<span class="glyphicon glyphicon-info-sign"></span> No information found: <b>Choose the correct registration number</b></div>';
+    }
+        
     }
   }
 

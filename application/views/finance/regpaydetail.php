@@ -8,11 +8,11 @@
     <table class="table">
         <tr>
             <td>Recept Number/Transaction Id :</td>
-            <td><input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $rectno;?>" disabled></td>
+            <td><p id="dtl"><?php echo $rectno;?></p>
         </tr>
         <tr>
             <td>payment date </td>
-            <td><input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $paytdate;?>" disabled></td>
+            <td><p id="dtl"><?php echo $paytdate;?></p></td>
         </tr>
         <tr>        <?php 
                         if($paymode=='Half semester'){
@@ -22,18 +22,19 @@
                         }
                      ?>
             <td >Minimum amount required</td>
-            <td><input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $amntrequired;?>" disabled></td>
+            <td><p id="dtl"><?php echo $amntrequired;?></p></td>
         </tr>
         <tr>
             <td >Amount Payed </td>
-            <td><input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $amountpaid;?>" disabled></td>
+            <td><p id="dtl"><?php echo $amountpaid;?></p></td>
         </tr>
          <tr>
-             <td colspan="2">Payment mode   <?php echo $paymode;?></td>
+             <td >Payment mode</td>
+             <td><p id="dtl"><?php echo $paymode;?></p></td>
         </tr>
         <tr>
-            <td>
-                <p class="pull-right">
+            <td colspan="2">
+                <p>
                     <a href="#" data-toggle="modal" data-target="#<?php echo $rectno;?>">
                         <button class="btn btn-default">view Supporting Document</button>
                     </a>

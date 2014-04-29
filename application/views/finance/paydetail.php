@@ -7,20 +7,26 @@
         <tr>
             <td>Recept Number/Transaction Id :</td>
             <td>
-                <input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $receptno;?>" disabled>
+                <p id="dtl"><?php echo $receptno;?></p>
             </td>
         </tr> 
          <tr>
-            <td>payment date :<?php echo $paydate;?></td>
+            <td>payment date :</td>
             <td>
-                <input class="form-control" id="disabledInput" type="text" placeholder="<?php echo $paydate;?>" disabled>
+                <p id="dtl"><?php echo $paydate;?></p>
             </td>
         </tr> 
          <tr>
-             <td colspan="2">Required Amount is 20000/=</td>
+             <td>Required Amount</td>
+             <td><?php if(strtolower($nationality)=='tanzanian'){
+                echo '<p id="dtl">50000 Tsh</p></td>';
+             }else{
+                 echo '<p id="dtl">50 USD</p></td>';
+             }
+                 ?>
          </tr> 
-         <tr>
-             <td >
+         <tr >
+             <td colspan="2">
                 <a href="#" data-toggle="modal" data-target="#<?php echo $receptno;?>">
                     <button class="btn btn-default"> view Supporting Document</button>
                 </a>

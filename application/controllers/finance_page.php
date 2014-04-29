@@ -17,7 +17,11 @@ class Finance_page extends CI_Controller{
         $this->load->view('registration/finance_view1',$data);  
     }
     public function finance(){
-        $data=  $this->changeinvalid();
+          $data=$this->changeinvalid();  
+        if(isset($_POST['feesave'])){
+            unset($data);
+        }
+        
         $data['active']=TRUE;
         $config['upload_path']='./upload_docs/';
         $config['allowed_types']='jpg|png|gif|pdf|jpeg';
@@ -106,7 +110,7 @@ class Finance_page extends CI_Controller{
                 return array();  
             }
       }
-     
-    }
-
+      
+            }
+      
 

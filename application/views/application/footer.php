@@ -31,4 +31,14 @@ enabled: true
                         }); 
                     </script>
   </body>
+  <script>
+    $("#1").change(function() {
+        var f = document.getElementById("1").value;
+        var url = "<?php echo site_url('application/courses');?>";
+         var url2=url+'/'+$.trim(f);
+        $.get(url2, function(data) {
+            $('#2').html(data);
+        });
+    });
+</script>
 </html>

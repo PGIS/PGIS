@@ -69,7 +69,10 @@
         </td>
     </tr>
       <?php
-      $paidammount +=$fndetail->amount_paid;
+        if($fndetail->regstatus=='accepted'){
+         $paidammount +=$fndetail->amount_paid;   
+        }
+      
       $Required=$fndetail->amount_required;
         }
         echo ''

@@ -1,13 +1,16 @@
 <div>
+    <?php 
+    foreach ($result as $row){
+    ?>
     <form>
         <table class="table">
             <tr>
                 <td>Full name</td>
-                <td><input class="form-control" value="fulname"></td>
+                <td><input class="form-control" value="<?php echo $row->surname.' '.$row->other_name;?>"></td>
             </tr>
             <tr>
                 <td colspan="2">Current programme
-                    <input class="form-control" value="course">
+                    <input class="form-control" value="<?php echo $row->program;?>">
                 </td>
             </tr>
             <tr>
@@ -22,5 +25,6 @@
                 </td>
             </tr>
         </table>
+    <?php }?>
     </form>
 </div>

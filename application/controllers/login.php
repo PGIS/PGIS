@@ -3,33 +3,43 @@
 class login extends CI_Controller {
 
     public function index() {
-        $this->load->helper(array('form', 'url'));
+        $this->load->helper(array('form', 'url','email'));
         $this->load->library('form_validation');
 
         if (!isset($_POST['sb'])) {
 
             $this->load->view('clogin');
         } else {
-            $this->form_validation->set_rules('us', 'Username', 'required');
+            $this->form_validation->set_rules('us', 'Username or email', 'required');
             $this->form_validation->set_rules('pd', 'Password', 'required');
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('clogin');
             } else {
-                $username = $this->input->post('us');
                 $pass = md5($this->input->post('pd'));
+                if(valid_email($this->input->post('us'))){
+                    $email=$this->input->post('us');
+                    $username=  $this->findusername($email);
+                    $query = $this->db->get_where('tb_user', array('email' => $email, 'password' => $pass, 'enable' => '1'));
+                    $query3 = $this->db->get_where('tb_user', array('email' => $email, 'password' => $pass, 'enable' => '0'));
+                    
+                }else{
+                $username = $this->input->post('us');
+                $email=  $this->findemail($username);
                 $query = $this->db->get_where('tb_user', array('userid' => $username, 'password' => $pass, 'enable' => '1'));
                 $query3 = $this->db->get_where('tb_user', array('userid' => $username, 'password' => $pass, 'enable' => '0'));
+                
+                }
                 if ($query3->num_rows() == 1) {
                     $data['active'] = '<div class="alert alert-warning">Your Account has not been actvated</div>';
                     $this->load->view('clogin', $data);
                 } elseif ($query->num_rows() == 1) {
-                    $s_data = array('userid' => $username, 'logged_in' => TRUE);
+                    $s_data = array('userid' => $username, 'logged_in' => TRUE,'email'=>$email);
                     $this->session->set_userdata($s_data);
                     
                     $this->studentsession($username);
                     $this->login_verify($username);
                 } else {
-                    $data['errormsg'] = '<div class="alert alert-danger">Password and Username combination does not match</div>';
+                    $data['errormsg'] = '<div class="alert alert-danger">Password and Username or email combination does not match</div>';
                     $this->load->view('clogin', $data);
                 }
             }
@@ -89,6 +99,23 @@ class login extends CI_Controller {
                    $this->session->set_userdata($sdata);
                 }
             } 
+        }
+        function findusername($email){
+          $usqury = $this->db->get_where('tb_user', array('email' => $email), 1); 
+          if($usqury->num_rows() == 1){
+                foreach ($usqury->result() as $un){
+                   $sdata =$un->userid;
+                }
+            }return $sdata; 
+        }
+        
+        function findemail($username){
+          $upqury = $this->db->get_where('tb_user', array('userid' => $username), 1); 
+          if($upqury->num_rows() == 1){
+                foreach ($upqury->result() as $un){
+                   $sdata =$un->email;
+                }
+            }return $sdata; 
         }
     }
 

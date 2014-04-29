@@ -77,6 +77,44 @@
             </div>
             <div>
                <div class="well well-sm"><center>Referees response</center></div> 
+               <?php
+               $qy = $this->db->get_where('tb_referee_doc',array('referee_id' => $userid));
+               if($qy->num_rows()>0){
+                   foreach ($qy->result() as $rfeedbak){
+                ?>
+               <table class="table">
+                   <tr class="success">
+                       <td colspan="2"><?php echo $rfeedbak->referee_name.' Feedback';?></dt>
+                   </tr>
+                   <tr>
+                       <td>Intellectual Ability.</td>
+                       <td><p id="dtl"><?php echo $rfeedbak->intellectual_ability;?></p></td>
+                   </tr>
+                   <tr>
+                       <td>Capacity for Original Thinking.</td> 
+                       <td><p id="dtl"><?php echo $rfeedbak->thinking_capacity;?></p></td>
+                   </tr>
+                   <tr>
+                       <td>Maturity</td>
+                       <td><p id="dtl"><?php echo $rfeedbak->maturity;?></p></td>
+                   </tr>
+                   <tr>
+                       <td>Motivation for Postgraduate Studies</td>
+                       <td></td>
+                   </tr>
+                   <tr>
+                       <td>Ability to work with others</td>
+                       <td><p id="dtl"><?php echo $rfeedbak->ability_work;?></p></td>
+                   </tr>
+                   <tr>
+                       <td>Additional comments</td>
+                       <td><p id="dtl"><?php echo $rfeedbak->comment;?></p></td>
+                   </tr>
+               </table>     
+               <?php
+                   }
+               }
+               ?>
             </div>
         </div>
        

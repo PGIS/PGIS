@@ -68,6 +68,7 @@ class Financeadmin extends CI_Controller {
                     'sname' => $row->surname,
                     'other_nam' => $row->other_name,
                     'title' => $row->title,
+                    'nationality'=>$row->nationality
                 );
                 return $dat;
             }

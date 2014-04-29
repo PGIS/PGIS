@@ -15,7 +15,7 @@
             </tr> 
         </thead>
         <tbody>
-        <?php
+        <?php 
         if(isset($query)){
             
           foreach ($query as $row){
@@ -26,11 +26,11 @@
                 echo '<td>'.$row->surname.'</td>';
                 echo '<td id="tdbtn"><a href="';
                 echo site_url('admision/applicant_details/'.$row->userid.'');
-                echo '"><button class="btn-info subtn">Verify</button></a></td>';
+                echo '"><button class="btn-success btn btn-xs"><span class="glyphicon glyphicon-share-alt"></span> Verify</button></a></td>';
                 echo '</tr>';
             }
         }
-      
+            
         ?>
         </tbody>
     </table>
