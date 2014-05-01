@@ -8,7 +8,8 @@
              'registration_id'=>$project_id,
              'project_title'=>$project_title,
              'project_description'=>$project_description,
-             'Internal_supervisor'=>$email
+             'Internal_supervisor'=>$email,
+             'status'=>'unassigned'
          );
          $query=  $this->db->get_where('tb_project',array('registration_id'=>$project_id));
          if($query->num_rows()===1){
@@ -28,7 +29,7 @@
                  'submission_date'=>$date_sub
              );
              $this->session->set_userdata($data);
-             $query=  $this->db->get_where('tb_student_desert',array('registrationID'=>$sn));
+             $query=  $this->db->get_where('tb_student_desert',array('registrationID'=>$sn,'submission_date'=>$date_sub));
               if($query->num_rows()===1){
                   $this->db->where('registrationID',$sn);
                   $this->db->update('tb_student_desert',$data);

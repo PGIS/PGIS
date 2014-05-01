@@ -50,6 +50,12 @@
                             <fieldset>
                                 <div class="pantop"><legend style="padding-top:20px;" class=" text-center text-justify text-info">Project progress comments</legend></div>
                                 <table class="table table-bordered tabs-left table-hover table-striped">
+                                    <?php if(!empty($delete)){
+                                        echo $delete;
+                                    }  elseif(!empty ($delete1)) {
+                                        echo ''.$delete1;
+                                    }
+                                    ?>
                                     <?php if(isset($after)){
                                         echo '<tr><th>POSTED DATE</th><th>COMMENTS</th><th>CONCLUSION</th><th>ACTION<b class="caret"></b></th></tr>';
                                         foreach ($after->result() as $aft){
@@ -70,11 +76,17 @@
                 <fieldset>
                     <div class="pantop"><legend style="padding-top: 20px;" class="text text-justify text-primary">Send project progress</legend></div>
                     <div class="form">
+                        <div class="error"><?php if(!empty($error)){ 
+                            echo $error;
+                            }elseif (!empty ($data)) {
+                                echo $data;
+                            }
+                            ?></div>
                         <table class="table">
                             <?php echo form_open_multipart('project_page/project_progress')?>
                             <?php echo form_error('ext');?>
                             <tr><td><label>External supervisor</label></td><td><input type="text" class="form-control" id="disabledInput" value="<?php if(isset($external)){echo''.$external;}?>" disabled></td></tr>
-                            <tr><td><label>Internal supervisor</label></td><td><input type="text" class="form-control" id="disabledInput" value="<?php if(isset($supervisor)){echo''.$supervisor;}?>" disabled></td></tr>
+                            <tr><td><label>Internal supervisor</label></td><td><input type="text" class="form-control" id="disabledInput" value="<?php if(isset($internal)){echo''.$internal;}?>" disabled></td></tr>
                             <tr><td><label>Submission date</label></td><td><input type="text" name="date_sub" class="form-control datepicker" id="tds" required ></td></tr>
                             <tr><td><label>Project Document</label></td><td><input type="file" name="userfile" class="load"></td></tr>
                             <tr><td colspan="1"></td><td align="right"><button name="btd" class="btn btn-primary btd">upload</button></td></tr>

@@ -11,17 +11,32 @@
         }
      }
      function index(){
+         $data['assigned']=  $this->assigned();
+         $this->load->view('academic/teaching_assigned',$data);
+      }
+      function project(){
          $data['record']=  $this->posted_project();
          $this->load->view('academic/teaching_view',$data);
-      } 
-     function posted_project(){
+      }
+         function posted_project(){
          $sn=  $this->session->userdata('userid');
-         $res=  $this->db->get_where('tb_student_desert',array('supervisor'=>$sn,'status'=>'not replied'));
+         $res=  $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
+                 ->where(array('supervisor'=>$sn,'status'=>'not replied','read'=>'no'))->get();
          if($res->num_rows()>0){
          return $res;
          }
    }
-   function view($reg_id){
+   function assigned(){
+       $sn=  $this->session->userdata('userid');
+       $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+               ->where(array('Internal_supervisor'=>$sn,'status'=>'assigned'))->get();
+       if($res->num_rows()>0){
+           return $res; 
+       }  else {
+           return FALSE;
+       }
+   }
+     function view($reg_id){
       $res=  $this->db->get_where('tb_student_desert',array('registrationID'=>$reg_id,'status'=>'not replied'));
       if($res->num_rows()===1){
           foreach ($res->result() as $row){
@@ -67,13 +82,14 @@
        }
    }
    function replied(){
-       $res=  $this->db->get_where('tb_student_desert',array('status'=>'replied'));
+       $res= $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
+               ->where(array('status'=>'replied'))->get();
        if($res->num_rows()>0){
            $data['replied']=$res;
            $this->load->view('academic/teaching_replied',$data);
        }  else {
-            $data['noreplied']='<p class="alert alert-warning">No one has been replied</p>';
-             $this->load->view('academic/teaching_replied',$data);
+           $data['noreplied']='<p class="alert alert-warning">No one has been replied</p>';
+           $this->load->view('academic/teaching_replied',$data);
        }
    }
    function resert($regist_id){
@@ -86,5 +102,41 @@
            return FALSE; 
        }
    }
+   function download($reg_id){
+       $this->load->helper('download');
+       $res=  $this->db->get_where('tb_student_desert',array('registrationID'=>$reg_id,'read'=>'no'));
+       if($res->num_rows()===1){
+           $row=$res->row();
+           $this->db->where('registrationID',$reg_id);
+           $this->db->update('tb_student_desert',array('read'=>'yes'));
+       $data=  file_get_contents('project_document/'.substr($row->document,39));
+       $name=  substr($row->document,39);
+       force_download($name,$data);
+       
+       }  else {
+           $data['error']='<p class="alert alert-danger">cant download</p>';
+            $this->load->view('academic/teaching_view',$data);
+       }
+   }
+   function details($reg_id){
+       $res=  $this->db->get_where('tb_student_desert',array('registrationID'=>$reg_id,'read'=>'yes'));
+       if($res->num_rows()>0){
+          $data['look']=$res;
+          $this->load->view('academic/teaching_detail',$data);
+       }  else {
+          $data['error']='<p class="alert alert-info">No recent project</p>';
+          $this->load->view('academic/teaching_detail',$data);
+       }
+   }
+   function donforce($reg_id){
+       $this->load->helper('download');
+       $res=  $this->db->get_where('tb_student_desert',array('registrationID'=>$reg_id,'read'=>'yes'));
+       if($res->num_rows()>0){
+           $row=$res->row();
+       $data=  file_get_contents('project_document/'.substr($row->document,39));
+       $name=  substr($row->document,39);
+       force_download($name,$data);
+   }
+ }
  }
 

@@ -24,6 +24,8 @@ class Change_form extends CI_Controller{
             $this->load->view('registration/chang_pwd');
          }elseif ($this->session->userdata('user_role')==='Supervisor') {
             $this->load->view('academic/change_pwd');
+        }elseif ($this->session->userdata('user_role')==='Teaching staff') {
+             $this->load->view('academic/change_pwds');
         }
     }
     function change() {

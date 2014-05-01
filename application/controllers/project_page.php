@@ -11,7 +11,9 @@
         }
       }
       function index(){
-          $data=  $this->supervisors();
+          $data1=  $this->supervisors();
+          $data2=  $this->check_exist();
+          $data=$data1+$data2;
           $data['after']=  $this->comments_after();
           $data['active']=TRUE;
           $data['actived']=TRUE;
@@ -32,8 +34,9 @@
           $this->form_validation->set_rules('pis','Username','trim|required|xss_clean');
           $data['records']=  $this->supervisors_view();
           $data['after']=  $this->comments_after();
+          $data=  $this->check_exist();
           $data['active']=TRUE;
-           $data['actived']=TRUE;
+          $data['actived']=TRUE;
           if($this->form_validation->run()===FALSE){
               $this->load->view('academic/project_view',$data);
           }  else {
@@ -50,27 +53,57 @@
       function project_progress(){
          $data['after']=  $this->comments_after();
          $data['records']=  $this->supervisors_view();
+         $data=  $this->check_exist();
          $data['active2']=TRUE;
           $data['actived']=TRUE;
          unset($data['active']);
          $config['upload_path']= './project_document/';
-         $config['allowed_types']='pdf|doc';
+         $config['allowed_types']='pdf|doc|docx';
          $config['overwrite']=TRUE;
+         $config['remove_spaces']=FALSE;
          $this->load->library('upload',$config);
          if(!$this->upload->do_upload()){
+             $data['error']=  $this->upload->display_errors();
               $this->load->view('academic/project_view',$data);  
           }  else{ 
              $this->load->model('project_model');
              $sn=  $this->session->userdata('registration_id');
-             $internal= $this->session->userdata('internal');
-             $external= $this->session->userdata('external');
+             $res=  $this->db->get_where('tb_project',array('registration_id'=>$sn));
+             if($res->num_rows()===1){
+              $row=$res->row();
+             $internal= $row->Internal_supervisor;
+             $external= $row->external_supervisor;
              $date_sub=  $this->input->post('date_sub');
              $document=  base_url().'project_document/'.pg_escape_string($_FILES['userfile']['name']);
              $this->project_model->project_prog($sn,$internal,$external,$document,$date_sub);
              $data['smgsuc']='<p class="alert alert-success">You project has sent.!</p>';
-             $this->load->view('academic/project_view',$data); 
+             $this->load->view('academic/project_view',$data);
+             }  else {
+               $data['data']='<p class="alert alert-danger">You havent assigned a supervisor</p>';
+               $this->load->view('academic/project_view',$data);
+             }
             }
-      }
+         }
+            function check_exist(){
+             $sn=  $this->session->userdata('registration_id');
+             $res=  $this->db->get_where('tb_project',array('registration_id'=>$sn));
+             if($res->num_rows()===1){
+                 foreach ($res->result() as $row){
+                 $array=array(
+                     'internal'=>$row->Internal_supervisor,
+                     'external'=>$row->external_supervisor
+                 );
+             }
+             unset($row);
+             return $array;
+             }  else {
+                 $array=array(
+                     'external'=>'Not assigned',
+                     'internal'=>'You didint select. please select.'
+                 );
+                 return $array;
+             }
+            }
             function supervisors(){
                 $sn=  $this->session->userdata('registration_id');
                 $res=  $this->db->get_where('tb_project',array('registration_id'=>$sn,'status'=>'assigned'));
@@ -108,6 +141,7 @@
             }  
          }
          function delete_comments($regist_id){
+             $data=  $this->check_exist();
              $data['active1']=TRUE;
              $data['actived1']=TRUE;
              $res=  $this->db->get_where('tb_pprogress',array('registrationID'=>$regist_id));
@@ -117,11 +151,22 @@
                  $data['delete']='<p class="alert alert-success">Comments deleted..!</p>';
                  $this->load->view('academic/project_view',$data);
              }  else {
-                 return FALSE;    
+                 $data['delete1']='<p class="alert alert-danger">No comments found..</p>';
+                 $this->load->view('academic/project_view',$data);  
              }
              
          }
+         function general(){
+          $sn= $this->session->userdata('registration_id');
+          $res=  $this->db->get_where('tb_project',array('registration_id'=>$sn));
+          if($res->num_rows()===1){
+              return $res; 
+         }  else {
+             echo '<p class="alert alert-danger">No</p>';
+         }
          
+         
+         }
       }
   
 
