@@ -9,7 +9,7 @@ class AdminAlumni extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->helper(array('form', 'html', 'url', 'text'));
-        $this->load->library(array('form_validation', 'pagination', 'table'));
+        $this->load->library(array('form_validation', 'email', 'table'));
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
 
         if (!$this->session->userdata('logged_in')) {
@@ -31,13 +31,42 @@ class AdminAlumni extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('admin/alumnievents');
         } else {
-            if(isset($_POST['posevents'])){
+            if (isset($_POST['posevents'])) {
                 $this->load->model('admin');
-                Admin:: saveventpost();
-                $data['posted']=TRUE;
-               $this->load->view('admin/alumnievents',$data);
+                Admin::saveventpost();
+                $this->sendtoemail($this->input->post('eventname'),$this->input->post('descrip'));
+                $data['posted'] = TRUE;
+                $this->load->view('admin/alumnievents', $data);
             }
         }
     }
-
+//sending email toall alumini
+    function sendtoemail($subject,$message) {
+        $address= $this->db->get('tb_alumni');
+        if($address->num_rows()){
+        foreach ($address->result() as $list){
+            $this->email->clear();
+            $this->email->set_newline("\r\n");
+            $this->email->to($list->email);
+            $this->email->bcc($list->email);
+            $this->email->from('pgis@udsm.com');
+            $this->email->subject($subject);
+            $this->email->message($message);
+            if(@$this->email->send()){
+               echo 'No internet connection';
+            }
+            }
+            
+        }
+    }
+    function eventManage(){
+        $this->load->view('admin/manageevent');
+    }
+    function eventDelete($id){
+        $this->db->where('event_id', $id);
+        $this->db->delete('tb_alumni_events');
+        $data['remove']='Removed successfuly';
+       
+        $this->load->view('admin/manageevent',$data);
+    }
 }

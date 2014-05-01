@@ -1,15 +1,18 @@
 <?php include_once 'Headerlogin.php'; ?>
 <div id="page-wrapper">
-
+    <ol class="breadcrumb">
+        <li ><a href="<?php echo site_url('adminAlumni'); ?>">Add event</a></li>
+        <li class="active"><a href="<?php echo site_url('adminAlumni/eventManage'); ?>">Event management</a></li>
+     </ol>
     <div class="col-md-12">
         <div class="well-sm alert-info">
             Provide information about the event
-            <?php
+        </div>
+        <?php
             if(isset($posted)){
                 echo '<div class="alert alert-success">Event successfull posted</div>';
             }
             ?>
-        </div>
         <?php echo form_open('adminAlumni/saveevent');?>
             <table class="table">
                 <thead>

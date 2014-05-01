@@ -11,7 +11,7 @@
             <div class="tab-pane active" id="home">
                 <div class="col-md-12">
                    
-                    <table class="table table-striped">
+                    <table class="table table-striped table-condensed">
                         <h5> Upcoming events</h5>
                         <thead>
                             <th>event name</th>

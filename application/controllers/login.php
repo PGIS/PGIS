@@ -10,8 +10,8 @@ class login extends CI_Controller {
 
             $this->load->view('clogin');
         } else {
-            $this->form_validation->set_rules('us', 'Username or email', 'required');
-            $this->form_validation->set_rules('pd', 'Password', 'required');
+            $this->form_validation->set_rules('us', 'Username or email', 'trim|required');
+            $this->form_validation->set_rules('pd', 'Password', 'trim|required');
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('clogin');
             } else {
@@ -112,10 +112,10 @@ class login extends CI_Controller {
         function findemail($username){
           $upqury = $this->db->get_where('tb_user', array('userid' => $username), 1); 
           if($upqury->num_rows() == 1){
-                foreach ($upqury->result() as $un){
-                   $sdata =$un->email;
+                foreach ($upqury->result() as $n){
+                   $edata =$n->email;
                 }
-            }return $sdata; 
+            }return $edata; 
         }
     }
 
