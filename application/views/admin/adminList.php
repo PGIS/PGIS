@@ -1,5 +1,9 @@
 <?php include 'Headerlogin.php';?>
 <div id="page-wrapper">
+     <ol class="breadcrumb">
+        <li ><a href="<?php echo site_url('admin_page'); ?>">User management</a></li>
+        <li class="active"><a href="<?php echo site_url('admin_page/add'); ?>">Add user</a></li>
+     </ol>
     <p><h4 align="center">Already registered</h4></p>
 <table class="table table-striped table-condensed" id="admintable">
         <thead>

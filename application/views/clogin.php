@@ -14,7 +14,7 @@
                      }
                      ?>
                     <?php if(isset($errormsg)) echo'<div class="error">'.$errormsg.'</div>';?>
-                User or email
+                Username or email
                     <?php echo form_error('us','<div class="error">', '</div>'); ?>
                 <div class="form-group input-group col-md-11">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>

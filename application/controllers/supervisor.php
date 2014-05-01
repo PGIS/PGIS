@@ -33,6 +33,8 @@
                  $this->pagination->initialize($config);
                  $data['query']=  $this->db->get('tb_project',$config['per_page'], $this->uri->segment(3));
                  $this->load->view('academic/supervisor_view',$data); 
+                 }  else {
+                     $this->load->view('academic/supervisor_view',$data); 
                  }
               }
       public function assign($id){
