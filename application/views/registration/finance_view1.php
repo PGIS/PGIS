@@ -73,7 +73,7 @@
          $paidammount +=$fndetail->amount_paid;   
         }
       
-      $Required=$fndetail->amount_required;
+      $Required=$fndetail->amount_required/4;
         }
         echo ''
         . '<tr><td><strong class="alert-danger">Outstanding Fees</strong></td>'.
