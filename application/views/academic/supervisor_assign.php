@@ -6,7 +6,7 @@
             <div class="in tab-pane active">
                 <div class="col-lg-6">
                     <fieldset>
-                        <div class="pantop"><legend style="padding-top: 30px;" class="text text-justify text-info"><p>Details For: <?php echo ''.$registrationID;?></p></legend></div>
+                        <div class="pantop"><legend style="padding-top: 30px;" class="text text-justify text-info"><p>Details For: <?php echo ''.$registrationID.''. ($surname);?></p></legend></div>
                         <div>
                             <label>PROJECT TITLE</label>
                             <p class="dts"><?php echo ''.$project_title;?></p>
@@ -45,14 +45,16 @@
                     </div>
                     <div class="tr1">
                     <div style="padding-top: 30px;"><table class="table"><tr><td class="text-success">Comments to project title*</td></tr></table></div>
+                    <?php echo form_open('supervisor/comments_entry/'.$id,array('id'=>'ajax'))?>
                     <table class="table">
-                        <tr><td><label>Comments</label></td><td><textarea class="form-control" name="cmt"></textarea></td></tr>
-                        <?php echo form_close();?>
+                        <tr><td><label>Comments</label></td><td><textarea class="form-control" name="comme" required></textarea></td></tr>
+                        
                     </table>
                     <div><table class="table table-responsive">
                             <tr><td style="padding-left:300px;"><button class="btn btn-primary ">post comment</button></td></tr>
                         </table>
                    </div>
+                    <?php echo form_close();?>
                     </div>
                     
                 </div>
@@ -90,6 +92,20 @@
                     </script>
 </div>
 </div>
+    <script>
+    $('#ajax').submit(function(e){
+        e.preventDefault();
+        $('.loading').html('<img src="<?php echo base_url('assets/img/loading.gif');?>">');
+        var url=$(this).attr('action');
+        var formdata=$(this).serializeArray();
+        $.post(url,formdata,function(data){
+            $('.hd').hide();
+            setTimeout(function(){
+                $('.loading').html(data);
+            },2000);
+        });
+    });
+    </script>
 </div>
 <script>
     $(document).ready(function(){

@@ -11,38 +11,32 @@
         }
      }
      function index(){
+         $data['query']=  $this->index2();
+         $data['pending']=  $this->pending();
          $data['active']=TRUE;
-         $this->load->library('pagination');
-         $this->load->library('table');
-            $res=  $this->db->get_where('tb_project',array('status'=>'unassigned'));
-            $res1=  $this->db->get_where('tb_project',array('status'=>'assigned'));
-             if($res->num_rows()>0){
-                 unset($data['active1']);
-                 $config['base_url']=  base_url().'index.php/supervisor/index';
-                 $config['num_links']=3;
-                 $config['per_page']=10;
-                 $config['total_rows']=  $this->db->get('tb_project')->num_rows();
-                 $this->pagination->initialize($config);
-                 $data['records']=  $this->db->get('tb_project',$config['per_page'], $this->uri->segment(3));
+         $res=  $this->db->get_where('tb_project',array('status'=>'unassigned'));
+          if($res->num_rows()>0){
+                $data['records']=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                        ->where(array('status'=>'unassigned'))->get();
                 $this->load->view('academic/supervisor_view',$data);
-                 }elseif($res1->num_rows()>0){
-                 $config['base_url']=  base_url().'index.php/supervisor/index';
-                 $config['num_links']=3;
-                 $config['per_page']=10;
-                 $config['total_rows']=  $this->db->get('tb_project')->num_rows();
-                 $this->pagination->initialize($config);
-                 $data['query']=  $this->db->get('tb_project',$config['per_page'], $this->uri->segment(3));
-                 $this->load->view('academic/supervisor_view',$data); 
                  }  else {
-                     $this->load->view('academic/supervisor_view',$data); 
+                  $this->load->view('academic/supervisor_view',$data);   
                  }
-              }
-      public function assign($id){
+     }
+     function index2(){
+         $res1=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                 ->where(array('status'=>'assigned'))->get();
+         if($res1->num_rows()>0){
+            return $res1;
+            }
+     }
+     public function assign($id){
       $data=  $this->project_display($id);
       $this->load->view('academic/supervisor_assign',$data);
      }
      public function project_display($id) {
-      $res=$this->db->get_where('tb_project',array('id'=>$id));
+      $res=$this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+              ->where(array('id'=>$id))->get();
         if($res->num_rows()===1){
             foreach ($res->result() as $row){
                 $array_data=array(
@@ -50,7 +44,9 @@
                     'registrationID'=>$row->registration_id,
                     'project_title'=>$row->project_title,
                     'project_description'=>$row->project_description,
-                    'internal_supervisor'=>$row->Internal_supervisor
+                    'internal_supervisor'=>$row->Internal_supervisor,
+                    'surname'=>$row->surname,
+                    'lastname'=>$row->other_name
                 );
             }
             $this->session->set_userdata($array_data);
@@ -71,4 +67,23 @@
              
          }
      }
+     function comments_entry($id){
+         $this->form_validation->set_rules('comme','Comments','trim|required|xss_clean');
+         if($this->form_validation->run()===FALSE){
+             $this->load->view('academic/supervisor_assign');
+         }  else {
+             $comments=  $this->input->post('comme');
+             $this->load->model('supervisor_model');
+             $this->supervisor_model->insert_update($id,$comments);
+             echo '<p class="alert alert-success">Comments posted</p>';
+         }
+     }
+     function pending(){
+         $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                 ->where(array('status'=>'pending'))->get();
+         if($res->num_rows()>0){
+             return $res;
+         }
+     }
+     
  }
