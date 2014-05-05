@@ -30,6 +30,7 @@
                     <ul class=" nav nav-tabs nav-pills">
                         <li class="<?php if(isset($actived)){echo'active';}?>"><a data-target=".before" data-toggle="tab">Before supervisor assgnment</a></li>
                         <li class="<?php if(isset($actived1)){echo'active';}?>"><a data-target=".after" data-toggle="tab">During project progress</a></li>
+                        <li class="<?php if(isset($actived2)){echo'active';}?>"><a data-target=".during" data-toggle="tab">Verdicts for Presentation</a></li>
                     </ul>
                     <div class=" tab-content" style="display:block">
                         <div class="before in tab-pane <?php if(isset($actived)){echo'active';}?>">
@@ -68,6 +69,21 @@
                                     
                                 </table>
                             </fieldset>
+                        </div>
+                        <div class="during in tab-pane <?php if(isset($actived2)){echo'active';}?>">
+                            <fieldset>
+                                <div class="pantop"><legend style=" padding-top: 20px;" class="text-center text-justify text-info">Verdicts posted</legend></div>
+                                <table class=" table table-striped table-condensed" id="mytable2">
+                                    <thead><tr><th>PROJECT TITLE</th><th>FROM</th><th>PRESENTATION DATE</th><th>TO DO NEXT</th></tr></thead>
+                                    <tbody>
+                                        <?php if(isset($verdicts)){
+                                         foreach ($verdicts->result()as $row){
+                                             echo '<tr><td>'.$row->project_title.'</td><td>'.$row->supervisor_name.'</td><td>'.$row->presentation_date.'</td><td><label class="btn btn-warning btn-sm">'.anchor('project_page/verdict_view/'.$row->id,'<span class="glyphicon glyphicon-share"> view </span>').'</label></td></tr>'; 
+                                         }
+                                        }?>
+                                    </tbody>
+                                </table>
+                            </fieldset>  
                         </div>
                     </div>
                 </div>

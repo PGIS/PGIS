@@ -29,7 +29,7 @@
     <div class="col-lg-6">
         <legend><label>Supervisor Feedback</label></legend>
         <table class="table table-condensed">
-            <?php echo form_open('teaching/comment/'.$registration);?>
+            <?php echo form_open('teaching/comment/'.$id);?>
             <tr><td>Where to change</td><td><label class="alert-warning"><?php echo form_error('com');?></label><input type="text" class="form-control" name="com"></td></tr>
             <tr><td>Description</td><td><label class="alert-warning"><?php echo form_error('desc');?></label><textarea class="form-control" cols="3" name="desc"></textarea></td></tr>
             <tr><td>Date</td><td><label class="alert-warning"><?php echo form_error('dtz');?></label><input class="form-control datepicker" name="dtz"></td></tr>

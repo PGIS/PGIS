@@ -13,6 +13,7 @@
         <link href="<?php echo base_url('assets/css/bootstrap-combined.min.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/datepicker.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/jquery.ui.all.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
@@ -20,6 +21,7 @@
         <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap-modal.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
+        <script src="<?php echo base_url('assets/ckeditor/ckeditor.js') ?>"></script>
     </head>
 
     <body>
@@ -51,6 +53,8 @@
                                 <span class="glyphicon glyphicon-dashboard"></span>  PROJECT COORDINATOR</button></li>
                         <li><a href="<?php echo site_url('supervisor'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
                                 Unsigned supervisor</a></li>
+                        <li><a href="<?php echo site_url('supervisor/verdicts'); ?>"><span class="glyphicon glyphicon-asterisk"></span>
+                                Verdicts</a></li>
                          <li><a href="<?php echo site_url('supervisor_event/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
                                 Post Event</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
