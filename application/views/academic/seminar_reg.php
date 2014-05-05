@@ -10,19 +10,28 @@
                 day goes with respective hour indicate,be carefully otherwise you will not be enrolled the what mistake you have done. Thanks!</p>
                 <?php echo form_open('seminary/seminary_form',array('id'=>'form1')); ?>
                 <table class="table table-striped table-bordered tab1">
-                <tr><td width="30%" align="center">Courses</td><td width="30%" align="center">Day</td><td width="30%" align="center">Hour</td></tr>
+                <tr>
+                    <td width="30%" align="center">Courses
+                    </td><td width="30%" align="center">Day</td>
+                    <td width="30%" align="center">Hour</td>
+                </tr>
                 <tr class="td1">
                     <td rowspan="2" align="center" id="main">IS 654&nbsp;<input type="checkbox" name="day" value="IS 654" id="ch1"></td>
                     <td align="center" id="yes">Monday&nbsp;<input type="radio" name="day1" value="Monday"></td>
                     <td align="center" id="yes1">0700-0800&nbsp;<input type="radio" name="data" value="0700-0800"><br>
-                        1100-1200&nbsp;<input type="radio" name="data" value="1100-1200"></td>
-                    </tr>
-                    <tr class="td1">
+                        1100-1200&nbsp;<input type="radio" name="data" value="1100-1200">
+                    </td>
+                </tr>
+                <tr class="td1">
                         <td align="center" id="no">Tuesday&nbsp;<input type="radio" name="day1" value="Tuesday"></td>
                         <td align="center" id="no1">1000-1100&nbsp;<input type="radio" name="data" value="1000-1100"><br>
                             1400-1500<input type="radio" name="data" value="1400-1500"></td>
-                    </tr>
-                    <tr><td colspan="3"><table style="margin-left: 600px;"><tr><td ><input type="submit" name="sub" value="Register and continue" class="btn btn-primary lc"></td></tr></table></td></tr>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <input type="submit" name="sub" value="Register and continue" class="btn btn-primary lc">
+                    </td>
+                </tr>
                 </table><?php echo form_close();?>
                 <table class="table table-striped table-bordered tab">
                        <?php echo form_open('seminary/table_data',array('id'=>'form'));?>
@@ -37,7 +46,11 @@
                        <td align="center" id="sev1">1000-1100&nbsp;<input type="radio" name="data1" value="1000-1100"><br>                     
                            1400-1500&nbsp;<input type="radio" name="data1" value="1400-1500">
                    </tr><br>
-                   <tr><td colspan="3"><table style="margin-left: 600px;"><tr><td ><input type="submit" name="sub" value="Register" class="btn btn-primary lc1"></td></tr></table></td></tr>
+                   <tr>
+                       <td colspan="3">
+                           <input type="submit" name="sub" value="Register" class="btn btn-primary lc1">
+                       </td>
+                   </tr>
                 <?php echo form_close();?>
                 </table>
                    <div id="load"></div>

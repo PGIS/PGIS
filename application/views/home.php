@@ -19,18 +19,18 @@
 		<strong>Non refundable application fees:</strong> 
                 <ol type='i'>
                     <li>
-                      T.shs 20,000/= for Tanzanians applying for admission into Postgraduate Diploma and
+                      T.shs 50,000/= for Tanzanians applying for admission into Postgraduate Diploma and
                       Masters Programmes.
                     </li>
                     <li>
-                       US $ 20.00 for Non Tanzanians applying for admission into Postgraduate Diploma 
+                       US $ 50.00 for Non Tanzanians applying for admission into Postgraduate Diploma 
                         and Masters Programmes.
                     </li>
                     <li>
-                        T.shs 30,000/= for Tanzanians applying for admission into Ph.D. Programmes.
+                        T.shs 50,000/= for Tanzanians applying for admission into Ph.D. Programmes.
                     </li>
                     <li>
-                        US $ 30.00 for Non Tanzanians applying for admission into Ph.D. Programmes.
+                        US $ 50.00 for Non Tanzanians applying for admission into Ph.D. Programmes.
                     </li>
                 </ol>
                     All application fees should be paid through the bank as follows: <strong>Bank name: NBC Bank</strong>, 
