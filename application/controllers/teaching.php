@@ -20,20 +20,28 @@
       }
          function posted_project(){
          $sn=  $this->session->userdata('userid');
+         $sn1=  $this->session->userdata('email');
          $res=  $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
                  ->where(array('supervisor'=>$sn,'status'=>'not replied','read'=>'no'))->get();
+         $res1=  $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
+                 ->where(array('supervisor'=>$sn1,'status'=>'not replied','read'=>'no'))->get();
          if($res->num_rows()>0){
          return $res;
-         }
+         }elseif ($res1->num_rows()>0) {
+         return $res1;
+        }
    }
    function assigned(){
        $sn=  $this->session->userdata('userid');
+       $sn1=$this->session->userdata('email');
        $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
                ->where(array('Internal_supervisor'=>$sn,'status'=>'assigned'))->get();
+       $res1=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+               ->where(array('Internal_supervisor'=>$sn1,'status'=>'assigned'))->get();
        if($res->num_rows()>0){
            return $res; 
-       }  else {
-           return FALSE;
+       }  elseif($res1->num_rows()>0) {
+          return $res1;
        }
    }
      function view($id){

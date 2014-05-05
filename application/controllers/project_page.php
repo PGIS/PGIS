@@ -32,7 +32,7 @@
       function project_insert(){
           $this->form_validation->set_rules('prj','Project Title','required|xss_clean');
           $this->form_validation->set_rules('prd','Project Description','required|xss_clean');
-          $this->form_validation->set_rules('pis','Username','trim|required|xss_clean');
+          $this->form_validation->set_rules('pis','Email','trim|required|valid_email|xss_clean');
           $data['records']=  $this->supervisors_view();
           $data['after']=  $this->comments_after();
           $data['verdicts']=  $this->verdicts();

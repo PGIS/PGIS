@@ -17,7 +17,7 @@
                     <table class="table">
                         <tr><td><label>Project Title*</label></td><td><font class="alert-danger"><?php echo form_error('prj');?></font><input type="text" name="prj" class="form-control crt"></td></tr>
                         <tr><td><label>Description*</label></td><td><font class="alert-danger"><?php echo form_error('prd');?></font><textarea class="form-control crt1" cols="4"name="prd"></textarea></td></tr>
-                        <tr><td><label>Internal Supervisor username*</label></td><td><font class="alert-danger"><?php echo form_error('pis');?></font><input type="text" name="pis" class="form-control crt2"></td></tr>
+                        <tr><td><label>Internal Supervisor email*</label></td><td><font class="alert-danger"><?php echo form_error('pis');?></font><input type="text" name="pis" class="form-control crt2"></td></tr>
                     </table> 
                     <div class="text-right"><button class="btn btn-primary td">submit</button></div>
                      <?php echo form_close();?>
