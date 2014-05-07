@@ -6,7 +6,7 @@
             <li class="active"><a href="<?php echo site_url('admin_page/manageprograme');?>">Manage programmes</a></li>
              <li><a href="<?php echo site_url('admin_page/changestudentprogramme');?>">Change Student course</a></li>
         </ol>
-        <div class="col-md-8">
+        <div class="col-md-10">
             <?php
             if(isset($prdelete)){
             echo '<div class="alert alert-warning fade in">

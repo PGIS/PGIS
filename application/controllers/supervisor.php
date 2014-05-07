@@ -85,5 +85,7 @@
              return $res;
          }
      }
-     
+     function presentationFeedback(){
+         $this->load->view('academic/presentationfeedback');
+     }
  }

@@ -105,8 +105,9 @@ class login extends CI_Controller {
           if($usqury->num_rows() == 1){
                 foreach ($usqury->result() as $un){
                    $sdata =$un->userid;
+                   return $sdata;
                 }
-            }return $sdata; 
+            } 
         }
         
         function findemail($username){
@@ -114,8 +115,9 @@ class login extends CI_Controller {
           if($upqury->num_rows() == 1){
                 foreach ($upqury->result() as $n){
                    $edata =$n->email;
+                   return $edata;
                 }
-            }return $edata; 
+            } 
         }
     }
 

@@ -47,10 +47,14 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li><button class="mybtn btn-block btn-group-lg" style="margin-left: 4px;">
+                        <li><button class="mybtn btn-primary" style="margin-left: 4px;">
                                 <span class="glyphicon glyphicon-dashboard"></span>  PROJECT COORDINATOR</button></li>
                         <li><a href="<?php echo site_url('supervisor'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
-                                Unsigned supervisor</a></li>
+                                Unsigned supervisor</a>
+                        </li>
+                        <li>    
+                            <a href="<?php echo site_url('supervisor/presentationFeedback'); ?>"><span class="glyphicon glyphicon-retweet"></span>   Presentation Feedback</a>
+                        </li>
                          <li><a href="<?php echo site_url('supervisor_event/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
                                 Post Event</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>

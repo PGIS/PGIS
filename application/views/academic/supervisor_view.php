@@ -3,9 +3,9 @@
     <div class="span12">
         <div class="col-lg-11">
             <ul class="nav nav-tabs nav-justified nav-tabs-justified">
-                <li class="<?php if(isset($active)){echo'active';}?>"><a data-target=".unchecked" tab-toggle="tab"><label class="glyphicon glyphicon-eye-open">Unchecked</label></a></li>
-                <li class="<?php if(isset($active1)){echo'active';}?>"><a data-target=".checked" data-toggle="tab"><label class="glyphicon glyphicon-eye-close">Assigned</label></a></li>
-                <li class="<?php if(isset($active2)){echo'active';}?>"><a data-target=".pending" data-toggle="tab"><label class="glyphicon glyphicon-exclamation-sign">Conflict</label></a></li>
+                <li class="<?php if(isset($active)){echo'active';}?>"><a data-target=".unchecked" tab-toggle="tab"><label class="glyphicon glyphicon-eye-open"></label> Unchecked</a></li>
+                <li class="<?php if(isset($active1)){echo'active';}?>"><a data-target=".checked" data-toggle="tab"><label class="glyphicon glyphicon-eye-close"></label> Assigned</a></li>
+                <li class="<?php if(isset($active2)){echo'active';}?>"><a data-target=".pending" data-toggle="tab"><label class="glyphicon glyphicon-exclamation-sign"></label> Conflict</a></li>
             </ul>
             <div class="tab-content" style="display: block">
                 <div class="unchecked in tab-pane <?php if(isset($active)){echo'active';}?>">

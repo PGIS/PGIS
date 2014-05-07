@@ -2,7 +2,7 @@
 <?php
     $myarray = array(
         'application_id' =>$regid,
-        'payment_details'=>$se
+        'academic_year'=>$se
     );
     $mydetail = $this->db->get_where('tb_finance',$myarray);
     if($mydetail->num_rows()>0){
@@ -19,14 +19,14 @@
         <td><?php echo ' ' . $fndetail->academic_year; ?></td>
     </tr>
     <tr>
-        <td><div class="dts">Registration Fees For</div></td>
+        <td><div class="dts">Payment For</div></td>
         <td><?php echo ' ' . $fndetail->payment_details; ?></td></tr>
     <tr>
-        <td><div class="dts">Registration Fees Amount</div>
+        <td><div class="dts"> Amount Payed</div>
         </td><td><?php echo' ' .$fndetail->amount_paid ?></td>
     </tr>
     <tr>
-        <td><div class="dts">Registration Fees Receipt</div></td>
+        <td><div class="dts"> Receipt number</div></td>
         <td><?php echo ' ' . $fndetail->receipt_no; ?></td>
     </tr>
     <tr>
@@ -48,7 +48,7 @@
     <tr>
         <td>Preview supporting Document</td>
         <td>
-            <a data-toggle="modal" href="#<?php echo $fndetail->receipt_no; ?>" style="color:white;" class="btn btn-primary btn-large">
+            <a data-toggle="modal" href="#<?php echo $fndetail->receipt_no; ?>" style="color:white;" class="btn btn-primary btn-xs">
                 View</a>
             <div class="modal fade" id="<?php echo $fndetail->receipt_no; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
