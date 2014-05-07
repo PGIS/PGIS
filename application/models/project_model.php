@@ -66,5 +66,23 @@
             $this->db->insert('tb_pprogress',$ses_array);
         }
     }
+    function forward($registrationid,$project_title,$presentation_date,$verdicts,$supervisor){
+        $array_date=array(
+            'registration_id'=>$registrationid,
+            'project_title'=>$project_title,
+            'presentation_date'=>$presentation_date,
+            'verdicts'=>$verdicts,
+            'supervisor_name'=>$supervisor,
+            'status'=>'yes'
+        );
+        $res=  $this->db->get_where('tb_verdict',array('registration_id'=>$registrationid,'presentation_date'=>$presentation_date));
+        if($res->num_rows()===1){
+            $this->db->where('registration_id',$registrationid);
+            $this->db->update('tb_verdict',$array_date);
+        }  else {
+            $this->db->insert('tb_verdict',$array_date); 
+        }
+        
+    }
  }
 

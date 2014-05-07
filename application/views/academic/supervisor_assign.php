@@ -6,7 +6,7 @@
             <div class="in tab-pane active">
                 <div class="col-lg-6">
                     <fieldset>
-                        <div class="pantop"><legend style="padding-top: 30px;" class="text text-justify text-info"><p>Details For: <?php echo ''.$registrationID.''. ($surname);?></p></legend></div>
+                        <div class="pantop"><legend style="padding-top: 30px;" class="text text-justify text-info"><p>Details For: <?php echo ' '.$registrationID .' ('. ($surname).' )';?></p></legend></div>
                         <div>
                             <label>PROJECT TITLE</label>
                             <p class="dts"><?php echo ''.$project_title;?></p>

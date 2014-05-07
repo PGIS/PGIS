@@ -15,6 +15,7 @@
           $data2=  $this->check_exist();
           $data=$data1+$data2;
           $data['after']=  $this->comments_after();
+          $data['verdicts']=  $this->verdicts();
           $data['active']=TRUE;
           $data['actived']=TRUE;
           $sn= $this->session->userdata('registration_id');
@@ -31,9 +32,10 @@
       function project_insert(){
           $this->form_validation->set_rules('prj','Project Title','required|xss_clean');
           $this->form_validation->set_rules('prd','Project Description','required|xss_clean');
-          $this->form_validation->set_rules('pis','Username','trim|required|xss_clean');
+          $this->form_validation->set_rules('pis','Email','trim|required|valid_email|xss_clean');
           $data['records']=  $this->supervisors_view();
           $data['after']=  $this->comments_after();
+          $data['verdicts']=  $this->verdicts();
           $data=  $this->check_exist();
           $data['active']=TRUE;
           $data['actived']=TRUE;
@@ -52,6 +54,7 @@
       }
       function project_progress(){
          $data['after']=  $this->comments_after();
+         $data['verdicts']=  $this->verdicts();
          $data['records']=  $this->supervisors_view();
          $data=  $this->check_exist();
          $data['active2']=TRUE;
@@ -164,8 +167,46 @@
          }  else {
              echo '<p class="alert alert-danger">No</p>';
          }
-         
-         
+         }
+         function verdicts(){
+             $reg_id=  $this->session->userdata('registration_id');
+             $res=  $this->db->get_where('tb_verdict',array('registration_id'=>$reg_id));
+             if($res->num_rows()>0){
+                 return $res;
+             }
+         }
+         function verdict_view($id){
+            $res=  $this->db->get_where('tb_verdict',array('id'=>$id));
+            if($res->num_rows()===1){
+                $this->db->where('id',$id);
+                $this->db->update('tb_verdict',array('viewed'=>'yes'));
+                foreach ($res->result() as $data){
+                   $data_array=array(
+                       'supervisor'=>$data->supervisor_name,
+                       'presentation_date'=>$data->presentation_date,
+                       'verdict'=>$data->verdicts,
+                       'id'=>$data->id
+                   ); 
+                }
+                unset($data);
+                $this->load->view('academic/verdictstudent_view',$data_array);
+                
+            }
+         }
+         function verdicts_viewed(){
+             $reg_id=  $this->session->userdata('registration_id');
+             $res=  $this->db->get_where('tb_verdict',array('viewed'=>'yes','registration_id'=>$reg_id));
+             if($res->num_rows()>0){
+                 return $res;
+             }
+         }
+         function delete($id){
+            $res=  $this->db->get_where('tb_verdict',array('id'=>$id));
+            if($res->num_rows()===1){
+                $this->db->where('id',$id);
+                $this->db->delete('tb_verdict');
+                redirect('project_page');
+            }
          }
       }
   

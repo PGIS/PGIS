@@ -47,6 +47,8 @@
                                 <span class="glyphicon glyphicon-dashboard"></span>INTERNAL SUPERVISOR</button></li>
                         <li><a href="<?php echo site_url('teaching'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
                                 View posted project</a></li>
+                        <li><a href="<?php echo site_url(''); ?>"><span class="glyphicon glyphicon-asterisk"></span>
+                                Verdicts</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
                         <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
