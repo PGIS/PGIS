@@ -3,8 +3,8 @@
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li class="active"><a href="<?php echo site_url('teaching');?>">Student assigned</a></li>
-            <li><a href="<?php echo site_url('teaching/project');?>">Submitted project</a></li>
-            <li><a href="<?php echo site_url('teaching/replied');?>">Replied project</a></li>
+            <li><a href="<?php echo site_url('teaching/project');?>">Submitted dissertation</a></li>
+            <li><a href="<?php echo site_url('teaching/replied');?>">Replied dissertationt</a></li>
             <li><a href="<?php echo site_url('teaching/verdicts');?>">View Presentation Feedback</a></li>
         </ol>
         <div class="well-sm">
