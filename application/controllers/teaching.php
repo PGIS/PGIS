@@ -97,7 +97,7 @@
        $this->form_validation->set_rules('com','comments','trim|required|xss_clean');
        $this->form_validation->set_rules('desc','Conclusion','trim|required|xss_clean');
        $this->form_validation->set_rules('dtz','Date','trim|required|xss_clean');
-       if(!($this->upload->do_upload())||$this->form_validation->run()===FALSE){
+       if((!$this->upload->do_upload())&&$this->form_validation->run()===FALSE){
          $data['error']=  $this->upload->display_errors();
          $this->load->view('academic/teaching_comment',$data);  
        }  else {
