@@ -11,8 +11,8 @@ class Finance_page extends CI_Controller{
             redirect('logout'); 
         }
     }
-    public function index($se=''){
-        $data['se']=$se;
+    public function index($se,$sf){
+        $data['se']=$se.'/'.$sf;
         $data['regid']=$this->session->userdata('userid');
         $this->load->view('registration/finance_view1',$data);  
     }

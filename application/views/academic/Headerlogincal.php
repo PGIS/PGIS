@@ -77,6 +77,42 @@
 
                             </ul>
                         </li>
+                        <li class="dropdown messages-dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    Messages
+                    <span class="badge">
+                        <?php
+                        $this->db->where('receiver',$this->session->userdata('userid'));
+                        $this->db->where('status','unchecked');
+                        $this->db->from('tb_messeges');
+                        $newsmg=$this->db->count_all_results();
+                        
+                        echo  $newsmg;
+                        ?>
+                    </span>
+                <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header"> <?php echo $newsmg;?> New Messages</li>
+                    <?php
+                    $this->db->where('receiver',$this->session->userdata('userid'));
+                    $query = $this->db->get_where('tb_messeges', array('status' => 'unchecked'),3);
+                    foreach ($query->result() as $messg){
+                       echo '<li class="message-preview">
+                        <a href="'.site_url('messages/opensms/'.$messg->message_id).'">
+                            <span class="avatar">
+                         
+                            <span class="name">'.$messg->sender.'</span>
+                            <span class="message">'.$messg->subject.'</span>
+                            
+                        </a>
+                    </li>
+                    '; 
+                    }
+                    ?>
+                </ul>
+                </li>
                     </ul>
 
                 </div><!-- /.navbar-collapse -->

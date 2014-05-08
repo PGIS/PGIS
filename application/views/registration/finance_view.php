@@ -25,7 +25,7 @@
             </ul>
             <div class="tab-content tb" style="display:block">
                 <div class="home in tab-pane <?php if(isset($active)){ echo 'active';}?>">
-                    <div class="pantop"><h4>Tuition fee detail*</h4></div>
+                    <div class="pantop"><h4>Payments detail</h4></div>
                     <?php if(!empty($result)){echo'<div class="bs-docs-example">
         <div class="alert fade in">
             <a type="button" class="close" data-dismiss="alert">&times;</a>
@@ -45,15 +45,35 @@
                         <table class="table table-condensed table-striped">
                             <tr>
                                 <td>
-                                    Registration Fees For:
+                                    Academic Year:
+                                </td>
+                                <td>
+                                    <select name="acy" class="form-control" required>
+                                        <option><?php if(isset($accyear)){echo $accyear;}
+                                        $year=  date('Y');
+                                        ?></option>
+                                        <option><?php echo ($year-5).'/'.($year-4)?></option>
+                                        <option><?php echo ($year-4).'/'.($year-3);?></option>
+                                        <option><?php echo ($year-3).'/'.($year-2);?></option>
+                                        <option><?php echo ($year-2).'/'.($year-1)?></option>
+                                        <option><?php echo ($year-1).'/'.($year);?></option>
+                                        <option><?php echo ($year).'/'.($year+1)?></option>
+                                       
+                                    </select>
+                                    
+                                </td>
+                            </tr> 
+                       
+                            <tr>
+                                <td>
+                                    Payment For:
                                 </td>
                                 <td>
                                     <select name="reg_fees" class="form-control check" required>
                                         
-                                        <option  value="year_one">Year 1</option>
-                                        <option value="year_one">Year 2</option>
-                                        <option value="year_three">Year 3</option>
-                                        <option value="year_four">Year 4</option>
+                                        <option  value="Tuition Fee">Tuition Fee</option>
+                                        <option value="Direct Cost">Direct Cost</option>
+                                        <option value="year_three">Tuition Fee AND Direct Cost</option>
                                     </select>
                                 </td>
                             </tr>
@@ -74,11 +94,6 @@
                                          value="<?php if(isset($recept_no)){echo $recept_no;}?>">
                                 </td>
                             </tr>
-                            <tr><td>Academic Year:
-                                </td>
-                                <td><input type="text" name="acy" placeholder="2014/2015" class="form-control" required
-                                               value="<?php if(isset($accyear)){echo $accyear;}?>"></td></tr> 
-                       
                             <tr>
                                 <td >
                                     Mode of Payment
@@ -254,10 +269,20 @@
                                 <tr>
                                     <td><label>Choose detail you want to view</label></td>
                                     <td> 
-                                        <select name="data_year" id="cye">
+                                        <select name="data_year" id="cye" class="form-control">
                                             <option></option>
-                                            <option value="year_one">Year 1</option>
-                                            <option value="year_two">Year 2</option>
+                                            <?php
+                                            
+                                            $this->db->distinct();
+                                            $this->db->select('academic_year');
+                                            $this->db->where(array('application_id'=>$this->session->userdata('userid')));
+                                            $myuery = $this->db->get('tb_finance');
+                                            if($myuery->num_rows()>0){
+                                                foreach ($myuery->result() as $acc){
+                                                 echo '<option value="'.$acc->academic_year.'">'.$acc->academic_year.'</option>'; 
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </td>
                                 </tr>

@@ -26,7 +26,7 @@
     resizeEl: null,
     onResize: true,
     delay: 500,
-    breakWidth: 768,
+    breakWidth: 647,
     tabs: {
       minWidth: null,
       "class": 'tabbable',

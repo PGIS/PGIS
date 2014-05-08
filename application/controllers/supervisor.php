@@ -72,75 +72,8 @@
              echo '<p class="alert alert-success">Comments posted</p>';
          }
      }
-     function verdicts(){
-         $data['data']=  $this->status();
-         $data['data1']=  $this->resulted();
-         $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
-                 ->where(array('check'=>'no'))->get();
-         if($res->num_rows()>0){
-           $data['verdict']=$res;
-           $this->load->view('academic/verdicts_view',$data);
-         }  else {
-            $data['verdictz']='<p class="alert alert-info">No records presents</p>';
-           $this->load->view('academic/verdicts_view',$data); 
-         }
-         
-     }
-     function put_verdict($id){
-         $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
-                 ->where(array('id'=>$id))->get();
-         if($res->num_rows()===1){
-             foreach ($res->result() as $row){
-                 $data_array=array(
-                     'id'=>$row->id,
-                      'registration'=>$row->registration_id,
-                      'project_title'=>$row->project_title,
-                      'surname'=>$row->surname
-                 );
-             }
-             unset($row);
-            $this->load->view('academic/put_verdicts',$data_array); 
-         } 
-         
-     }
-     function forward($id){
-         $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
-                 ->where(array('id'=>$id))->get();
-            if($res->num_rows()===1){
-           $this->form_validation->set_rules('prd','Date','trim|required|xss_clean');
-           $this->form_validation->set_rules('content','Date','trim|required|xss_clean');
-            if($this->form_validation->run()===FALSE){
-                echo '<p class="alert alert-danger">Oops something went wrong..</p>';
-            }  else {
-                   $this->load->model('project_model');
-                   $row1=$res->row();
-                   $registrationid=$row1->registration_id;
-                   $project_title=$row1->project_title;
-                   $supervisor=  $this->session->userdata('userid');
-                   $presentation_date= $this->input->post('prd');
-                   $verdicts=  pg_escape_string($this->input->post('content'));
-                   $this->project_model->forward($registrationid,$project_title,$presentation_date,$verdicts,$supervisor);
-                   echo '<p class="alert alert-success">Verdicts posted successifully..</p>';
-               }
-                
-            } 
-         }
-         function status(){
-             $res=  $this->db->select('*')->from('tb_verdict')->join('tb_project','tb_project.registration_id = tb_verdict.registration_id')
-                     ->get();
-             if($res->num_rows()>0){
-              $this->db->where('check','no');
-              $this->db->update('tb_project',array('check'=>'yes'));
-                 
-             return $res;
-             }
-         }
-         function resulted(){
-            $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
-                 ->where(array('check'=>'yes'))->get();
-         if($res->num_rows()>0){ 
-             return $res;
-         }
+     function presentationFeedback(){
+         $this->load->view('academic/presentationfeedback');
      }
      public function record_entry($id){
          $query=  $this->db->get_where('tb_project',array('id'=>$id));
