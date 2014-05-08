@@ -3,7 +3,10 @@ if($this->session->userdata('user_role')==='Teaching staff'){
     include_once 'Headerloginteaching.php';
 }elseif ($this->session->userdata('user_role')==='Supervisor') {
     include_once 'Headerloginsuper.php';
-}?>
+}elseif ($this->session->userdata('user_role')==='Student') {
+    include_once 'Headerlogincal.php';
+}
+?>
 <div id="page-wrapper">
     <?php
     if($this->session->userdata('user_role')==='Teaching staff'){
@@ -22,6 +25,7 @@ if($this->session->userdata('user_role')==='Teaching staff'){
        
         <div>
             <table class="table">
+                
                 <tr>
                     <td>
                      Student name

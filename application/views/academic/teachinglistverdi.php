@@ -21,8 +21,8 @@
                    ?>
                     <tr>
                         <td><?php echo $list->registrationId;?></td>
-                        <td><?php echo $list->date;?></td>
-                        <td><a href="<?php echo site_url('teaching/viewVerdicts/'.$list->project_id.'/'.$list->date);?>">
+                        <td><?php echo $list->pr_date;?></td>
+                        <td><a href="<?php echo site_url('teaching/viewVerdicts/'.$list->project_id.'/'.$list->pr_date);?>">
                             <button type="button" class="btn btn-info btn-xs">View Feedback</button>
                             </a>
                         </td>

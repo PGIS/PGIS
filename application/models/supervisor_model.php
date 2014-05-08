@@ -38,7 +38,7 @@
              'supervisor'=>$super,
             'type' => $this->input->post('prtype'),
             'level'=> $this->input->post('level'),
-            'date' => $this->input->post('prdate'),
+            'pr_date' => $this->input->post('prdate'),
             'comment' => $this->input->post('comments'),
             'verdicts' => $this->input->post('verdict'),
             'panel' => $this->input->post('panel')

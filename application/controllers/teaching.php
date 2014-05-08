@@ -190,7 +190,7 @@
      $this->db->select('*');
      $this->db->from('tb_verdicts');
      $this->db->where('project_id',$pid);
-     $this->db->where('tb_verdicts.date',$date);
+     $this->db->where('pr_date',$date);
      $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
      $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
      $verdic =$this->db->get();
