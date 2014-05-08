@@ -17,7 +17,7 @@
           $data['after']=  $this->comments_after();
           $data['verdicts']=  $this->verdicts();
           $data['active']=TRUE;
-          $data['actived']=TRUE;
+          $data['actived1']=TRUE;
           $sn= $this->session->userdata('registration_id');
           $res=  $this->db->get_where('tb_project',array('registration_id'=>$sn));
           if($res->num_rows()===1){
@@ -38,7 +38,7 @@
           $data['verdicts']=  $this->verdicts();
           $data=  $this->check_exist();
           $data['active']=TRUE;
-          $data['actived']=TRUE;
+          $data['actived1']=TRUE;
           if($this->form_validation->run()===FALSE){
               $this->load->view('academic/project_view',$data);
           }  else {
@@ -58,7 +58,7 @@
          $data['records']=  $this->supervisors_view();
          $data=  $this->check_exist();
          $data['active2']=TRUE;
-          $data['actived']=TRUE;
+          $data['actived1']=TRUE;
          unset($data['active']);
          $config['upload_path']= './project_document/';
          $config['allowed_types']='pdf|doc|docx';

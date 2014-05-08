@@ -18,17 +18,16 @@
                return FALSE; 
            }
      }
-     function insert_update($id,$comments){
-         $array=array(
-             'comments'=>$comments,
-             'status'=>'pending'
+     function supervisor_assign($id,$email){
+         $data_ass=array(
+             'Internal_supervisor'=>$email
          );
          $res=  $this->db->get_where('tb_project',array('id'=>$id));
          if($res->num_rows()===1){
              $this->db->where('id',$id);
-             $this->db->update('tb_project',$array);
+             $this->db->update('tb_project',$data_ass);
          }  else {
-             return FALSE;
+             $this->db->insert('tb_project',$data_ass);    
          }
      }
  }

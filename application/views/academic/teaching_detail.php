@@ -3,11 +3,11 @@
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <li class="active"><a href="<?php echo site_url('teaching');?>">Student assigned</a></li>
-            <li><a href="<?php echo site_url('teaching/project');?>">Submitted project</a></li>
-            <li><a href="<?php echo site_url('teaching/replied');?>">Replied project</a></li>
+            <li><a href="<?php echo site_url('teaching/project');?>">Submitted dissertations</a></li>
+            <li><a href="<?php echo site_url('teaching/replied');?>">Replied dissertations</a></li>
         </ol>
         <div class="well-sm">
-            <div class="pantop"><legend class="text-center text-justify text-info">RECENTLY POSTED PROJECT</legend></div>
+            <div class="pantop"><legend class="text-center text-justify text-info">RECENTLY POSTED DISSERTATIONS</legend></div>
             <table class="table table-bordered table-striped">
                 <?php if(isset($look)){
                  echo '<tr><th>REGISTRATION</th><th>POSTED DATE</th><th>ACTION<b class="caret"></b></th></tr>';
