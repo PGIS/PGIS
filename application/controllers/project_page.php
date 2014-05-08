@@ -170,7 +170,7 @@
          }
          function verdicts(){
              $reg_id=  $this->session->userdata('registration_id');
-             $res=  $this->db->get_where('tb_verdict',array('registration_id'=>$reg_id));
+             $res=  $this->db->get_where('tb_verdicts',array('registration_id'=>$reg_id));
              if($res->num_rows()>0){
                  return $res;
              }

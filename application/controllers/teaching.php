@@ -163,5 +163,34 @@
        force_download($name,$data);
    }
  }
+ function verdicts(){
+     $this->load->view('academic/teachinglistverdi');
+ }
+ function viewVerdicts($pid,$date){
+     $this->db->select('*');
+     $this->db->from('tb_verdicts');
+     $this->db->where('project_id',$pid);
+     $this->db->where('tb_verdicts.date',$date);
+     $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
+     $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
+     $verdic =$this->db->get();
+     foreach ($verdic->result()as $ver){
+         $data=array(
+                    'type'=>$ver->type,
+                    'registrationid'=>$ver->registrationID,
+                    'level'=>$ver->level,
+                    'comments'=>$ver->comment,
+                    'verdict'=>$ver->verdicts,
+                    'panel'=>$ver->panel,
+                    'lname'=>$ver->surname,
+                    'sname'=>$ver->other_name,
+                    'department'=>$ver->department,
+                    'programe'=>$ver->program,
+                    'title'=>$ver->project_title
+                );
+            }
+            $data['prdate']=$date;
+     $this->load->view('academic/teachinverdics',$data);
+    }
  }
 

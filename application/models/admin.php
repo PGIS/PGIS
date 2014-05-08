@@ -23,7 +23,8 @@ class Admin extends CI_Model {
 
     public function get_paged_list() {
         $this->db->order_by('id', 'asc');
-        return $this->db->get($this->tb_user);
+       $list = $this->db->get_where('tb_user', array('designation' => 'applicant'));
+        return $list;
     }
 
     public function save() {

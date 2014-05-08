@@ -31,5 +31,20 @@
              return FALSE;
          }
      }
+     function saveVerdicts($reg,$projid,$super){
+         $mydata = array
+            (
+             'registrationId'=>$reg,
+             'project_id'=>$projid,
+             'supervisor'=>$super,
+            'type' => $this->input->post('prtype'),
+            'level'=> $this->input->post('level'),
+            'date' => $this->input->post('prdate'),
+            'comment' => $this->input->post('comments'),
+            'verdicts' => $this->input->post('verdict'),
+            'panel' => $this->input->post('panel')
+            );
+         $this->db->insert('tb_verdicts',$mydata);
+     }
  }
 

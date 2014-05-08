@@ -5,6 +5,7 @@
             <li class="active"><a href="<?php echo site_url('teaching');?>">Student assigned</a></li>
             <li><a href="<?php echo site_url('teaching/project');?>">Submitted project</a></li>
             <li><a href="<?php echo site_url('teaching/replied');?>">Replied project</a></li>
+            <li><a href="<?php echo site_url('teaching/verdicts');?>">View Presentation Feedback</a></li>
         </ol>
         <div class="well-sm">
             <div class="pantop"><legend class="text-center text-justify text-info">RECENTLY POSTED PROJECT</legend></div>
