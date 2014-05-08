@@ -19,6 +19,27 @@
      $(document).ready(function(){ 
         $('#mytable3').dataTable(); 
     });
+    $(document).ready(function(){ 
+        $('#mytables').dataTable(); 
+    });
+    $(document).ready(function(){ 
+        $('#mytablesa').dataTable(); 
+    });
+    $(document).ready(function(){ 
+        $('#mytablet').dataTable(); 
+    });
+     $(document).ready(function(){ 
+        $('#mytablet1').dataTable(); 
+    });
+    $(document).ready(function(){ 
+        $('#mytablet2').dataTable(); 
+    });
+    $(document).ready(function(){ 
+        $('#mytablet3').dataTable(); 
+    });
+    $(document).ready(function(){ 
+        $('#mytablet4').dataTable(); 
+    });
 </script>
    <script>
         $('#pop').popover();

@@ -51,14 +51,15 @@
         return FALSE; 
            }
     }
-    function comment($reg_id,$header,$content,$date){
+    function comment($reg_id,$header,$content,$date,$documents){
         $ses_array=array(
             'registrationID'=>$reg_id,
             'comments'=>$header,
             'presentation_date'=>$date,
-            'conclusion'=>$content
+            'conclusion'=>$content,
+            'document'=>$documents
         );
-        $res=  $this->db->get_where('tb_pprogress',array('registrationID'=>$reg_id));
+        $res=  $this->db->get_where('tb_pprogress',array('registrationID'=>$reg_id,'presentation_date'=>$date));
         if($res->num_rows()===1){
             $this->db->where('registrationID',$reg_id);
             $this->db->update('tb_pprogress',$ses_array);

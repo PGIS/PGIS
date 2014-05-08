@@ -8,7 +8,7 @@
             <li><a href="<?php echo site_url('teaching/verdicts');?>">View Presentation Feedback</a></li>
         </ol>
         <div class="well-sm">
-            <div class="pantop"><legend class="text-center text-justify text-info">RECENTLY POSTED PROJECT</legend></div>
+            <div class="pantop"><legend class="text-center text-justify text-info">RECENTLY POSTED DISSERTATIONS</legend></div>
             <table class="table table-bordered table-striped">
                 <?php if(isset($look)){
                  echo '<tr><th>REGISTRATION</th><th>POSTED DATE</th><th>ACTION<b class="caret"></b></th></tr>';

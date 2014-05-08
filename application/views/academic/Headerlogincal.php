@@ -55,7 +55,7 @@
                          <li><a href="<?php echo site_url('messages'); ?>">
                                 <span class="glyphicon glyphicon-envelope"></span> Messages</a>
                         </li>
-                        <li><a href="<?php echo site_url('project_page'); ?>"><span class="glyphicon glyphicon-th"></span> Projects</a></li>
+                        <li><a href="<?php echo site_url('project_page'); ?>"><span class="glyphicon glyphicon-th"></span> Dissertation/Thesis</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
                         <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>

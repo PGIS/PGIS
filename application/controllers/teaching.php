@@ -22,9 +22,9 @@
          $sn=  $this->session->userdata('userid');
          $sn1=  $this->session->userdata('email');
          $res=  $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
-                 ->where(array('supervisor'=>$sn,'status'=>'not replied','read'=>'no'))->get();
+                 ->where(array('supervisor'=>$sn,'status'=>'not replied'))->get();
          $res1=  $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
-                 ->where(array('supervisor'=>$sn1,'status'=>'not replied','read'=>'no'))->get();
+                 ->where(array('supervisor'=>$sn1,'status'=>'not replied'))->get();
          if($res->num_rows()>0){
          return $res;
          }elseif ($res1->num_rows()>0) {
@@ -45,8 +45,9 @@
        }
    }
      function view($id){
-      $res=  $this->db->get_where('tb_student_desert',array('id'=>$id,'status'=>'not replied'));
-      if($res->num_rows()>0){
+     $res=  $this->db->get_where('tb_student_desert',array('id'=>$id,'status'=>'not replied'));
+            $rd=$res->row();
+     if($res->num_rows()>0){
           foreach ($res->result() as $row){
               $magic_here=array(
                   'id'=>$row->id,
@@ -54,10 +55,10 @@
                   'document'=>$row->document
               );
           }
-          unset($row);
-          $this->load->view('academic/teaching_comment',$magic_here);
+         unset($row);
+         $this->load->view('academic/teaching_comment',$magic_here);
       }
-   }
+    }
    function comment_view($reg_id){
      $res=  $this->db->get_where('tb_student_desert',array('registrationID'=>$reg_id,'status'=>'not replied'));
      if($res->num_rows()>0){
@@ -79,7 +80,7 @@
             $row=$res->row();
            if($res->num_rows()===1){
          $this->db->where('id',$id);
-         $this->db->update('tb_student_desert',array('status'=>'replied'));
+         $this->db->update('tb_student_desert',array('status'=>'replied','read'=>'yes'));
             foreach ($res->result() as $rec){
                 $data=array(
                     'id'=>$rec->id,
@@ -88,18 +89,25 @@
                 );
             }
             unset($rec);
+       $config['upload_path']= './project_feedback/';
+       $config['allowed_types']='pdf|doc|docx';
+       $config['overwrite']=TRUE;
+       $config['remove_spaces']=FALSE;
+       $this->load->library('upload',$config);
        $this->form_validation->set_rules('com','comments','trim|required|xss_clean');
        $this->form_validation->set_rules('desc','Conclusion','trim|required|xss_clean');
        $this->form_validation->set_rules('dtz','Date','trim|required|xss_clean');
-       if($this->form_validation->run()===FALSE){
+       if((!$this->upload->do_upload())&&$this->form_validation->run()===FALSE){
+         $data['error']=  $this->upload->display_errors();
          $this->load->view('academic/teaching_comment',$data);  
        }  else {
            $this->load->model('project_model');
            $header=  $this->input->post('com');
            $content=  $this->input->post('desc');
            $date=  $this->input->post('dtz');
+           $documents=  base_url().'project_feedback/'.pg_escape_string($_FILES['userfile']['name']);
            $reg_id=$row->registrationID;
-           $this->project_model->comment($reg_id,$header,$content,$date);
+           $this->project_model->comment($reg_id,$header,$content,$date,$documents);
            $data['success']='<p class="alert alert-success">Comment has sent.!</p>';
            $this->load->view('academic/teaching_comment',$data);
        
@@ -117,23 +125,35 @@
            $this->load->view('academic/teaching_replied',$data);
        }
    }
-   function resert($regist_id){
-       $res=  $this->db->get_where('tb_student_desert',array('id'=>$regist_id));
-       if($res->num_rows()===1){
-           $this->db->where('id',$regist_id);
-           $this->db->update('tb_student_desert',array('status'=>'not replied'));
-           redirect('teaching');
-       }  else {
-           return FALSE; 
+   function details2($reg_id){
+       $data=  $this->details3();
+       $res=  $this->db->get_where('tb_student_desert',array('registrationID'=>$reg_id,'read'=>'yes'));
+       if($res->num_rows()>0){
+          $data['look']=$res;
+          $this->load->view('academic/recent_downloads',$data);
+       }  
+   }
+   function details3(){
+       $res= $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
+               ->where(array('read'=>'yes'))->get();
+       if($res->num_rows()>0){
+           foreach ($res->result() as $row){
+               $data_rec=array(
+                   'firstname'=>$row->surname,
+                   'othername'=>$row->other_name,
+                   'registration'=>$row->registrationID
+               );
+           }
+           unset($row);
+          return $data_rec;
        }
    }
+           
    function download($reg_id){
        $this->load->helper('download');
-       $res=  $this->db->get_where('tb_student_desert',array('id'=>$reg_id,'read'=>'no'));
+       $res=  $this->db->get_where('tb_student_desert',array('id'=>$reg_id));
        if($res->num_rows()>0){
            $row=$res->row();
-           $this->db->where('id',$reg_id);
-           $this->db->update('tb_student_desert',array('read'=>'yes'));
        $data=  file_get_contents('project_document/'.substr($row->document,39));
        $name=  substr($row->document,39);
        force_download($name,$data);
@@ -193,4 +213,5 @@
      $this->load->view('academic/teachinverdics',$data);
     }
  }
+ 
 
