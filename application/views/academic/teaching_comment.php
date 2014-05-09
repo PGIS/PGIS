@@ -52,7 +52,7 @@
     <div class="col-lg-6">
         <legend><label>Supervisor Feedback</label></legend>
         <table class="table table-condensed">
-            <?php echo form_open('teaching/comment/'.$id);?>
+            <?php echo form_open_multipart('teaching/comment/'.$id);?>
             <tr><td>Comments</td><td><label class="alert-warning"><?php echo form_error('com');?></label><textarea  class="form-control" name="com"></textarea></td></tr>
             <tr><td>Conclusion</td><td><label class="alert-warning"><?php echo form_error('desc');?></label><textarea class="form-control" cols="3" name="desc"></textarea></td></tr>
             <tr><td>Date</td><td><label class="alert-warning"><?php echo form_error('dtz');?></label><input class="form-control datepicker" name="dtz"></td></tr>
