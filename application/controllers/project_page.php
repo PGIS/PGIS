@@ -217,6 +217,16 @@
                 redirect('project_page');
             }
          }
+         function download($id){
+             $this->load->helper('download');
+             $res=  $this->db->get_where('tb_pprogress',array('id'=>$id));
+             if($res->num_rows()>0){
+                 $row=$res->row();
+                 $path=  file_get_contents('project_feedback/'.substr($row->document,39));
+                 $data=  substr($row->document,39);
+                 force_download($data,$path);
+             }
+         }
       }
   
 
