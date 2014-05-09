@@ -45,7 +45,7 @@
                                     <?php if(isset($after)){
                                         echo '<tr><th>POSTED DATE</th><th>COMMENTS</th><th>CONCLUSION</th><th>ACTION<b class="caret"></b></th></tr>';
                                         foreach ($after->result() as $aft){
-                                            echo '<tr><td>'.$aft->presentation_date.'</td><td>'.$aft->comments.'</td><td>'.$aft->conclusion.'</td><td>'.anchor('project_page/delete_comments/'.$aft->registrationID,'<span class="badge">Delete</span>',array('onclick'=>"return confirm('Are you sure you want to delete this comments.?')")).'</td></tr>';
+                                            echo '<tr><td>'.$aft->presentation_date.'</td><td>'.$aft->comments.'</td><td>'.$aft->conclusion.'</td><td>'.substr($aft->document, 39).'</td><td>'.anchor('project_page/download/'.$aft->id ,'Download',array('class'=>'glyphicon glyphicon-download-alt')).'</td><td>'.anchor('project_page/delete_comments/'.$aft->registrationID,'<span class="badge">Delete</span>',array('onclick'=>"return confirm('Are you sure you want to delete this comments.?')")).'</td></tr>';
                                         }
                                     }  else {
                                         echo '<p class="alert alert-warning">No comments present..!</p>';
