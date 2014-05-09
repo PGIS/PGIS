@@ -9,16 +9,41 @@
         </ol>
         <div class="well-sm">
             <div class="pantop"><legend class="text-center text-justify text-info">Assigned Students</legend></div>
-            <table class="table table-striped" id="mytablet">
-                <thead><tr><th>REGISTRATION</th><th>FIRST NAME</th><th>LAST NAME</th><th>INTERNAL SUP</th><th>PROJECT TITLE</th><th>ACTION<b class="caret"></b></th></tr></thead>
+            <table class="table table-striped table-condensed" id="mytablet">
+                <thead>
+                    <tr>
+                        <th>REGISTRATION</th>
+                        <th>STUDENT NAME</th>
+                        <th>PROJECT TITLE</th>
+                        <th>ACTION<b class="caret"></b></th>
+                    </tr>
+                </thead>
                 <tbody>
                  <?php if(isset($assigned)){
                  foreach ($assigned->result() as $row){
-                     echo '<tr><td>'.$row->registration_id.'</td><td>'.$row->surname.'</td><td>'.$row->other_name.'</td><td>'.$row->Internal_supervisor.'</td><td>'.$row->project_title.'</td><td>'.anchor('teaching/details/'.$row->registration_id,'Details').'</td></tr>';
+                     echo '<tr><td>'.$row->registration_id.'</td><td>'.$row->surname.' '.$row->other_name.'</td><td>'.$row->project_title.'</td>'
+                             . '<td><button class="btn btn-success btn-xs"  onclick="viewdetail(\''.$row->registration_id.'\')" data-toggle="modal" data-target="#editModal">
+                                    <span class="glyphicon glyphicon-send"></span> Detail
+                                    </button></td></tr>';
                  }
                 }  ?>
                 </tbody>
-            </table>
+            </table><div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                       <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title" id="myModalLabel">Assigned Student Details</h4>
+                            </div>
+                            <div class="modal-body">
+                                 <div class="succedited"></div>
+                                <div id="details">
+                              
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                     </div>
         </div>
     </div>
     </div>

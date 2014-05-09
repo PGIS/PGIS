@@ -212,6 +212,11 @@
             $data['prdate']=$date;
      $this->load->view('academic/teachinverdics',$data);
     }
+    
+    function viewDetail($id){
+        $data['regid']=$id;
+       $this->load->view('academic/assigeneStudentdetails',$data); 
+    }
  }
  
 
