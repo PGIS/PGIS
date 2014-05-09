@@ -44,6 +44,14 @@
    <script>
         $('#pop').popover();
     </script>
-   
+   <script>
+    function viewdetail(id) {
+        var url = "<?php echo site_url('teaching/viewDetail'); ?>";
+        var url2 = url + '/' + id;
+        $.get(url2, function(data) {
+            $('#details').html(data);
+        });
+    }
+</script>
   </body>
 </html>

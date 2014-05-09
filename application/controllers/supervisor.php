@@ -115,7 +115,7 @@
          $data=  $this->getprojecdetail($id);
          $this->form_validation->set_rules('prtype', 'Presentation', 'required|max_length[40]|xss_clean');
          $this->form_validation->set_rules('level', 'Level', 'required|max_length[40]|xss_clean');
-         $this->form_validation->set_rules('prdate', 'Presentation date', 'required|max_length[20]|xss_clean|is_unique[tb_verdicts.date]');
+         $this->form_validation->set_rules('prdate', 'Presentation date', 'required|max_length[20]|xss_clean|is_unique[tb_verdicts.pr_date]');
          $this->form_validation->set_rules('comments', 'Comments','required|xss_clean');
          $this->form_validation->set_rules('verdict', 'verdict', 'required|xss_clean');
          $this->form_validation->set_rules('panel', 'Panel', 'required|xss_clean');
