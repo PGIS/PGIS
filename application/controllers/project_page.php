@@ -170,38 +170,47 @@
          }
          function verdicts(){
              $reg_id=  $this->session->userdata('registration_id');
-             $res=  $this->db->get_where('tb_verdict',array('registration_id'=>$reg_id));
+             $res=  $this->db->get_where('tb_verdicts',array('registrationId'=>$reg_id));
              if($res->num_rows()>0){
                  return $res;
              }
          }
-         function verdict_view($id){
-            $res=  $this->db->get_where('tb_verdict',array('id'=>$id));
-            if($res->num_rows()===1){
-                $this->db->where('id',$id);
-                $this->db->update('tb_verdict',array('viewed'=>'yes'));
-                foreach ($res->result() as $data){
-                   $data_array=array(
-                       'supervisor'=>$data->supervisor_name,
-                       'presentation_date'=>$data->presentation_date,
-                       'verdict'=>$data->verdicts,
-                       'id'=>$data->id
-                   ); 
-                }
-                unset($data);
-                $this->load->view('academic/verdictstudent_view',$data_array);
-                
+         function verdict_view($pid){
+            $this->db->select('*');
+            $this->db->from('tb_verdicts');
+            $this->db->where('tb_verdicts.id',$pid);
+            $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
+            $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
+             
+            $verdic =$this->db->get();
+     foreach ($verdic->result()as $ver){
+         $data=array(
+                    'type'=>$ver->type,
+                    'registrationid'=>$ver->registrationID,
+                    'level'=>$ver->level,
+                    'comments'=>$ver->comment,
+                    'verdict'=>$ver->verdicts,
+                    'panel'=>$ver->panel,
+                    'lname'=>$ver->surname,
+                    'sname'=>$ver->other_name,
+                    'department'=>$ver->department,
+                    'programe'=>$ver->program,
+                    'title'=>$ver->project_title,
+                    'prdate'=>$ver->pr_date
+                );
             }
+            
+     $this->load->view('academic/teachinverdics',$data);
          }
          function verdicts_viewed(){
              $reg_id=  $this->session->userdata('registration_id');
-             $res=  $this->db->get_where('tb_verdict',array('viewed'=>'yes','registration_id'=>$reg_id));
+             $res=  $this->db->get_where('tb_verdicts',array('viewed'=>'yes','registrationId'=>$reg_id));
              if($res->num_rows()>0){
                  return $res;
              }
          }
          function delete($id){
-            $res=  $this->db->get_where('tb_verdict',array('id'=>$id));
+            $res=  $this->db->get_where('tb_verdicts',array('id'=>$id));
             if($res->num_rows()===1){
                 $this->db->where('id',$id);
                 $this->db->delete('tb_verdict');

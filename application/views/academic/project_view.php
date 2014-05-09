@@ -2,7 +2,7 @@
 <div id="page-wrapper">
     <div class="span12">
     <div class="tab-content" style="display: block">
-    <div class="col-lg-10">
+    <div class="col-md-12">
     <ul class="nav nav-tabs nav-justified nav-tabs-justified">
         <li class="<?php if(isset($active)){echo'active';}?>"><a data-target=".project" data-toggle="tab"><label>Project</label></a></li>
         <li class="<?php if(isset($active1)){echo'active';}?>"><a data-target=".comment" data-toggle="tab"><label>Posted comments</label></a></li>
@@ -28,8 +28,8 @@
             <div class="comment in tab-pane <?php if(isset($active1)){echo'active';}?>">
                 <div class=" tabcordion tabs-left tabbable">
                     <ul class=" nav nav-tabs nav-pills">
-                        <li class="<?php if(isset($actived1)){echo'active';}?>"><a data-target=".after" data-toggle="tab">During project progress</a></li>
-                        <li class="<?php if(isset($actived2)){echo'active';}?>"><a data-target=".during" data-toggle="tab">Verdicts for Presentation</a></li>
+                        <li class="<?php if(isset($actived1)){echo'active';}?>"><a data-target=".after" data-toggle="tab">Project progress</a></li>
+                        <li class="<?php if(isset($actived2)){echo'active';}?>"><a data-target=".during" data-toggle="tab"> Presentation Feedback</a></li>
                     </ul>
                     <div class=" tab-content" style="display:block">
                         <div class="after in tab-pane <?php if(isset($actived1)){echo'active';}?>">
@@ -58,12 +58,22 @@
                         <div class="during in tab-pane <?php if(isset($actived2)){echo'active';}?>">
                             <fieldset>
                                 <div class="pantop"><legend style=" padding-top: 20px;" class="text-center text-justify text-info">Verdicts posted</legend></div>
-                                <table class=" table table-striped table-condensed" id="mytable2">
-                                    <thead><tr><th>PROJECT TITLE</th><th>FROM</th><th>PRESENTATION DATE</th><th>TO DO NEXT</th></tr></thead>
+                                <table class=" table table-striped " id="mytablet">
+                                    <thead>
+                                        <tr>
+                                            <th>Presentation date</th>
+                                            <th>Presentation for</th>
+                                            <th>View</th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                         <?php if(isset($verdicts)){
                                          foreach ($verdicts->result()as $row){
-                                             echo '<tr><td>'.$row->project_title.'</td><td>'.$row->supervisor_name.'</td><td>'.$row->presentation_date.'</td><td><label class="btn btn-warning btn-sm">'.anchor('project_page/verdict_view/'.$row->id,'<span class="glyphicon glyphicon-share"> view </span>').'</label></td></tr>'; 
+                                             echo '<tr>'
+                                            . '<td>'.$row->pr_date.'</td>'
+                                            .'<td>'.$row->type.'</td>'
+                                            . '<td><label class="btn btn-warning btn-xs">'.anchor('project_page/verdict_view/'.$row->id,'<span class="glyphicon glyphicon-share"> view </span>').'</label></td>'
+                                            . '</tr>'; 
                                          }
                                         }?>
                                     </tbody>

@@ -14,7 +14,7 @@
         $('#mytable1').dataTable(); 
     });
      $(document).ready(function(){ 
-        $('#mytable2').dataTable(); 
+        $('#mytablet').dataTable(); 
     });
      $(document).ready(function(){ 
         $('#mytable3').dataTable(); 
