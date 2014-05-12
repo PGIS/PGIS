@@ -78,5 +78,22 @@ class Admin extends CI_Model {
         );
          $this->db->insert('tb_alumni_events', $event);
     }
-    
+    function course1($course_code,$seminar_day,$morning_hour,$afternoon_hour,$evening_hour,$venue,$limit){
+         $data_array=array(
+                 'course'=>$course_code,
+                 'seminar_day'=>$seminar_day,
+                 'semina_venue'=>$venue,
+                 'morning_hour'=>$morning_hour,
+                 'afternoon_hour'=>$afternoon_hour,
+                 'evening_hour'=>$evening_hour,
+                 'max_number'=>$limit
+                 );
+         $res=  $this->db->get_where('tb_seminar',array('course'=>$course_code));
+         if($res->num_rows()===1){
+             $this->db->where('course',$course_code);
+             $this->db->update('tb_seminar',$data_array);
+         }else{
+             $this->db->insert('tb_seminar',$data_array);
+         }
+    }
 }

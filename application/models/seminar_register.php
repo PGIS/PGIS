@@ -4,20 +4,21 @@ class Seminar_register extends CI_model {
      function __construct(){
         parent::__construct();
     }
-    function insert_student($username,$course,$day,$hours,$sn){
+    function insert_student($username,$course,$day,$hours,$sn,$venue){
           $data=array(
               'registration_id'=>$username,
               'course'=>$course,
-              'seminar_day'=>$day,
+              'semina_day'=>$day,
               'semina_hour'=>$hours,
-              'semina_id'=>$sn
+              'student_name'=>$sn,
+              'semina_venue'=>$venue
           );
-          $res=  $this->db->get_where('tb_seminar',array('registration_id'=>$username,'course'=>$course));
+          $res=  $this->db->get_where('tb_sem_reg',array('registration_id'=>$username,'course'=>$course));
           if ($res->num_rows()===1){
               $this->db->where($data);
-              $this->db->update('tb_seminar',$data);
+              $this->db->update('tb_sem_reg',$data);
           }else {
-              $this->db->insert('tb_seminar',$data);
+              $this->db->insert('tb_sem_reg',$data);
           }
           
 

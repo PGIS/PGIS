@@ -40,6 +40,9 @@
     $(document).ready(function(){ 
         $('#mytablet4').dataTable(); 
     });
+    $(document).ready(function(){ 
+        $('.tab1').dataTable(); 
+    });
 </script>
    <script>
         $('#pop').popover();
@@ -53,5 +56,14 @@
         });
     }
 </script>
+<script>
+            function rgistercourse(id){
+                var url="<?php echo site_url('seminary/show_semicalender');?>";
+                var url2=url+'/'+id;
+                $.get(url2 ,function(data){
+                    $('#load').html(data);
+                });
+            } 
+            </script>
   </body>
 </html>
