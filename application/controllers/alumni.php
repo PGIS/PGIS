@@ -8,6 +8,12 @@ class Alumni extends CI_Controller {
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
         $this->load->helper(array('form', 'html', 'url', 'array', 'string', 'directory'));
         $this->load->library(array('form_validation', 'session', 'javascript'));
+        
+        if(!$this->session->userdata('logged_in')){
+            redirect('logout');
+        }elseif ($this->session->userdata('user_role')!='alumni') {
+             redirect('logout');
+        }
     }
 
     function index(){

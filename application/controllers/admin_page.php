@@ -4,8 +4,8 @@ class Admin_page extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->helper(array('form', 'html', 'url', 'text'));
-        $this->load->library(array('form_validation', 'pagination', 'table'));
+        $this->load->helper(array('form', 'html', 'url', 'text','directory','array'));
+        $this->load->library(array('form_validation','session','encrypt'));
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
 
         if (!$this->session->userdata('logged_in')) {
@@ -22,6 +22,7 @@ class Admin_page extends CI_Controller {
     }
 
     function add() {
+         $data['in']='in';
         $this->form_validation->set_rules('userid', 'username', 'trim|required|min_length[6]|max_length[12]|is_unique[tb_user.userid]|xss_clean');
         $this->form_validation->set_rules('fname', 'first name', 'trim|required|xss_clean');
         $this->form_validation->set_rules('mname', 'middle name', 'trim|required|xss_clean');
@@ -29,7 +30,7 @@ class Admin_page extends CI_Controller {
         $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean');
         $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|is_unique[tb_user.email]');
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('admin/add_page');
+            $this->load->view('admin/add_page',$data);
         } else {
 
             $this->load->model('admin');
@@ -130,5 +131,55 @@ class Admin_page extends CI_Controller {
     }
         
     }
-  }
+    
+    function do_upload(){
+         $data['in1']='in';
+         $config['upload_path'] = './attachments/';
+         $config['allowed_types'] = 'jpg|xlsx|ods|xls|';
+         $config['max_size'] = '2048';
+         $config['remove_spaces'] = TRUE;
+         $config['overwrite'] = true;
+         $this->load->library('upload', $config);
+         $this->upload->initialize($config);
+         
+         if (!$this->upload->do_upload()) {
+            $data['error'] = $this->upload->display_errors();
+            $this->load->view('admin/add_page', $data);
+        }else{
+            $this->exceldata();
+            $data['arra']="User's Details where added successful";
+             $this->load->view('admin/add_page',$data);
+        }
+    }
+    function exceldata() {
+        $this->load->library('excel');
+        $inputFileName = './attachments/staff_names.xls';
 
+        try {
+            $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+            $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load($inputFileName);
+        } catch (Exception $e) {
+            die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+        }
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+
+//  Loop through each row of the worksheet in turn
+        for ($row = 2; $row <= $highestRow; $row++) {
+            //  Read a row of data into an array
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
+            foreach ($rowData as $myrowdata){
+                $data2insert=array(
+                    '#number'=>$myrowdata[0],
+                    'fullName'=>$myrowdata[1],
+                    'qualification'=>$myrowdata[2]
+                );
+               $this->load->model('admin');
+               Admin::addUserFromExcel($data2insert,$data2insert['fullName']); 
+            }
+        }
+    }
+
+}

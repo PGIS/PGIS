@@ -28,7 +28,8 @@
                  }
                 }  ?>
                 </tbody>
-            </table><div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            </table>
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                        <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -36,7 +37,7 @@
                               <h4 class="modal-title" id="myModalLabel">Assigned Student Details</h4>
                             </div>
                             <div class="modal-body">
-                                 <div class="succedited"></div>
+                                <div class="succedited"></div>
                                 <div id="details">
                               
                                 </div>
