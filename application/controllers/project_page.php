@@ -178,7 +178,7 @@
          function verdict_view($pid){
             $this->db->select('*');
             $this->db->from('tb_verdicts');
-            $this->db->where('tb_verdicts.id',$pid);
+            $this->db->where('tb_verdicts.ver_id',$pid);
             $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
             $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
              
@@ -210,9 +210,9 @@
              }
          }
          function delete($id){
-            $res=  $this->db->get_where('tb_verdicts',array('id'=>$id));
+            $res=  $this->db->get_where('tb_verdicts',array('ver_id'=>$id));
             if($res->num_rows()===1){
-                $this->db->where('id',$id);
+                $this->db->where('ver_id',$id);
                 $this->db->delete('tb_verdict');
                 redirect('project_page');
             }

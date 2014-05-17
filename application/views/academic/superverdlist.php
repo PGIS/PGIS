@@ -26,7 +26,7 @@
                             <td><?php echo $rlist->level;?></td>
                             <td><?php echo $rlist->type;?></td>
                             <td>
-                                <a href="<?php echo site_url('supervisor/viewVerdicts/'.$rlist->project_id.'/'.$rlist->pr_date);?>">
+                                <a href="<?php echo site_url('supervisor/viewVerdicts/'.$rlist->ver_id);?>">
                                     <button type="button" class="btn btn-info btn-xs">View Feedback</button>
                                 </a>
                             </td>

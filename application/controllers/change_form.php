@@ -11,8 +11,7 @@ class Change_form extends CI_Controller{
         }
     }
     function index() {
-      
-        if ($this->session->userdata('user_role')=='applicant') {
+       if ($this->session->userdata('user_role')=='applicant') {
               $this->load->view('application/chang_pwd'); 
         }elseif ($this->session->userdata('user_role')=='Admision staff') {
             $this->load->view('Admision/chang_pwd'); 
@@ -26,7 +25,9 @@ class Change_form extends CI_Controller{
             $this->load->view('academic/change_pwd');
         }elseif ($this->session->userdata('user_role')==='Teaching staff') {
              $this->load->view('academic/change_pwds');
-        }
+        }elseif ($this->session->userdata('user_role')==='external supervisor') {
+             $this->load->view('academic/change_pwd_college');
+       }
     }
     function change() {
         $this->load->helper('form','url');

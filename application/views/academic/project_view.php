@@ -72,7 +72,7 @@
                                              echo '<tr>'
                                             . '<td>'.$row->pr_date.'</td>'
                                             .'<td>'.$row->type.'</td>'
-                                            . '<td><label class="btn btn-warning btn-xs">'.anchor('project_page/verdict_view/'.$row->id,'<span class="glyphicon glyphicon-share"> view </span>').'</label></td>'
+                                            . '<td><label class="btn btn-warning btn-xs">'.anchor('project_page/verdict_view/'.$row->ver_id,'<span class="glyphicon glyphicon-share"> view </span>').'</label></td>'
                                             . '</tr>'; 
                                          }
                                         }?>

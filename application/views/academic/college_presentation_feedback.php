@@ -1,7 +1,7 @@
-<?php include_once 'Headerloginsuper.php'; ?>
+<?php include_once 'Headerlogincollege.php'; ?>
 <div id="page-wrapper">
     <div class="col-md-12">
-        <?php echo form_open('supervisor/registerFeedback/'.$registrationID);?>
+        <?php echo form_open('college/registerFeedback/'.$registrationID);?>
             <div class="well-sm alert-info">
                 Presentation feedback for <?php if(isset($surname)){
                 echo '<b>'.$surname.' '.$lastname.'</b>'.
@@ -28,7 +28,7 @@
                         Level
                         <?php echo form_error('level','<div class="error">', '</div>'); ?>
                         <select class="form-control input-sm" name="level" required>
-                           <option>Department level</option>
+                           <option>College level</option>
                        </select> 
                     </td>
                     <td class="col-md-4">

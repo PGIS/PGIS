@@ -80,9 +80,9 @@ class login extends CI_Controller {
             $this->session->set_userdata($s_data);
             redirect('supervisor');
         }elseif ($query7->num_rows()===1) {
-            $s_data=array('user_role'=>'extenal supervisor');
+            $s_data=array('user_role'=>'external supervisor');
             $this->session->set_userdata($s_data);
-            redirect('external');
+            redirect('college');
         }elseif ($query8->num_rows()===1) {
             $s_data=array('user_role'=>'Teaching staff');
             $this->session->set_userdata($s_data);
