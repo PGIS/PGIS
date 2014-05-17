@@ -48,18 +48,137 @@ class Admin_page extends CI_Controller {
         redirect('admin_page', $data);
     }
 
-    function seminar() {
-        $this->form_validation->set_rules('day', 'day', 'required');
-        $this->form_validation->set_rules('hr', 'hour', 'required');
+    function course1() {
+        $this->form_validation->set_rules('smd', 'Seminar day', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('smv', 'Seminar venue', 'trim|required|xss_clean');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('admin/seminar_reg');
         } else {
-            $this->load->model('seminar_register');
-            $day = $this->input->post('day');
-            $hour = $this->input->post('hr');
-            $this->seminar_register->insert_seminar($day, $hour);
-            $data['smg'] = '<font> Thanks you have already registered your time</font>';
-            $this->load->view('admin/seminar_reg', $data);
+            $this->load->model('admin');
+            $seminar_day=  $this->input->post('smd');
+            $course_code=  $this->input->post('course');
+            $morning_hour=  $this->input->post('smm');
+            $evening_hour=  $this->input->post('smme');
+            $afternoon_hour=  $this->input->post('sma');
+            $venue=  $this->input->post('smv');
+            $limit=  $this->input->post('max');
+            $this->admin->course1($course_code,$seminar_day,$morning_hour,$afternoon_hour,$evening_hour,$venue,$limit);
+            echo '<p class="alert alert-success"> Thanks you have already registered your time</p>';
+            
+        }
+    }
+    function course2() {
+        $this->form_validation->set_rules('smd', 'Seminar day', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('smv', 'Seminar venue', 'trim|required|xss_clean');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('admin/seminar_reg');
+        } else {
+            $this->load->model('admin');
+            $seminar_day=  $this->input->post('smd');
+            $course_code=  $this->input->post('course');
+            $morning_hour=  $this->input->post('smm');
+            $evening_hour=  $this->input->post('smme');
+            $afternoon_hour=  $this->input->post('sma');
+            $venue=  $this->input->post('smv');
+            $limit=  $this->input->post('max');
+            $this->admin->course1($course_code,$seminar_day,$morning_hour,$afternoon_hour,$evening_hour,$venue,$limit);
+            echo '<p class="alert alert-success"> Thanks you have already registered your time</p>';
+            
+        }
+    }
+    function course3() {
+        $this->form_validation->set_rules('smd', 'Seminar day', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('smv', 'Seminar venue', 'trim|required|xss_clean');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('admin/seminar_reg');
+        } else {
+            $this->load->model('admin');
+            $seminar_day=  $this->input->post('smd');
+            $course_code=  $this->input->post('course');
+            $morning_hour=  $this->input->post('smm');
+            $evening_hour=  $this->input->post('smme');
+            $afternoon_hour=  $this->input->post('sma');
+            $venue=  $this->input->post('smv');
+            $limit=  $this->input->post('max');
+            $this->admin->course1($course_code,$seminar_day,$morning_hour,$afternoon_hour,$evening_hour,$venue,$limit);
+            echo '<p class="alert alert-success"> Thanks you have already registered your time</p>';
+            
+        }
+    }
+    function course4() {
+        $this->form_validation->set_rules('smd', 'Seminar day', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('smv', 'Seminar venue', 'trim|required|xss_clean');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('admin/seminar_reg');
+        } else {
+            $this->load->model('admin');
+            $seminar_day=  $this->input->post('smd');
+            $course_code=  $this->input->post('course');
+            $morning_hour=  $this->input->post('smm');
+            $evening_hour=  $this->input->post('smme');
+            $afternoon_hour=  $this->input->post('sma');
+            $venue=  $this->input->post('smv');
+            $limit=  $this->input->post('max');
+            $this->admin->course1($course_code,$seminar_day,$morning_hour,$afternoon_hour,$evening_hour,$venue,$limit);
+            echo '<p class="alert alert-success"> Thanks you have already registered your time</p>';
+            
+        }
+    }
+    function course5() {
+        $this->form_validation->set_rules('smd', 'Seminar day', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('smv', 'Seminar venue', 'trim|required|xss_clean');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('admin/seminar_reg');
+        } else {
+            $this->load->model('admin');
+            $seminar_day=  $this->input->post('smd');
+            $course_code=  $this->input->post('course');
+            $morning_hour=  $this->input->post('smm');
+            $evening_hour=  $this->input->post('smme');
+            $afternoon_hour=  $this->input->post('sma');
+            $venue=  $this->input->post('smv');
+            $limit=  $this->input->post('max');
+            $this->admin->course1($course_code,$seminar_day,$morning_hour,$afternoon_hour,$evening_hour,$venue,$limit);
+            echo '<p class="alert alert-success"> Thanks you have already registered your time</p>';
+            
+        }
+    }
+    function course6() {
+        $this->form_validation->set_rules('smd', 'Seminar day', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('smv', 'Seminar venue', 'trim|required|xss_clean');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('admin/seminar_reg');
+        } else {
+            $this->load->model('admin');
+            $seminar_day=  $this->input->post('smd');
+            $course_code=  $this->input->post('course');
+            $morning_hour=  $this->input->post('smm');
+            $evening_hour=  $this->input->post('smme');
+            $afternoon_hour=  $this->input->post('sma');
+            $venue=  $this->input->post('smv');
+            $limit=  $this->input->post('max');
+            $this->admin->course1($course_code,$seminar_day,$morning_hour,$afternoon_hour,$evening_hour,$venue,$limit);
+            echo '<p class="alert alert-success"> Thanks you have already registered your time</p>';
+            
+        }
+    }
+    function course7() {
+        $this->form_validation->set_rules('smd', 'Seminar day', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('smv', 'Seminar venue', 'trim|required|xss_clean');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('admin/seminar_reg');
+        } else {
+            $this->load->model('admin');
+            $seminar_day=  $this->input->post('smd');
+            $course_code=  $this->input->post('course');
+            $morning_hour=  $this->input->post('smm');
+            $evening_hour=  $this->input->post('smme');
+            $afternoon_hour=  $this->input->post('sma');
+            $venue=  $this->input->post('smv');
+            $limit=  $this->input->post('max');
+            $this->admin->course1($course_code,$seminar_day,$morning_hour,$afternoon_hour,$evening_hour,$venue,$limit);
+            echo '<p class="alert alert-success"> Thanks you have already registered your time</p>';
+            
         }
     }
 

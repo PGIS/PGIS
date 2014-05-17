@@ -15,7 +15,7 @@
     <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/jquery.ui.datepicker.css') ?>" rel="stylesheet">
-    
+    <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
      
   </head>
 
@@ -52,8 +52,8 @@
             <li><a href="<?php echo site_url('admin_page/addcourse');?>"><span class="glyphicon glyphicon-plus"></span> Add Programme</a></li>
             <li><a href="<?php echo site_url('adminAlumni');?>">
                     <span class="glyphicon glyphicon-star"></span> Alumni Events</a>
-            </li>
-            <li><a href="<?php echo site_url('admin_page/seminar');?>"><span class="glyphicon glyphicon-folder-open"></span>  Seminars</a></li>
+            </li><script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
+            <li><a href="<?php echo site_url('admin_page/course1');?>"><span class="glyphicon glyphicon-folder-open"></span>  Seminars</a></li>
             <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span> Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
           </ul>
