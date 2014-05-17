@@ -94,9 +94,10 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'movie'	=>	'video/x-sgi-movie',
 				'doc'	=>	'application/msword',
 				'docx'	=>	array('application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/zip'),
-				'xlsx'	=>	array('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/zip'),
+				'xlsx' => array('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/zip', 'application/x-zip'), 
 				'word'	=>	array('application/msword', 'application/octet-stream'),
 				'xl'	=>	'application/excel',
+                                'xls' => array('application/excel', 'application/vnd.ms-excel', 'application/msexcel', 'application/msword'),
 				'eml'	=>	'message/rfc822',
 				'json' => array('application/json', 'text/json')
 			);
