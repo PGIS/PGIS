@@ -43,6 +43,9 @@
     $(document).ready(function(){ 
         $('.tab1').dataTable(); 
     });
+    $(document).ready(function(){ 
+        $('#tbx').dataTable(); 
+    });
 </script>
    <script>
         $('#pop').popover();

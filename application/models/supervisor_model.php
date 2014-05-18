@@ -40,7 +40,7 @@
             'level'=> $this->input->post('level'),
             'pr_date' => $this->input->post('prdate'),
             'comment' => $this->input->post('comments'),
-            'verdicts' => $this->input->post('verdict'),
+            'verdicts' => pg_escape_string($this->input->post('verdict')),
             'panel' => $this->input->post('panel')
             );
          $this->db->insert('tb_verdicts',$mydata);

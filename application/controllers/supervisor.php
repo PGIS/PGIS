@@ -155,7 +155,7 @@
      function studentVerdicts($id){
          $this->db->select('*');
          $this->db->from('tb_project');
-         $this->db->where('registration_id',$id);
+         $this->db->where('id',$id);
          $this->db->join('tb_student','tb_student.registrationID = tb_project.registration_id');
          $ver =$this->db->get();
          foreach ($ver->result() as $list){
@@ -169,11 +169,10 @@
          
          $this->load->view('academic/superverdlist',$data); 
      }
-     function viewVerdicts($pid,$date){
+     function viewVerdicts($id){
      $this->db->select('*');
      $this->db->from('tb_verdicts');
-     $this->db->where('project_id',$pid);
-     $this->db->where('pr_date',$date);
+     $this->db->where('ver_id',$id);
      $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
      $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
      $verdic =$this->db->get();
@@ -189,10 +188,11 @@
                     'sname'=>$ver->other_name,
                     'department'=>$ver->department,
                     'programe'=>$ver->program,
-                    'title'=>$ver->project_title
+                    'title'=>$ver->project_title,
+                     'prdate'=>$ver->pr_date
                 );
             }
-            $data['prdate']=$date;
+            unset($ver);
      $this->load->view('academic/teachinverdics',$data);
     }
  }

@@ -25,7 +25,7 @@
                                 <a href="<?php echo site_url('supervisor/registerFeedback/'.$project->registration_id); ?>">
                                     <button type="button" class="btn btn-info btn-xs">feedback</button>
                                 </a>
-                                <a href="<?php echo site_url('supervisor/studentVerdicts/'.$project->registration_id); ?>">
+                                <a href="<?php echo site_url('supervisor/studentVerdicts/'.$project->id); ?>">
                                    <button type="button" class="btn btn-info btn-xs">View</button> 
                                 </a>
                             </td>
