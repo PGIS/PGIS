@@ -19,4 +19,8 @@ class Alumni extends CI_Controller {
     function index(){
         $this->load->view('alumni/alumni');
     }
+   
+    function updatecontacts(){
+       $this->load->view('alumni/updatecontacts');  
+    }
 }
