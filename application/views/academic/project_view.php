@@ -57,7 +57,7 @@
                         </div>
                         <div class="during in tab-pane <?php if(isset($actived2)){echo'active';}?>">
                             <fieldset>
-                                <div class="pantop"><legend style=" padding-top: 20px;" class="text-center text-justify text-info">Verdicts posted</legend></div>
+                                <div class="pantop"><legend style=" padding-top: 4px;" class="text-center text-justify text-info">Verdicts posted</legend></div>
                                 <table class=" table table-striped " id="mytablet">
                                     <thead>
                                         <tr>
