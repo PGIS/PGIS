@@ -119,7 +119,12 @@
                        </td>
                     </tr>
                     </table>
-                <div class="success"><?php if(isset($arra)){print_r($arra);}?></div>
+                <div class="success"><?php if(isset($arra)){
+                    echo '<div class="alert alert-success">'
+                    . '<span class="glyphicon glyphicon-ok-sign"></span>'
+                            . $arra.'</div>';
+                    
+                }?></div>
                     </form>
                     
             </div>
