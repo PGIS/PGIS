@@ -1,7 +1,7 @@
 <?php include'include/header.php';?>
 <div id="page-wrapper">
     <div id="login" >
-        <div class="panel panel-default ">
+        <div class="panel panel-info ">
             <div class="panel-heading">
                 <h3 class="panel-title"><center>Please give your Email-address</center></h3>
             </div>
@@ -14,7 +14,7 @@
                     <?php echo form_error('email','<div class="error">', '</div>'); ?>
                     <input type="text" class="form-control" placeholder="E-mail Address" name="email" value="<?php echo set_value('email'); ?>">
                     </p>
-                    <input class="subtn btn-large btn-primary" type="submit" name="sb" value="submit">
+                    <input class="btn btn-sm btn-info" type="submit" name="sb" value="submit">
             <?php form_close();?>
                
                    
