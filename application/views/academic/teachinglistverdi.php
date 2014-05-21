@@ -9,7 +9,7 @@
         </ol>
         <div class="col-md-8">
             <?php
-            $query = $this->db->get_where('tb_verdicts', array('supervisor'=>$this->session->userdata('userid')));
+            $query = $this->db->get_where('tb_verdicts', array('supervisor'=>$this->session->userdata('email')));
             if($query->num_rows()>0){
                 echo '<table class="table">'
                 . '<thead><tr>'
@@ -22,7 +22,7 @@
                     <tr>
                         <td><?php echo $list->registrationId;?></td>
                         <td><?php echo $list->pr_date;?></td>
-                        <td><a href="<?php echo site_url('teaching/viewVerdicts/'.$list->project_id.'/'.$list->pr_date);?>">
+                        <td><a href="<?php echo site_url('teaching/viewVerdicts/'.$list->ver_id);?>">
                             <button type="button" class="btn btn-info btn-xs">View Feedback</button>
                             </a>
                         </td>

@@ -410,11 +410,11 @@ class Application extends CI_Controller {
     function referee_info() {
         $config = array(
             'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.gmail.com',
-            'smtp_port' => 465,
+            'smtp_host'=> 'ssl://smtp.gmail.com',
+            'smtp_port'=> 465,
             'mailtype' => 'html',
-            'smtp_user' => 'tuzoengelbert@gmail.com',
-            'smtp_pass' => 'ngelageze',
+            'smtp_user'=> 'tuzoengelbert@gmail.com',
+            'smtp_pass'=> 'ngelageze',
             'charset' => 'iso-8859-1'
         );
         $data1 = $this->show_User_data();

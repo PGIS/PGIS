@@ -1,14 +1,7 @@
 <?php include_once 'Headerlogin1.php';?>
 <div id="page-wrapper">
     <div class="span12">
-        <div class="tabcordion tabs-left tabbable">
-            <ul class="nav nav-tabs">
-              <li class="active">
-                <a data-target=".course" data-toggle="tab">Referee document</a>
-              </li>
-            </ul>
-        <div class="tab-content" style="display: block">
-            <div class="course  in tab-pane active">
+        <div class="col-lg-11">
             <div class="pantop"><h4>REFEREE MAIN TASK</h4>
             <p>
               Please give the details of what You know about this applicant.  
@@ -48,9 +41,6 @@
             <?php echo form_close();?>
         </div>
         </div>
-</div>
-            
-</div>
-</div>
+        </div>
 <?php include_once 'footer.php';?>
 
