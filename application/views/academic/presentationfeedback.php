@@ -34,7 +34,7 @@
                     <td class="col-md-4">
                         Presentation date
                         <?php echo form_error('prdate','<div class="error">', '</div>'); ?>
-                        <input class="form-control input-sm datepicker" name="prdate" type="date" required>  
+                        <input class="form-control input-sm datepicker" name="prdate" type="text" required>  
                     </td>
                 </tr>
                 <tr>

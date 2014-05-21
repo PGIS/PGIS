@@ -33,7 +33,9 @@ class Change_form extends CI_Controller {
              $this->load->view('academic/change_pwds');
         }elseif ($this->session->userdata('user_role')==='external supervisor') {
              $this->load->view('academic/change_pwd_college');
-       }
+       } elseif ($this->session->userdata('user_role') === 'alumni') {
+            $this->load->view('alumni/chang_pwd');
+        }
     }
 
     function change() {
