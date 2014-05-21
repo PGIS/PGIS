@@ -44,8 +44,17 @@
                     </td>
                 </tr>
                 <tr>
-                        <td> <input class="subtn btn-primary" type="submit" name="save" value="Save"></td>
-                        <td> <input class="subtn btn-primary" type="submit" name="skip" value="Skip this part"></td>
+                    <td>
+                        <div class="col-md-12">
+                            <div class="col-md-6 pull-left">
+                                <input class="subtn btn-primary" type="submit" name="back" value="Back">
+                            </div> 
+                            <div class="col-md-6 ">
+                                <input class="subtn btn-primary" type="submit" name="save" value="Save">
+                            </div> 
+                        </div>
+                    </td>
+                    <td> <input class="subtn btn-primary" type="submit" name="skip" value="Skip this part"></td>
                 </tr>
            </table>
            

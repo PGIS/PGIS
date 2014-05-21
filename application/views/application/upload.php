@@ -80,7 +80,18 @@
                  }
             }
             ?>
-        
+            <td colspan="3">
+                 <?php echo form_open('application/do_upload');?>
+                        <div class="col-md-12">
+                            <div class="col-md-6 pull-left">
+                                <input class="subtn btn-primary" type="submit" name="back" value="Back">
+                            </div> 
+                            <div class="col-md-6 ">
+                                <input class="subtn btn-primary" type="submit" name="save" value="Continue">
+                            </div> 
+                        </div>
+                    </td>
+                    </form>
          </table>
     </p>
 </div>

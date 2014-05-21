@@ -6,14 +6,14 @@
             <tr>
                 <td colspan="2">
                     <p> Recept number:</p>
-                    <input  class="form-control" id="20" name="receptno" required autofocus
+                    <input  class="form-control" id="20" name="receptno"  autofocus
                             value="<?php if(isset($receptno)) echo $receptno;?>">
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <p>Payment date:</p>
-                    <input class="form-control datepicker" name="paydate" required 
+                    <input class="form-control datepicker" name="paydate"  
                            value="<?php if(isset($paydate)) echo $paydate;?>">
                 </td>
             </tr>
@@ -25,8 +25,14 @@
             </tr>
             <tr>
                 <td>
-                    <input class="subtn btn-primary" type="submit" name="save" value="Save"></td>
-                
+                    <div class="col-md-12">
+                        <div class="col-md-6 pull-left">
+                            <input class="subtn btn-primary" type="submit" name="back" value="Back">
+                        </div> 
+                        <div class="col-md-6 ">
+                            <input class="subtn btn-primary" type="submit" name="save" value="Save">
+                        </div> 
+                    </div>
              </tr>
         </table>
     </form>

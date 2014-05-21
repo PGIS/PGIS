@@ -323,8 +323,12 @@ class Application extends CI_Controller {
             $this->load->model('Application_form');
             Application_form::insert_other_info();
             $this->load->view('application/capplication', $data);
-        } else {
-            $thiapplication_fees->load->view('application/capplication', $data);
+        } elseif(isset($_POST['back'])){
+            $data['active1'] = TRUE;
+            unset($data['active2']);
+            $this->load->view('application/capplication', $data);
+        }else {
+            $this->load->view('application/capplication', $data);
         }
     }
 
@@ -353,7 +357,12 @@ class Application extends CI_Controller {
             $this->load->model('Application_form');
             Application_form::insert_hist_info();
             $this->load->view('application/capplication', $data);
-        } else {
+        } elseif (isset($_POST['back'])){
+            $data['active2'] = TRUE;
+            unset($data['active3']);
+            $this->load->view('application/capplication', $data);
+        }
+        else {
             $this->load->view('application/capplication', $data);
         }
     }
@@ -388,6 +397,10 @@ class Application extends CI_Controller {
         } elseif (isset($_POST['save'])) {
             $this->load->model('Application_form');
             Application_form::insert_acca_info();
+            $this->load->view('application/capplication', $data);
+        } elseif (isset($_POST['back'])) {
+                $data['active3'] = TRUE;
+                unset($data['active4']);
             $this->load->view('application/capplication', $data);
         } else {
             $this->load->view('application/capplication', $data);
@@ -472,7 +485,12 @@ class Application extends CI_Controller {
                     $this->load->view('application/capplication', $data);
                 }
             }
-        } else {
+        } elseif(isset ($_POST['back'])) {
+                    $data['active4'] = TRUE;
+                    unset($data['active5']);
+            $this->load->view('application/capplication', $data);
+        }
+        else {
             $this->load->view('application/capplication', $data);
         }
     }
@@ -502,6 +520,10 @@ class Application extends CI_Controller {
             $this->load->model('Application_form');
             Application_form::insert_addition();
             $this->load->view('application/capplication', $data);
+        } elseif (isset($_POST['back'])){
+                $data['active5'] = TRUE;
+                unset($data['active6']);
+            $this->load->view('application/capplication', $data);
         } else {
             $this->load->view('application/capplication', $data);
         }
@@ -525,7 +547,15 @@ class Application extends CI_Controller {
         $config['overwrite'] = true;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        if (!$this->upload->do_upload()) {
+        if(isset($_POST['save'])){
+                $data['active8'] = TRUE;
+                unset($data['active7']);
+                $this->load->view('application/capplication', $data);
+        }elseif (isset($_POST['back'])){
+                $data['active6'] = TRUE;
+                unset($data['active7']);
+            $this->load->view('application/capplication', $data);
+        }elseif(!$this->upload->do_upload()) {
             $data['error'] = $this->upload->display_errors();
             $this->load->view('application/capplication', $data);
         } else {
@@ -592,8 +622,8 @@ class Application extends CI_Controller {
         $config['remove_spaces'] = TRUE;
         $config['overwrite'] = true;
         $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload() || $this->form_validation->run() == FALSE) {
+        if(isset($_POST['save'])){
+          if (!$this->upload->do_upload() || $this->form_validation->run() == FALSE) {
             $data['uperror'] = $this->upload->display_errors();
             $this->load->view('application/capplication', $data);
         } else {
@@ -603,7 +633,15 @@ class Application extends CI_Controller {
             Finance_model::application_fee($filename);
 
             $this->load->view('application/capplication', $data);
+        }  
+        }elseif(isset($_POST['back'])){
+             $data['active7'] = TRUE;
+             unset($data['active8']);
+            $this->load->view('application/capplication', $data); 
+        }else{
+          $this->load->view('application/capplication', $data);  
         }
+        
     }
 
     function fulladmision() {
