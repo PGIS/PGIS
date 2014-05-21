@@ -43,7 +43,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-            <li><a href="<?php echo site_url('referee_page/referee_doc');?>"><span class="glyphicon glyphicon-tasks"></span>
+            <li><a href="<?php echo site_url('referee_page');?>"><span class="glyphicon glyphicon-tasks"></span>
 	    Referee Main Tasks</a></li>
             <li><a href="<?php echo site_url('referee_page/quit');?>"><span class="glyphicon glyphicon-log-out"></span> Quit.!</a></li>
           </ul>
