@@ -10,7 +10,11 @@
      }
      public function referee_form($sn,$ssn){
         $res= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
-                ->where(array('referee_id'=>$sn))->get();
+                ->where(array('referee_id'=>$sn,'first_email'=>$ssn))->get();
+        $res1= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
+                ->where(array('referee_id'=>$sn,'second_email'=>$ssn))->get();
+        $res2= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
+                ->where(array('referee_id'=>$sn,'third_email'=>$ssn))->get();
         if($res->num_rows()===1){
             foreach ($res->result() as $row){
                 $array=array(
@@ -25,12 +29,47 @@
             unset($row);
             $array['ref']=$ssn;
             $this->load->view('application/referee_docu',$array);
+        }elseif ($res1->num_rows()===1) {
+           foreach ($res1->result() as $row){
+                $array=array(
+                    'applicant'=>$row->referee_id,
+                    'surname'=>$row->surname,
+                    'others'=>$row->other_name,
+                    'college'=>$row->college,
+                    'depertment'=>$row->prog_name
+                    
+                );
+            } 
+            unset($row);
+            $array['ref']=$ssn;
+            $this->load->view('application/referee_docu',$array); 
+        }elseif ($res2->num_rows()===1) {
+          foreach ($res2->result() as $row){
+                $array=array(
+                    'applicant'=>$row->referee_id,
+                    'surname'=>$row->surname,
+                    'others'=>$row->other_name,
+                    'college'=>$row->college,
+                    'depertment'=>$row->prog_name
+                    
+                );
+            } 
+            unset($row);
+            $array['ref']=$ssn;
+            $this->load->view('application/referee_docu',$array);  
+        }  else {
+            echo'<p class="alert alert-danger">No such email exist..</p>';
+            
         }
      }
 
      public function referee_doc($applicant,$ssn){
-         $res= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
-                ->where(array('referee_id'=>$applicant))->get();
+        $res= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
+                ->where(array('referee_id'=>$applicant,'first_email'=>$ssn))->get();
+        $res1= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
+                ->where(array('referee_id'=>$applicant,'second_email'=>$ssn))->get();
+        $res2= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
+                ->where(array('referee_id'=>$applicant,'third_email'=>$ssn))->get();
         if($res->num_rows()===1){
             foreach ($res->result() as $row){
                 $array=array(
@@ -39,10 +78,39 @@
                     'others'=>$row->other_name,
                     'college'=>$row->college,
                     'depertment'=>$row->prog_name
+                    
                 );
             } 
             unset($row);
             $array['ref']=$ssn;
+          }elseif ($res1->num_rows()===1) {
+           foreach ($res1->result() as $row){
+                $array=array(
+                    'applicant'=>$row->referee_id,
+                    'surname'=>$row->surname,
+                    'others'=>$row->other_name,
+                    'college'=>$row->college,
+                    'depertment'=>$row->prog_name
+                    
+                );
+            } 
+            unset($row);
+            $array['ref']=$ssn;
+             
+        }elseif ($res2->num_rows()===1) {
+          foreach ($res2->result() as $row){
+                $array=array(
+                    'applicant'=>$row->referee_id,
+                    'surname'=>$row->surname,
+                    'others'=>$row->other_name,
+                    'college'=>$row->college,
+                    'depertment'=>$row->prog_name
+                    
+                );
+            } 
+            unset($row);
+            $array['ref']=$ssn;
+             
     $this->form_validation->set_rules('edit','radio button','required');
     if($this->form_validation->run()===FALSE){
     $this->load->view('application/referee_docu',$array);
@@ -62,9 +130,40 @@
 }
 function next($applicant,$email_ref){
     $res= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
-                ->where(array('referee_id'=>$applicant))->get();
+                ->where(array('referee_id'=>$applicant,'first_email'=>$email_ref))->get();
+        $res1= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
+                ->where(array('referee_id'=>$applicant,'second_email'=>$email_ref))->get();
+        $res2= $this->db->select('*')->from('tb_referee')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_referee.referee_id')
+                ->where(array('referee_id'=>$applicant,'third_email'=>$email_ref))->get();
         if($res->num_rows()===1){
             foreach ($res->result() as $row){
+                $array=array(
+                    'applicant'=>$row->referee_id,
+                    'surname'=>$row->surname,
+                    'others'=>$row->other_name,
+                    'college'=>$row->college,
+                    'depertment'=>$row->prog_name
+                    
+                );
+            } 
+            unset($row);
+            $array['ref']=$email_ref;
+          }elseif ($res1->num_rows()===1) {
+           foreach ($res1->result() as $row){
+                $array=array(
+                    'applicant'=>$row->referee_id,
+                    'surname'=>$row->surname,
+                    'others'=>$row->other_name,
+                    'college'=>$row->college,
+                    'depertment'=>$row->prog_name
+                    
+                );
+            } 
+            unset($row);
+            $array['ref']=$email_ref;
+             
+        }elseif ($res2->num_rows()===1) {
+          foreach ($res2->result() as $row){
                 $array=array(
                     'applicant'=>$row->referee_id,
                     'surname'=>$row->surname,
