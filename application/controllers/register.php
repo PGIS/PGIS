@@ -19,8 +19,6 @@ class Register extends CI_Controller {
             
         );
       $this->form_validation->set_rules('userid','username','trim|required|min_length[6]|max_length[12]|is_unique[tb_user.userid]');
-      $this->form_validation->set_rules('fname','first name','trim|required');
-      $this->form_validation->set_rules('mname','middle name','trim|required');
       $this->form_validation->set_rules('email','E-mail','trim|required|valid_email|is_unique[tb_user.email]');
       $this->form_validation->set_rules('password','password','trim|required|matches[passconf]');
       $this->form_validation->set_rules('passconf','password confirmation','trim|required');
@@ -31,8 +29,6 @@ class Register extends CI_Controller {
  else {
       $this->load->model('model_form');
       $username=$this->input->post('userid');
-      $fname=$this->input->post('fname');
-      $mname=$this->input->post('mname');
       $password=md5($this->input->post('password'));
       $email=$this->input->post('email');
       
@@ -53,7 +49,7 @@ class Register extends CI_Controller {
       if(@$this->email->send()){
       $data['smg']=$username;
       $this->load->view('registration_confirmation',$data);
-      $this->model_form->model_form_db($username,$fname,$mname,$password,$email);
+      $this->model_form->model_form_db($username,$password,$email);
       }else{
       $this->load->view('network_error1');
       }
@@ -71,16 +67,6 @@ class Register extends CI_Controller {
       }
   }
   function passconfig(){
-       $config=array(
-            'protocol'=>'smtp',
-            'smtp_host'=>'ssl://smtp.gmail.com',
-            'smtp_port'=>465,
-            'mailtype'=>'html',
-            'smtp_user'=>'tuzoengelbert@gmail.com',
-            'smtp_pass'=>'ngelageze',
-            'charset'=>'iso-8859-1'
-            
-        );
         $this->form_validation->set_rules('email','E-mail','trim|required|valid_email|xss_clean');
         if($this->form_validation->run()===FALSE){
          $this->load->view('forgot_pass');
@@ -90,16 +76,16 @@ class Register extends CI_Controller {
            $this->session->set_userdata('email');
            $result=$this->model_form->password_recovery($email);
            if($result){
-           $this->load->library('email',$config);
+           $this->load->library('email');
            $this->email->set_newline("\r\n");
            $this->email->from('pgisteam@gmail.com','PGIS TEAM');
            $this->email->to($email);
-           $this->email->subject('PASSWORD RECOVERY');
+           $this->email->subject('CHANGE PASSWORD');
            $message='<html>
                     <head><title></title></head>
                     <body>';
            $message.='<p>Dear'.' '.$email.'</p>';
-           $message.='<p>To recover your password please <strong><a href="http://localhost/pgis/index.php/register/password_lost/'.$email.'">click here</a></strong> to retrive lost password</p>';
+           $message.='<p>To change your password please <strong><a href="http://localhost/pgis/index.php/register/password_lost/'.$email.'">click here</a></strong> to retrive lost password</p>';
            $message.='<p>Thanks !!!!</p>';
            $message.='<p>PGIS TEAM</p>';
            $message.='</body>';
@@ -113,7 +99,7 @@ class Register extends CI_Controller {
            }
           }
           else{
-           $data['error_mess']='<font color=red>Invalid email</font>';
+           $data['error_mess']='<font color=red>This email doesnt exist in our database</font>';
            $this->load->view('forgot_pass',$data);
          }
         

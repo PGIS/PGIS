@@ -1,7 +1,7 @@
 <?php include'include/header.php';?>
 <div id="page-wrapper">
     <div id="login" >
-        <div class="panel panel-default ">
+        <div class="panel panel-info ">
             <div class="panel-heading">
                 <h3 class="panel-title"><center>Fill the fields below*</center></h3>
             </div>
@@ -26,7 +26,7 @@
                          <input type="password" class="form-control" placeholder="confirm password" name="passwordconf">
 
                     </p>
-                    <input class="subtn btn-large btn-primary" type="submit" name="sb" value="update">
+                    <input class="btn btn-sm btn-info" type="submit" name="sb" value="Change password">
             <?php form_close();?>
             </div>
          </div>

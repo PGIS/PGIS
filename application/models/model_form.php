@@ -4,11 +4,9 @@ class Model_form extends CI_Model{
          parent::__construct();
          
      }
-     public function model_form_db($username,$fname,$mname,$password,$email){
+     public function model_form_db($username,$password,$email){
         $data=array(
-              'userid'=>$username,
-               'fname'=>$fname,
-               'mname'=>$mname,
+               'userid'=>$username,
                'password'=>$password,
                'email'=>$email
         );
