@@ -62,6 +62,14 @@
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
                         <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                        <?php
+                       $length=sizeof($this->session->userdata('roles'));
+                        if($length>1){
+                           ?>
+                        <li><a href="<?php echo site_url(''); ?>"><span class="glyphicon glyphicon-random"></span> Change role</a></li>
+                           <?php
+                        }
+                        ?>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right navbar-user">
