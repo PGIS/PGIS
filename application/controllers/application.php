@@ -437,28 +437,35 @@ class Application extends CI_Controller {
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->from('pgis@gmail.com', 'PGIS TEAM');
-        $this->email->to(set_value('em'));
-        $this->email->cc(set_value('em1'));
-        $this->email->bcc(set_value('em2'));
+        
+//        $this->email->to(set_value('em'));
+//        $this->email->cc(set_value('em1'));
+//        $this->email->bcc(set_value('em2'));
+        
+        if (isset($_POST['save'])) {
+            if ($this->form_validation->run() == FALSE) {
+                $this->load->view('application/capplication', $data);
+            } else {
+        $das=array(set_value('em'), set_value('em1'),  set_value('em2'));
+        foreach ($das as $salt){
+        $this->email->to($salt);
         $this->email->subject('NOTIFICATION SMS');
         $message = '<html>
                       <head><title></title></head>
                       <body>';
-        $message .='<p> Dear referee your have been chosen to be on behalf of the  ' . $this->session->userdata('userid') . ' as the referee </p>';
-        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page"> click here..!</a></strong></p>';
+        $message .='<p> Dear '.$salt.' your have been chosen to be on behalf of the  ' . $this->session->userdata('userid') . ' as the referee </p>';
+        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
         $message .='<p> Please find the the attached file for more description</p>';
         $message .='<p> Thanks !!</p>';
         $message .='<p> PGIS TEAM</p>';
         $message .='</body>';
         $message .='</html>';
         $this->email->message($message);
+        }
         $path = $this->config->item('server_root');
         $file = $path . './attachments/refereeinfo.txt';
         $this->email->attach($file);
-        if (isset($_POST['save'])) {
-            if ($this->form_validation->run() == FALSE) {
-                $this->load->view('application/capplication', $data);
-            } else {
+                    
                 if (@$this->email->send()) {
                     $this->load->model('Application_form');
                     Application_form::insert_referee_sponsor_details();
@@ -473,6 +480,25 @@ class Application extends CI_Controller {
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('application/capplication', $data);
             } else {
+        $das=array(set_value('em'), set_value('em1'),  set_value('em2'));
+        foreach ($das as $salt){
+        $this->email->to($salt);
+        $this->email->subject('NOTIFICATION SMS');
+        $message = '<html>
+                      <head><title></title></head>
+                      <body>';
+        $message .='<p> Dear '.$salt.' your have been chosen to be on behalf of the  ' . $this->session->userdata('userid') . ' as the referee </p>';
+        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
+        $message .='<p> Please find the the attached file for more description</p>';
+        $message .='<p> Thanks !!</p>';
+        $message .='<p> PGIS TEAM</p>';
+        $message .='</body>';
+        $message .='</html>';
+        $this->email->message($message);
+        }
+        $path = $this->config->item('server_root');
+        $file = $path . './attachments/refereeinfo.txt';
+        $this->email->attach($file);
                 if (@$this->email->send()) {
                     $data['active6'] = TRUE;
                     unset($data['active5']);

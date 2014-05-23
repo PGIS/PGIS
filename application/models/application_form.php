@@ -158,7 +158,7 @@ class Application_form extends CI_Model {
         $this->db->update('tb_app_personal_info', $this);
     }
 
-    public function referee_doc($sn, $referee, $intellectual, $thinking, $maturity, $language, $ability, $comment) {
+    public function referee_docs($sn, $referee, $intellectual, $thinking, $maturity, $language, $ability) {
         $ref = array(
             'referee_id' => $sn,
             'referee_name' => $referee,
@@ -166,8 +166,7 @@ class Application_form extends CI_Model {
             'thinking_capacity' => $thinking,
             'maturity' => $maturity,
             'english_proficiency' => $language,
-            'ability_work' => $ability,
-            'comment' => $comment
+            'ability_work' => $ability
         );
         $res = $this->db->get_where('tb_referee_doc', array('referee_name' => $referee));
         if ($res->num_rows() > 0) {
@@ -177,7 +176,22 @@ class Application_form extends CI_Model {
             $this->db->insert('tb_referee_doc', $ref);
         }
     }
-
+    function referee_next($sn,$ref_email,$comment,$recommendation,$weekness,$capability){
+        $data_array=array(
+            'referee_id'=>$sn,
+            'referee_name'=>$ref_email,
+            'comment'=>$comment,
+            'recommendation'=>$recommendation,
+            'app_weekness'=>$weekness,
+            'app_capability'=>$capability,
+            'status'=>'submitted'
+        );
+        $res=  $this->db->get_where('tb_referee_doc',array('referee_id'=>$sn,'referee_name'=>$ref_email));
+        if($res->num_rows()===1){
+            $this->db->where('referee_name',$ref_email);
+            $this->db->update('tb_referee_doc',$data_array);
+        }
+    }
     function redirect_message() {
         $data = array(
             'submited' => 'yes',
