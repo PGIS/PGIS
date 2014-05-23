@@ -128,11 +128,9 @@
                     </form>
                     <div class="alert alert-danger">
                         <?php
-                        $email='emanoble@gmail.com';
-                        $encoemail= $this->encrypt->encode($email);
-                        echo $encoemail.'<br>';
-                      echo  $encoemail1=str_replace('/', '_', $encoemail).'<br>';
-                      echo $this->encrypt->decode($encoemail);
+                        $input2 = '9,admin@google.com,8';
+                        $dei=explode( ',', $input2 );
+                        print_r($dei);
                         ?>
                     </div>
             </div>
