@@ -17,7 +17,21 @@ enabled: true
     });
     $('.datepicker').datepicker();
     </script>
-   
+    <script>
+    $('.ajax').submit(function(e){
+        $('#ld').hide();
+        e.preventDefault();
+        $('.loading').html('<label class="label label-warning">Loading...</label>');
+        var dataz=$(this).serializeArray();
+        var url2=$(this).attr('action');
+        $.post(url2,dataz,function(data){
+           $('#cl').hide(); 
+           setTimeout(function(){
+               $('.loading').html(data);
+           },2000);
+        });
+    });
+    </script>
     
     <script type="text/javascript">
                        $(document).ready(function(){
