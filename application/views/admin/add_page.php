@@ -126,7 +126,15 @@
                     
                 }?></div>
                     </form>
-                    
+                    <div class="alert alert-danger">
+                        <?php
+                        $email='emanoble@gmail.com';
+                        $encoemail= $this->encrypt->encode($email);
+                        echo $encoemail.'<br>';
+                      echo  $encoemail1=str_replace('/', '_', $encoemail).'<br>';
+                      echo $this->encrypt->decode($encoemail);
+                        ?>
+                    </div>
             </div>
           </div>
         </div>

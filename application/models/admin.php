@@ -97,13 +97,20 @@ class Admin extends CI_Model {
          }
     }
      function addUserFromExcel($data,$name){
-        $list = $this->db->get_where('tb_staff', array('fullName' => $name));
+        $list = $this->db->get_where('tb_staff', array('#number' => $name));
         if($list->num_rows()>0){
-           $this->db->where('fullName', $name);
+           $this->db->where('#number', $name);
             $this->db->update('tb_staff', $data); 
         }else{
             $this->db->insert('tb_staff', $data);    
         }
         
+    }
+    
+    function insertExcell($data,$username){
+        $dquery = $this->db->get_where('tb_user', array('userid' => $username));
+        if($dquery->num_rows()==0){
+            $this->db->insert('tb_user', $data); 
+        }
     }
 }
