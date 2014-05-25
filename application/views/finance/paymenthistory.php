@@ -41,7 +41,7 @@
             $outammount=$requiredAmnt-$ammount;
         }
         echo '<div class="well-sm alert-danger">
-        Outstanding payment:In this academic year';
+        Outstanding payment:In this academic year is';
         if($outammount>0){
             echo '  <b>'.$outammount.'</b>';
         }  else {
@@ -55,7 +55,7 @@
         No any Payment has been done so far
     </div>'; 
        echo '<div class="well-sm alert-danger">
-            Outstanding payment:In this academic year <b>'.$requiredAmnt.'</b>
+            Outstanding payment:In this academic year is <b>'.$requiredAmnt.'</b>
     </div>'; 
   }
         ?>

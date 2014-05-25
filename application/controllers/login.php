@@ -57,7 +57,7 @@ class login extends CI_Controller {
         }
         function findusername($email){
           $usqury = $this->db->get_where('tb_user', array('email' => $email), 1); 
-          if($usqury->num_rows() == 1)$this->session->set_userdata($s_data);{
+          if($usqury->num_rows() == 1){
                 foreach ($usqury->result() as $un){
                    $sdata =$un->userid;
                    return $sdata;
