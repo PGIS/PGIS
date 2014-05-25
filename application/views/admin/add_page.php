@@ -126,13 +126,7 @@
                     
                 }?></div>
                     </form>
-                    <div class="alert alert-danger">
-                        <?php
-                        $input2 = '9,admin@google.com,8';
-                        $dei=explode( ',', $input2 );
-                        print_r($dei);
-                        ?>
-                    </div>
+                    
             </div>
           </div>
         </div>
