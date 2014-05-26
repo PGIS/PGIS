@@ -14,6 +14,7 @@
         $('.tabcordion').tabcordion()
     });
     $('.datepicker').datepicker();
+    $('.datepicke').datepicker();
 </script>
 
 
