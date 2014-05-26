@@ -46,6 +46,9 @@
     $(document).ready(function(){ 
         $('#tbx').dataTable(); 
     });
+    $(document).ready(function(){ 
+        $('#verlist').dataTable(); 
+    });
 </script>
    <script>
         $('#pop').popover();

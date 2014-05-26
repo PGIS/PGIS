@@ -4,7 +4,7 @@
         <div class="well-sm alert-info">
             Student With their respective dissertation/thesis
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped" id="verlist">
             <thead>
                 <tr>
                     <th>Registration Id</th>

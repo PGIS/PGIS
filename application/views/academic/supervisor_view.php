@@ -10,11 +10,23 @@
                 <div class="unchecked in tab-pane <?php if(isset($active)){echo'active';}?>">
                     <div class="pantop"><legend class="text text-info" style="padding-top: 20px;"><p>Records of unassigned internal supervisors</p></legend></div>
                     <table class="table table-striped table-hover" id="mytables">
-                        <thead><tr><th>ID</th><th>REGISTRATION ID</th><th>FISRT NAME</th><th>LAST NAME</th><th>PROJECT TITLE</th><th>ACTION<b class="caret"></b></th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>REGISTRATION ID</th>
+                                <th>FISRT NAME</th><th>LAST NAME</th>
+                                <th>PROJECT TITLE</th><th>ACTION<b class="caret"></b></th>
+                            </tr>
+                        </thead>
                         <tbody>
                             <?php if(isset($records)){
                         foreach ($records->result() as $row){
-                            echo '<tr><td>'.$row->id.'</td><td>'.$row->registration_id.'</td><td>'.$row->surname.'</td><td>'.$row->other_name.'</td><td>'.$row->project_title.'</td><td><b class="glyphicon glyphicon-hand-right"></b>' .' '.anchor('supervisor/assign/'.$row->id, 'assign').'</td></tr>';
+                            echo '<tr><td>'.$row->id.'</td>'
+                                    . '<td>'.$row->registration_id.'</td>'
+                                    . '<td>'.$row->surname.'</td>'
+                                    . '<td>'.$row->other_name.'</td>'
+                                    . '<td>'.$row->project_title.'</td>'
+                                    . '<td><b class="glyphicon glyphicon-hand-right"></b>' .' '.anchor('supervisor/assign/'.$row->id, 'assign').'</td></tr>';
                         }
                              }?>
                         </tbody>
@@ -25,7 +37,15 @@
               <div class="checked in tab-pane <?php if(isset($active1)){echo'active';}?>">
                     <div class="pantop"><legend class="text text-info" style="padding-top: 20px;"><p>Records of assigned supervisors</p></legend></div>
                     <table class="table table-striped" id="mytablesa">
-                        <thead><tr><th>ID</th><th>REGISTRATION ID</th><th>FISRT NAME</th><th>LAST NAME</th><th>PROJECT TITLE</th><th>INTERNAL SUP</th><th>STATUS<b class="caret"></b></th></tr></thead>
+                        <thead>
+                            <tr><th>ID</th>
+                                <th>REGISTRATION ID</th>
+                                <th>FISRT NAME</th>
+                                <th>LAST NAME</th>
+                                <th>PROJECT TITLE</th>
+                                <th>INTERNAL SUP</th>
+                                <th>STATUS<b class="caret"></b></th>
+                            </tr></thead>
                         <tbody>
                             <?php if(isset($query)){
                               foreach ($query->result() as $row1){
