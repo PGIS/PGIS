@@ -6,7 +6,7 @@ class Admision_model extends CI_Model{
         parent::__construct();
        
     }
-    function admit($appid,$addid,$user,$course,$suname,$othername,$nationality){
+    function admit($appid,$addid,$user,$course,$suname,$othername,$nationality,$depart){
         $message=array(
                   'addmissionID'=>$addid,
                   'app_id'=>$appid,
@@ -16,6 +16,7 @@ class Admision_model extends CI_Model{
             'registrationID'=>$addid,
             'applicationID'=>$user,
             'program'=>$course,
+            'department'=>$depart,
             'surname'=>$suname,
             'other_name'=>$othername,
             'nationality'=>$nationality
@@ -23,9 +24,14 @@ class Admision_model extends CI_Model{
         $querying = $this->db->get_where('tb_admision', array('app_id' => $appid));
         if($querying->num_rows()==0){
               $this->db->insert('tb_admision',$message);
-              $this->db->insert('tb_student',$messa);
         }
-      
+      $querying2 = $this->db->get_where('tb_student', array('registrationID' => $addid));
+      if($querying2->num_rows()==0){
+              $this->db->insert('tb_student',$messa);
+        }else{
+            $this->db->where('registrationID', $addid);
+            $this->db->update('tb_student',$messa);
+        }
     }
     
     function verify_form($userid){

@@ -105,6 +105,7 @@ class Admision extends CI_Controller{
                     'appid'=>$row->app_id,
                     'datebirth' => $row->dob,
                     'country' => $row->cob,
+                    'department'=>$row->department,
                     'nationalt' => $row->nationality,
                     'perm_addres' => $row->parm_address,
                     'disability' => $row->disability,
@@ -119,10 +120,12 @@ class Admision extends CI_Controller{
         }
         
         
-    function  admit($userid){
-           
+    function  admit($userid=''){
+           $que = $this->db->get_where('tb_app_personal_info', array('userid' => $userid),1);
+           if($que->num_rows()==0){
+               redirect('admision');
+           }
            $data=$this->appl_detils($userid);
-           
           if(isset($_POST['send'])){
            $this->form_validation->set_rules('subject', 'Subject', 'required|max_length[80]|xss_clean');
            $this->form_validation->set_rules('to', 'Receiver', 'required|max_length[40]|xss_clean');
@@ -149,7 +152,7 @@ class Admision extends CI_Controller{
         }
         $reg= '2010-04-'.$k;
          $this->load->model('admision_model');
-            Admision_model::admit($data['appid'],$reg,$userid,$data['Ucourse'],$data['sname'],$data['other_nam'],$data['nationalt']);
+            Admision_model::admit($data['appid'],$reg,$userid,$data['Ucourse'],$data['sname'],$data['other_nam'],$data['nationalt'],$data['department']);
             Admision_model::verify_form($userid);
         $this->load->view('Admision/verify_notifi',$data);
         

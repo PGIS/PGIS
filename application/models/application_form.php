@@ -11,6 +11,7 @@ class Application_form extends CI_Model {
     var $prog_mode = '';
     var $college = '';
     var $academ_year= '';
+    var $department='';
     //other applicant personla information
 
 
@@ -26,6 +27,7 @@ class Application_form extends CI_Model {
         $this->prog_mode = $_POST['chkp'];
         $this->college = $_POST['college'];
         $this->academ_year=$year.'/'.$year+1;
+       //$this->department=  $this->mydepartment($_POST['course']);
         $this->db->insert('tb_app_personal_info', $this);
     }
 
@@ -36,10 +38,21 @@ class Application_form extends CI_Model {
         $this->prog_mode = $_POST['chkp'];
         $this->college = $_POST['college'];
         $this->academ_year=$year.'/'.$year+1;
+       // $this->department= $this->mydepartment($_POST['course']);
         $this->db->where('userid', $this->session->userdata('userid'));
         $this->db->update('tb_app_personal_info', $this);
     }
-
+    
+     function mydepartment($pr){
+           $thquery = $this->db->get_where('tb_programmes', array('programme_name' =>$pr));
+            if($thquery->num_rows()==1){
+                foreach ($thquery->result() as $dist){
+                    $depart=$dist->department;
+                    return $depart;
+                }
+            }
+    }
+    
     function insert_other_info() {
 
         $mydata = array
