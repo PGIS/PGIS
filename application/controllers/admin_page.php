@@ -328,7 +328,7 @@ class Admin_page extends CI_Controller {
             $course_name=  $this->input->post('csname');
             $course_code=$this->input->post('cdname');
             $this->admin->courseaddz($prog_name,$course_name,$course_code);
-            echo '<p class="label label-warning">Course added...</p>';
+            echo '<p class="label label-success">Course added...</p>';
         }
     }
     }

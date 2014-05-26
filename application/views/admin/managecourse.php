@@ -8,7 +8,14 @@
         </ol>
         <div class="col-md-6">
            <table class="table">
-           
+           <?php
+           $res=$this->db->get('tb_course');
+           if($res->num_rows()>0){
+               foreach ($res->result() as $coz){
+                   echo '<tbody><tr><td>'.$coz->course_name.' '.$coz->course_code.'</td><td><button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share"></span>manage</button>'.' '.'<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span>delete</button></td></tr></tbody>';
+               }
+           }
+           ?>
            </table>  
         </div>
         <div class="col-md-6">
