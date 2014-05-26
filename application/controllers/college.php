@@ -51,9 +51,39 @@
             }
          $this->load->view('academic/student_info',$data);
      }
-     function download($id){
+     function downloadpdf($id){
+       $this->load->helper('dompdf','file');
+            $this->db->select('*');
+            $this->db->from('tb_verdicts');
+            $this->db->where('tb_verdicts.ver_id',$id);
+            $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
+            $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
+            $verdic =$this->db->get();
+             $row=$verdic->row();
+           foreach ($verdic->result()as $ver){
+            $data=array(
+                    'type'=>$ver->type,
+                    'registrationid'=>$ver->registrationID,
+                    'level'=>$ver->level,
+                    'comments'=>$ver->comment,
+                    'verdict'=>$ver->verdicts,
+                    'panel'=>$ver->panel,
+                    'lname'=>$ver->surname,
+                    'sname'=>$ver->other_name,
+                    'department'=>$ver->department,
+                    'programe'=>$ver->program,
+                    'title'=>$ver->project_title,
+                    'prdate'=>$ver->pr_date
+                );
+            }
+                $doc=$this->load->view('academic/studentinfopdf',$data,TRUE);
+                $file=''.$row->surname.' '.$row->other_name .'';
+                pdf_create($doc,$file,TRUE);
+         
+     }
+         function download($id){
          $this->load->helper('download');
-         $res=  $this->db->get_where('tb_student_desert',array('registrationID'=>$id));
+         $res=  $this->db->get_where('tb_student_desert',array('id'=>$id));
          if($res->num_rows()===1){
              $row=$res->row();
              $path=  file_get_contents('project_document/'.substr($row->document, 39));
