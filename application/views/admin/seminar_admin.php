@@ -2,9 +2,9 @@
 <div id="page-wrapper">
     <div class="col-md-12">
         <ol class="breadcrumb">
-            <li ><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-play-circle"></span> Add course</a></li>
-            <li class="active"><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-plus"></span> Manage course</a></li>
-            <li class="active"><a href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-bookmark"></span> Seminar register</a></li>
+            <li ><a href="<?php echo site_url('admin_page/seminacourse');?>"><span class="glyphicon glyphicon-play-circle"></span> Add course</a></li>
+            <li class="active"><a href="<?php echo site_url('admin_page/managecourse');?>"><span class="glyphicon glyphicon-plus"></span> Manage course</a></li>
+            <li class="active"><a href="<?php echo site_url('admin_page/course1');?>"><span class="glyphicon glyphicon-bookmark"></span> Seminar register</a></li>
         </ol>
         <div class="col-md-6">
             <table class="table">

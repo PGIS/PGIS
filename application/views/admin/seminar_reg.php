@@ -1,7 +1,11 @@
 <?php include_once 'Headerlogin.php';?>
   <div id="page-wrapper">
-  <div class="well well-sm"><p align="center">Seminar Registration in a Week</p></div>
-  <div class="col-lg-4">
+      <ol class="breadcrumb">
+            <li ><a href="<?php echo site_url('admin_page/seminacourse');?>"><span class="glyphicon glyphicon-play-circle"></span> Add course</a></li>
+            <li class="active"><a href="<?php echo site_url('admin_page/managecourse');?>"><span class="glyphicon glyphicon-plus"></span> Manage course</a></li>
+            <li class="active"><a href="<?php echo site_url('admin_page/course1');?>"><span class="glyphicon glyphicon-bookmark"></span> Seminar register</a></li>
+        </ol>
+   <div class="col-lg-4">
      <select name="mycourse" class="form-control">
           <option value="">SELECT COURSE TO REGISTER</option>
           <option value="IS 601" data-target="#list" data-toggle="modal">IS 601</option>
@@ -291,6 +295,7 @@
                       </div>
                     </div>
                   </div>
+  </div>
       <script>
       $('#load').submit(function(e){
           e.preventDefault();

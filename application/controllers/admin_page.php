@@ -332,4 +332,7 @@ class Admin_page extends CI_Controller {
         }
     }
     }
+    function managecourse(){
+        $this->load->view('admin/managecourse');
+    }
 }
