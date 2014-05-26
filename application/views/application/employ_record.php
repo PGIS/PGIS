@@ -19,11 +19,11 @@
                 <tr>
                     <td>From:
                       <?php echo form_error('from','<div class="error">', '</div>'); ?>
-                        <p><input name="from" type="text" id="datepicker" class="form-control"
+                        <p><input name="from" type="text" id="datepicker" class="form-control datepicker"
                         value="<?php display_input('from',$dof);?>"></p>
                     </td>
                     <td>To:<?php echo form_error('to','<div class="error">', '</div>'); ?>
-                        <p><input name="to" type="text" id="datepicker" class="form-control"
+                        <p><input name="to" type="text" id="datepicker" class="form-control datepicker"
                         value="<?php display_input('to',$dot);?>"></p>
                     </td>
                 </tr>

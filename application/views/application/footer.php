@@ -7,7 +7,6 @@ window.brunch['auto-reload'] = {
 enabled: true
 };
     </script>
-    <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/tabcordion.js') ?>"></script>
    
@@ -15,7 +14,9 @@ enabled: true
     $(function() {
     $('.tabcordion').tabcordion()
     });
-    $('.datepicker').datepicker();
+     $(document).ready(function(){ 
+        $('.datepicker').datepicker(); 
+    });
     </script>
     <script>
     $('.ajax').submit(function(e){

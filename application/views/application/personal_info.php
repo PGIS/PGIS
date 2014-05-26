@@ -28,14 +28,14 @@
                     </td>
                    <td>Date of Birth<br>
                         <?php echo form_error('datebirth','<div class="error">', '</div>'); ?>
-                        <input name="datebirth" type="text" class="form-control" id="7"
+                        <input name="datebirth" type="text" class="form-control datepicker" id="7"
                                value="<?php display_input('datebirth',$datebirth);?>">
                    </td>
                 </tr>
                 <tr>
                     <td>Country of Birth
                         <?php echo form_error('coun_birth','<div class="error">', '</div>'); ?>
-                        <input type="text" name="coun_birth" class="form-control" id="8"
+                        <input type="text" name="coun_birth" class="form-control " id="8"
                        value="<?php display_input('coun_birth',$country);?>">
                    </td>
                     <td>Nationality
