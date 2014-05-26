@@ -5,7 +5,7 @@
         Registration number:<?php if(isset($student_id))echo '<b>'.$student_id.'</b>';?><br>
         Project title:<?php if(isset($ptitle))echo '<b>'.$ptitle.'</b>';?>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
         <table class="table">
             <thead>
                 <tr>
@@ -28,6 +28,11 @@
                             <td>
                                 <a href="<?php echo site_url('supervisor/viewVerdicts/'.$rlist->ver_id);?>">
                                     <button type="button" class="btn btn-info btn-xs">View Feedback</button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="<?php echo site_url('supervisor/downloadpdf/'.$rlist->ver_id);?>">
+                                    <button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download">Download PDF</span></button>
                                 </a>
                             </td>
                         </tr>

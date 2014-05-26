@@ -195,6 +195,36 @@
             unset($ver);
      $this->load->view('academic/teachinverdics',$data);
     }
+    function downloadpdf($id){
+       $this->load->helper('dompdf','file');
+            $this->db->select('*');
+            $this->db->from('tb_verdicts');
+            $this->db->where('tb_verdicts.ver_id',$id);
+            $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
+            $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
+            $verdic =$this->db->get();
+             $row=$verdic->row();
+           foreach ($verdic->result()as $ver){
+            $data=array(
+                    'type'=>$ver->type,
+                    'registrationid'=>$ver->registrationID,
+                    'level'=>$ver->level,
+                    'comments'=>$ver->comment,
+                    'verdict'=>$ver->verdicts,
+                    'panel'=>$ver->panel,
+                    'lname'=>$ver->surname,
+                    'sname'=>$ver->other_name,
+                    'department'=>$ver->department,
+                    'programe'=>$ver->program,
+                    'title'=>$ver->project_title,
+                    'prdate'=>$ver->pr_date
+                );
+            }
+                $doc=$this->load->view('academic/teachinverdicspdf',$data,TRUE);
+                $file=''.$row->surname.' '.$row->other_name .'';
+                pdf_create($doc,$file,TRUE);
+         
+     }
  }
      
  
