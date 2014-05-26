@@ -19,7 +19,6 @@ class Seminary extends CI_Controller{
         $res=  $this->db->get_where('tb_seminar',array('id'=>$id));
         if($res->num_rows()===1){
           $row=$res->row();
-      $this->form_validation->set_rules('smd', 'seminar day', 'trim|required|xss_clean');
       $this->form_validation->set_rules('smh', 'seminar hour', 'trim|required|xss_clean');
       if($this->form_validation->run() === FALSE){
       echo '<p class="alert alert-danger">Fields cant be empty plz try again</p>';

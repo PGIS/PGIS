@@ -3,20 +3,41 @@
       <ol class="breadcrumb">
             <li ><a href="<?php echo site_url('admin_page/seminacourse');?>"><span class="glyphicon glyphicon-play-circle"></span> Add course</a></li>
             <li class="active"><a href="<?php echo site_url('admin_page/managecourse');?>"><span class="glyphicon glyphicon-plus"></span> Manage course</a></li>
-            <li class="active"><a href="<?php echo site_url('admin_page/course1');?>"><span class="glyphicon glyphicon-bookmark"></span> Seminar register</a></li>
+            <li class="active"><a href="<?php echo site_url('admin_page/coursez');?>"><span class="glyphicon glyphicon-bookmark"></span> Seminar register</a></li>
         </ol>
    <div class="col-lg-4">
-     <select name="mycourse" class="form-control">
+       <select name="mycourse" class="form-control">
           <option value="">SELECT COURSE TO REGISTER</option>
-          <option value="IS 601" data-target="#list" data-toggle="modal">IS 601</option>
-          <option value="IS 602" data-target="#list2" data-toggle="modal">IS 602</option>
-          <option value="IS 603" data-target="#list3" data-toggle="modal">IS 603</option>
-          <option value="IS 604" data-target="#list4" data-toggle="modal">IS 604</option>
-          <option value="IS 605" data-target="#list5" data-toggle="modal">IS 605</option>
-          <option value="IS 606" data-target="#list6" data-toggle="modal">IS 606</option>
-          <option value="IS 607" data-target="#list7" data-toggle="modal">IS 607</option>
-          
-      </select>
+       <?php
+       $rest=$this->db->get('tb_course');
+       if($rest->num_rows()>0){
+           foreach ($rest->result() as $dt){
+               echo '<option data-target="#list" data-toggle="modal" onclick="courescode(\''.$dt->id.'\')">'.$dt->course_code.'</option>';
+               
+           }
+       }  else {
+           echo '<option>No course found</option>';   
+       }
+       ?>
+     </select>
+      <label class="text-primary">Specify other seminar</label>
+      <div class="loads">
+           <?php echo form_open('admin_page/specify',array('id'=>'jux'));?>
+           <table class="table table-condensed"> 
+               <tr><td><label> Course Title*</label></td></tr>
+               <tr><td><input type="text" name="cstitle" class="form-control" required></td></tr>
+               <tr><td><label> Course Description*</label></td></tr>
+               <tr><td><textarea type="text" name="csdec" class="form-control" required></textarea></td></tr>
+               <tr><td><label> Seminar venue*</label></td></tr>
+               <tr><td><input type="text" name="csvenue" class="form-control" required></td></tr>
+               <tr><td><label> Seminar date*</label></td></tr>
+               <tr><td><input type="text" name="csdate" class="form-control datepicker"></td></tr>
+               <tr><td><label> Seminar Time*</label></td></tr>
+               <tr><td><input type="text" name="cstime" class="form-control"></td></tr>
+               <tr><td><button class="btn btn-primary btn-sm pull-right">submit</button></td></tr>
+           </table>
+           <?php echo form_close();?>
+      </div>
   </div>
   <div class="col-lg-7">
       <div class=" panel panel-info"><label class="label label-success">Registered for seminar</label></div>
@@ -28,7 +49,11 @@
                   ->get();
           if($res->num_rows()>0){
               foreach ($res->result() as $row){
+                   if(($row->semina_day)!=='0'){
                   echo '<tr><td>'.$row->registration_id.'</td><td>'.$row->student_name.''.' '.$row->other_name.'</td><td>'.$row->course.'</td><td>'.$row->semina_day.'</td><td>'.$row->semina_hour.'</td><td>'.$row->semina_venue.'</td></tr>';     
+              }  else {
+                  echo '<tr><td>'.$row->registration_id.'</td><td>'.$row->student_name.''.' '.$row->other_name.'</td><td>'.$row->course.'</td><td></td><td>'.$row->semina_hour.'</td><td>'.$row->semina_venue.'</td></tr>'; 
+              }
               }
           }
           
@@ -39,319 +64,41 @@
                     <div class="modal-dialog modal-md">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h6 class="modal-title" id="myModalLabel"><label class="pantop">IS 601</label></h6>
-                          <div class="loading"></div>
-                        </div>
-                          <?php echo form_open('admin_page/course1',array('id'=>'load'));?>
-                        <div class="modal-body">
-                            <table class="table table-condensed">
-                            <tr><td>
-                           <label>Seminar day</label><input type="text" name="smd" class="form-control " required placeholder="seminar day"></td>
-                                <td>
-                                    <label>IS 601</label>
-                                    <select name="course" class="form-control">
-                                        <option value="IS 601">IS 601</option>
-                                    </select></td></tr>
-                            </table>
-                            <label>Seminar Hour</label>
-                            <table class="table table-condensed">
-                                <tr><td>Morning<input type="text" name="smm" class="form-control " placeholder="hour">
-                                 </td><td>Afternoon<input type="text" name="sma" class="form-control "placeholder="hour">
-                                 </td><td>Evening<input type="text" name="sme" class="form-control " placeholder="hour"></td></tr>
-                            </table>
-                            <label>Seminar Venue</label><input type="text" name="smv" class="form-control " required placeholder="seminar venue">
-                            <label>Maximum Limit</label><input type="text" name="max" class="form-control ">
-                            
-                        </div>
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                       <h6 class="modal-title" id="myModalLabel"><label class="pantop">Course register</label></h6>
+                       </div>
+                         <div class="modal-body">
+                             <div class="loads"></div>
+                         </div>
                         <div class="modal-footer">
-                          <button class="btn btn-primary">register</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
                           <?php echo form_close();?>
                         </div>
                       </div>
-                    </div>
-                  </div>
-      <div class="modal fade" id="list2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h6 class="modal-title" id="myModalLabel"><label class="pantop">IS 602</label></h6>
-                          <div class="loading1"></div>
-                        </div>
-                          <?php echo form_open('admin_page/course2',array('id'=>'load1'));?>
-                        <div class="modal-body">
-                            <table class="table table-condensed">
-                            <tr><td>
-                           <label>Seminar day</label><input type="text" name="smd" class="form-control " required placeholder="seminar day"></td>
-                                <td>
-                                    <label>IS 602</label>
-                                    <select name="course" class="form-control">
-                                        <option value="IS 602">IS 602</option>
-                                    </select></td></tr>
-                            </table>
-                            <label>Seminar Hour</label>
-                            <table class="table table-condensed">
-                                <tr><td>Morning<input type="text" name="smm" class="form-control " placeholder="hour">
-                                 </td><td>Afternoon<input type="text" name="sma" class="form-control "placeholder="hour">
-                                 </td><td>Evening<input type="text" name="sme" class="form-control " placeholder="hour"></td></tr>
-                            </table>
-                            
-                            <label>Seminar Venue</label><input type="text" name="smv" class="form-control " required placeholder="seminar venue">
-                            <label>Maximum Limit</label><input type="text" name="max" class="form-control ">
-                            
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary">register</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          <?php echo form_close();?>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-      <div class="modal fade" id="list3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h6 class="modal-title" id="myModalLabel"><label class="pantop">IS 603</label></h6>
-                          <div class="loading2"></div>
-                        </div>
-                          <?php echo form_open('admin_page/course3',array('id'=>'load2'));?>
-                        <div class="modal-body">
-                            <table class="table table-condensed">
-                            <tr><td>
-                           <label>Seminar day</label><input type="text" name="smd" class="form-control " required placeholder="seminar day"></td>
-                                <td>
-                                    <label>IS 603</label>
-                                    <select name="course" class="form-control">
-                                        <option value="IS 603">IS 603</option>
-                                    </select></td></tr>
-                            </table>
-                            <label>Seminar Hour</label>
-                            <table class="table table-condensed">
-                                <tr><td>Morning<input type="text" name="smm" class="form-control " placeholder="hour">
-                                 </td><td>Afternoon<input type="text" name="sma" class="form-control "placeholder="hour">
-                                 </td><td>Evening<input type="text" name="sme" class="form-control " placeholder="hour"></td></tr>
-                            </table>
-                            <label>Seminar Venue</label><input type="text" name="smv" class="form-control " required placeholder="seminar venue">
-                            <label>Maximum Limit</label><input type="text" name="max" class="form-control ">
-                            
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary">register</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          <?php echo form_close();?>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-      <div class="modal fade" id="list4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h6 class="modal-title" id="myModalLabel"><label class="pantop">IS 604</label></h6>
-                          <div class="loading3"></div>
-                        </div>
-                          <?php echo form_open('admin_page/course4',array('id'=>'load3'));?>
-                        <div class="modal-body">
-                            <table class="table table-condensed">
-                            <tr><td>
-                           <label>Seminar day</label><input type="text" name="smd" class="form-control " required placeholder="seminar day"></td>
-                                <td>
-                                    <label>IS 604</label>
-                                    <select name="course" class="form-control">
-                                        <option value="IS 604">IS 604</option>
-                                    </select></td></tr>
-                            </table>
-                             <label>Seminar Hour</label>
-                            <table class="table table-condensed">
-                                <tr><td>Morning<input type="text" name="smm" class="form-control " placeholder="hour">
-                                 </td><td>Afternoon<input type="text" name="sma" class="form-control "placeholder="hour">
-                                 </td><td>Evening<input type="text" name="sme" class="form-control " placeholder="hour"></td></tr>
-                            </table>
-                            <label>Seminar Venue</label><input type="text" name="smv" class="form-control " required placeholder="seminar venue">
-                            <label>Maximum Limit</label><input type="text" name="max" class="form-control ">
-                            
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary">register</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          <?php echo form_close();?>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-      <div class="modal fade" id="list5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h6 class="modal-title" id="myModalLabel"><label class="pantop">IS 605</label></h6>
-                          <div class="loading4"></div>
-                        </div>
-                          <?php echo form_open('admin_page/course5',array('id'=>'load4'));?>
-                        <div class="modal-body">
-                            <table class="table table-condensed">
-                            <tr><td>
-                           <label>Seminar day</label><input type="text" name="smd" class="form-control " required placeholder="seminar day"></td>
-                                <td>
-                                    <label>IS 605</label>
-                                    <select name="course" class="form-control">
-                                        <option value="IS 605">IS 605</option>
-                                    </select></td></tr>
-                            </table>
-                             <label>Seminar Hour</label>
-                            <table class="table table-condensed">
-                                <tr><td>Morning<input type="text" name="smm" class="form-control " placeholder="hour">
-                                 </td><td>Afternoon<input type="text" name="sma" class="form-control "placeholder="hour">
-                                 </td><td>Evening<input type="text" name="sme" class="form-control " placeholder="hour"></td></tr>
-                            </table>
-                            <label>Seminar Venue</label><input type="text" name="smv" class="form-control " required placeholder="seminar venue">
-                            <label>Maximum Limit</label><input type="text" name="max" class="form-control ">
-                            
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary">register</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          <?php echo form_close();?>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-      <div class="modal fade" id="list6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h6 class="modal-title" id="myModalLabel"><label class="pantop">IS 606</label></h6>
-                          <div class="loading5"></div>
-                        </div>
-                          <?php echo form_open('admin_page/course6',array('id'=>'load5'));?>
-                        <div class="modal-body">
-                            <table class="table table-condensed">
-                            <tr><td>
-                           <label>Seminar day</label><input type="text" name="smd" class="form-control " required placeholder="seminar day"></td>
-                                <td>
-                                    <label>IS 606</label>
-                                    <select name="course" class="form-control">
-                                        <option value="IS 606">IS 606</option>
-                                    </select></td></tr>
-                            </table>
-                             <label>Seminar Hour</label>
-                            <table class="table table-condensed">
-                                <tr><td>Morning<input type="text" name="smm" class="form-control " placeholder="hour">
-                                 </td><td>Afternoon<input type="text" name="sma" class="form-control "placeholder="hour">
-                                 </td><td>Evening<input type="text" name="sme" class="form-control " placeholder="hour"></td></tr>
-                            </table>
-                            <label>Seminar Venue</label><input type="text" name="smv" class="form-control " required placeholder="seminar venue">
-                            <label>Maximum Limit</label><input type="text" name="max" class="form-control ">
-                            
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary">register</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          <?php echo form_close();?>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-      <div class="modal fade" id="list7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h6 class="modal-title" id="myModalLabel"><label class="pantop">IS 607</label></h6>
-                          <div class="loading6"></div>
-                        </div>
-                          <?php echo form_open('admin_page/course7',array('id'=>'load6'));?>
-                        <div class="modal-body">
-                            <table class="table table-condensed">
-                            <tr><td>
-                           <label>Seminar day</label><input type="text" name="smd" class="form-control " required placeholder="seminar day"></td>
-                                <td>
-                                    <label>IS 607</label>
-                                    <select name="course" class="form-control">
-                                        <option value="IS 607">IS 607</option>
-                                    </select></td></tr>
-                            </table>
-                             <label>Seminar Hour</label>
-                            <table class="table table-condensed">
-                                <tr><td>Morning<input type="text" name="smm" class="form-control " placeholder="hour">
-                                 </td><td>Afternoon<input type="text" name="sma" class="form-control "placeholder="hour">
-                                 </td><td>Evening<input type="text" name="sme" class="form-control " placeholder="hour"></td></tr>
-                            </table>
-                            <label>Seminar Venue</label><input type="text" name="smv" class="form-control " required placeholder="seminar venue">
-                            <label>Maximum Limit</label><input type="text" name="max" class="form-control ">
-                            
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary">register</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          <?php echo form_close();?>
-                        </div>
-                      </div>
+                        <script>
+                        $('.datepicker').datepicker();
+                        </script>
                     </div>
                   </div>
   </div>
       <script>
-      $('#load').submit(function(e){
+      function courescode(id){
+          var formurl="<?php echo site_url('admin_page/course2');?>";
+          var url=formurl+'/'+id;
+          $.get(url,function(data){
+              $('.loads').html(data);
+          });
+      }
+      $('#jux').submit(function(e){
           e.preventDefault();
-      var formdata= $(this).serializeArray();
-       var url= $(this).attr('action');
-       $.post(url,formdata,function(data){
-           $('.loading').html(data);
-       });
-      });
-      $('#load1').submit(function(e){
-          e.preventDefault();
-      var formdata= $(this).serializeArray();
-       var url= $(this).attr('action');
-       $.post(url,formdata,function(data){
-           $('.loading1').html(data);
-       });
-      });
-      $('#load2').submit(function(e){
-          e.preventDefault();
-      var formdata= $(this).serializeArray();
-       var url= $(this).attr('action');
-       $.post(url,formdata,function(data){
-           $('.loading2').html(data);
-       });
-      });
-      $('#load3').submit(function(e){
-          e.preventDefault();
-      var formdata= $(this).serializeArray();
-       var url= $(this).attr('action');
-       $.post(url,formdata,function(data){
-           $('.loading3').html(data);
-       });
-      });
-      $('#load4').submit(function(e){
-          e.preventDefault();
-      var formdata= $(this).serializeArray();
-       var url= $(this).attr('action');
-       $.post(url,formdata,function(data){
-           $('.loading4').html(data);
-       });
-      });
-      $('#load5').submit(function(e){
-          e.preventDefault();
-      var formdata= $(this).serializeArray();
-       var url= $(this).attr('action');
-       $.post(url,formdata,function(data){
-           $('.loading5').html(data);
-       });
-      });
-      $('#load6').submit(function(e){
-          e.preventDefault();
-      var formdata= $(this).serializeArray();
-       var url= $(this).attr('action');
-       $.post(url,formdata,function(data){
-           $('.loading6').html(data);
-       });
+          $('.loads').html('<label class="label label-warning">Submitting....</label>');
+          var fomz=$(this).serializeArray();
+          var url=$(this).attr('action');
+          $.post(url,fomz,function(data){
+              setTimeout(function(){
+                  $('.loads').html(data);
+              },2000);
+          });
       });
       </script>
        

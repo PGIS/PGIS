@@ -96,6 +96,22 @@ class Admin extends CI_Model {
              $this->db->insert('tb_seminar',$data_array);
          }
     }
+    function coursespecify($course_title,$seminar_desc,$morning_time,$seminar_date,$venue){
+         $data_array=array(
+                 'course'=>$course_title,
+                 'seminar_desc'=>$seminar_desc,
+                 'semina_venue'=>$venue,
+                 'morning_hour'=>$morning_time,
+                 'seminar_date'=>$seminar_date,
+                 );
+         $res=  $this->db->get_where('tb_seminar',array('course'=>$course_title,'seminar_date'=>$seminar_date));
+         if($res->num_rows()===1){
+             $this->db->where('course',$course_title);
+             $this->db->update('tb_seminar',$data_array);
+         }else{
+             $this->db->insert('tb_seminar',$data_array);
+         }
+    }
      function addUserFromExcel($data,$name){
         $list = $this->db->get_where('tb_staff', array('#number' => $name));
         if($list->num_rows()>0){
@@ -118,6 +134,20 @@ class Admin extends CI_Model {
              $this->db->update('tb_course',$data_ray);
          }  else {
              $this->db->insert('tb_course',$data_ray);
+         }
+    }
+    function courseupdate($manage,$prog_name,$course_name,$course_code){
+        $data_ray=array(
+                 'prog_name'=>$prog_name,
+                 'course_name'=>$course_name,
+                 'course_code'=>$course_code
+             );
+        $res=  $this->db->get_where('tb_course',array('id'=>$manage));
+         if($res->num_rows()===1){
+             $this->db->where('id',$manage);
+             $this->db->update('tb_course',$data_ray);
+         }  else {
+             return FALSE;
          }
     }
 }

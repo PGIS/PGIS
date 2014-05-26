@@ -51,7 +51,7 @@ if($this->session->userdata('user_role')==='Teaching staff'){
                            Student supervisor name 
                       </td>
                   </tr>
-                <tr>studentinfopdf
+                <tr>
                     <td colspan="2">
                        Dissertation/Thesis Title: 
                        <div  class="well well-sm">

@@ -9,16 +9,55 @@
       <tr>
           <td>COURSE</td><td class="dts">&nbsp; <?php echo ''.$row->course;?></td>
        </tr>
-       <tr>
-           <td>SEMINAR DAY</td><td class="dts">&nbsp;<?php echo ''.$row->seminar_day;?><input type="checkbox" name="smd" value="<?php echo $row->seminar_day;?>"></td>
+       <tr><?php
+            if(($row->seminar_day)!==NULL && ($row->seminar_day)!==0){
+                echo '<td>SEMINAR DAY</td><td class="dts">&nbsp;'.$row->seminar_day.'<input type="checkbox" name="smd" value="'. $row->seminar_day.'"></td>';   
+            }
+           ?>
+           
        </tr>
        <tr>
+           
            <td>SEMINAR HOURS</td>
            <td><table class="table table-bordered">
-                   <tr><td class="dts">&nbsp;&nbsp;<?php echo ''.$row->morning_hour;?> <input type="radio" name="smh" value="<?php echo ''.$row->morning_hour;?>"></td></tr>
-                   <tr><td class="dts">&nbsp;&nbsp;<?php echo ''.$row->afternoon_hour;?><input type="radio" name="smh" value="<?php echo ''.$row->afternoon_hour;?>"></td></tr>
+                   <?php
+                   if(($row->morning_hour)!==NULL && ($row->morning_hour)!=='0'){
+                       echo '<tr><td class="dts">&nbsp;&nbsp;'.$row->morning_hour.'<input type="radio" name="smh" value="'.$row->morning_hour.'" class="pull-right"></td></tr>';
+                    }  else {
+                        echo '';
+                    }
+                   ?>
+                   <?php
+                   if(($row->afternoon_hour)!=='0' && ($row->afternoon_hour)!==NULL){
+                       echo '<tr><td class="dts">&nbsp;&nbsp;'.$row->afternoon_hour.'<input type="radio" name="smh" value="'.$row->afternoon_hour.'" class="pull-right"></td></tr>'; 
+                   }  else {
+                       echo ''; 
+                   }
+                   ?>
+                   <?php
+                   if(($row->evening_hour)!=='0' && ($row->evening_hour)!==NULL){
+                       echo '<tr><td class="dts">&nbsp;&nbsp;'.$row->evening_hour.'<input type="radio" name="smh" value="'.$row->evening_hour.'" class="pull-right"></td></tr>'; 
+                   }  else {
+                       echo ''; 
+                   }
+                   ?>
+                   
            </table>
            </td>
+        </tr>
+        <tr>
+            <?php
+            if(($row->seminar_desc)!==NULL && ($row->seminar_desc)!=='0'){
+                echo '<td>SEMINAR DESCRIPTION</td><td class="dts">&nbsp;'.$row->seminar_desc.'</td>';  
+            }
+            ?>
+        </tr>
+        <tr>
+            <?php
+            if(($row->seminar_date)!==NULL && ($row->seminar_date)!=='0'){
+                echo '<td>SEMINAR DATE</td><td class="dts">&nbsp;'.$row->seminar_date.'</td>';  
+            }
+            ?>
         </tr>
         <tr>
            <td>SEMINAR VENUE</td><td class="dts">&nbsp;<?php echo ''.$row->semina_venue;?></td>
