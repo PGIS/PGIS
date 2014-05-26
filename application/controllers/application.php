@@ -437,11 +437,6 @@ class Application extends CI_Controller {
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->from('pgis@gmail.com', 'PGIS TEAM');
-        
-//        $this->email->to(set_value('em'));
-//        $this->email->cc(set_value('em1'));
-//        $this->email->bcc(set_value('em2'));
-        
         if (isset($_POST['save'])) {
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('application/capplication', $data);

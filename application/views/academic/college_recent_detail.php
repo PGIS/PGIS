@@ -26,7 +26,7 @@
                  if($result->num_rows()>0){
                      foreach ($result->result() as $ver){
                          echo '<tbody><tr><td>'.$ver->level.'</td><td>'.$ver->pr_date.'</td><td>'.$ver->type.'</td><td><button class="btn btn-success btn-xs" onclick="studentview(\''.$ver->ver_id.'\')" data-target="#student" data-toggle="modal"><span class="glyphicon glyphicon-share">'
-                                 . '</span>view</button></td></tr></tbody>';
+                                 . '</span>view</button></td><td>'.anchor('college/downloadpdf/'.$ver->ver_id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt">Download</span></button>').'</td></tr></tbody>';
                      } 
                  }  else {
                      echo '<p class="alert alert-warning">No comments present</p>'; 
@@ -55,12 +55,12 @@
                 <legend><label class="text-info">Submitted recent progress</label></legend>
                 <table class="table" id="tz">
                     <?php
-                    $rest=$this->db->select('*')->from('tb_student_desert')->join('tb_project','tb_project.registration_id = tb_student_desert.registrationID')
+                    $rest=$this->db->select('*')->from('tb_student_desert')
                             ->where(array('read'=>'yes','registrationID'=>$row->registration_id))->get();
                     if($rest->num_rows()>0){
                         echo '<thead><tr><th>Posted date</th><th>Name of file</th><th><b class="caret"></b></th></tr></thead>';
                         foreach ($rest->result() as $ret){
-                            echo '<tbody><tr><td>'.$ret->submission_date.'</td><td>'.substr($ret->document, 39).'</td><td>'.anchor('college/download/'.$ret->registrationID,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt">Download</span></button>').'</td></tr></tbody>'; 
+                            echo '<tbody><tr><td>'.$ret->submission_date.'</td><td>'.substr($ret->document, 39).'</td><td>'.anchor('college/download/'.$ret->id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt">Download</span></button>').'</td></tr></tbody>'; 
                         }
                     }  else {
                         echo '<p class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span> No recent uploads</p>'; 

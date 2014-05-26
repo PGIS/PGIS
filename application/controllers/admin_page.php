@@ -47,8 +47,10 @@ class Admin_page extends CI_Controller {
         $data['error_message'] = '<font color=blue>successively deleted</font>';
         redirect('admin_page', $data);
     }
-
-    function course1() {
+    function seminacourse(){
+        $this->load->view('admin/seminar_admin');   
+    }
+        function course1() {
         $this->form_validation->set_rules('smd', 'Seminar day', 'trim|required|xss_clean');
         $this->form_validation->set_rules('smv', 'Seminar venue', 'trim|required|xss_clean');
         if ($this->form_validation->run() == FALSE) {
@@ -300,5 +302,26 @@ class Admin_page extends CI_Controller {
             }
         }
     }
-
+    function course_form($course){
+        $data['add']=$course;
+        $this->load->view('admin/addcourse_form',$data);
+    }
+    function courseadds($id){
+        $res=$this->db->get_where('tb_programmes',array('prog_id'=>$id));
+        if($res->num_rows()===1){
+            $row=$res->row();
+        $this->form_validation->set_rules('csname','course name','trim|required|xss_clean');
+        $this->form_validation->set_rules('cdname','course code','trim|required|xss_clean');
+        if($this->form_validation->run()===FALSE){
+            echo '<p class="label label-danger">Cant be empty...</p>';
+        }  else {
+            $this->load->model('admin');
+            $prog_name=$row->programme_name;
+            $course_name=  $this->input->post('csname');
+            $course_code=$this->input->post('cdname');
+            $this->admin->courseaddz($prog_name,$course_name,$course_code);
+            echo '<p class="label label-warning">Course added...</p>';
+        }
+    }
+    }
 }

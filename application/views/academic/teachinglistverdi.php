@@ -26,6 +26,10 @@
                             <button type="button" class="btn btn-info btn-xs">View Feedback</button>
                             </a>
                         </td>
+                        <td><a href="<?php echo site_url('teaching/downloadpdf/'.$list->ver_id);?>">
+                                <button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download"> Download pdf</span></button>
+                            </a>
+                        </td>
                     </tr>
                    <?php
                 }

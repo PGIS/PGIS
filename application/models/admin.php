@@ -106,4 +106,18 @@ class Admin extends CI_Model {
         }
         
     }
+    function courseaddz($prog_name,$course_name,$course_code){
+         $data_ray=array(
+                 'prog_name'=>$prog_name,
+                 'course_name'=>$course_name,
+                 'course_code'=>$course_code
+             );
+         $res=  $this->db->get_where('tb_course',array('prog_name'=>$prog_name,'course_code'=>$course_code));
+         if($res->num_rows()===1){
+             $this->db->where('course_code',$course_code);
+             $this->db->update('tb_course',$data_ray);
+         }  else {
+             $this->db->insert('tb_course',$data_ray);
+         }
+    }
 }

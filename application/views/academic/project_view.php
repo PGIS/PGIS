@@ -69,6 +69,7 @@
                                             <th>Presentation date</th>
                                             <th>Presentation for</th>
                                             <th>View</th>
+                                            <th>Download PDF</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -78,6 +79,7 @@
                                             . '<td>'.$row->pr_date.'</td>'
                                             .'<td>'.$row->type.'</td>'
                                             . '<td><label class="btn btn-warning btn-xs">'.anchor('project_page/verdict_view/'.$row->ver_id,'<span class="glyphicon glyphicon-share"> view </span>').'</label></td>'
+                                            . '<td><label class="btn btn-success btn-xs">'.anchor('project_page/downloadpdf/'.$row->ver_id,'<span class="glyphicon glyphicon-download"> download</span>').'</label></td>'        
                                             . '</tr>'; 
                                          }
                                         }?>
