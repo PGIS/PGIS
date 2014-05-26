@@ -294,11 +294,19 @@ class Admin_page extends CI_Controller {
             foreach ($rowData as $myrowdata){
                 $data2insert=array(
                     '#number'=>$myrowdata[0],
-                    'fullName'=>$myrowdata[1],
-                    'qualification'=>$myrowdata[2]
+                    'fullName'=>$myrowdata[1].' '.$myrowdata[2],
+                    'qualification'=>$myrowdata[3]
+                );
+                $data= array(
+                    'userid' => $myrowdata[0],
+                    'password' => md5($myrowdata[2]),
+                    'designation' => $myrowdata[5],
+                    'email' => $myrowdata[4],
+                    'enable' => '1'
                 );
                $this->load->model('admin');
-               Admin::addUserFromExcel($data2insert,$data2insert['fullName']); 
+               Admin::insertExcell($data,$data['userid']);
+               Admin::addUserFromExcel($data2insert,$data2insert['#number']); 
             }
         }
     }

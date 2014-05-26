@@ -37,7 +37,7 @@ class login extends CI_Controller {
                     $this->session->set_userdata($s_data);
                     
                     $this->studentsession($username);
-                    $this->login_verify($username);
+                    $this->detailLogiSession($username);
                 } else {
                     $data['errormsg'] = '<div class="alert alert-danger">Password and Username or email combination does not match</div>';
                     $this->load->view('clogin', $data);
@@ -46,56 +46,6 @@ class login extends CI_Controller {
         }
     }
 
-    function login_verify($username) {
-        $query1 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'administrator'));
-        $query2 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'applicant'));
-        $query3 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Admision staff'));
-        $query4 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Finance staff'));
-        $query5 = $this->db->get_where('tb_user', array('userid' => $username, 'designation' => 'Student'));
-        $query6=  $this->db->get_where('tb_user', array('userid'=> $username,  'designation'=>'Supervisor'));
-        $query7=  $this->db->get_where('tb_user', array('userid'=> $username,  'designation'=>'external supervisor'));
-        $query8=  $this->db->get_where('tb_user', array('userid'=>  $username, 'designation'=>'Teaching staff'));
-         $query9=  $this->db->get_where('tb_user', array('userid'=>  $username, 'designation'=>'alumni'));
-        if ($query1->num_rows() == 1) {
-            $s_data = array('user_role' => 'administrator');
-            $this->session->set_userdata($s_data);
-            redirect('admin_page');
-        } elseif ($query2->num_rows() == 1) {
-            $s_data = array('user_role' => 'applicant');
-            $this->session->set_userdata($s_data);
-            redirect('application');
-        } elseif ($query3->num_rows() == 1) {
-            $s_data = array('user_role' => 'Admision staff');
-            $this->session->set_userdata($s_data);
-            redirect('admision');
-        }elseif ($query4->num_rows() == 1) {
-            $s_data = array('user_role' => 'Finance staff');
-            $this->session->set_userdata($s_data);
-            redirect('financeadmin');
-        }elseif ($query5->num_rows() == 1) {
-           $s_data = array('user_role'=>'Student');
-           $this->session->set_userdata($s_data);
-           redirect('student/firstin');
-        }elseif ($query6->num_rows()===1) {
-            $s_data=array('user_role'=>'Supervisor');
-            $this->session->set_userdata($s_data);
-            redirect('supervisor');
-        }elseif ($query7->num_rows()===1) {
-            $s_data=array('user_role'=>'external supervisor');
-            $this->session->set_userdata($s_data);
-            redirect('college');
-        }elseif ($query8->num_rows()===1) {
-            $s_data=array('user_role'=>'Teaching staff');
-            $this->session->set_userdata($s_data);
-            redirect('teaching');
-        }elseif ($query9->num_rows()===1) {
-            $s_data=array('user_role'=>'alumni');
-            $this->session->set_userdata($s_data);
-            redirect('alumni');
-        }
-            
-        }
-        
         function studentsession($id){
             $qury = $this->db->get_where('tb_admision', array('userid' => $id), 1);
             if($qury->num_rows() == 1){
@@ -123,6 +73,60 @@ class login extends CI_Controller {
                    return $edata;
                 }
             } 
+        }
+       
+        function detailLogiSession($username){
+             $detquery = $this->db->get_where('tb_user', array('userid' => $username), 1);
+             if($detquery->num_rows() == 1){
+                foreach ($detquery->result() as $n){
+                   $edata =$n->designation;
+                }
+            } 
+            $myArray = explode(',', $edata);
+            $this->redirectto($myArray);
+        }
+        
+        function redirectto($myArray){
+            $role=array('roles'=>$myArray);
+            $this->session->set_userdata($role);
+            
+            if(in_array('Supervisor',$myArray)){
+                $s_data=array('user_role'=>'Supervisor');
+                $this->session->set_userdata($s_data);
+                redirect('supervisor'); 
+            }elseif(in_array('Teaching staff',$myArray)){
+                $s_data=array('user_role'=>'Teaching staff');
+                $this->session->set_userdata($s_data);
+                redirect('teaching');
+            }elseif(in_array('Finance staff',$myArray)){
+                $s_data=array('user_role'=>'Finance staff');
+                $this->session->set_userdata($s_data);
+                redirect('financeadmin');
+            }elseif(in_array('Admision staff',$myArray)){
+                $s_data=array('user_role'=>'Admision staff');
+                $this->session->set_userdata($s_data);
+                redirect('admision');
+            }elseif(in_array('administrator',$myArray)){
+                $s_data=array('user_role'=>'administrator');
+                $this->session->set_userdata($s_data);
+                redirect('admin_page');
+            }elseif(in_array('external supervisor',$myArray)){
+                $s_data=array('user_role'=>'external supervisor');
+                $this->session->set_userdata($s_data);
+                redirect('college');
+            }elseif(in_array('applicant',$myArray)){
+                $s_data=array('user_role'=>'applicant');
+                $this->session->set_userdata($s_data);
+                redirect('application');
+            }elseif(in_array('Student',$myArray)){
+                $s_data=array('user_role'=>'Student');
+                $this->session->set_userdata($s_data);
+                redirect('student/firstin');
+            }elseif(in_array('alumni',$myArray)){
+                $s_data=array('user_role'=>'alumni');
+                $this->session->set_userdata($s_data);
+                redirect('alumni');
+            }
         }
     }
 

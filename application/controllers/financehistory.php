@@ -27,10 +27,36 @@ class Financehistory extends CI_Controller {
     }
 
     function historyfinance($reg) {
-         $querystring = $this->db->get_where('tb_finance', array('registration_id' => $reg));
-         $data['history']=$querystring;
+      
+         $data['history']=  $this->academicyear($reg);
+         $data['requiredAmnt']=  $this->findRequiredAmmount($reg);
          $data['regno']=$reg;
          $this->load->view('finance/paymenthistory',$data);
     }
-    
+    function academicyear($reg){
+       $this->db->distinct();
+       $this->db->select('academic_year')->from('tb_finance')->where('registration_id',$reg);
+       $q = $this->db->get();
+       return $q;
     }
+    function findRequiredAmmount($reg){
+        $this->db->select('*');
+        $this->db->where('registrationID', $reg); 
+        $this->db->from('tb_student');
+        $this->db->join('tb_programmes', 'tb_programmes.programme_name = tb_student.program');
+        $myquer = $this->db->get();
+        if($myquer->num_rows()>0){
+            foreach ($myquer->result() as $det){
+                if($det->nationality=='Tanzanian'){
+                    $ammount=$det->tz_fee + 95000;
+                    return $ammount;
+                }else{
+                  $ammount=$det->non_tz_fee+85;
+                    return $ammount;  
+                }
+            }
+        }  else {
+            
+        }
+    }
+   }
