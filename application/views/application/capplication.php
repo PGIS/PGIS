@@ -29,12 +29,10 @@
                 <a data-target=".pays" data-toggle="tab">Application fee Details</a>
               </li>
               <li>
-                 
                   <form action="<?php echo site_url('application/submitting');?>" method="post" onsubmit='return con_message()'>
                   <button id="b" type="submit" class="subtn btn-success btn-large" data-target=".sub">
                      <span class="glyphicon glyphicon-send"></span> Submit Application</button>
                   </form>
-                  
               </li>
               
             </ul>
@@ -42,7 +40,11 @@
             
              <div class="course  in tab-pane <?php if(isset($active1)){echo 'active';}?>">
               <div class='pantop'><h4>Course selection</h4></div>
-              <p >
+              <p>
+              <?php
+                error_reporting(E_ALL);
+     ini_set('display_errors', 1);
+              ?>
                  <div class='tbs'> 
                     <?php echo form_open('application/apply'); ?>
                     

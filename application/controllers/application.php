@@ -58,11 +58,11 @@ class Application extends CI_Controller {
 
             if ($query->num_rows() == 1) {
                 $this->load->model('Application_form');
-                Application_form::update_first();
+                Application_form::update_first($this->mydepartment($_POST['course']));
                 $this->load->view('application/capplication', $data);
             } else {
                 $this->load->model('Application_form');
-                Application_form::insert_first_details();
+                Application_form::insert_first_details($this->mydepartment($_POST['course']));
                 $this->load->view('application/capplication', $data);
             }
         } elseif (isset($_POST['savcont'])) {
@@ -77,11 +77,11 @@ class Application extends CI_Controller {
 
                 if ($query->num_rows() == 1) {
                     $this->load->model('Application_form');
-                    Application_form::update_first();
+                    Application_form::update_first($this->mydepartment($_POST['course']));
                     $this->load->view('application/capplication', $data);
                 } else {
                     $this->load->model('Application_form');
-                    Application_form::insert_first_details();
+                    Application_form::insert_first_details($this->mydepartment($_POST['course']));
                     $this->load->view('application/capplication', $data);
                 }
             }
@@ -90,7 +90,18 @@ class Application extends CI_Controller {
             $this->load->view('application/capplication', $data);
         }
     }
-
+    
+    function mydepartment($pr){
+            $upqury = $this->db->get_where('tb_programmes', array('programme_name' => $pr), 1); 
+          if($upqury->num_rows() == 1){
+                foreach ($upqury->result() as $n){
+                   $edata =$n->department;
+                   return $edata;
+                }
+            }  else {
+                return '';
+            }
+    }
     /* Application module function
      * function to collect all user inputs 
      * which were stored in the database

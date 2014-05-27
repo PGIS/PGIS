@@ -21,16 +21,24 @@ class Admision_model extends CI_Model{
             'other_name'=>$othername,
             'nationality'=>$nationality
         );
+        $messa1=array(
+            'applicationID'=>$user,
+            'program'=>$course,
+            'department'=>$depart,
+            'surname'=>$suname,
+            'other_name'=>$othername,
+            'nationality'=>$nationality
+        );
         $querying = $this->db->get_where('tb_admision', array('app_id' => $appid));
         if($querying->num_rows()==0){
               $this->db->insert('tb_admision',$message);
         }
-      $querying2 = $this->db->get_where('tb_student', array('registrationID' => $addid));
+      $querying2 = $this->db->get_where('tb_student', array('applicationID' => $user));
       if($querying2->num_rows()==0){
               $this->db->insert('tb_student',$messa);
         }else{
-            $this->db->where('registrationID', $addid);
-            $this->db->update('tb_student',$messa);
+            $this->db->where('applicationID', $user);
+            $this->db->update('tb_student',$messa1);
         }
     }
     
