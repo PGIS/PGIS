@@ -39,7 +39,7 @@
 */
 
 $route['default_controller'] = "frontpage";
-$route['404_override'] = '';
+$route['404_override'] = 'errorPage';
 $route['adduser']='admin_page/add';
 
 /* End of file routes.php */

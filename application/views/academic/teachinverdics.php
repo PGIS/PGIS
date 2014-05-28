@@ -39,7 +39,8 @@ if($this->session->userdata('user_role')==='Teaching staff'){
                   </tr>
                   <tr>
                       <td>
-                        Department  
+                        Department 
+                        <?php if(isset($department))echo '<b class="dts1">'.$department.'</b>';?>
                       </td>
                       <td>
                           Programme 

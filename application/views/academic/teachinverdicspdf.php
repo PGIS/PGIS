@@ -20,6 +20,7 @@
                   <tr>
                       <td>
                         Department:  
+                        <?php if(isset($department))echo '<b class="dts1">'.$department.'</b>';?>
                       </td>
                       <td>
                           Programme: 

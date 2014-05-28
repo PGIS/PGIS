@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Error</title>
+<title>Report error</title>
 <style type="text/css">
 
 ::selection{ background-color: #E13300; color: white; }
