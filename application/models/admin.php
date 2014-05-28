@@ -46,11 +46,11 @@ class Admin extends CI_Model {
     }
 
     function addprogramme() {
-        $coursename = $this->input->post('coursename');
+        $coursename = strtolower($this->input->post('coursename'));
         $programme = array(
             'programme_name' => $coursename,
-            'programme_college' => $this->input->post('foundcollage'),
-            'department' => $this->input->post('department'),
+            'programme_college' => strtolower($this->input->post('foundcollage')),
+            'department' => strtolower($this->input->post('department')),
             'progr_duration' => $this->input->post('durati'),
             'tz_fee' => $this->input->post('normfee'),
             'non_tz_fee' => $this->input->post('forefee')

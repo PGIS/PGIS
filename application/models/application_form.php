@@ -23,7 +23,7 @@ class Application_form extends CI_Model {
     function insert_first_details($de) {
         $year= date("Y");
         $this->userid = $this->session->userdata('userid');
-        $this->prog_name = $_POST['course'];
+        $this->prog_name = strtolower($_POST['course']);
         $this->prog_mode = $_POST['chkp'];
         $this->college = $_POST['college'];
         $this->academ_year=$year.'/'.$year+1;
@@ -34,7 +34,7 @@ class Application_form extends CI_Model {
     function update_first($de) {
         $year= date("Y");
         $this->userid = $this->session->userdata('userid');
-        $this->prog_name = $_POST['course'];
+        $this->prog_name = strtolower($_POST['course']);
         $this->prog_mode = $_POST['chkp'];
         $this->college = $_POST['college'];
         $this->academ_year=$year.'/'.$year+1;
@@ -50,8 +50,8 @@ class Application_form extends CI_Model {
             (
             'surname' => $this->input->post('surname'),
             'other_name' => $this->input->post('other_name'),
-            'cob' => $this->input->post('coun_birth'),
-            'nationality' => $this->input->post('nation'),
+            'cob' => strtolower($this->input->post('coun_birth')),
+            'nationality' => strtolower($this->input->post('nation')),
             'disability' => $this->input->post('disab'),
             'dob' => $this->input->post('datebirth'),
             'mobile_no' => $this->input->post('mobile'),

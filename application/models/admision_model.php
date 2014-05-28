@@ -15,16 +15,16 @@ class Admision_model extends CI_Model{
         $messa=array(
             'registrationID'=>$addid,
             'applicationID'=>$user,
-            'program'=>$course,
-            'department'=>$depart,
+            'program'=>  strtolower($course),
+            'department'=>strtolower($depart),
             'surname'=>$suname,
             'other_name'=>$othername,
             'nationality'=>$nationality
         );
         $messa1=array(
             'applicationID'=>$user,
-            'program'=>$course,
-            'department'=>$depart,
+            'program'=>  strtolower($course),
+            'department'=>  strtolower($depart),
             'surname'=>$suname,
             'other_name'=>$othername,
             'nationality'=>$nationality

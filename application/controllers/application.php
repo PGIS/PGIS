@@ -92,11 +92,11 @@ class Application extends CI_Controller {
     }
     
     function mydepartment($pr){
-            $upqury = $this->db->get_where('tb_programmes', array('programme_name' => $pr), 1); 
+            $upqury = $this->db->get_where('tb_programmes', array('programme_name' => strtolower($pr)), 1); 
           if($upqury->num_rows() == 1){
                 foreach ($upqury->result() as $n){
                    $edata =$n->department;
-                   return $edata;
+                   return strtolower($edata);
                 }
             }  else {
                 return '';

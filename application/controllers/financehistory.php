@@ -47,7 +47,7 @@ class Financehistory extends CI_Controller {
         $myquer = $this->db->get();
         if($myquer->num_rows()>0){
             foreach ($myquer->result() as $det){
-                if($det->nationality=='Tanzanian'){
+                if($det->nationality=='tanzanian'){
                     $ammount=$det->tz_fee + 95000;
                     return $ammount;
                 }else{

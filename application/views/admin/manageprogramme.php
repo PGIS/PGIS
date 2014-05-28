@@ -28,7 +28,7 @@
                         foreach($query->result() as $prog){
                             $programname=character_limiter($prog->programme_name, 55);
                             echo '<tr>'. 
-                                 '<td>'.$programname.'</td>'.
+                                 '<td>'.ucwords($programname).'</td>'.
                                  '<td>';?>
                                     <button class="btn btn-success btn-xs"  onclick="editprograme(<?php echo $prog->prog_id;?>)" data-toggle="modal" data-target="#editModal">
                                     <span class="glyphicon glyphicon-edit"></span> Edit
