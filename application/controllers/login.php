@@ -4,7 +4,7 @@ class login extends CI_Controller {
 
     public function index() {
         $this->load->helper(array('form', 'url','email'));
-        $this->load->library('form_validation');
+        $this->load->library(array('form_validation','encrypt'));
 
         if (!isset($_POST['sb'])) {
 
@@ -126,6 +126,27 @@ class login extends CI_Controller {
                 $s_data=array('user_role'=>'alumni');
                 $this->session->set_userdata($s_data);
                 redirect('alumni');
+            }
+        }
+        
+        function changeRole($myrole){
+            $this->load->library('encrypt');
+            $this->session->unset_userdata('user_role');
+            $newrole = $this->encrypt->decode(str_replace('_', '/',$myrole));
+            $s_data=array('user_role'=>$newrole);
+            $this->session->set_userdata($s_data);
+            $this->redirectChangedrole($newrole);
+        }
+        
+        function redirectChangedrole($role){
+            if(strtolower($role)==='supervisor'){
+                redirect('supervisor'); 
+            }  elseif (strtolower($role)==='teaching staff') {
+               redirect('teaching');
+            }  elseif (strtolower($role)==='finance staff') {
+                redirect();
+            }  elseif (strtolower($role)==='admision staff') {
+                redirect('financeadmin');
             }
         }
     }

@@ -128,7 +128,7 @@ table.tablesorter thead tr th:hover {
 
   .side-nav>li.dropdown>ul.dropdown-menu {
 	position: relative;
-	min-width: 225px;
+	min-width: 230px;
 	margin: 0;
 	padding: 0;
 	border: none;
@@ -140,14 +140,14 @@ table.tablesorter thead tr th:hover {
 
   .side-nav>li.dropdown>ul.dropdown-menu>li>a {
 	color: #999999;
-	padding: 15px 15px 15px 25px;
+	padding: 10px 10px 10px ;
   }
 
   .side-nav>li.dropdown>ul.dropdown-menu>li>a:hover,
   .side-nav>li.dropdown>ul.dropdown-menu>li>a.active,
   .side-nav>li.dropdown>ul.dropdown-menu>li>a:focus {
 	color: #fff;
-	background-color: #666262;
+	background-color: #ccc;
   }
 
   .side-nav>li>a {
@@ -266,7 +266,7 @@ table.tablesorter thead tr th:hover {
     display: block;
 }
 .tabs-below > .nav-tabs {
-    border-top: 1px solid #DDDDDD;
+    bodropdown-togglerder-top: 1px solid #DDDDDD;
 }
 .tabs-below > .nav-tabs > li {
     margin-bottom: 0;

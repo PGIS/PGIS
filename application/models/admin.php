@@ -122,6 +122,12 @@ class Admin extends CI_Model {
         }
         
     }
+    function insertExcell($data,$username){
+        $dquery = $this->db->get_where('tb_user', array('userid' => $username));
+        if($dquery->num_rows()==0){
+            $this->db->insert('tb_user', $data); 
+        }
+    }
     function courseaddz($prog_name,$course_name,$course_code){
          $data_ray=array(
                  'prog_name'=>$prog_name,

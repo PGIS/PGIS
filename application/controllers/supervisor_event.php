@@ -3,7 +3,7 @@
          function __construct() {
          parent::__construct();
          $this->load->helper('url','form','html');
-         $this->load->library('form_validation');
+         $this->load->library(array('form_validation','encrypt'));
          $this->load->model('supervisor_event_model');
          if(!$this->session->userdata('logged_in')){
              redirect('logout');

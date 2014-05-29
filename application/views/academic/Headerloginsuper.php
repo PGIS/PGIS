@@ -61,15 +61,30 @@
                                 Post Event</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
-                        <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                         <?php
                        $length=sizeof($this->session->userdata('roles'));
                         if($length>1){
-                           ?>
-                        <li><a href="<?php echo site_url(''); ?>"><span class="glyphicon glyphicon-random"></span> Change role</a></li>
-                           <?php
+                          echo '
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                               <span class="glyphicon glyphicon-random"></span> Change role
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                               ';  
+                                   foreach ($this->session->userdata('roles') as $troles){
+                                             if($troles!=$this->session->userdata('user_role')){
+                                                 $encrole1= $this->encrypt->encode($troles);
+                                                 $encrole = str_replace('/','_' , $encrole1);
+                                                 echo '<li><a href="'.site_url('login/changeRole/'.$encrole).'"><span class="glyphicon glyphicon-log-in"></span> '.$troles.'</a></li>';
+                                             }
+                                   }
+                                
+                           echo  '</ul></li>';
                         }
                         ?>
+                        <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                        
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right navbar-user">
@@ -81,12 +96,7 @@
                                     echo $this->session->userdata('userid');
                                 }
                                 ?> <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
-                                <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
-
-                            </ul>
+                            
                         </li>
                     </ul>
 

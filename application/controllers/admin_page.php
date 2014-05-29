@@ -208,7 +208,8 @@ class Admin_page extends CI_Controller {
                 $data2insert=array(
                     '#number'=>$myrowdata[0],
                     'fullName'=>$myrowdata[1].' '.$myrowdata[2],
-                    'qualification'=>$myrowdata[3]
+                    'qualification'=>$myrowdata[3],
+                    'Sdepartment'=>$myrowdata[6],
                 );
                 $data= array(
                     'userid' => $myrowdata[0],

@@ -8,7 +8,7 @@ class Change_form extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->helper(array('form', 'html', 'url'));
-        $this->load->library(array('form_validation', 'session'));
+        $this->load->library(array('form_validation', 'session','encrypt'));
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
 
         if (!$this->session->userdata('logged_in')) {
