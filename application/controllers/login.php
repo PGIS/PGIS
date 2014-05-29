@@ -35,9 +35,10 @@ class login extends CI_Controller {
                 } elseif ($query->num_rows() == 1) {
                     $s_data = array('userid' => $username, 'logged_in' => TRUE,'email'=>$email);
                     $this->session->set_userdata($s_data);
-                    
                     $this->studentsession($username);
+                    $this->supervisorDepartment($username);
                     $this->detailLogiSession($username);
+                    
                 } else {
                     $data['errormsg'] = '<div class="alert alert-danger">Password and Username or email combination does not match</div>';
                     $this->load->view('clogin', $data);
@@ -147,6 +148,30 @@ class login extends CI_Controller {
                 redirect();
             }  elseif (strtolower($role)==='admision staff') {
                 redirect('financeadmin');
+            }
+        }
+        function supervisorDepartment($username){
+            $detquery = $this->db->get_where('tb_user', array('userid' => $username), 1);
+             if($detquery->num_rows() == 1){
+                foreach ($detquery->result() as $n){
+                   $edata =$n->designation;
+                }
+            } 
+            $myArray = explode(',', $edata);
+            
+            if(in_array('Supervisor',$myArray)){
+                $this->fetchDepartment($username);
+            }
+        }
+        
+        function fetchDepartment($username){
+            $query = $this->db->get_where('tb_staff', array('staffId' => $username),1);
+            if($query->num_rows()>0){
+                foreach ($query->result() as $dep){
+                    $mydep=$dep->Sdepartment;
+                }
+                 $s_data=array('mydepartment'=>$mydep);
+                $this->session->set_userdata($s_data);
             }
         }
     }

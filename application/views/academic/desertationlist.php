@@ -14,9 +14,14 @@
             </thead>
             <tbody>
                 <?php 
-                 $query = $this->db->get('tb_project');
+                $this->db->select('*');
+                $this->db->from('tb_project');
+                $this->db->join('tb_student', 'tb_student.registrationID = tb_project.registration_id');
+                $query = $this->db->get();
+                 //$query = $this->db->get('tb_project');
                  if($query->num_rows()>0){
                      foreach ($query->result() as $project){
+                         if($project->department===$this->session->userdata('mydepartment')){
                        ?>
                         <tr>
                             <td class="col-md-2"><?php echo $project->registration_id;?></td>
@@ -31,7 +36,7 @@
                             </td>
                         </tr>
                 <?php
-                     }
+                     }}
                  }
                 ?>
             </tbody>
