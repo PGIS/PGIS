@@ -1,4 +1,4 @@
-<div class="ajax"></div>   
+<div class="ajax">   
 <?php
 $resd=$this->db->get_where('tb_course',array('id'=>$rec));
 foreach ($resd->result() as $tz){
@@ -26,19 +26,23 @@ foreach ($resd->result() as $tz){
           <label>Seminar Venue</label><input type="text" name="smv" class="form-control " required placeholder="seminar venue">
           <label>Maximum Limit</label><input type="text" name="max" class="form-control ">
           
-          <button class="btn btn-primary btn-xs pull-right">register</button>
+          <div style="margin-top:10px;"><button class="btn btn-primary btn-sm pull-right">register</button></div>
           <?php echo form_close();?>
 
  <?php
 }
 ?> 
+</div>
           <script>
           $('#load').submit(function(e){
               e.preventDefault();
+               $('.ajax').html('<img src="<?php echo base_url('assets/img/loading.gif');?>">');
               var dataz=$(this).serializeArray();
               var url=$(this).attr('action');
               $.post(url,dataz,function(sms){
+                  setTimeout(function(){
                   $('.ajax').html(sms);
+                  },2000);
               });
           });
           </script>

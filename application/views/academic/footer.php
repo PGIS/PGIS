@@ -64,10 +64,13 @@
 </script>
 <script>
             function rgistercourse(id){
+                $('#load').html('<img src="<?php echo base_url('assets/img/load.gif');?>">');
                 var url="<?php echo site_url('seminary/show_semicalender');?>";
                 var url2=url+'/'+id;
                 $.get(url2 ,function(data){
+                    setTimeout(function(){
                     $('#load').html(data);
+                    },2000);
                 });
             } 
             </script>
