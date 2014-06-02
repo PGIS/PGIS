@@ -113,9 +113,9 @@ class Admin extends CI_Model {
          }
     }
      function addUserFromExcel($data,$name){
-        $list = $this->db->get_where('tb_staff', array('#number' => $name));
+        $list = $this->db->get_where('tb_staff', array('staffId' => $name));
         if($list->num_rows()>0){
-           $this->db->where('#number', $name);
+           $this->db->where('staffId', $name);
             $this->db->update('tb_staff', $data); 
         }else{
             $this->db->insert('tb_staff', $data);    

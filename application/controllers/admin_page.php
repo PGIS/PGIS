@@ -206,10 +206,10 @@ class Admin_page extends CI_Controller {
             $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
             foreach ($rowData as $myrowdata){
                 $data2insert=array(
-                    '#number'=>$myrowdata[0],
+                    'staffId'=>$myrowdata[0],
                     'fullName'=>$myrowdata[1].' '.$myrowdata[2],
                     'qualification'=>$myrowdata[3],
-                    'Sdepartment'=>$myrowdata[6],
+                    'Sdepartment'=>  strtolower($myrowdata[6]),
                 );
                 $data= array(
                     'userid' => $myrowdata[0],
@@ -220,7 +220,7 @@ class Admin_page extends CI_Controller {
                 );
                $this->load->model('admin');
                Admin::insertExcell($data,$data['userid']);
-               Admin::addUserFromExcel($data2insert,$data2insert['#number']); 
+               Admin::addUserFromExcel($data2insert,$data2insert['staffId']); 
             }
         }
     }
