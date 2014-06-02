@@ -276,4 +276,12 @@ class Admin_page extends CI_Controller {
            echo '<label class="label label-success">updated successifully..</label>';
         }
     }
+    
+    function systemSettings(){
+         $this->load->view('admin/settings');
+    }
+    function systemSettingsOpenApp(){
+        $data['openapp']='';
+         $this->load->view('admin/settings',$data);
+    }
 }

@@ -132,11 +132,20 @@ class Admision extends CI_Controller{
            $this->form_validation->set_rules('msgbody', 'Message body', 'required|xss_clean');
            $this->form_validation->run();
                 if($this->form_validation->run() == TRUE){
+                    $to=$this->input->post('to');
                   $this->load->model('messaging');
                   Messaging::add_message();
                   $data['sent']='Message sent';
+                  if(isset($_POST['tomail'])){
+                      $alah=$this->send_email($this->find_sender_email($to), $this->input->post('subject'), $this->input->post('msgbody'),$to);
+                      if($alah){
+                          $data['toemail']='message sent to email';
+                      }else{
+                          $data['ntoemail']='not sent to email';
+                      }
+                  }
+                   }
                 }
-            }
           
         $z = $this->db->count_all('tb_admision')+10;
       
@@ -197,6 +206,31 @@ class Admision extends CI_Controller{
 		$this->load->library('dompdf_lib');
                 $this->dompdf_lib->convert_html_to_pdf($html,$userid,$pdf_filename, TRUE);
                  
+        }
+        function send_email($to,$subject,$message,$file){
+                $this->load->library('email');
+                $this->email->set_newline("\r\n");
+                $this->email->from('pgis@gmail.com','PGIS TEAM');
+                $this->email->to($to);
+                $this->email->subject($subject);
+                $this->email->message($message);
+                $path = $this->config->item('server_root');
+                $file = $path . './attachments/admission_letter/'.$file.'.pdf';
+                $this->email->attach($file);
+                if (@$this->email->send()){
+                    return TRUE; 
+                }  else {
+                    return FALSE;
+                }
+        }
+        
+        function find_sender_email($to){
+            $this->db->select('email');
+           $query = $this->db->get_where('tb_user', array('userid' => $to),1);
+            foreach ($query->result() as $email){
+                return $email->email;
+            }
+            
         }
     }
 

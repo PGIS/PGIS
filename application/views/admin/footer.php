@@ -37,5 +37,29 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+
+        var MaxInputs = 1; //maximum input boxes allowed
+        var InputsWrapper = $("#thisInputsWrapper"); //Input boxes wrapper ID
+        var AddButton = $("#changeDeadLine"); //Add button ID
+
+        var x = InputsWrapper.length; //initlal text box count
+        var FieldCount = 1; //to keep track of text box addedremoveclass
+
+        $(AddButton).click(function(e)  //on add input button click
+        {
+            if (x <= MaxInputs) //max input box allowed
+            {
+                FieldCount++; //text box added increment
+                //add input box
+                $(InputsWrapper).append('<div class="spc"><input type="text" class="form-control"><p>\n\
+    <div><button class="btn btn-xs btn-info">Update</button></div></></div>');
+                x++; //text box increment
+            }
+            return false;
+        });
+    });
+</script>   
 </body>
 </html>

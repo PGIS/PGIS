@@ -47,7 +47,10 @@
 	</div>
     </div>
     <div class='pull-right'>
-	<a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Register Now</button></a>
+	<a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Register Now <span class="glyphicon glyphicon-registration-mark"></span></button></a>
+    </div>
+    <div class='pull-left'>
+	<a href="<?php echo site_url('login');?>"><button type="button" class="mybtn btn-primary">Login <span class="glyphicon glyphicon-log-in"></span></button></a>
     </div>
 </div><!-- /#page-wrapper -->
 
