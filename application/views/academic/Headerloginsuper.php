@@ -59,6 +59,9 @@
                         <li>    
                             <a href="<?php echo site_url('supervisor/presentationFeedback'); ?>"><span class="glyphicon glyphicon-retweet"></span>   Presentation Feedback</a>
                         </li>
+                         <li>    
+                            <a href="<?php echo site_url('departStudentManage'); ?>"><span class="glyphicon glyphicon-road"></span>   Students Progress</a>
+                        </li>
                          <li><a href="<?php echo site_url('supervisor_event/display_cal'); ?>"><span class="glyphicon glyphicon-calendar"></span>
                                 Post Event</a></li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>

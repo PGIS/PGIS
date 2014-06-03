@@ -71,6 +71,13 @@
                 <tr>
                     <td colspan="2">
                         <label><input type="checkbox" name="tomail"> Send to email</label>
+                         <?php 
+                          if(isset($toemail)){
+                              echo "<span class='alert-success'>".$toemail."</span>";
+                          }elseif(isset($ntoemail)){
+                               echo "<span class='alert-danger'>".$ntoemail."</span>";
+                          }
+                         ?>
                     </td>
                 </tr>
                 <tr>

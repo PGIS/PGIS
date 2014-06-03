@@ -276,11 +276,12 @@ class Admin_page extends CI_Controller {
            echo '<label class="label label-success">updated successifully..</label>';
         }
     }
-    function courseview($id){
-        $data['view']=$id;
-        $this->load->view('admin/courze_view',$data);
+    
+    function systemSettings(){
+         $this->load->view('admin/settings');
     }
-    function viewcourz(){
-       $this->load->view('admin/registered_semi');  
+    function systemSettingsOpenApp(){
+        $data['openapp']='';
+         $this->load->view('admin/settings',$data);
     }
 }

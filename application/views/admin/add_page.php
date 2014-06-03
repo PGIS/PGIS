@@ -3,7 +3,9 @@
     <ol class="breadcrumb">
         <li ><a href="<?php echo site_url('admin_page'); ?>">User management</a></li>
         <li class="active"><a href="<?php echo site_url('adduser'); ?>">Add user</a></li>
-     </ol>
+        <li class="active"><a href="<?php echo site_url('admin_page/systemSettings'); ?>">
+                <span class="glyphicon glyphicon-cog"></span>   System Settings</a></li>
+    </ol>
     <div class="panel-group col-md-10 col-lg-offset-1" id="accordion">
         <div class="panel panel-default">
             <div class="panel-heading">
