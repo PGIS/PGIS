@@ -80,24 +80,24 @@
                         <table class="table col-md-3 table-striped">
                             <tr>
                                 <td> Regular </td>
-                                <td><input  name="chkp" type="radio" value="regular" checked=""
+                                <td><input  name="chkp" type="radio" value="regular" checked="" class="morning"
                                     <?php display_checks('chkp',$prog_mod,'regular');?> 
                                  ></td>
                             </tr>
                             <tr>
                                 <td> Evening</td>
-                                <td><input  name="chkp" type="radio" value="evening"
+                                <td><input  name="chkp" type="radio" value="evening" class="evening"
                                 <?php display_checks('chkp',$prog_mod,'evening');?>
                                 ></td>
                             </tr>
                             
                              <tr>
                                 <td>Other (Specify)</td>
-                                <td><input  name="chkp" type="radio" value="other"
+                                <td><input  name="chkp" type="radio" value="other" class="other"
                                  <?php display_checks('chkp',$prog_mod,'other');?>
                                 ></td>
                             </tr>
-                             <tr><td colspan=2>
+                            <tr class="th"><td colspan=2>
                              <?php echo form_error('checktext','<div class="error">','</div>'); ?>
                              <textarea class="form-control" rows="3" name='checktext'>
                                 
@@ -141,7 +141,21 @@
             }?>
          </div>
             
-        </div> 
+        </div>
+          <script>
+              $(document).ready(function(){
+                  $('.th').hide();
+                  $('.other').click(function(){
+                      $('.th').show();
+                  });
+                  $('.evening').click(function(){
+                      $('.th').hide();
+                  });
+                  $('.morning').click(function(){
+                      $('.th').hide();
+                  });
+              });
+          </script>
     </div>
     <script src="<?php echo base_url('assets/js/submision_checking.js') ?>"></script>
 <?php

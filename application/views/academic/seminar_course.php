@@ -1,4 +1,3 @@
-
 <div class="ajax">
  <table class="table table-condensed">
  <?php
