@@ -291,4 +291,8 @@ class Admin_page extends CI_Controller {
         $data['view']=$id;
         $this->load->view('admin/courze_view',$data);
     }
+    function list_details($userid){
+        $data['edit']=$userid;
+        $this->load->view('admin/adminloads',$data);
+    }
 }

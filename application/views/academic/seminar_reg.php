@@ -32,7 +32,6 @@
                 </div>
                 <div class="col-lg-8">
                     <div id="load">
-                        
                     </div>
                 </div>
             </div>

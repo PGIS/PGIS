@@ -118,7 +118,7 @@
                         value="<?php display_input('perm_address',$perm_addres);?>"></div>
                     </td>
                     <td>
-                            Disabilities/Special needs *.<br>
+                            Disabilities/Known disabilities *.<br>
                              <?php echo form_error('disab','<div class="error">', '</div>'); ?>
                             Yes <input name="disab" type="radio" value="yes" id="yes">
                             No <input name="disab" type="radio" value="no" id="no" checked="">
@@ -128,10 +128,20 @@
                 <tr>
                     <td colspan="3" id="text_area">
                             <div id="disabi">
-                            Nature of Disability /special needs (if any).
+                                 Nature of Disability.
+                                <select name="disab_nature" class="form-control">
+                                    <option id="yes5"></option>
+                                    <option id="yes1">Physical disabilities</option>
+                                    <option id="yes3">Visual impairment</option>
+                                    <option id="yes4">Hearing impairment</option>
+                                    <option id="yes2">Others</option>
+                                </select>
+                                 <div class="dis">
+                            Specify.
                            <?php echo form_error('disab_nature','<div class="error">', '</div>'); ?>
                             <div><textarea name="disab_nature" class="form-control"
                             value="<?php display_input('disab_nature',$disab_natur);?>"></textarea></div>
+                                 </div>
                             </div>
                     </td>
                 </tr>
@@ -155,5 +165,24 @@
            
         </form>
     </p>
-    
+    <script>
+        $(document).ready(function(){
+            $('.dis').hide();
+            $('#yes2').click(function(){
+                $('.dis').show();
+            });
+            $('#yes1').click(function(){
+                $('.dis').hide();
+            });
+            $('#yes3').click(function(){
+                $('.dis').hide();
+            });
+            $('#yes4').click(function(){
+                $('.dis').hide();
+            });
+            $('#yes5').click(function(){
+                $('.dis').hide();
+            });
+        });
+    </script>
 </div>

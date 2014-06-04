@@ -26,7 +26,7 @@
                 echo '<td>'.$row->userid.'</td>';
                 echo '<td>'.$row->other_name.'</td>';
                 echo '<td>'.$row->surname.'</td>';
-                echo  '<td class="glyphicon glyphicon-file"><a href="">create</a></td>';
+                echo  '<td><a href="'.site_url('admision/admit/'.$row->userid).'" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus">admission letter</span></a></td>';
                 echo '</tr>';
             }
         }
