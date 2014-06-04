@@ -32,8 +32,8 @@
       <div class="loads">
            <?php echo form_open('admin_page/specify',array('id'=>'jux'));?>
            <table class="table table-condensed"> 
-               <tr><td><label> Course Title*</label></td><td><input type="text" name="cstitle" class="form-control" required></td></tr>
-               <tr><td><label> Course Description*</label></td><td><textarea type="text" name="csdec" class="form-control" required></textarea></td></tr>
+               <tr><td><label> Seminar Title*</label></td><td><input type="text" name="cstitle" class="form-control" required></td></tr>
+               <tr><td><label> Seminar Description*</label></td><td><textarea type="text" name="csdec" class="form-control" required></textarea></td></tr>
                <tr><td><label> Seminar venue*</label></td><td><input type="text" name="csvenue" class="form-control" required></td></tr>
                <tr><td><label> Seminar date*</label></td><td><input type="text" name="csdate" class="form-control datepicker"></td></tr>
                <tr><td><label> Seminar Time*</label></td><td><input type="text" name="cstime" class="form-control"></td></tr>
@@ -65,8 +65,6 @@
           });
       });
       </script>
-       <script>
-     $('.datepicker').datepicker();
-      </script>
+      
  </div>
 <?php include_once 'footer.php';
