@@ -10,10 +10,17 @@
         </form> 
     </a>
 </div>
+<?php
+if($this->session->userdata('user_role')==='Supervisor'){
+    $maurl=site_url('departStudentManage/eventdisco/'.$regid);
+}else {
+    $maurl=site_url('collegStudentManage/eventdisco/'.$regid);
+}
+?>
 <script>
     $("#disco").submit(function(event) {
         event.preventDefault();
-        var url = "<?php echo site_url('departStudentManage/eventdisco/'.$regid); ?>";
+        var url = "<?php echo $maurl; ?>";
         var fdata = $('#disco').serializeArray();
           fdata.push({"name": "save", "value": ""});
         $.post(url, fdata, function(data) {
