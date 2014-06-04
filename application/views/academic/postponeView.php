@@ -36,10 +36,17 @@
     </form>
   
 </div>
+<?php
+if($this->session->userdata('user_role')==='Supervisor'){
+    $maurl=site_url('departStudentManage/eventPostpone/'.$regid);
+}else {
+    $maurl=site_url('collegStudentManage/eventPostpone/'.$regid);
+}
+?>
 <script>
     $("#postpone").submit(function(event) {
         event.preventDefault();
-        var url = "<?php echo site_url('departStudentManage/eventPostpone/'.$regid); ?>";
+        var url = "<?php echo $maurl; ?>";
         var fdata = $('#postpone').serializeArray();
           fdata.push({"name": "save", "value": ""});
         $.post(url, fdata, function(data) {

@@ -52,6 +52,13 @@
     </form>
   
 </div>
+<?php
+if($this->session->userdata('user_role')==='Supervisor'){
+    $maurl=site_url('departStudentManage/eventExtension/'.$regid);
+}else {
+    $maurl=site_url('collegStudentManage/eventExtension/'.$regid);
+}
+?>
 <script>
     $(document).ready(function(){ 
         $('.datepicker').datepicker(); 
@@ -60,7 +67,7 @@
 <script>
     $("#extend").submit(function(event) {
         event.preventDefault();
-        var url = "<?php echo site_url('departStudentManage/eventExtension/'.$regid); ?>";
+        var url = "<?php echo $maurl; ?>";
         var fdata = $('#extend').serializeArray();
           fdata.push({"name": "save", "value": ""});
         $.post(url, fdata, function(data) {

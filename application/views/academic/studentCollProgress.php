@@ -1,4 +1,4 @@
-<?php include_once 'Headerloginsuper.php'; ?>
+<?php include_once 'Headerlogincollege.php'; ?>
 <div id="page-wrapper">
     <div class="col-md-12">
         <ul class="nav nav-tabs">
@@ -10,7 +10,7 @@
                 <br>
                 <div class="col-md-6">
                     <?php 
-                    $res=  $this->db->get_where('tb_student',array('department'=>$this->session->userdata('mydepartment')));
+                    $res=  $this->db->get('tb_student');
                     if($res->num_rows()>0){
                         echo 
                         '<table class="table" id="studenttable">
@@ -34,11 +34,11 @@
                                 <button type="button" class="btn btn-info" data-toggle="dropdown">
                                   <span class="caret"></span></button>
                                 <ul class="dropdown-menu" role="menu">
-                                  <li><a href="#" onclick="postpone('<?php echo $strecord->registrationID; ?>')">Postponement</a></li>
-                                  <li><a href="#" onclick="disco('<?php echo $strecord->registrationID; ?>')">Discontinue</a></li>
-                                  <li><a href="#" onclick="extension('<?php echo $strecord->registrationID; ?>')">Extension</a></li>
-                                  <li><a href="#" onclick="resume('<?php echo $strecord->registrationID; ?>')">Resume</a></li>
-                                  <li><a href="#" onclick="freezing('<?php echo $strecord->registrationID; ?>')">Freezing</a></li>
+                                  <li><a href="#" onclick="postponeco('<?php echo $strecord->registrationID; ?>')">Postponement</a></li>
+                                  <li><a href="#" onclick="discoco('<?php echo $strecord->registrationID; ?>')">Discontinue</a></li>
+                                  <li><a href="#" onclick="extensionco('<?php echo $strecord->registrationID; ?>')">Extension</a></li>
+                                  <li><a href="#" onclick="resumeco('<?php echo $strecord->registrationID; ?>')">Resume</a></li>
+                                  <li><a href="#" onclick="freezingco('<?php echo $strecord->registrationID; ?>')">Freezing</a></li>
                                 </ul>
                               </div>
                             </td>
@@ -74,7 +74,7 @@
                            Choose Student progress to view  
                         </div>
                         <div class="col-md-6">
-                            <select class="form-control input-sm" name="event"  id="cye">
+                            <select class="form-control input-sm" name="event"  id="cye2">
                                 <option>Freezing</option>
                                 <option>Postponement</option>
                                 <option>Extension</option>
@@ -103,13 +103,11 @@
                                 </thead>
                                 <tbody>';
                           foreach ($myquer->result() as $frlist){
-                              if($frlist->department==$this->session->userdata('mydepartment')){
                                   echo '<tr>';
                                   echo '<td>'.$frlist->surname .' '.$frlist->other_name.'</td>'; 
                                   echo '<td>'.$frlist->registrationID.'</td>'; 
                                   echo '<td><button class="btn btn-xs btn-info">View</button></td>';
                                   echo '</tr>';
-                              }
                           }
                          echo ' </tbody></table>';
                       }else{

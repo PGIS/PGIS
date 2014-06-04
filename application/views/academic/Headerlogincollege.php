@@ -59,6 +59,9 @@
                         <li>    
                             <a href="<?php echo site_url('college/feedback'); ?>"><span class="glyphicon glyphicon-retweet"></span>   Presentation Feedback</a>
                         </li>
+                         <li>    
+                            <a href="<?php echo site_url('collegStudentManage'); ?>"><span class="glyphicon glyphicon-road"></span>   Students Progress</a>
+                        </li>
                         <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
                         <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>

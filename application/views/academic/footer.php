@@ -41,6 +41,8 @@
     $(document).ready(function(){ 
         $('#mytablet4').dataTable(); 
         $('#studenttable').dataTable();
+        $('#studentable').dataTable();
+        $('#studentable2').dataTable();
     });
     $(document).ready(function(){ 
         $('.tab1').dataTable(); 

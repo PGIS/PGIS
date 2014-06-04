@@ -1,18 +1,18 @@
 <?php if (!defined('BASEPATH'))exit('No irect script access allowed');
- class DepartStudentManage extends CI_Controller{
+ class CollegStudentManage extends CI_Controller{
      function __construct() {
          parent::__construct();
          $this->load->helper('form','html','url');
          $this->load->library(array('form_validation','encrypt'));
          if(!$this->session->userdata('logged_in')){
             redirect('logout');
-        }elseif ($this->session->userdata('user_role')!='Supervisor') {
+        }elseif ($this->session->userdata('user_role')!='external supervisor') {
              redirect('logout');
         }
      }
      
      function index(){
-          $this->load->view('academic/studentpProgress');   
+          $this->load->view('academic/studentCollProgress');   
                 
         }
         function eventPostpone($id){
@@ -131,22 +131,22 @@
            if($evnt=='Freezing'){
                $data['info']='freezing';
                $data['myquer']= $this->viewEventfreezing(); 
-               $this->load->view('academic/eventView',$data);
+               $this->load->view('academic/colleventView',$data);
                
            }elseif ($evnt=='Postponement') {
                $data['info']='postponement';
                $data['myquer']= $this->viewEventPostpone(); 
-               $this->load->view('academic/eventView',$data);
+               $this->load->view('academic/colleventView',$data);
             
            }elseif ($evnt=='Discontinue') {
                $data['info']='Discontinue';
                $data['myquer']= $this->viewEventDisco(); 
-               $this->load->view('academic/eventView',$data);
+               $this->load->view('academic/colleventView',$data);
                
            }elseif ($evnt=='Extension') {
                 $data['info']='extension';
                 $data['myquer']= $this->viewEventExtend(); 
-                $this->load->view('academic/eventView',$data);
+                $this->load->view('academic/colleventView',$data);
            }
            
         }
