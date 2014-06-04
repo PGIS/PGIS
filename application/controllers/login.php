@@ -127,6 +127,9 @@ class login extends CI_Controller {
                 $s_data=array('user_role'=>'alumni');
                 $this->session->set_userdata($s_data);
                 redirect('alumni');
+            }elseif(in_array('blocked',$myArray)){
+               $data['errormsg'] = '<div class="alert alert-danger">Your Account has been Blocked for some reasons</div>';
+                    $this->load->view('clogin', $data);
             }
         }
         

@@ -183,4 +183,105 @@
             return $my;
         }
       
+        function fetchRecordedPost($id){
+            $data['id']=$id;
+            $this->db->select('*');
+            $this->db->where('registration_ID', $id); 
+            $this->db->from('tb_event_postpone');
+            $this->db->join('tb_student', 'tb_student.registrationID = tb_event_postpone.registration_ID');
+            $posquer = $this->db->get();
+            if($posquer->num_rows()>0){
+                foreach ($posquer->result() as $stde){
+                    $detail=array(
+                        'id'=>$stde->registrationID,
+                        'description' => $stde->description,
+                        'from' => $stde->from,
+                        'to' => $stde->to 
+                    );
+                }
+                $data=$detail;
+                $data+=$this->getStudentDetails($id);
+                $data['info']='postponement';
+               $this->load->view('academic/eventViewRecord',$data);
+            }  else {
+               
+            }
+           
+        }
+        
+         function fetchRecordedExt($id){
+            $data['id']=$id;
+            $this->db->select('*');
+            $this->db->where('registration_ID', $id); 
+            $this->db->from('tb_event_extend');
+            $this->db->join('tb_student', 'tb_student.registrationID = tb_event_extend.registration_ID');
+            $posquer = $this->db->get();
+            if($posquer->num_rows()>0){
+                foreach ($posquer->result() as $stde){
+                    $detail=array(
+                        'id'=>$stde->registrationID,
+                        'description' => $stde->description,
+                        'from' => $stde->from,
+                        'to' => $stde->to,
+                        'period'=>$stde->period
+                    );
+                }
+                $data=$detail;
+                $data+=$this->getStudentDetails($id);
+                $data['info']='extension';
+               $this->load->view('academic/eventViewRecord',$data);
+            }  else {
+               
+            }
+           
+        }
+        
+        function fetchRecordedFreez($id){
+            $data['id']=$id;
+            $this->db->select('*');
+            $this->db->where('registration_ID', $id); 
+            $this->db->from('tb_event_freez');
+            $this->db->join('tb_student', 'tb_student.registrationID = tb_event_freez.registration_ID');
+            $posquer = $this->db->get();
+            if($posquer->num_rows()>0){
+                foreach ($posquer->result() as $stde){
+                    $detail=array(
+                        'id'=>$stde->registrationID,
+                        'description' => $stde->description,
+                        'from' => $stde->from,
+                        'to' => $stde->to
+                    );
+                }
+                $data=$detail;
+                $data+=$this->getStudentDetails($id);
+                $data['info']='freezing';
+               $this->load->view('academic/eventViewRecord',$data);
+            }  else {
+               
+            }
+           
+        }
+        
+         function fetchRecordedDisco($id){
+            $data['id']=$id;
+            $this->db->select('*');
+            $this->db->where('registration_ID', $id); 
+            $this->db->from('tb_event_disco');
+            $this->db->join('tb_student', 'tb_student.registrationID = tb_event_disco.registration_ID');
+            $posquer = $this->db->get();
+            if($posquer->num_rows()>0){
+                foreach ($posquer->result() as $stde){
+                    $detail=array(
+                        'recorded_date' => $stde->recorded_date
+                    );
+                }
+                $data=$detail;
+                $data+=$this->getStudentDetails($id);
+                $data['info']='Discontinue';
+               $this->load->view('academic/eventViewRecord',$data);
+            }  else {
+               
+            }
+           
+        }
    }

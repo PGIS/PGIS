@@ -60,11 +60,6 @@ if($this->session->userdata('user_role')==='Supervisor'){
 }
 ?>
 <script>
-    $(document).ready(function(){ 
-        $('.datepicker').datepicker(); 
-    });
-</script>
-<script>
     $("#extend").submit(function(event) {
         event.preventDefault();
         var url = "<?php echo $maurl; ?>";
@@ -73,5 +68,10 @@ if($this->session->userdata('user_role')==='Supervisor'){
         $.post(url, fdata, function(data) {
             $('#events').html(data);
         });
+    });
+</script>
+<script>
+    $(document).ready(function(){ 
+        $('.datepicker').datepicker(); 
     });
 </script>
