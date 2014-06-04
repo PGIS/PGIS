@@ -21,8 +21,9 @@
             $('#editprog').html(data);
         });
     }
+    
     $(document).ready(function(){ 
-        $('.tbs').dataTable(); 
+        $('#course').dataTable(); 
     });
 </script>
 <script>

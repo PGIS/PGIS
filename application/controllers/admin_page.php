@@ -284,4 +284,11 @@ class Admin_page extends CI_Controller {
         $data['openapp']='';
          $this->load->view('admin/settings',$data);
     }
+    function viewcourz(){
+        $this->load->view('admin/registered_semi');
+    }
+    function courseview($id){
+        $data['view']=$id;
+        $this->load->view('admin/courze_view',$data);
+    }
 }

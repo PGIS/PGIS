@@ -7,20 +7,23 @@
     <meta name="author" content="">
 
     <title>PGIS</title>
-    
-    
-    
     <link href="<?php echo base_url('assets/css/bootstrap-combined.min.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/bootstrap.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/all.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/jquery-ui.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/tooltip.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/sb-admin.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/jquery.dataTables.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/datepicker.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/jquery-1.10.2.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-ui.core.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-ui.widget.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/core.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.ui.widget.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/datepicker.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.ui.datepicker.js')?>"></script>
   </head>
+
 
   <body>
 

@@ -8,14 +8,14 @@
           Evidence of sponsorship  
         </p>
             <tr><td>How do you intend to finance your studies?</</td>
-                <td><input type="radio" name="chbx1" value="self" checked=''
+                <td><input type="radio" name="chbx1" value="self" checked='' class="self"
                   <?php display_checks('chbx1',$spon_mode,'self');?>>
                     Self</td>
-                <td><input type="radio" name="chbx1" value="employer"
+                <td><input type="radio" name="chbx1" value="employer" class="emp"
                 <?php display_checks('chbx1',$spon_mode,'employer');?>>Employer</td>
-                <td><input type="radio" name="chbx1" value="other"
+                <td><input type="radio" name="chbx1" value="other" class="lz"
                 <?php display_checks('chbx1',$spon_mode,'other');?>>Other(s) Specify<br>
-                <textarea  class="form-control"></textarea></td>
+                <textarea  class="form-control ct"></textarea></td>
                 </td>
             </tr>
             <tr>
@@ -61,9 +61,9 @@
                     >University/College Careers Service
                 </td>
                 <td colspan=2>
-                    <input type="checkbox" name="fother" value="Other"
+                    <input type="checkbox" name="fother" value="Other" class="other"
                     <?php display_checks('fother',$fother,'Other');?>>Other (please specify)
-                    <textarea name="fother" class="form-control"></textarea>
+                    <textarea name="fother" class="form-control clz"></textarea>
                 </td>
             </tr>
              <tr>
@@ -86,3 +86,21 @@
         </form>  
     </p>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.clz').hide();
+        $('.ct').hide();
+        $('.lz').click(function(){
+            $('.ct').show();
+        });
+        $('.emp').click(function(){
+            $('.ct').hide();
+        });
+        $('.self').click(function(){
+            $('.ct').hide();
+        });
+        $('.other').click(function(){
+            $('.clz').show();
+        });
+    });
+</script>

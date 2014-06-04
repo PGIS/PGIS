@@ -14,9 +14,7 @@ enabled: true
     $(function() {
     $('.tabcordion').tabcordion()
     });
-     $(document).ready(function(){ 
-        $('.datepicker').datepicker(); 
-    });
+     
     </script>
     <script>
     $('.ajax').submit(function(e){
@@ -55,5 +53,8 @@ enabled: true
             $('#2').html(data);
         });
     });
+</script>
+<script>
+   $('.datepicker').datepicker(); 
 </script>
 </html>

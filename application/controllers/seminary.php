@@ -58,5 +58,15 @@ function show_semicalender($id){
     $this->load->view('academic/seminar_course',$data);
     
 }
+function edit($id){
+  $res=  $this->db->get_where('tb_sem_reg',array('id'=>$id),1);
+  if($res->num_rows()===1){
+      $this->db->where('id',$id); 
+      $this->db->delete('tb_sem_reg');
+      $this->load->view('academic/seminar_reg');
+  }  else {
+      echo '<label class="alert alert-danger">You havent registered yet</label>';
+  }
+}
 }
 
