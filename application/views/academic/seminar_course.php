@@ -1,6 +1,6 @@
 <div class="ajax">
  <table class="table table-condensed">
- <?php
+    <?php
       $res=$this->db->get_where('tb_seminar',array('id'=>$record));
       if($res->num_rows()===1){
           foreach ($res->result() as $row){
@@ -64,8 +64,8 @@
              if you to remove from this seminar please click <strong>Edit</strong>
              </div>';
          }
-    }else{
-        echo form_open('seminary/seminary_form/'.$record,array('id'=>'sub'));
+        }else{
+        echo form_open('seminary/seminary_form/'.$record, array('id'=>'sub'));
         echo '<tr>
           <td>COURSE</td><td class="dts">&nbsp; '.$row->course.'</td>
           </tr>';
@@ -109,7 +109,7 @@
          </tr>';
        echo'<tr>
            <td colspan="2">
-           <button type="submit" class="btn btn-primary btn-sm">register</button>
+           <button class="btn btn-primary btn-sm">register</button>
            </td>
        
         </tr>';

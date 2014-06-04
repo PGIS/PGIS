@@ -82,7 +82,7 @@
             <p>Dear <?php echo $sname;?></p>
         <div>
             <strong>
-                REF:   ADMISSION INTO <b class="bo"><?php echo $Ucourse;?></b> PROGRAMME FOR THE 2014/2015 ACADEMIC YEAR 
+                REF:   ADMISSION INTO <b class="bo"><?php echo $Ucourse;?></b> PROGRAMME FOR THE <?php echo date('Y');?>/<?php echo date('Y +1');?> ACADEMIC YEAR 
             </strong>
         </div>
         <div>

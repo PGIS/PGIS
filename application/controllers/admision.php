@@ -159,7 +159,7 @@ class Admision extends CI_Controller{
         }elseif ($this->count_digit($z)==5) {
             $k=''.$z;
         }
-        $reg= '2014-06-'.$k;
+        $reg= ''.date('Y').'-06-'.$k;
          $this->load->model('admision_model');
             Admision_model::admit($data['appid'],$reg,$userid,$data['Ucourse'],$data['sname'],$data['other_nam'],$data['nationalt'],$data['department']);
             Admision_model::verify_form($userid);
