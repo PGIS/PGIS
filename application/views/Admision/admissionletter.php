@@ -64,7 +64,7 @@
             <div id="fright">
                 Fax: 022 2410078/2410023<br>
                 email:dsgs@admin.udsm.ac.tz
-                <p>Date </p>
+                <p>Date</p>
             </div> 
         </div>
         <div>
