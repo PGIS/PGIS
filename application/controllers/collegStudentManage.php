@@ -101,12 +101,12 @@
                  $data+=$this->getresumedetailpost($id);
                   $data['regid']=$id;
                  $data['post']=TRUE;
-                 $this->load->view('academic/resume',$data); 
+                 $this->load->view('academic/resumeco',$data); 
              }elseif($query1->num_rows()>0){
                  $data+=$this->getresumedetailfreez($id);
                   $data['regid']=$id;
                   $data['frez']=TRUE;
-                  $this->load->view('academic/resume',$data);
+                  $this->load->view('academic/resumeco',$data);
              }else{
                  echo '<div class="alert alert-warning">No any Postponement or Freezing to resume<div>';
              }
