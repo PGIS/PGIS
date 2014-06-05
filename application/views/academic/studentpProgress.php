@@ -89,6 +89,7 @@
                       echo '<div class="well-sm alert-info">Student with freezing record</div>';
                       $this->db->select('*');
                       $this->db->from('tb_event_freez');
+                      $this->db->where('status', NULL);
                       $this->db->join('tb_student', 'tb_student.registrationID = tb_event_freez.registration_ID');
                       $myquer = $this->db->get();
                       if($myquer->num_rows()>0){
