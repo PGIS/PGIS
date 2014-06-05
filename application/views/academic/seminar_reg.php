@@ -38,6 +38,15 @@
             
     </div>
 </div>
+<script>
+function rgistercourse(id){
+  var url="<?php echo site_url('seminary/show_semicalender');?>";
+  var url2=url+'/'+id;
+  $.get(url2 ,function(data){
+  $('#load').html(data);
+  });
+  } 
+ </script>
  
     <?php include'footer.php';
     

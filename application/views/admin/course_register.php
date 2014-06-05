@@ -36,13 +36,10 @@ foreach ($resd->result() as $tz){
           <script>
           $('#load').submit(function(e){
               e.preventDefault();
-               $('.ajax').html('<img src="<?php echo base_url('assets/img/loading.gif');?>">');
               var dataz=$(this).serializeArray();
               var url=$(this).attr('action');
               $.post(url,dataz,function(sms){
-                  setTimeout(function(){
-                  $('.ajax').html(sms);
-                  },2000);
+                 $('.ajax').html(sms);
               });
           });
           </script>

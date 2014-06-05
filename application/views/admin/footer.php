@@ -3,9 +3,7 @@
 </div><!-- /#wrapper -->
 <script src="<?php echo base_url('assets/js/bootstrap.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/jquery.dataTables.min.js') ?>"></script>
-<!--<script src="<?php echo base_url('assets/js/jquery.ui.datepicker.js') ?>"></script>--> 
-<!--<script src="<?php echo base_url('assets/js/jquery-ui.core.js')?>"></script>-->
-<!--<script src="<?php echo base_url('assets/js/jquery-ui.widget.js')?>"></script>-->
+
 <script>
     $(document).ready(function() {
     $('#admintable').dataTable();
@@ -59,6 +57,6 @@
             return false;
         });
     });
-</script>   
+</script> 
 </body>
 </html>

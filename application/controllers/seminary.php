@@ -55,7 +55,7 @@ function table_data(){
 }
 function show_semicalender($id){
     $data['record']=$id;
-    $this->load->view('academic/seminar_course',$data);
+    $this->load->view('academic/seminar_review',$data);
     
 }
 function edit($id){

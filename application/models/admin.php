@@ -156,4 +156,15 @@ class Admin extends CI_Model {
              return FALSE;
          }
     }
+    function admin_edit($id,$username,$email){
+        $record=array(
+            'userid'=>$username,
+            'email'=>$email
+        );
+        $result=  $this->db->get_where('tb_user',array('id'=>$id),1);
+        if($result->num_rows()===1){
+            $this->db->where('id',$id);
+            $this->db->update('tb_user',$record);
+        }
+    }
 }
