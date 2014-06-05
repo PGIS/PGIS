@@ -7,14 +7,20 @@
     <meta name="author" content="">
     <link rel="icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>" type="image/gif">
     <title>PGIS</title>
-    <link href="<?php echo base_url('assets/css/bootstrap-combined.min.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/all.css')?>" rel="stylesheet">
-    <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js')?>"></script>
-      
+    
+        <link href="<?php echo base_url('assets/css/bootstrap-combined.min.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/datepicker.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/jquery.dataTables.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/jquery.ui.all.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/jquery-ui.css')?>" rel="stylesheet">
+        <script src="<?php echo base_url('assets/js/datepicker.js')?>"></script>
+        <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
+        <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
+        <script src="<?php echo base_url('assets/js/bootstrap-modal.js') ?>"></script>
+        <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
   </head>
 
 <body>

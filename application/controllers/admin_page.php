@@ -295,4 +295,25 @@ class Admin_page extends CI_Controller {
         $data['edit']=$userid;
         $this->load->view('admin/adminloads',$data);
     }
+    function form_edit($id){
+        $this->form_validation->set_rules('us','Username','trim|required|xss_clean');
+        $this->form_validation->set_rules('em','Email-address','trim|required|valid_email|xss_clean');
+        if($this->form_validation->run()===FALSE){
+            
+            echo '<p class="alert alert-danger">Something went wrong</p>';
+        }  else {
+            $this->load->model('admin');
+            $username=  $this->input->post('us');
+            $email=  $this->input->post('em');
+            $this->admin->admin_edit($id,$username,$email);
+            echo'<p class="alert alert-success">Row updated.</p>';
+            }
+    }
+    function coursedelete($id){
+        $res=  $this->db->get_where('tb_course',array('id'=>$id),1);
+        if($res->num_rows()===1){
+            $this->db->where('id',$id);
+            $this->db->delete('tb_course');
+        }
+    }
 }

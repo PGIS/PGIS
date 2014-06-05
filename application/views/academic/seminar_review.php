@@ -1,3 +1,4 @@
+<div class="jahaz">
 <?php
       $res=$this->db->get_where('tb_seminar',array('id'=>$record));
       if($res->num_rows()===1){
@@ -9,6 +10,7 @@
         foreach ($rez->result() as $naz){
             
      ?>
+<table class="table table-condensed">
        <tr>
           <td>COURSE</td><td class="dts">&nbsp; <?php echo ''.$row->course;?></td>
        </tr>
@@ -55,6 +57,7 @@
             </td>
           </tr>
           <tr><td colspan="1"></td><td class="text-center"><div class="edit"></div></tr>
+   </table>
         <?php
         echo '<div class="alert alert-info fade in">
              <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
@@ -64,6 +67,7 @@
          }
         }else{
         echo form_open('seminary/seminary_form/'.$record, array('id'=>'sub'));
+        echo '<table class="table table-condensed">';
         echo '<tr>
           <td>COURSE</td><td class="dts">&nbsp; '.$row->course.'</td>
           </tr>';
@@ -111,6 +115,7 @@
            </td>
        
         </tr>';
+       echo '</table>';
        echo '</form>';
         }
     
@@ -120,3 +125,14 @@
 
 }
 ?>
+</div>
+<script>
+    $('#sub').submit(function(e){
+        e.preventDefault();
+        var formz=$(this).serializeArray();
+        var url=$(this).attr('action');
+        $.post(url,formz,function(data){
+            $('.jahaz').html(data);
+        });
+    });
+</script>
