@@ -1,3 +1,20 @@
+<?php
+    $qx = $this->db->get_where('tb_event_extend', array('registration_ID' => $regid));
+    if($qx->num_rows()==0){
+        $desc='first extension';
+    }elseif ($qx->num_rows()==1) {
+         $desc='second extension';
+    }elseif ($qx->num_rows()==2) {
+         $desc='third extension';
+    }elseif ($qx->num_rows()==3) {
+         $desc='fourth extension';
+    }
+    elseif($qx->num_rows()==4){
+        $quit=TRUE;
+    }
+    
+    if(!isset($quit)){
+?>
 <div>
     Record extension for <b><?php echo $full_name;?></b>
     <form id="extend">
@@ -9,7 +26,7 @@
                 <td>
                      <?php echo form_error('extnu','<div class="error">', '</div>'); ?>
                     <select class="form-control" name="extnu">
-                        <option>first extension</option>
+                        <option><?php echo $desc?></option>
                     </select>
                 </td>
             </tr>
@@ -52,6 +69,13 @@
     </form>
   
 </div>
+<?php    
+    }  else {
+     echo ''
+        . '<div class="alert alert-danger">Only four extension is allowed<div>';  
+    }
+    
+    ?>
 <?php
 if($this->session->userdata('user_role')==='Supervisor'){
     $maurl=site_url('departStudentManage/eventExtension/'.$regid);
@@ -59,11 +83,6 @@ if($this->session->userdata('user_role')==='Supervisor'){
     $maurl=site_url('collegStudentManage/eventExtension/'.$regid);
 }
 ?>
-<script>
-    $(document).ready(function(){ 
-        $('.datepicker').datepicker(); 
-    });
-</script>
 <script>
     $("#extend").submit(function(event) {
         event.preventDefault();
@@ -73,5 +92,10 @@ if($this->session->userdata('user_role')==='Supervisor'){
         $.post(url, fdata, function(data) {
             $('#events').html(data);
         });
+    });
+</script>
+<script>
+    $(document).ready(function(){ 
+        $('.datepicker').datepicker(); 
     });
 </script>

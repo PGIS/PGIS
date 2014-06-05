@@ -106,9 +106,9 @@
                               if($frlist->department==$this->session->userdata('mydepartment')){
                                   echo '<tr>';
                                   echo '<td>'.$frlist->surname .' '.$frlist->other_name.'</td>'; 
-                                  echo '<td>'.$frlist->registrationID.'</td>'; 
-                                  echo '<td><button class="btn btn-xs btn-info">View</button></td>';
-                                  echo '</tr>';
+                                  echo '<td>'.$frlist->registrationID.'</td>';?> 
+                                  <td><button onclick="fetchRecorededFreezing('<?php echo $frlist->registrationID; ?>')" class="btn btn-xs btn-info">View</button></td>
+                                 <?php echo '</tr>';
                               }
                           }
                          echo ' </tbody></table>';
@@ -117,10 +117,21 @@
                       }
                     ?>
                     </div>
+                    <div class="col-md-6" id="viewrevnt">
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+function fetchRecorededFreezing(id) {
+    var url = "departStudentManage/fetchRecordedFreez/" + id;
+    $.get(url, function(data) {
+        $('#viewrevnt').html(data);
+    });
+}
+</script>
 <?php include_once 'footer.php'; ?>
 

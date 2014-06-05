@@ -61,4 +61,5 @@ function recordPostponement($id){
          $this->db->insert('tb_event_disco', $event);
      }
    }
+   
 }

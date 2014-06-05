@@ -1,3 +1,15 @@
+<?php
+    $qx = $this->db->get_where('tb_event_freez', array('registration_ID' => $regid));
+    if($qx->num_rows()==0){
+        $desc='first freezing';
+    }elseif ($qx->num_rows()==1) {
+         $desc='second freezing';
+    }elseif($qx->num_rows()==2){
+        $quit=TRUE;
+    }
+    
+    if(!isset($quit)){
+?>
 <div>
     Record Postponement for <b><?php echo $full_name;?></b>
     <form id="freez">
@@ -9,7 +21,7 @@
                 <td>
                     <?php echo form_error('extnu','<div class="error">', '</div>'); ?>
                     <select class="form-control" name="extnu">
-                        <option>first freezing</option>
+                        <option><?php echo $desc?></option>
                     </select>
                 </td>
             </tr>
@@ -37,6 +49,13 @@
     </form>
   
 </div>
+<?php    
+    }  else {
+     echo ''
+        . '<div class="alert alert-danger">Only two freezing is allowed<div>';  
+    }
+    
+    ?>
 <?php
 if($this->session->userdata('user_role')==='Supervisor'){
     $maurl=site_url('departStudentManage/eventFreezing/'.$regid);

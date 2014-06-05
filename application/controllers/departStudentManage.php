@@ -42,14 +42,33 @@
              $data= $this->getStudentDetails($id);
              $data['regid']=$id;
               if(isset($_POST['save'])){
+                  $this->findUsername($id);
                   $this->load->model('eventmodel');
                     Eventmodel::recordDisco($id); 
+                    
                     echo '<div class="alert alert-success">Event succesfull recorded</div>';
               }  else {
                 $this->load->view('academic/discoView',$data);    
               }
                
         }
+        
+        function findUsername($id){
+            $query1 = $this->db->get_where('tb_student', array('registrationID' => $id));
+            if($query1->num_rows()>0){
+                foreach ($query1->result() as $udt){
+                 $myuserid=$udt->applicationID;
+                }
+                $des='blocked';
+                    $mydata = array(
+                       'designation' => $des
+                    );
+
+        $this->db->where('userid', $myuserid);
+        $this->db->update('tb_user', $mydata); 
+                
+                }
+         }
         
         function eventExtension($id){
              $this->validateiId($id);
@@ -153,6 +172,7 @@
         
         function viewEventfreezing(){
             $this->db->select('*');
+            $this->db->where('status',NULL);
             $this->db->from('tb_event_freez');
             $this->db->join('tb_student', 'tb_student.registrationID = tb_event_freez.registration_ID');
             $my = $this->db->get();
@@ -161,6 +181,7 @@
         
         function viewEventPostpone(){
             $this->db->select('*');
+             $this->db->where('status',NULL);
             $this->db->from('tb_event_postpone');
             $this->db->join('tb_student', 'tb_student.registrationID = tb_event_postpone.registration_ID');
             $my = $this->db->get();
@@ -177,10 +198,112 @@
         
         function viewEventExtend(){
             $this->db->select('*');
+            $this->db->where('status',NULL);
             $this->db->from('tb_event_extend');
             $this->db->join('tb_student', 'tb_student.registrationID = tb_event_extend.registration_ID');
             $my = $this->db->get();
             return $my;
         }
       
-   }
+        function fetchRecordedPost($id){
+            $data['id']=$id;
+            $this->db->select('*');
+            $this->db->where('registration_ID', $id); 
+            $this->db->from('tb_event_postpone');
+            $this->db->join('tb_student', 'tb_student.registrationID = tb_event_postpone.registration_ID');
+            $posquer = $this->db->get();
+            if($posquer->num_rows()>0){
+                foreach ($posquer->result() as $stde){
+                    $detail=array(
+                        'id'=>$stde->registrationID,
+                        'description' => $stde->description,
+                        'from' => $stde->from,
+                        'to' => $stde->to 
+                    );
+                }
+                $data=$detail;
+                $data+=$this->getStudentDetails($id);
+                $data['info']='postponement';
+               $this->load->view('academic/eventViewRecord',$data);
+            }  else {
+               
+            }
+           
+        }
+        
+         function fetchRecordedExt($id){
+            $data['id']=$id;
+            $this->db->select('*');
+            $this->db->where('registration_ID', $id); 
+            $this->db->from('tb_event_extend');
+            $this->db->join('tb_student', 'tb_student.registrationID = tb_event_extend.registration_ID');
+            $posquer = $this->db->get();
+            if($posquer->num_rows()>0){
+                foreach ($posquer->result() as $stde){
+                    $detail=array(
+                        'id'=>$stde->registrationID,
+                        'description' => $stde->description,
+                        'from' => $stde->from,
+                        'to' => $stde->to,
+                        'period'=>$stde->period
+                    );
+                }
+                $data=$detail;
+                $data+=$this->getStudentDetails($id);
+                $data['info']='extension';
+               $this->load->view('academic/eventViewRecord',$data);
+            }  else {
+               
+            }
+           
+        }
+        
+        function fetchRecordedFreez($id){
+            $data['id']=$id;
+            $this->db->select('*');
+            $this->db->where('registration_ID', $id); 
+            $this->db->from('tb_event_freez');
+            $this->db->join('tb_student', 'tb_student.registrationID = tb_event_freez.registration_ID');
+            $posquer = $this->db->get();
+            if($posquer->num_rows()>0){
+                foreach ($posquer->result() as $stde){
+                    $detail=array(
+                        'id'=>$stde->registrationID,
+                        'description' => $stde->description,
+                        'from' => $stde->from,
+                        'to' => $stde->to
+                    );
+                }
+                $data=$detail;
+                $data+=$this->getStudentDetails($id);
+                $data['info']='freezing';
+               $this->load->view('academic/eventViewRecord',$data);
+            }  else {
+               
+            }
+           
+        }
+        
+         function fetchRecordedDisco($id){
+            $data['id']=$id;
+            $this->db->select('*');
+            $this->db->where('registration_ID', $id); 
+            $this->db->from('tb_event_disco');
+            $this->db->join('tb_student', 'tb_student.registrationID = tb_event_disco.registration_ID');
+            $posquer = $this->db->get();
+            if($posquer->num_rows()>0){
+                foreach ($posquer->result() as $stde){
+                    $detail=array(
+                        'recorded_date' => $stde->recorded_date
+                    );
+                }
+                $data=$detail;
+                $data+=$this->getStudentDetails($id);
+                $data['info']='Discontinue';
+               $this->load->view('academic/eventViewRecord',$data);
+            }  else {
+               
+            }
+           
+        }
+           }
