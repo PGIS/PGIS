@@ -122,7 +122,7 @@ class login extends CI_Controller {
             }elseif(in_array('Student',$myArray)){
                 $s_data=array('user_role'=>'Student');
                 $this->session->set_userdata($s_data);
-                redirect('student/firstin');
+                redirect('student');
             }elseif(in_array('alumni',$myArray)){
                 $s_data=array('user_role'=>'alumni');
                 $this->session->set_userdata($s_data);

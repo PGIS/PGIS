@@ -61,15 +61,5 @@ function recordPostponement($id){
          $this->db->insert('tb_event_disco', $event);
      }
    }
-   function findUsername($id){
-       $query1 = $this->db->get_where('tb_student', array('registrationID' => $id));
-       if($query1->num_rows()>0){
-           foreach ($query1->result() as $udt){
-              $myuserid=$udt->applicationID;
-           }
-           echo $myuserid;
-        
-       }
-        
-   }
+   
 }

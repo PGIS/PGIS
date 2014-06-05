@@ -1,3 +1,15 @@
+<?php
+    $qx = $this->db->get_where('tb_event_postpone', array('registration_ID' => $regid));
+    if($qx->num_rows()==0){
+        $desc='first postponement';
+    }elseif ($qx->num_rows()==1) {
+         $desc='second postponement';
+    }elseif($qx->num_rows()==2){
+        $quit=TRUE;
+    }
+    
+    if(!isset($quit)){
+?>
 <div>
     Record Postponement for <b><?php echo $full_name;?></b>
     <form id="postpone">
@@ -8,7 +20,7 @@
                 </td>
                 <td><?php echo form_error('extnu','<div class="error">', '</div>'); ?>
                     <select class="form-control" name="extnu">
-                        <option>first postponement</option>
+                        <option><?php echo $desc?></option>
                     </select>
                 </td>
             </tr>
@@ -36,6 +48,13 @@
     </form>
   
 </div>
+<?php    
+    }  else {
+     echo ''
+        . '<div class="alert alert-danger">Only two posponement is allowed<div>';  
+    }
+    
+    ?>
 <?php
 if($this->session->userdata('user_role')==='Supervisor'){
     $maurl=site_url('departStudentManage/eventPostpone/'.$regid);
