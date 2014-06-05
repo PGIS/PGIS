@@ -44,8 +44,17 @@ class Admin extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('tb_user');
     }
-
-    function addprogramme() {
+    function tb_staff($id){
+        $res=  $this->db->select('*')->from('tb_staff')->join('tb_user','tb_user.userid = tb_staff.staffId')
+               ->where(array('staffId'=>$id))->get();
+        if($res->num_rows()===1){
+        $this->db->where('staffId', $id);
+        $this->db->delete('tb_staff');
+        $this->db->where(array('userid'=>$id));
+        $this->db->delete('tb_user');
+        }
+    }
+     function addprogramme() {
         $coursename = strtolower($this->input->post('coursename'));
         $programme = array(
             'programme_name' => $coursename,
@@ -164,6 +173,24 @@ class Admin extends CI_Model {
         $result=  $this->db->get_where('tb_user',array('id'=>$id),1);
         if($result->num_rows()===1){
             $this->db->where('id',$id);
+            $this->db->update('tb_user',$record);
+        }
+    }
+    function staff_edit($userid,$username,$email,$design){
+        $record=array(
+            'userid'=>$username,
+            'email'=>$email,
+            'designation'=>$design
+        );
+        $staff_rec=array(
+            'staffId'=>$username,
+        );
+       $res=  $this->db->select('*')->from('tb_staff')->join('tb_user','tb_user.userid = tb_staff.staffId')
+               ->where(array('staffId'=>$userid))->get();
+        if($res->num_rows()===1){ 
+            $this->db->where('staffId',$userid);
+            $this->db->update('tb_staff',$staff_rec);
+            $this->db->where('userid',$userid);
             $this->db->update('tb_user',$record);
         }
     }

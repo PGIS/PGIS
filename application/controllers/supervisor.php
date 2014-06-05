@@ -13,10 +13,10 @@
      function index(){
          $data['query']=  $this->index2();
          $data['active']=TRUE;
-         $res=  $this->db->get_where('tb_project',array('status'=>'unassigned'));
-          if($res->num_rows()>0){
-                $data['records']=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+         $res=   $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
                         ->where(array('status'=>'unassigned'))->get();
+          if($res->num_rows()>0){
+                $data['records']= $res;
                 $this->load->view('academic/supervisor_view',$data);
                  }  else {
                   $this->load->view('academic/supervisor_view',$data);   
@@ -35,7 +35,8 @@
       $this->load->view('academic/supervisor_assign',$data);
      }
      public function teaching(){
-         $res=  $this->db->get_where('tb_user',array('designation'=>'Teaching staff'));
+         $res=  $this->db->select('*')->from('tb_user')->join('tb_staff','tb_staff.staffId = tb_user.userid')
+                 ->where(array('designation'=>'Teaching staff'))->get();
          if($res->num_rows()>0){
              return $res;
          }

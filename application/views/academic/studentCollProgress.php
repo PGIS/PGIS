@@ -32,7 +32,7 @@
                               <div class="btn-group btn-group-xs">
                                 <button type="button" class="btn btn-info">Event</button>
                                 <button type="button" class="btn btn-info" data-toggle="dropdown">
-                                  <span class="caret"></span></button>
+                                <span class="caret"></span></button>
                                 <ul class="dropdown-menu" role="menu">
                                   <li><a href="#" onclick="postponeco('<?php echo $strecord->registrationID; ?>')">Postponement</a></li>
                                   <li><a href="#" onclick="discoco('<?php echo $strecord->registrationID; ?>')">Discontinue</a></li>
