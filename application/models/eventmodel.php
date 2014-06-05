@@ -44,7 +44,8 @@ function recordPostponement($id){
             'description' => $this->input->post('extnu'),
             'from' => $this->input->post('from'),
             'to' => $this->input->post('to'),
-            'period' => $this->input->post('month')
+            'period' => $this->input->post('month'),
+            'status'=>  ''.strtotime($this->input->post('to'))
         );
      $query = $this->db->get_where('tb_event_extend', $event);
      if($query->num_rows()==0){

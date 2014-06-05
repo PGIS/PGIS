@@ -89,8 +89,8 @@
                       echo '<div class="well-sm alert-info">Student with freezing record</div>';
                       $this->db->select('*');
                       $this->db->from('tb_event_freez');
+                      $this->db->where('status', NULL);
                       $this->db->join('tb_student', 'tb_student.registrationID = tb_event_freez.registration_ID');
-                      $this->db->where('name', $name);
                       $myquer = $this->db->get();
                       if($myquer->num_rows()>0){
                            echo 
@@ -106,9 +106,9 @@
                           foreach ($myquer->result() as $frlist){
                                   echo '<tr>';
                                   echo '<td>'.$frlist->surname .' '.$frlist->other_name.'</td>'; 
-                                  echo '<td>'.$frlist->registrationID.'</td>'; 
-                                  echo '<td><button class="btn btn-xs btn-info">View</button></td>';
-                                  echo '</tr>';
+                                  echo '<td>'.$frlist->registrationID.'</td>';?> 
+                                  <td><button onclick="fetchRecorededFreezing('<?php echo $frlist->registrationID; ?>')" class="btn btn-xs btn-info">View</button></td>
+                                 <?php echo '</tr>';
                           }
                          echo ' </tbody></table>';
                       }else{
@@ -116,10 +116,21 @@
                       }
                     ?>
                     </div>
+                    <div class="col-md-6" id="viewrevnt">
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+function fetchRecorededFreezing(id) {
+    var url = "collegStudentManage/fetchRecordedFreez/" + id;
+    $.get(url, function(data) {
+        $('#viewrevnt').html(data);
+    });
+}
+</script>
 <?php include_once 'footer.php'; ?>
 
