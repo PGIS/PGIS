@@ -97,6 +97,9 @@
          if($res->num_rows()>0){
             $data['ret']=$res;
             $this->load->view('academic/college_feedback',$data);
+         }  else {
+             $data['ret']=$res;
+             $this->load->view('academic/college_feedback',$data);
          }
         
      }
@@ -144,6 +147,27 @@
      function pr_feed($id){
          $data=  $this->feedback_put($id);
          $this->load->view('academic/college_presentation_feedback',$data);
+     }
+     function external(){
+         $data['query']=  $this->index2();
+         $this->load->view('academic/college_external',$data);
+     }
+     function extendz($id){
+         $data['dit']=$id;
+         $this->load->view('academic/internal_assign',$data);
+     }
+    function record_entry($id){
+         $query=  $this->db->get_where('tb_project',array('id'=>$id));
+         if($query->num_rows()===1){
+         $this->load->model('supervisor_model');
+         $email=  $this->input->post('assign');
+         $this->supervisor_model->supervisor_assign($id,$email);
+         $this->db->where('id',$id);
+         $this->db->update('tb_project',array('status'=>'assigned'));
+         echo '<p class="alert alert-success">Successifully assigned.</p>';
+         }  else {
+          echo '<p class="alert alert-danger">Oops something went wrong.</p>'; 
+         }
      }
  }
      

@@ -16,8 +16,10 @@ class Admin_page extends CI_Controller {
     }
 
     function index() {
+        $data['active']=TRUE;
         $this->load->model('admin');
         $data['results'] = $this->admin->get_paged_list()->result();
+        $data['stff']=$this->staffz();
         $this->load->view('admin/adminList', $data);
     }
 
@@ -315,5 +317,43 @@ class Admin_page extends CI_Controller {
             $this->db->where('id',$id);
             $this->db->delete('tb_course');
         }
+    }
+    function staffz(){
+        $res=  $this->db->select('*')->from('tb_staff')->join('tb_user','tb_user.userid = tb_staff.staffId')
+                ->get();
+        if($res->num_rows()>0){
+            return $res;
+        }  else {
+            return FALSE;
+        }
+    }
+    function deletestaff($id){
+        $data['activez']=TRUE;
+        $data['stff']=$this->staffz();
+        $this->load->model('admin');
+        $data['results'] = $this->admin->get_paged_list()->result();
+        $this->admin->tb_staff($id);
+        
+        $this->load->view('admin/adminList',$data,'refresh');
+    }
+    function staffedits($id){
+       $data['taff']=$id;
+       $this->load->view('admin/staff_edit',$data);
+    }
+    function staff_edits($userid){
+       $this->form_validation->set_rules('us','Username','trim|required|xss_clean');
+        $this->form_validation->set_rules('em','Email-address','trim|required|valid_email|xss_clean');
+        $this->form_validation->set_rules('ds','Designation','trim|required|xss_clean');
+        if($this->form_validation->run()===FALSE){
+            
+            echo '<p class="alert alert-danger">Something went wrong</p>';
+        }  else {
+            $this->load->model('admin');
+            $username=  $this->input->post('us');
+            $email=  $this->input->post('em');
+            $design=  $this->input->post('ds');
+            $this->admin->staff_edit($userid,$username,$email,$design);
+            echo'<p class="alert alert-success">Row updated.</p>';
+      } 
     }
 }

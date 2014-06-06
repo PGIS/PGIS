@@ -19,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if(isset($records)){
+                        <?php if(isset($records)){
                         foreach ($records->result() as $row){
                             if($row->department===$this->session->userdata('mydepartment')){
                             echo '<tr>'
@@ -30,7 +30,8 @@
                                 . '</tr>';
                                 }
                               }  
-                             }?>
+                             }
+                             ?>
                         </tbody>
                     </table>
                     

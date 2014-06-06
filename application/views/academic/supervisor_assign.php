@@ -6,7 +6,7 @@
             <div class="in tab-pane active">
                 <div class="col-lg-6">
                     <fieldset>
-                        <div class="pantop"><legend style="padding-top: 30px;" class="text text-justify text-info"><p>Details For: <?php echo ' '.$registrationID .' ('. ($surname).' )';?></p></legend></div>
+                        <div class="pantop"><p style="padding-top: 30px;" class="text text-justify text-info"><label>Details For: <?php echo ' '.$registrationID .' ('. ($surname).' )';?></label></p></div>
                         <div>
                             <label>PROJECT TITLE</label>
                             <p class="dts"><?php echo ''.$project_title;?></p>
@@ -39,12 +39,14 @@
                           <?php echo form_open('supervisor/record_entry/'.$id,array('id'=>'ajax'));?>
                         <div class="modal-body">
                             <table class="table table-condensed table-striped" id="mytable">
-                                <thead><tr><th>SELECT</th><th>FIRST NAME</th><th>SECOND NAME</th><th>EMAIL</th><th>ACTION</th></tr></thead>
+                                <thead><tr><th>SELECT</th><th>FULL NAME</th><th>EMAIL</th><th>ACTION</th></tr></thead>
                                 <tbody>
                                     
                                     <?php if(isset($teach)){
                                       foreach ($teach->result() as $row){
-                                          echo '<tr><td><input type="radio" name="assign" class="form-control" value="'.$row->email.'"></td><td>'.$row->fname.'</td><td>'.$row->mname.'</td><td>'.$row->email.'</td><td><label class="btn btn-warning btn-sm">'.anchor('supervisor/update/'.$row->id,'Details',array('data-target'=>'#details','data-toggle'=>'modal')).'</label></td></tr>';
+                                          if($row->Sdepartment===$this->session->userdata('mydepartment')){
+                                          echo '<tr><td><input type="radio" name="assign" class="form-control" value="'.$row->email.'"></td><td>'.$row->fullName.'</td><td>'.$row->email.'</td><td><label class="btn btn-warning btn-xs">'.anchor('supervisor/update/'.$row->id,'Details',array('data-target'=>'#details','data-toggle'=>'modal')).'</label></td></tr>';
+                                      }
                                       }
                                     }?>
                                    

@@ -56,6 +56,9 @@
                         <li><a href="<?php echo site_url('college'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
                                 assigned supervisor</a>
                         </li>
+                        <li><a href="<?php echo site_url('college/external'); ?>"><span class="glyphicon glyphicon-align-center"></span>
+                                assign supervisor</a>
+                        </li>
                         <li>    
                             <a href="<?php echo site_url('college/feedback'); ?>"><span class="glyphicon glyphicon-retweet"></span>   Presentation Feedback</a>
                         </li>
