@@ -10,12 +10,7 @@
             <ul class="alert-info">
                 <li><label>Options Links</label></li>
             </ul>
-                <li class="<?php if(isset($active2)){ echo 'active';}?>">
-                    <a data-target=".course" data-toggle="tab">Postponement</a>
-                </li>
-                <li class="<?php if(isset($active3)){ echo 'active';}?>">
-                    <a data-target=".ready" data-toggle="tab">Freezing</a>
-                </li>
+               
                 <li class="<?php if(isset($active4)){ echo 'active';}?>">
                     <a data-target=".forum" data-toggle="tab">Extension</a>
                 </li>
@@ -131,137 +126,10 @@
                     </div>
                     
                 </div>
-              <div class="course in tab-pane <?php if(isset($active2)){ echo 'active';}?>">
-              <div class="pantop"><h4>Request for Postponement:</h4></div>
-        <?php if(!empty($result1)){echo'<div class="bs-docs-example">
-        <div class="alert fade in">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p class="alert alert-success"><strong style="margin-left:50px">'.$result1.'</strong></p>
-        </div>
-            </div>';}?>
-        <label>Want to postpone?*</label>
-            <?php echo form_open('registration_page/student');?>
-                <table class="table table-condensed table-striped">
-                    <tr>
-                        <td>
-                            <label>Postponement:</label>
-                        </td>
-                        <td>
-                            <select name="post" class="form-control" required autofocus>
-                                <option id="cl3"></option><option id="cl">1st postponement</option><option id="cl1">2nd postponement</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Date:</label>
-                        </td>
-                        <td>Year 1
-                            <input type="text" class="form-control datepicker" placeholder="dd-Mm-YYY"  name="dt" required autofocus>
-                        </td>
-                    </tr>     
-                    <tr>
-                        <td colspan="2">
-                            <label>Reasons for postponement:</label>
-                            <textarea name="rsp" required rows="2" class="form-control" placeholder="Reason ....."></textarea>
-                        </td>
-                    </tr>
-                </table>
-            <p align="center"><input type="submit" class="btn btn-info" value="submit"></p>
-            <?php echo form_close();?>
-    </div>
-        <div class="ready in tab-pane <?php if(isset($active3)){ echo 'active';}?>">
-        <div class="pantop"><h4>Request for Freezing:</h4></div>
-        <?php if(!empty($result2)){echo'<div class="bs-docs-example">
-            <div class="alert fade in">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <p class="alert alert-success"><strong style="margin-left:50px">'.$result2.'</strong></p>
-            </div>
-                </div>';}
-         ?>
-             <label>Want to freeze?*</label>
-            <?php echo form_open('registration_page/freezing');?>
-                <table class="table table-condensed table-striped">
-                    <tr>
-                        <td>
-                            <label>Freezing:</label>
-                        </td>
-                        <td>
-                            <select name="frz" class="form-control" required>
-                                <option id="pf0"></option>
-                                <option id="pf">1st freezing</option>
-                                <option id="pf1">2nd freezing</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Freezing date</label>  
-                        </td>
-                        <td>
-                          <input type="text" class="form-control datepicker" placeholder="Date:frez" name="frzd" required>  
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Freezing resume date</label></td>
-                        <td><input type="text" class="form-control datepicker" placeholder="Date:resu"  name="rsud" required></td>
-                    </tr>
-                      <tr>
-                          <td colspan="2">
-                              <label>Reasons for Freezing:</label>
-                              <textarea name="rsf" required rows="6" class="form-control" placeholder="Type something here.."></textarea>
-                          </td>
-                      </tr>   
-                           
-                </table>
-            <p align="center"><input type="submit" class="btn btn-info" value="submit"></p>
-            <?php echo form_close();?>
-        </div>
+              
         
        <div class="forum in tab-pane <?php if(isset($active4)){ echo 'active';}?>">
         <div class="pantop"><h4>Request for Extension:</h4></div>
-        <?php if(!empty($result3)){echo'<div class="bs-docs-example">
-        <div class="alert fade in">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p class="alert alert-success"><strong style="margin-left:50px">'.$result3.'</strong></p>
-        </div>
-            </div>';}?>
-        <label>Want to extend?*</label>
-             <?php echo form_open('registration_page/extension');?>
-                <table class="table table-condensed table-striped">
-                    <tr>
-                        <td><label>Extension:</label></td>
-                        <td>
-                            <select name="ext" class="form-control" required>
-                                <option id="ext0"></option>
-                                <option id="ext">1st extension</option>
-                                <option id="ext1">2nd extension</option>
-                                <option id="ext2">3rd extension</option>
-                                <option id="ext3">4th extension</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Extension date</td>
-                        <td>
-                            <input type="text" class="form-control datepicker" placeholder="Date:ext"  name="exdate" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Extension Duration</td>
-                        <td><input type="text" class="form-control" placeholder="Month(perd)" name="period" required></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><label>Reasons for Extending:</label>
-                            <textarea name="rsex" required rows="6" class="form-control" placeholder="Type something here.."></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                           <input type="submit" class="btn btn-info btn-sm" value="submit"> 
-                        </td>
-                    </tr>  
-                </table>
         <div>
                 <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exdet">
                     <span class="glyphicon glyphicon-euro"></span>
