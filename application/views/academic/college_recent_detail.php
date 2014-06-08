@@ -17,7 +17,7 @@
                 <p><label>Internal supervisor:<?php echo ''.$row->Internal_supervisor;?></label></p>
                 
             </div>
-            <div class="col-lg-6">
+            <div class="col-md-6">
                 <div class="well well-sm"><label>Student presentation feedback</label></div>
                 <table class="table table-condensed table-striped">
                 <?php

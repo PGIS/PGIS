@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        Verdicts  
+                        Verdict 
                         <div class="well-sm alert-info">
                             <?php if(isset($verdict))echo '<b>'.$verdict.'</b>';?>
                         </div>

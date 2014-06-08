@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <b class="text-info">Verdicts</b>  
+                        <b class="text-info">Verdict</b>  
                         <div class="well-sm alert-info">
                             <?php if(isset($verdict))echo '<b>'.$verdict.'</b>';?>
                         </div>

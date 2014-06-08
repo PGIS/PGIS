@@ -49,7 +49,7 @@
                 </tr>
                 <tr>
                     <td colspan="3">
-                        Verdicts
+                        Verdict
                         <?php echo form_error('verdict','<div class="error">', '</div>'); ?>
                         <textarea name="verdict" class="form-control" required></textarea>
                     </td>
