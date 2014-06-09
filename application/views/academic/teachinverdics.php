@@ -19,6 +19,12 @@ if($this->session->userdata('user_role')==='Teaching staff'){
         </ol>';
     }?>
     <div class="col-md-12">
+          <?php
+  $url = htmlspecialchars($_SERVER['HTTP_REFERER']);
+  echo '<a href='.$url.'><button class="btn btn-info btn-xs">back</button></a>'; 
+?>
+    </div>
+    <div class="col-md-12">
         <div class="well-sm alert-info">
             Presentation Feedback for <?php if(isset($type))echo '<b>'.$type.'</b>';?>
         </div>
