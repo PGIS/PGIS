@@ -1,7 +1,7 @@
-<?php include_once 'Headerloginsuper.php'; ?>
+<?php include_once 'Headerlogin.php'; ?>
 <div id="page-wrapper">
     <div class="col-md-12">
-        <?php echo form_open('supervisor/registerFeedback/'.$registrationID);?>
+        <?php echo form_open('department_Coordinator/registerFeedback/'.$registrationID);?>
             <div class="well-sm alert-info">
                 Presentation feedback for <?php if(isset($surname)){
                 echo '<b>'.$surname.' '.$lastname.'</b>'.

@@ -2,12 +2,17 @@
 <div id="page-wrapper">
     <div class="col-md-12">
         <ol class="breadcrumb">
-            <li class="active"><a href="<?php echo site_url('admin_page/addcourse');?>">Add Programme</a></li>
-            <li><a href="<?php echo site_url('admin_page/manageprograme');?>">Manage programmes</a></li>
-            <li><a href="<?php echo site_url('admin_page/changestudentprogramme');?>">Change Student course</a></li>
+            <li class="active"><a href="<?php echo site_url('admin_page/addcourse');?>">
+                   <span class="glyphicon glyphicon-plus-sign"></span> Add Programme</a>
+            </li>
+            <li class="active"><a href="<?php echo site_url('admin_page/manageprograme');?>"> 
+                <span class="glyphicon glyphicon-asterisk"></span>    Manage programmes</a></li>
+             <li><a href="<?php echo site_url('admin_page/changestudentprogramme');?>">
+                 <span class="glyphicon glyphicon-edit"></span>    Change Student course</a>
+             </li> 
         </ol>
         <div class="well-sm alert-info">
-            Please enter course information
+            Please enter Programme information
             <?php 
             if(isset($padded)){
                 echo '<div class="alert alert-success">Progrmme added successfully</div>';

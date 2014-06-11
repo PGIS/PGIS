@@ -5,7 +5,7 @@
         <div class="tabcordion tabs-left tabbable">
             <ul class="nav nav-tabs">
               <li class="<?php if(isset($active1)){echo 'active';}?>">
-                <a data-target=".course" data-toggle="tab">Course selection</a>
+                <a data-target=".course" data-toggle="tab">Programme selection</a>
               </li>
               <li class="<?php if(isset($active2)){echo 'active';}?>">
                 <a data-target=".home" data-toggle="tab">Personal information</a>
@@ -39,12 +39,9 @@
         <div class="tab-content tb" style="display: block;">
             
              <div class="course  in tab-pane <?php if(isset($active1)){echo 'active';}?>">
-              <div class='pantop'><h4>Course selection</h4></div>
+              <div class='pantop'><h4>Programme selection</h4></div>
               <p>
-              <?php
-                error_reporting(E_ALL);
-     ini_set('display_errors', 1);
-              ?>
+              
                  <div class='tbs'> 
                     <?php echo form_open('application/apply'); ?>
                     
@@ -66,7 +63,7 @@
                </div>
                 <div><p>
                     <?php echo form_error('course','<div class="error">','</div>'); ?>
-                     <label for="course"> Select Course</label>
+                     <label for="course"> Select Programme</label>
                      <select class="form-control" name="course" id="2" >
                         <option >
                                   <?php display_input('course',$Ucourse);?>

@@ -1,32 +1,6 @@
-<?php 
-if($this->session->userdata('user_role')==='Teaching staff'){
-    include_once 'Headerloginteaching.php';
-}elseif ($this->session->userdata('user_role')==='Supervisor') {
-    include_once 'Headerloginsuper.php';
-}elseif ($this->session->userdata('user_role')==='Student') {
-    include_once 'Headerlogincal.php';
-}
-?>
-<div id="page-wrapper">
-    <?php
-    if($this->session->userdata('user_role')==='Teaching staff'){
-    
-    echo '<ol class="breadcrumb">
-            <li class="active"><a href="'.site_url('teaching').'">Student assigned</a></li>
-            <li><a href="'. site_url('teaching/project').'">Submitted project</a></li>
-            <li><a href="'. site_url('teaching/replied').'">Replied project</a></li>
-            <li><a href="'.site_url('teaching/verdicts').'">View Presentation Feedback</a></li>
-        </ol>';
-    }?>
-    <div class="col-md-12">
-          <?php
-  $url = htmlspecialchars($_SERVER['HTTP_REFERER']);
-  echo '<a href='.$url.'><button class="btn btn-info btn-xs">back</button></a>'; 
-?>
-    </div>
-    <div class="col-md-12">
+<div class="col-md-12">
         <div class="well-sm alert-info">
-            Presentation Feedback for <?php if(isset($type))echo '<b>'.$type.'</b>';?>
+            Presentation Feedback for: <?php if(isset($type))echo '<b>'.$type.'</b>';?>
         </div>
        
         <div>
@@ -34,7 +8,7 @@ if($this->session->userdata('user_role')==='Teaching staff'){
                 
                 <tr>
                     <td>
-                     Student name
+                     Student name:
                      <?php if(isset($registrationid))
                          echo '<b class="dts1">'.$lname.' '.$sname.'</b>';?>
                     </td>
@@ -45,17 +19,17 @@ if($this->session->userdata('user_role')==='Teaching staff'){
                   </tr>
                   <tr>
                       <td>
-                        Department 
+                        Department:  
                         <?php if(isset($department))echo '<b class="dts1">'.$department.'</b>';?>
                       </td>
                       <td>
-                          Programme 
+                          Programme: 
                           <?php if(isset($programe))echo '<b class="dts1">'.$programe.'</b>';?>
                       </td>
                   </tr>
                   <tr>
                       <td colspan="2">
-                           Student supervisor name 
+                           Student supervisor name: 
                       </td>
                   </tr>
                 <tr>
@@ -88,7 +62,7 @@ if($this->session->userdata('user_role')==='Teaching staff'){
                 </tr>
                 <tr>
                     <td colspan="2">
-                        Verdict 
+                        Verdicts  
                         <div class="well-sm alert-info">
                             <?php if(isset($verdict))echo '<b>'.$verdict.'</b>';?>
                         </div>
@@ -98,6 +72,3 @@ if($this->session->userdata('user_role')==='Teaching staff'){
         </div>
         
     </div>
-</div>
-<?php include_once 'footer.php';?>
-

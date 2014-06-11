@@ -2,9 +2,14 @@
 <div id="page-wrapper">
     <div class="col-md-12">
         <ol class="breadcrumb">
-            <li ><a href="<?php echo site_url('admin_page/addcourse');?>">Add Programme</a></li>
-            <li class="active"><a href="<?php echo site_url('admin_page/manageprograme');?>">Manage programmes</a></li>
-             <li><a href="<?php echo site_url('admin_page/changestudentprogramme');?>">Change Student course</a></li>
+             <li class="active"><a href="<?php echo site_url('admin_page/addcourse');?>">
+                   <span class="glyphicon glyphicon-plus-sign"></span> Add Programme</a>
+            </li>
+            <li class="active"><a href="<?php echo site_url('admin_page/manageprograme');?>"> 
+                <span class="glyphicon glyphicon-asterisk"></span>    Manage programmes</a></li>
+             <li><a href="<?php echo site_url('admin_page/changestudentprogramme');?>">
+                 <span class="glyphicon glyphicon-edit"></span>    Change Student course</a>
+             </li>
         </ol>
         <div class="col-md-10">
             <?php

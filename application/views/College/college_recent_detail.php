@@ -1,4 +1,4 @@
-<?php include_once 'Headerlogincollege.php';?>
+<?php include_once 'Headerlogin.php';?>
 <div id="page-wrapper">
     <div class="span12">
         <div class="col-lg-12">
@@ -25,8 +25,13 @@
                         ->where(array('registrationId'=>$row->registration_id))->get();
                  if($result->num_rows()>0){
                      foreach ($result->result() as $ver){
-                         echo '<tbody><tr><td>'.$ver->level.'</td><td>'.$ver->pr_date.'</td><td>'.$ver->type.'</td><td><button class="btn btn-success btn-xs" onclick="studentview(\''.$ver->ver_id.'\')" data-target="#student" data-toggle="modal"><span class="glyphicon glyphicon-share">'
-                                 . '</span>view</button></td><td>'.anchor('college/downloadpdf/'.$ver->ver_id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt">Download</span></button>').'</td></tr></tbody>';
+                         echo '<tbody>'
+                            . '<tr><td>'.$ver->level.'</td>'
+                            . '<td>'.$ver->pr_date.'</td>'
+                            . '<td>'.$ver->type.'</td>'
+                            . '<td><button class="btn btn-success btn-xs" onclick="studentview(\''.$ver->ver_id.'\')" data-target="#student" data-toggle="modal"><span class="glyphicon glyphicon-share">'
+                            . '</span>view</button></td><td>'.anchor('college_Coordinator/downloadpdf/'.$ver->ver_id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt">Download</span></button>').'</td>'
+                          . '</tr></tbody>';
                      } 
                  }  else {
                      echo '<p class="alert alert-warning">No comments present</p>'; 
@@ -60,7 +65,8 @@
                     if($rest->num_rows()>0){
                         echo '<thead><tr><th>Posted date</th><th>Name of file</th><th><b class="caret"></b></th></tr></thead>';
                         foreach ($rest->result() as $ret){
-                            echo '<tbody><tr><td>'.$ret->submission_date.'</td><td>'.substr($ret->document, 39).'</td><td>'.anchor('college/download/'.$ret->id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt">Download</span></button>').'</td></tr></tbody>'; 
+                            echo '<tbody><tr><td>'.$ret->submission_date.'</td><td>'.substr($ret->document, 39).'</td>'
+                                    . '<td>'.anchor('college_Coordinator/download/'.$ret->id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt">Download</span></button>').'</td></tr></tbody>'; 
                         }
                     }  else {
                         echo '<p class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span> No recent uploads</p>'; 
@@ -77,7 +83,7 @@
 </div>
 <script>
  function studentview(id){
-     var ulr="<?php echo site_url('college/details');?>";
+     var ulr="<?php echo site_url('college_Coordinator/details');?>";
      var ulr2=ulr + '/' +id;
      $.get(ulr2,function(data){
          $('.comments').html(data);

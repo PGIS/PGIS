@@ -10,6 +10,10 @@
             <ul class="alert-info">
                 <li><label>Options Links</label></li>
             </ul>
+               
+                <li class="<?php if(isset($active4)){ echo 'active';}?>">
+                    <a data-target=".forum" data-toggle="tab">Extension</a>
+                </li>
                 <li>
                      <a data-target=".preview" data-toggle="tab">Summary preview</a>
                 </li>
@@ -122,6 +126,132 @@
                     </div>
                     
                 </div>
+              
+        
+       <div class="forum in tab-pane <?php if(isset($active4)){ echo 'active';}?>">
+        <div class="pantop"><h4>Request for Extension:</h4></div>
+        <div>
+                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exdet">
+                    <span class="glyphicon glyphicon-euro"></span>
+                    Extension payment detail.(only for approved extension)
+                </button>
+            
+            <div class="modal fade" id="exdet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h6 class="modal-title" id="myModalLabel">Extension payment detail</h6>
+                    </div>
+                    <div class="modal-body">
+                       <div class="col-md-12">
+                        <?php echo form_open_multipart('finance_page/finance');?>
+                      
+                        <table class="table table-condensed table-striped">
+                            <tr>
+                                <td>
+                                    Academic Year:
+                                </td>
+                                <td>
+                                    <select name="acy" class="form-control" required>
+                                        <option><?php if(isset($accyear)){echo $accyear;}
+                                        $year=  date('Y');
+                                        ?></option>
+                                        <option><?php echo ($year-5).'/'.($year-4)?></option>
+                                        <option><?php echo ($year-4).'/'.($year-3);?></option>
+                                        <option><?php echo ($year-3).'/'.($year-2);?></option>
+                                        <option><?php echo ($year-2).'/'.($year-1)?></option>
+                                        <option><?php echo ($year-1).'/'.($year);?></option>
+                                        <option><?php echo ($year).'/'.($year+1)?></option>
+                                       
+                                    </select>
+                                    
+                                </td>
+                            </tr> 
+                       
+                            <tr>
+                                <td>
+                                    Payment For:
+                                </td>
+                                <td>
+                                    <select name="reg_fees" class="form-control check" required>
+                                        <option  value="Tuition Fee">Extension Fee</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                 <td>
+                                  Amount payed
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Amount" required name="amnt"
+                                           value="<?php if(isset($amount)){echo $amount;}?>">
+                                 </td>
+                               
+                            </tr>
+                            <tr>
+                                <td>Recept number/Transaction id</td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="ReceiptNo" required name="rescpt"
+                                         value="<?php if(isset($recept_no)){echo $recept_no;}?>">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >
+                                    Extension Duration
+                                </td>
+                                <td>
+                                    <font class="alert-danger"><?php echo form_error('pay_mode');?></font>
+                                    <select name="pay_mode" class="form-control" required>
+                                        <?php 
+                                         for($i=1;$i<10;$i++){
+                                             echo ' <option >'.$i;
+                                             if($i>1){
+                                                 echo ' Months';
+                                             }  else {
+                                                    echo ' Month';
+                                             }
+                                             echo '</option>';
+                                         }
+                                        ?>
+                                       
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Date of payment
+                                </td>
+                                <td>
+                                    <font class="alert-danger"><?php echo form_error('date_payment');?></font>
+                                    <input type="text" name="date_payment" class="form-control datepicke" required
+                                           value="<?php if(isset($pay_date)){echo $pay_date;}?>">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Upload supporting doc*
+                                    <?php if(isset($recept_no)){echo '<div class="red">new</div>';}?>
+                                    <input type="file" name="userfile"  required>
+                                </td>
+                            </tr>
+                        </table>
+                           
+                           <?php echo form_close();?>
+                            
+                    </div> 
+                    </div>
+                    <div class="modal-footer">
+                         <input type="submit" class="btn btn-info btn-xs" value="submit" name="feesave">
+                      <button type="button" class="btn btn-warning btn-xs" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+        </div>
+            
+        </div>
             <div class="preview tab-pane">
                 <div class="col-md-12">
                     <div class="pantop"><center>Payment detail summary</center></div>

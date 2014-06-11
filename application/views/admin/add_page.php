@@ -61,6 +61,13 @@
                                   <option value="Finance staff"<?php echo set_select('designation','Finance staff');?>>Finance staff</option>
                                   <option value="Supervisor"<?php echo set_select('designation','Supervisor');?>>Supervisor</option>
                                   <option value="external supervisor"<?php echo set_select('designation','external supervisor');?>>External supervisor</option>
+                                  <option value="head of department"<?php echo set_select('designation','head of department');?>>head of department</option>
+                                  <option value="department coordinator"<?php echo set_select('designation','department coordinator');?>>department coordinator</option>
+                                  <option value="college principle"<?php echo set_select('designation','college principle');?>>college principle</option>
+                                  <option value="college coordinator"<?php echo set_select('designation','college coordinator');?>>college coordinator</option>
+                                  <option value="postgraduate director"<?php echo set_select('designation','postgraduate director');?>>postgraduate director</option>
+                                  <option value="postgraduate associate director"<?php echo set_select('designation','postgraduate associate director');?>>postgraduate associate director</option>
+                                   <option value="dvc academic"<?php echo set_select('designation','dvc academic');?>>dvc academic</option>
                                 </select>
                              </td>
                         </tr>
