@@ -56,7 +56,7 @@
               </li> 
             <li>
                 <a href="<?php echo site_url('department_Coordinator');?>">
-                <span class="glyphicon glyphicon-list"></span>  Applications Admission</a>
+                <span class="glyphicon glyphicon-list"></span>  Applicants Admission</a>
             </li>
             <li>    
                 <a href="<?php echo site_url('department_Coordinator/presentationFeedback'); ?>">
@@ -76,13 +76,8 @@
 		 if($this->session->userdata('logged_in')){
 		    echo $this->session->userdata('userid');
 		}
-		?> <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
-                <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
-                
-              </ul>
+		?></a>
+             
             </li>
 	  </ul>
 	  

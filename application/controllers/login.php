@@ -99,6 +99,10 @@ class login extends CI_Controller {
                 $s_data=array('user_role'=>'department coordinator');
                 $this->session->set_userdata($s_data);
                 redirect('department_Coordinator');
+            }elseif(in_array('head of department',$myArray)){
+                $s_data=array('user_role'=>'head of department');
+                $this->session->set_userdata($s_data);
+                redirect('headDepartmet');
             }elseif(in_array('Teaching staff',$myArray)){
                 $s_data=array('user_role'=>'Teaching staff');
                 $this->session->set_userdata($s_data);
@@ -173,6 +177,8 @@ class login extends CI_Controller {
             if(in_array('Supervisor',$myArray)){
                 $this->fetchDepartment($username);
             }elseif(in_array('department coordinator',$myArray)){
+                $this->fetchDepartment($username);
+            }elseif(in_array('head of department',$myArray)){
                 $this->fetchDepartment($username);
             }
         }
