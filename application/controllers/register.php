@@ -135,10 +135,24 @@ class Register extends CI_Controller {
                }
              }
              
-        function retrieve_actv(){
-           $query = $this->db->query('SELECT activation_code FROM tb_user'); 
+        function retrieve_ajax($username=''){
+           $query = $this->db->get_where('tb_user',array('userid'=>$username),1);
+           if($query->num_rows()===1){
+               echo '<label class="label label-danger">username already taken </label>';
+           }  else {
+              echo '<label class="label label-success"> username accepted <span class="glyphicon glyphicon-ok"></span></label>'; 
+           }
             
         }
+    
+      function form_email($email=''){
+          $res=  $this->db->get_where('tb_user',array('email'=>$email),1);
+          if($res->num_rows()===1){
+            echo '<label class="label label-danger">'.$email.' '. 'Email exist </label>';
+          }else {
+           echo '<label class="label label-success">'.$email.' '.'accepted</label>';
+          }
+      }
 }
   
 

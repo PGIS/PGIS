@@ -10,7 +10,7 @@ class login extends CI_Controller {
 
             $this->load->view('clogin');
         } else {
-            $this->form_validation->set_rules('us', 'Username or email', 'trim|required');
+            $this->form_validation->set_rules('us', 'Username or email', 'trim|required|xss_clean');
             $this->form_validation->set_rules('pd', 'Password', 'trim|required');
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('clogin');
@@ -177,5 +177,22 @@ class login extends CI_Controller {
                 $this->session->set_userdata($s_data);
             }
         }
+        function ajaxcheck($username=''){
+            $res=  $this->db->get_where('tb_user',array('userid'=>$username),1);
+            if($res->num_rows()===1){
+                echo '<label class="alert-success">username exist <span class="glyphicon glyphicon-ok"></span></label>';
+            }  else {
+                echo '<label class="alert-danger">username not exist</label>';
+            }
+        }
+        function ajaxpassord($password=''){
+            $res=  $this->db->get_where('tb_user',array('password'=>md5($password)),1);
+            if($res->num_rows()>0){
+                echo '<label class="alert-success">password exist <span class="glyphicon glyphicon-ok"></span></label>';
+            }  else {
+                echo '<label class="alert-danger">password not exist</label>';
+            }
+        }
+        
     }
 
