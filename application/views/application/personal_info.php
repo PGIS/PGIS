@@ -29,8 +29,62 @@
                     </td>
                    <td>Date of Birth *<br>
                         <?php echo form_error('datebirth','<div class="error">', '</div>'); ?>
-                        <input name="datebirth" type="text" class="form-control datepicker" id="7"
+                       <table class="table">
+                           <tr><td><select class=" form-control " name="datebirth1">
+                                       <option></option>
+                                       <option>1</option>
+                                       <option>2</option>
+                                       <option>3</option>
+                                       <option>4</option>
+                                       <option>5</option>
+                                       <option>6</option>
+                                       <option>7</option>
+                                       <option>8</option>
+                                       <option>9</option>
+                                       <option>10</option>
+                                       <option>11</option>
+                                       <option>12</option>
+                                       <option>13</option>
+                                       <option>14</option>
+                                       <option>15</option>
+                                       <option>16</option>
+                                       <option>17</option>
+                                       <option>18</option>
+                                       <option>19</option>
+                                       <option>20</option>
+                                       <option>21</option>
+                                       <option>22</option>
+                                       <option>23</option>
+                                       <option>24</option>
+                                       <option>25</option>
+                                       <option>26</option>
+                                       <option>27</option>
+                                       <option>28</option>
+                                       <option>29</option>
+                                       <option>30</option>
+                                       <option>31</option>
+                                   </select></td>
+                                   <td><select class=" form-control" name="datebirth2">
+                                       <option></option>
+                                       <option>Jan</option>
+                                       <option>Feb</option>
+                                       <option>March</option>
+                                       <option>April</option>
+                                       <option>May</option>
+                                       <option>June</option>
+                                       <option>July</option>
+                                       <option>August</option>
+                                       <option>September</option>
+                                       <option>October</option>
+                                       <option>November</option>
+                                       <option>December</option>
+                                       </select></td>
+                                       <td>
+                                     <input name="datebirth" type="text" class="form-control datepicker1" id="7"
                                value="<?php display_input('datebirth',$datebirth);?>">
+                                       </td>
+                           </tr>
+                       </table>
                    </td>
                 </tr>
                 <tr>
@@ -89,8 +143,8 @@
                 <tr>
                     <td>
                         <?php echo form_error('landline','<div class="error">', '</div>'); ?>
-                        <div>Landline Number<input type="text" name="landline" class="form-control"
-                        value="<?php display_input('landline',$landlin);?>"></div>
+                        <div>Landline Number<input type="text" name="landline" class="form-control landline"
+                    value="<?php display_input('landline',$landlin);?>"><span class="verifyland"></span></div>
                         
                         <div>Mobile Number *
                         <?php echo form_error('mobile','<div class="error">', '</div>'); ?>
@@ -105,9 +159,16 @@
                         </div>
                             
                             <div>e-mail Address *
+                                <?php
+                                $res=$this->db->get_where('tb_user',array('userid'=>$this->session->userdata('userid')),1);
+                                foreach ($res->result() as $row){
+                                ?>
                             <?php echo form_error('email','<div class="error">', '</div>'); ?>
-                                <input type="text" name="email" class="form-control" id="11"
-                            value="<?php display_input('email',$email);?>">
+                                <input type="text" name="email" class="form-control alert-info" id="11" 
+                            value="<?php echo ''. $row->email.'';?>">
+                                <?php
+                                }
+                                ?>
                             </div>
                     </td>
                 </tr>
@@ -183,6 +244,25 @@
             $('#yes5').click(function(){
                 $('.dis').hide();
             });
+        });
+    </script>
+    <script>
+        $('.landline').keyup(function(){
+           $('.verifyland').html('<label class="alert-danger">Should put numbers only</label>');
+           var formlandline=$(this).val();
+           if(formlandline.length >=10){
+               setTimeout(function(){
+               $('.verifyland').html('<label class="alert-warning"> Should be numbers not les than 10</label>');
+               },1000);
+           }else if(formlandline !==''){
+               setTimeout(function(){
+               $('.verifyland').html('<label class="alert-warning"> Should be numbers</label>');
+               },1000);
+           }else{
+               setTimeout(function(){
+              $('.verifyland').html('<label class="alert-success"> accepted</label>'); 
+               },1000);
+           }
         });
     </script>
 </div>

@@ -311,10 +311,10 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('datebirth', 'birth date', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('disab', 'disable', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('perm_address', 'Permanet Address', 'required|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('landline', 'landline', '|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('mobile', 'mobile', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('landline', 'landline', 'trim|max_length[20]|alpha_numeric|xss_clean');
+        $this->form_validation->set_rules('mobile', 'mobile', 'required|exact_length[10]|numeric|xss_clean');
         $this->form_validation->set_rules('fax', 'fax', '|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('email', 'email', 'required|max_length[40]|xss_clean');
+        $this->form_validation->set_rules('email', 'email', 'required|max_length[40]|valid_email|xss_clean');
         $this->form_validation->set_rules('coun_birth', 'country', 'required|max_length[80]|xss_clean');
         $this->form_validation->set_rules('nation', 'nationality', 'required|max_length[40]|xss_clean');
         $this->form_validation->run();
@@ -390,7 +390,7 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('institution', 'institution', 'required|max_length[40]|xss_clean');
         $this->form_validation->set_rules('graduation', 'graduation', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('specialization', 'specialization', 'required|max_length[40]|xss_clean');
-        $this->form_validation->set_rules('gpa', 'GPA', 'required|max_length[30]|xss_clean');
+        $this->form_validation->set_rules('gpa', 'GPA', 'required|exact_length[3]|numeric|xss_clean');
         $this->form_validation->set_rules('other_ac_prof', 'other Accademic Proffession', 'required|max_length[80]|xss_clean');
         $this->form_validation->run();
 
