@@ -12,8 +12,6 @@
     
      $(document).ready(function(){ 
         $('#mytable1').dataTable(); 
-        $('#verlist').dataTable(); 
-        $('#presf').dataTable(); 
     });
 </script>
    <script>

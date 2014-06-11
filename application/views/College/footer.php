@@ -12,6 +12,7 @@
     
      $(document).ready(function(){ 
         $('#mytable1').dataTable(); 
+        $('#tbx').dataTable(); 
     });
 </script>
    <script>

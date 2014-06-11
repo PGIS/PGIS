@@ -24,6 +24,8 @@ class College_Coordinator extends CI_Controller{
         $this->db->order_by('app_id','asc');
         $query1 = $this->db->get_where('tb_app_personal_info', $dat);
         $data['query']=$query1->result();
+        $data['query1']=  $this->checkedApplications();
+        $data['active']=TRUE;
         $this->load->view('College/coadmision',$data);
      
     }
@@ -111,122 +113,135 @@ class College_Coordinator extends CI_Controller{
                     'fax' => $row->fax_no,
                     'email' => $row->email
                 );
-           
-        }return $dat;
+           return $dat;
+        }
         }
         
-        
-    function  admit($userid=''){
-           $que = $this->db->get_where('tb_app_personal_info', array('userid' => $userid),1);
-           if($que->num_rows()==0){
-               redirect('admision');
-           }
-           $data=$this->appl_detils($userid);
-          if(isset($_POST['send'])){
-           $this->form_validation->set_rules('subject', 'Subject', 'required|max_length[80]|xss_clean');
-           $this->form_validation->set_rules('to', 'Receiver', 'required|max_length[40]|xss_clean');
-           $this->form_validation->set_rules('msgbody', 'Message body', 'required|xss_clean');
-           $this->form_validation->run();
-                if($this->form_validation->run() == TRUE){
-                    $to=$this->input->post('to');
-                  $this->load->model('messaging');
-                  Messaging::add_message();
-                  $data['sent']='Message sent';
-                  if(isset($_POST['tomail'])){
-                      $alah=$this->send_email($this->find_sender_email($to), $this->input->post('subject'), $this->input->post('msgbody'),$to);
-                      if($alah){
-                          $data['toemail']='message sent to email';
-                      }else{
-                          $data['ntoemail']='not sent to email';
-                      }
-                  }
-                   }
-                }
-          
-        $z = $this->db->count_all('tb_admision')+10;
-      
-        if($this->count_digit($z)==2){
-            $k='000'.$z;
-        }elseif ($this->count_digit($z)==3) {
-              $k='00'.$z;
-        }
-        elseif ($this->count_digit($z)==4) {
-            $k='0'.$z;
-        }elseif ($this->count_digit($z)==5) {
-            $k=''.$z;
-        }
-        $reg= ''.date('Y').'-06-'.$k;
-         $this->load->model('admision_model');
-            Admision_model::admit($data['appid'],$reg,$userid,$data['Ucourse'],$data['sname'],$data['other_nam'],$data['nationalt'],$data['department']);
-            Admision_model::verify_form($userid);
-        $this->load->view('Admision/verify_notifi',$data);
-        
-        }
-        
-        function count_digit($number) {
-            return strlen((string) $number);
-        }
-        
-        
-      function sendadmission($userid){
-          $data=$this->appl_detils($userid);
-          $array = array(
-               'admision_letter' => 'sent'
-            );
-          $data['appsent']='admission letter Sent';
-          $this->db->where('app_id', $userid);
-          $this->db->update('tb_app_prev_info', $array); 
-          $this->load->view('Admision/verify_notifi',$data);
-      }
-        
-        function admitted_applicants(){
+        function checkedApplications(){
            $dat = array( 'appl_status'=>'yes');
            $query1 = $this->db->get_where('tb_app_personal_info', $dat);
-           $data['query']=$query1->result();
-           $this->load->view('College/checkedlist',$data);
+           return $query1->result();
         }
+ 
         
-        function pending($userid){
-              $data=$this->appl_detils($userid);
-              $data['userid']=$userid;
-              $this->load->model('messaging');
-              Messaging::return_to_customer($userid);
-              $data['openappl']=TRUE;
-              $this->load->view('Admision/denied_appl_message',$data);
-        }
-        function creating_pdf($userid){
-             $data=$this->appl_detils($userid);
-             $html = $this->load->view('Admision/admissionletter',$data,TRUE);
-		
-		$pdf_filename  = $userid.'.pdf';
-		$this->load->library('dompdf_lib');
-                $this->dompdf_lib->convert_html_to_pdf($html,$userid,$pdf_filename, TRUE);
-                 
-        }
-        function send_email($to,$subject,$message,$file){
-                $this->load->library('email');
-                $this->email->set_newline("\r\n");
-                $this->email->from('pgis@gmail.com','PGIS TEAM');
-                $this->email->to($to);
-                $this->email->subject($subject);
-                $this->email->message($message);
-                $path = $this->config->item('server_root');
-                $file = $path . './attachments/admission_letter/'.$file.'.pdf';
-                $this->email->attach($file);
-                if (@$this->email->send()){
-                    return TRUE; 
-                }  else {
-                    return FALSE;
-                }
-        }
+        function feedback(){
+         $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                 ->where(array('status'=>'assigned'))->get();
+         if($res->num_rows()>0){
+            $data['ret']=$res;
+            $this->load->view('College/college_feedback',$data);
+         }  else {
+             $data['ret']=$res;
+             $this->load->view('College/college_feedback',$data);
+         }
         
-        function find_sender_email($to){
-            $this->db->select('email');
-           $query = $this->db->get_where('tb_user', array('userid' => $to),1);
-            foreach ($query->result() as $email){
-                return $email->email;
+     }
+     
+     function registerFeedback($id){
+         $data=  $this->feedback_put($id);
+         $this->form_validation->set_rules('prtype', 'Presentation', 'required|max_length[40]|xss_clean');
+         $this->form_validation->set_rules('level', 'Level', 'required|max_length[40]|xss_clean');
+         $this->form_validation->set_rules('prdate', 'Presentation date', 'required|max_length[20]|xss_clean|is_unique[tb_verdicts.pr_date]');
+         $this->form_validation->set_rules('comments', 'Comments','required|xss_clean');
+         $this->form_validation->set_rules('verdict', 'verdict', 'required|xss_clean');
+         $this->form_validation->set_rules('panel', 'Panel', 'required|xss_clean');
+         if(isset($_POST['save'])){
+            if($this->form_validation->run()===FALSE){
+              $this->load->view('College/college_presentation_feedback',$data);
+            }else{
+               $this->load->model('supervisor_model');
+               Supervisor_model::saveVerdicts($data['registrationID'],$data['projectid'],$data['supervisor']);
+               $data['saved']=TRUE;
+               $this->load->view('College/college_presentation_feedback',$data);  
             }
-            
+         }else{
+            $this->load->view('College/college_presentation_feedback',$data); 
+         }
+     }
+     
+     function pr_feed($id){
+         $data=  $this->feedback_put($id);
+         $this->load->view('College/college_presentation_feedback',$data);
+     }
+     
+     function feedback_put($id){
+         $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                 ->where(array('registration_id'=>$id))->get();
+         if($res->num_rows()===1){
+             foreach ($res->result() as $detail){
+                 $data_rec=array(
+                   'registrationID'=>$detail->registration_id,
+                    'project_title'=>$detail->project_title,
+                    'project_description'=>$detail->project_description,
+                    'supervisor'=>$detail->Internal_supervisor,
+                    'surname'=>$detail->surname,
+                    'lastname'=>$detail->other_name,
+                    'projectid'=>$detail->id  
+                 );
+             }
+             unset($detail);
+             return $data_rec;
         }
-    }
-
+     }
+    public function recent_detail($id){
+         $data['recent']=$id;
+         $this->load->view('College/college_recent_detail',$data);
+     }
+     
+        function details($id){
+         $this->db->select('*');
+            $this->db->from('tb_verdicts');
+            $this->db->where('tb_verdicts.ver_id',$id);
+            $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
+            $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
+            $verdic =$this->db->get();
+           foreach ($verdic->result()as $ver){
+            $data=array(
+                    'type'=>$ver->type,
+                    'registrationid'=>$ver->registrationID,
+                    'level'=>$ver->level,
+                    'comments'=>$ver->comment,
+                    'verdict'=>$ver->verdicts,
+                    'panel'=>$ver->panel,
+                    'lname'=>$ver->surname,
+                    'sname'=>$ver->other_name,
+                    'department'=>$ver->department,
+                    'programe'=>$ver->program,
+                    'title'=>$ver->project_title,
+                    'prdate'=>$ver->pr_date
+                );
+            }
+         $this->load->view('College/student_info',$data);
+     }
+     
+     function downloadpdf($id){
+       $this->load->helper('dompdf','file');
+            $this->db->select('*');
+            $this->db->from('tb_verdicts');
+            $this->db->where('tb_verdicts.ver_id',$id);
+            $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
+            $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
+            $verdic =$this->db->get();
+             $row=$verdic->row();
+           foreach ($verdic->result()as $ver){
+            $data=array(
+                    'type'=>$ver->type,
+                    'registrationid'=>$ver->registrationID,
+                    'level'=>$ver->level,
+                    'comments'=>$ver->comment,
+                    'verdict'=>$ver->verdicts,
+                    'panel'=>$ver->panel,
+                    'lname'=>$ver->surname,
+                    'sname'=>$ver->other_name,
+                    'department'=>$ver->department,
+                    'programe'=>$ver->program,
+                    'title'=>$ver->project_title,
+                    'prdate'=>$ver->pr_date
+                );
+            }
+                $doc=$this->load->view('College/studentinfopdf',$data,TRUE);
+                $file=''.$row->surname.' '.$row->other_name .'';
+                pdf_create($doc,$file,TRUE);
+         
+     }
+ }

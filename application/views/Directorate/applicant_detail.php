@@ -14,7 +14,7 @@
             <div>Course applying for: <strong class='dts'><?php echo $Ucourse;?></strong></div>
             <div>College: <strong class='dts'><?php echo $Ucollege;?></strong></div>
             <div>Program mode: <strong class='dts'><?php echo $prog_mod;?></strong></div>
-            <div>Date of birth: <strong class='dts'><?php echo $datebirth;?></strong></div>
+            <div>Date of Birth: <strong class='dts'><?php echo $datebirth;?></strong></div>
             <div>Country of birth:<strong class='dts'> <?php echo $country;?></strong></div>
             <div>Nationality: <strong class='dts'><?php echo $nationalt;?></strong></div>
             <div>Permanent address: <strong class='dts'><?php echo $perm_addres;?></strong></div>
@@ -164,15 +164,18 @@
            $this->db->where('userid', $userid);
             $thquery = $this->db->get_where('tb_finance_application', array('appl_status' =>'accepted'));
             if($thquery->num_rows()==1){
-               echo '<button type="button" class="btn btn-success" btn-sm>Application fee Valid</button>';
+               echo '<button type="button" class="btn btn-success btn-sm">Application fee Valid</button>';
             }  else {
             echo '<button type="button" class="btn btn-warning btn-sm">Application fee not yet Verified</button>';    
             }
            ?>
-          </p>
+           </p>
+           <p><button class="btn btn-sm btn-info">View College Recommendation</button></p>
+            <p><button class="btn btn-sm btn-info">View Department Recommendation</button></p>
            <p><button class="btn btn-sm btn-info">Register recommendation</button></p>
            <p><button class="btn btn-sm btn-info">View recommendation</button></p>
+           
        </div>
-     
+      
     </div>
 <?php include_once 'footer.php';?>

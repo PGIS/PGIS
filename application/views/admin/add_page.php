@@ -66,7 +66,7 @@
                                   <option value="college principle"<?php echo set_select('designation','college principle');?>>college principle</option>
                                   <option value="college coordinator"<?php echo set_select('designation','college coordinator');?>>college coordinator</option>
                                   <option value="postgraduate director"<?php echo set_select('designation','postgraduate director');?>>postgraduate director</option>
-                                  <option value="postgraduate associate director"<?php echo set_select('designation','postgraduate associate director');?>>postgraduate director</option>
+                                  <option value="postgraduate associate director"<?php echo set_select('designation','postgraduate associate director');?>>postgraduate associate director</option>
                                    <option value="dvc academic"<?php echo set_select('designation','dvc academic');?>>dvc academic</option>
                                 </select>
                              </td>

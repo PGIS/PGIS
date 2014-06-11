@@ -21,6 +21,7 @@
         <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap-modal.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
+        <script src="<?php echo base_url('assets/ckeditor/ckeditor.js') ?>"></script>
   </head>
 
 <body>
@@ -50,17 +51,20 @@
           <ul class="nav navbar-nav side-nav">
               <li>
                     <button  class="mybtn btn-primary">
-                        <span class="glyphicon glyphicon-dashboard"></span>COICT ADMISSION PANEL
+                        DEPARTMENT COORDINATOR
                     </button>
               </li> 
-            <li><a href="<?php echo site_url('department_Coordinator');?>"><span class="glyphicon glyphicon-list"></span>
-	    Unchecked Applications</a></li>
-            <li><a href="<?php echo site_url('department_Coordinator/admitted_applicants');?>">
-	    <span class="glyphicon glyphicon-tasks"></span> Checked Applications</a></li>
-            <li><a href="<?php echo site_url('admin_event/display_cal');?>"><span class="glyphicon glyphicon-calendar"></span>
-	    Add Events</a></li>
-             <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
-	    Change password</a></li>
+            <li>
+                <a href="<?php echo site_url('department_Coordinator');?>">
+                <span class="glyphicon glyphicon-list"></span>  Applications Admission</a>
+            </li>
+            <li>    
+                <a href="<?php echo site_url('department_Coordinator/presentationFeedback'); ?>">
+                    <span class="glyphicon glyphicon-retweet"></span> Presentation Feedback</a>
+             </li>
+             <li><a href="<?php echo site_url('change_form');?>">
+                     <span class="glyphicon glyphicon-wrench"></span> Change password</a>
+             </li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
           </ul>
 	  

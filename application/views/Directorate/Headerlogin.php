@@ -21,7 +21,6 @@
         <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap-modal.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
-        <script src="<?php echo base_url('assets/ckeditor/ckeditor.js') ?>"></script>
   </head>
 
 <body>
@@ -55,12 +54,11 @@
                     </button>
               </li> 
             <li><a href="<?php echo site_url('college_Coordinator');?>"><span class="glyphicon glyphicon-list"></span>
-                Applicants Admission
-             </a>
-            </li>
-            <li>    
-               <a href="<?php echo site_url('college_Coordinator/feedback'); ?>"><span class="glyphicon glyphicon-retweet"></span>   Presentation Feedback</a>
-             </li>
+	    Unchecked Applications</a></li>
+            <li><a href="<?php echo site_url('college_Coordinator/admitted_applicants');?>">
+	    <span class="glyphicon glyphicon-tasks"></span> Checked Applications</a></li>
+            <li><a href="<?php echo site_url('admin_event/display_cal');?>"><span class="glyphicon glyphicon-calendar"></span>
+	    Add Events</a></li>
              <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>
             <li><a href="<?php echo site_url('logout');?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
@@ -74,8 +72,13 @@
 		 if($this->session->userdata('logged_in')){
 		    echo $this->session->userdata('userid');
 		}
-		?> </a>
-             
+		?> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
+                <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                
+              </ul>
             </li>
 	  </ul>
 	  

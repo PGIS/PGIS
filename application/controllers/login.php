@@ -172,6 +172,8 @@ class login extends CI_Controller {
             
             if(in_array('Supervisor',$myArray)){
                 $this->fetchDepartment($username);
+            }elseif(in_array('department coordinator',$myArray)){
+                $this->fetchDepartment($username);
             }
         }
         
