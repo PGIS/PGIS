@@ -1,4 +1,4 @@
-<?php include_once 'Headerloginsuper.php'; ?>
+<?php include_once 'Headerdephead.php'; ?>
 <div id="page-wrapper">
     <div class="col-md-12">
         <ul class="nav nav-tabs">

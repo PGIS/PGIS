@@ -1,4 +1,10 @@
-<?php include_once 'Headerlogin.php'; ?>
+<?php
+if ($this->session->userdata('user_role')==='department coordinator') {
+       include_once 'Headerlogin.php';
+}elseif ($this->session->userdata('user_role')==='head of department') {
+      include_once 'Headerdephead.php';
+}
+ ?>
 <div id="page-wrapper">
     <div class="well-sm alert-info">
         Presentation detail for:<?php if(isset($student_id))echo '<b>'.$lname.' '.$sname.'</b>';?><br>
@@ -26,11 +32,23 @@
                             <td><?php echo $rlist->level;?></td>
                             <td><?php echo $rlist->type;?></td>
                             <td>
-                                <a href="<?php echo site_url('department_Coordinator/viewVerdicts/'.$rlist->ver_id);?>">
+                                <a href="<?php 
+                                if ($this->session->userdata('user_role')==='department coordinator') {
+                                     echo site_url('department_Coordinator/viewVerdicts/'.$rlist->ver_id);
+                                 }elseif ($this->session->userdata('user_role')==='head of department'){
+                                     echo site_url('headDepartmet/viewVerdicts/'.$rlist->ver_id);
+                                 }
+                                ?>">
                                     <button type="button" class="btn btn-info btn-xs">View Feedback</button>
                                 </a>
                             
-                                <a href="<?php echo site_url('department_Coordinator/downloadpdf/'.$rlist->ver_id);?>">
+                                <a href="<?php
+                                if ($this->session->userdata('user_role')==='department coordinator') {
+                                    echo site_url('department_Coordinator/downloadpdf/'.$rlist->ver_id);
+                                 }elseif ($this->session->userdata('user_role')==='head of department'){
+                                    echo site_url('headDepartmet/downloadpdf/'.$rlist->ver_id);
+                                 }
+                                ?>">
                                     <button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download">Download PDF</span></button>
                                 </a>
                             </td>

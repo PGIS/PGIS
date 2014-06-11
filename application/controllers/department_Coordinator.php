@@ -240,7 +240,7 @@ class Department_Coordinator extends CI_Controller {
                     'prdate'=>$ver->pr_date
                 );
             }
-                $doc=$this->load->view('academic/teachinverdicspdf',$data,TRUE);
+                $doc=$this->load->view('Department/teachinverdicspdf',$data,TRUE);
                 $file=''.$row->surname.' '.$row->other_name .'';
                 pdf_create($doc,$file,TRUE);
          

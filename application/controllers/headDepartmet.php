@@ -112,4 +112,80 @@ class HeadDepartmet extends CI_Controller {
      function presentationFeedback(){
          $this->load->view('Department/desertationlist');
      }
+     
+      function studentVerdicts($id){
+         $this->db->select('*');
+         $this->db->from('tb_project');
+         $this->db->where('id',$id);
+         $this->db->join('tb_student','tb_student.registrationID = tb_project.registration_id');
+         $ver =$this->db->get();
+         foreach ($ver->result() as $list){
+             $data=array(
+                 'student_id'=>$list->registrationID,
+                 'ptitle'=>$list->project_title,
+                 'lname'=>$list->surname,
+                 'sname'=>$list->other_name,
+             );
+         }
+         
+         $this->load->view('Department/superverdlist',$data); 
+     }
+     
+        function viewVerdicts($id){
+     $this->db->select('*');
+     $this->db->from('tb_verdicts');
+     $this->db->where('ver_id',$id);
+     $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
+     $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
+     $verdic =$this->db->get();
+     foreach ($verdic->result()as $ver){
+         $data=array(
+                    'type'=>$ver->type,
+                    'registrationid'=>$ver->registrationID,
+                    'level'=>$ver->level,
+                    'comments'=>$ver->comment,
+                    'verdict'=>$ver->verdicts,
+                    'panel'=>$ver->panel,
+                    'lname'=>$ver->surname,
+                    'sname'=>$ver->other_name,
+                    'department'=>$ver->department,
+                    'programe'=>$ver->program,
+                    'title'=>$ver->project_title,
+                     'prdate'=>$ver->pr_date
+                );
+            }
+            unset($ver);
+     $this->load->view('Department/teachinverdics',$data);
+    }
+    
+     function downloadpdf($id){
+       $this->load->helper('dompdf','file');
+            $this->db->select('*');
+            $this->db->from('tb_verdicts');
+            $this->db->where('tb_verdicts.ver_id',$id);
+            $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
+            $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
+            $verdic =$this->db->get();
+             $row=$verdic->row();
+           foreach ($verdic->result()as $ver){
+            $data=array(
+                    'type'=>$ver->type,
+                    'registrationid'=>$ver->registrationID,
+                    'level'=>$ver->level,
+                    'comments'=>$ver->comment,
+                    'verdict'=>$ver->verdicts,
+                    'panel'=>$ver->panel,
+                    'lname'=>$ver->surname,
+                    'sname'=>$ver->other_name,
+                    'department'=>$ver->department,
+                    'programe'=>$ver->program,
+                    'title'=>$ver->project_title,
+                    'prdate'=>$ver->pr_date
+                );
+            }
+                $doc=$this->load->view('Department/teachinverdicspdf',$data,TRUE);
+                $file=''.$row->surname.' '.$row->other_name .'';
+                pdf_create($doc,$file,TRUE);
+         
+     }
 }
