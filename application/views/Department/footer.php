@@ -12,8 +12,10 @@
     
      $(document).ready(function(){ 
         $('#mytable1').dataTable(); 
-        $('#verlist').dataTable(); 
+        $('#verlist').dataTable();
         $('#presf').dataTable(); 
+        $('#mytables').dataTable();
+        $('#mytablesa').dataTable();
     });
 </script>
    <script>
