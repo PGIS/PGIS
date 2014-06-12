@@ -164,9 +164,9 @@
            $this->db->where('userid', $userid);
             $thquery = $this->db->get_where('tb_finance_application', array('appl_status' =>'accepted'));
             if($thquery->num_rows()==1){
-               echo '<button type="button" class="col-md-12 btn btn-success" btn-xs>Application fee Valid</button>';
+               echo '<button type="button" class="btn btn-success" btn-sm>Application fee Valid</button>';
             }  else {
-            echo '<button type="button" class="col-md-12 btn btn-warning btn-xs">Application fee not yet Verified</button>';    
+            echo '<button type="button" class="btn btn-warning btn-sm">Application fee not yet Verified</button>';    
             }
            ?>
           </p>

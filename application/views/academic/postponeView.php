@@ -73,7 +73,7 @@
     
     ?>
 <?php
-if($this->session->userdata('user_role')==='head of department'){
+if($this->session->userdata('user_role')==='Supervisor'){
     $maurl=site_url('departStudentManage/eventPostpone/'.$regid);
 }else {
     $maurl=site_url('collegStudentManage/eventPostpone/'.$regid);

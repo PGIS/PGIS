@@ -51,8 +51,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li><button class="mybtn btn-primary" style="margin-left: 4px;">
-                                <span class="glyphicon glyphicon-dashboard"></span>  COLLEGE COORDINATOR</button></li>
+                        <li><button class="mybtn btn-primary btn-block" style="margin-left: 4px;">
+                                <span class="glyphicon glyphicon-dashboard"></span>  COLLEGE PRINCIPLE</button></li>
                         <li><a href="<?php echo site_url('college'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
                                 assigned supervisor</a>
                         </li>
@@ -60,9 +60,6 @@
                                 assign supervisor</a>
                         </li>
                         <li>    
-                            <a href="<?php echo site_url('college/feedback'); ?>"><span class="glyphicon glyphicon-retweet"></span>   Presentation Feedback</a>
-                        </li>
-                         <li>    
                             <a href="<?php echo site_url('collegStudentManage'); ?>"><span class="glyphicon glyphicon-road"></span>   Students Progress</a>
                         </li>
                         <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>

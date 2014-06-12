@@ -6,7 +6,7 @@
          $this->load->library('form_validation');
          if(!$this->session->userdata('logged_in')){
             redirect('logout');
-        }elseif ($this->session->userdata('user_role')!='external supervisor'){
+        }elseif ($this->session->userdata('user_role')!='college principle'){
             redirect('logout');
         }
      }

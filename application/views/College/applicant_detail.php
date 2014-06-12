@@ -170,15 +170,9 @@
             }
            ?>
            </p>
-            <div class="col-md-12 pd">
-              <button class="col-md-12 btn btn-xs btn-info">View department Recommendation</button>
-          </div>
-           <div class="col-md-12 pd">
-              <button class="col-md-12 btn btn-xs btn-info">Register recommendation</button>
-          </div>
-          <div class="col-md-12 pd">
-              <button class="col-md-12 btn btn-xs btn-info">View recommendation</button>
-          </div>
+            <p><button class="btn btn-sm btn-info">View department Recommendation</button></p>
+           <p><button class="btn btn-sm btn-info">Register recommendation</button></p>
+           <p><button class="btn btn-sm btn-info">View recommendation</button></p>
            
        </div>
       

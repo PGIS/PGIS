@@ -28,7 +28,7 @@
         </div>
             </div>';}?>
                 <?php if(isset($recept_no)){
-                          echo '<div class="alert alert-danger fade in">
+                     echo '<div class="alert alert-danger fade in">
                         <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
                         Information you provided lately wasnt correct
                         please correct the information and submit
@@ -65,7 +65,6 @@
                                 </td>
                                 <td>
                                     <select name="reg_fees" class="form-control check" required>
-                                        
                                         <option  value="Tuition Fee">Tuition Fee</option>
                                         <option value="Direct Cost">Direct Cost</option>
                                         <option value="year_three">Tuition Fee AND Direct Cost</option>

@@ -6,6 +6,7 @@
             <tr>
                 <td colspan="2">
                     <p> Recept number:</p>
+                    <?php echo form_error('receptno','<div class="error">','</div>');?>
                     <input  class="form-control" id="20" name="receptno"  autofocus
                             value="<?php if(isset($receptno)) echo $receptno;?>">
                 </td>
@@ -13,6 +14,7 @@
             <tr>
                 <td colspan="2">
                     <p>Payment date:</p>
+                    <?php echo form_error('paydate','<div class="error">' ,'</div>');?>
                     <input class="form-control datepicker" name="paydate"  
                            value="<?php if(isset($paydate)) echo $paydate;?>">
                 </td>

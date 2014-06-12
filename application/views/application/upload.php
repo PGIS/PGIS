@@ -43,7 +43,9 @@
           <?php echo form_open_multipart('application/do_upload');?>
           <table>
             <tr>
-               <td><input type="file" name="userfile" size="20" /></td>
+                <td><input type="file" name="userfile" size="20"  class="dvc"/>
+                </td>
+                <span class="filepdf"></span>
                <td> <span class="glyphicon glyphicon-circle-arrow-up"></span><input type="submit" value="upload" /></td>
             </tr>
           </table>
@@ -95,3 +97,6 @@
          </table>
     </p>
 </div>
+<script>
+$('.filepdf').html('<label class="alert-info"> Allowed types jpg,gif,jpeg </label>');
+</script>

@@ -31,15 +31,13 @@ class Change_form extends CI_Controller {
             $this->load->view('academic/change_pwd');
         }elseif ($this->session->userdata('user_role')==='Teaching staff') {
              $this->load->view('academic/change_pwds');
-        }elseif ($this->session->userdata('user_role')==='external supervisor') {
+        }elseif ($this->session->userdata('user_role')==='college principle') {
              $this->load->view('academic/change_pwd_college');
-        }elseif ($this->session->userdata('user_role')==='department coordinator') {
+       }elseif ($this->session->userdata('user_role')==='department coordinator') {
              $this->load->view('Department/chang_pwd');
-        }elseif ($this->session->userdata('user_role')==='college coordinator') {
+       }elseif ($this->session->userdata('user_role')==='college coordinator') {
              $this->load->view('College/chang_pwd');
-        }elseif ($this->session->userdata('user_role')==='head of department') {
-             $this->load->view('Department/chang_pwd_1');
-        }elseif ($this->session->userdata('user_role') === 'alumni') {
+       }elseif ($this->session->userdata('user_role') === 'alumni') {
             $this->load->view('alumni/chang_pwd');
         }
     }
@@ -93,9 +91,7 @@ class Change_form extends CI_Controller {
              $this->load->view('Department/chang_pwd',$data);
        }elseif ($this->session->userdata('user_role')==='college coordinator') {
              $this->load->view('College/chang_pwd',$data);
-       }elseif ($this->session->userdata('user_role')==='head of department') {
-             $this->load->view('Department/chang_pwd_1',$data);
-        }
+       }
     }
 
 }

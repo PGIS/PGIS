@@ -14,12 +14,17 @@
                     <div class="pantop"><legend style="padding-top: 20px;" class=" text text-center text-justify text-info">Project Proposal</legend></div>
                     <div class="load1"></div>
                     <?php echo form_open('project_page/project_insert',array('id'=>'form'));?>
-                    <div class="col-md-9 col-lg-offset-2">
+                    <div class="col-md-12">
                     <table class="table table-striped">
-                        <tr><td><label>Project Title*</label></td><td><font class="alert-danger"><?php echo form_error('prj');?></font><input type="text" name="prj" class="form-control crt"></td></tr>
-                        <tr><td><label>Description*</label></td><td><font class="alert-danger"><?php echo form_error('prd');?></font><textarea class="form-control crt1" cols="4"name="prd"></textarea></td></tr>
-                        <tr><td><label>Suggested Supervisor Email*</label></td><td><font class="alert-danger"><?php echo form_error('pis');?></font><input type="text" name="pis" class="form-control crt2"></td></tr>
-                    </table> 
+                        <tr><td><label>Dissertation Title*</label></td><td><font class="alert-danger"><?php echo form_error('prj');?></font><input type="text" name="prj" class="form-control crt"></td></tr>
+                        <tr><td><label>Dissertation Description*</label></td><td><font class="alert-danger"><?php echo form_error('prd');?></font><textarea class="form-control crt1" cols="4"name="prd"></textarea>
+                            <script type="text/javascript">
+                          CKEDITOR.replace( 'prd' );
+                        </script>
+                            </td></tr>
+                        <tr><td><label>Suggested Supervisor Name*</label></td><td><font class="alert-danger"><?php echo form_error('pis');?></font><input type="text" name="pis" class="form-control crt2"></td></tr>
+                    </table>
+                        <div class="text-center sug"></div>
                     <div class="text-right"><button class="btn btn-primary td">submit</button></div>
                      <?php echo form_close();?>
                     <div class="load"><?php if(!empty($pg)){ echo $pg;}?></div>
@@ -103,17 +108,22 @@
                             }
                             ?></div>
                         <div class=" col-lg-8 col-lg-push-2">
-                        <table class="table table-striped">
-                            
-                            <?php echo form_open_multipart('project_page/project_progress')?>
+                         <div class="panel panel-default">
+                             <div class="panel-heading"><label class="text-success">Dissertation/Thesis progress</label></div>
+                             <div class="panel-body">
+                          <table class="table table-striped">
+                           <?php echo form_open_multipart('project_page/project_progress')?>
                             <?php echo form_error('ext');?>
                             <tr><td><label>Internal supervisor</label></td><td class="dts"><?php if(isset($internal)){echo''.$internal;}?></td></tr>
-                            <tr><td><label>Submission date</label></td><td><input type="text" name="date_sub" class="form-control datepicker" id="tds" required ></td></tr>
+                            <tr><td><label>Submission date</label></td><td><input type="text" name="date_sub" class="form-control datepicker" id="tds" disabled value="<?php echo date('m/d/Y');?>"></td></tr>
                             <tr><td><label>Project Document</label></td><td><input type="file" name="userfile" class="load"></td></tr>
                             <tr><td colspan="1"></td><td align="right"><button name="btd" class="btn btn-primary btd">upload</button></td></tr>
                             <?php echo form_close();?>
+                            
                         </table>
                         </div>
+                        </div>
+                             </div>
                     </div>
                     <div id="loader"><?php if(!empty($smgsuc)){ echo $smgsuc;}?></div>
                 </fieldset>
@@ -126,6 +136,16 @@
     $('.datepicker').datepicker();
 </script>
 </div>
+    <script>
+        $('.crt2').keyup(function(){
+            var formcrt2=$(this).val();
+            var url="<?php echo site_url('project_page/staff_search');?>";
+            var url2=url+'/'+formcrt2;
+            $.post(url2,formcrt2,function(data){
+                $('.sug').html(data);
+            });
+        });
+    </script>
 </div>
 <?php include_once 'footer.php';?>
 
