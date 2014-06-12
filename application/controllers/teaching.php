@@ -42,7 +42,7 @@
            return $res; 
        }  elseif($res1->num_rows()>0) {
           return $res1;
-       }
+       }  
    }
      function view($id){
      $res=  $this->db->get_where('tb_student_desert',array('id'=>$id,'status'=>'not replied'));

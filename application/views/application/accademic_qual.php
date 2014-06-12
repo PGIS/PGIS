@@ -29,8 +29,9 @@
             <td>
                 <?php echo form_error('gpa','<div class="error">', '</div>'); ?>
                 Undergraduate/Advanced/Postgraduate Diploma GPA.*
-                 <div><input type="text" name="gpa" class="form-control"
+                 <div><input type="text" name="gpa" class="form-control gpa"
                  value="<?php display_input('gpa',$gpa);?>"></div>
+                <span class="gpaverify"></span>
             </td>
             <td id="fieldname">Specialization *
                 <?php echo form_error('specialization','<div class="error">', '</div>'); ?>
@@ -67,3 +68,18 @@
        </form>
     </p>
 </div>
+<script>
+    $('.gpa').keyup(function(){
+        $('.gpaverify').html('<label class="alert-info"> Must enter three characters eg (3.5)</label>');
+        var formgpa=$(this).val();
+        if(formgpa.length ===3){
+            setTimeout(function(){
+            $('.gpaverify').html('<label class="alert-success"> GPA accepted</label>');
+            },1000);
+        }else{
+            setTimeout(function(){
+           $('.gpaverify').html('<label class="alert-danger"> GPA denied</label>');
+           },1000);
+        }
+    });
+</script>

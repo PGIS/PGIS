@@ -32,7 +32,7 @@
       function project_insert(){
           $this->form_validation->set_rules('prj','Project Title','required|xss_clean');
           $this->form_validation->set_rules('prd','Project Description','required|xss_clean');
-          $this->form_validation->set_rules('pis','Email','trim|required|valid_email|xss_clean');
+          $this->form_validation->set_rules('pis','Name','trim|required|xss_clean');
           $data['records']=  $this->supervisors_view();
           $data['after']=  $this->comments_after();
           $data['verdicts']=  $this->verdicts();
@@ -257,6 +257,15 @@
                 pdf_create($doc,$file,TRUE);
          
      }
-      }
+     function staff_search($name=''){
+        $res=  $this->db->select('*')->from('tb_staff')->like('staffId',$name,'after')->get();
+        if($res->num_rows()>0){
+            $row=$res->row();
+            echo '<label class="alert-success"> You mean '.' '.$row->fullName.'</label>';
+        }  else {
+            echo '<label class="alert-danger"> No match found with this '.' '.$name.' '.'name</label>';
+        }
+     }
+   }
   
 

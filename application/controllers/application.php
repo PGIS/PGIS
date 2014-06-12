@@ -460,7 +460,7 @@ class Application extends CI_Controller {
                       <head><title></title></head>
                       <body>';
         $message .='<p> Dear '.$salt.' your have been chosen to be on behalf of the  ' . $this->session->userdata('userid') . ' as the referee </p>';
-        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
+        $message .='<p> Please follow this link to finish your tasks <strong><a href="'.base_url().'referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
         $message .='<p> Please find the the attached file for more description</p>';
         $message .='<p> Thanks !!</p>';
         $message .='<p> PGIS TEAM</p>';
@@ -494,7 +494,7 @@ class Application extends CI_Controller {
                       <head><title></title></head>
                       <body>';
         $message .='<p> Dear '.$salt.' your have been chosen to be on behalf of the  ' . $this->session->userdata('userid') . ' as the referee </p>';
-        $message .='<p> Please follow this link to finish your tasks <strong><a href="http://localhost/pgis/index.php/referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
+        $message .='<p> Please follow this link to finish your tasks <strong><a href="'.base_url().'referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
         $message .='<p> Please find the the attached file for more description</p>';
         $message .='<p> Thanks !!</p>';
         $message .='<p> PGIS TEAM</p>';
@@ -644,7 +644,7 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active8'] = TRUE;
 
-        $this->form_validation->set_rules('receptno', 'Recept number', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('receptno', 'Recept number', 'trim|required|exact_length[20]|xss_clean');
         $this->form_validation->set_rules('paydate', 'Payment date', 'required|max_length[20]xss_clean|');
         $this->form_validation->run();
 
