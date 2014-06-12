@@ -41,7 +41,7 @@ class Register extends CI_Controller {
                  . <head><title></title></head>
                     <body>';
       $message .='<p> Dear'.' <b>'.$username.'<b></p>';
-      $message .='<p> Thanks for registaring and please <strong><a href="http://localhost/pgis/index.php/register/email_validation/'.$email.'/'.random_string('unique').'">click here</a></strong> to activate yoour account';
+      $message .='<p> Thanks for registaring and please <strong><a href="'.base_url().'/index.php/register/email_validation/'.$email.'/'.random_string('unique').'">click here</a></strong> to activate yoour account';
       $message .='<p> PGIS TEAM</p>';
       $message .='</body>';
       $message .='</html>';

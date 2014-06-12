@@ -115,8 +115,8 @@ class login extends CI_Controller {
                 $s_data=array('user_role'=>'administrator');
                 $this->session->set_userdata($s_data);
                 redirect('admin_page');
-            }elseif(in_array('external supervisor',$myArray)){
-                $s_data=array('user_role'=>'external supervisor');
+            }elseif(in_array('college principle',$myArray)){
+                $s_data=array('user_role'=>'college principle');
                 $this->session->set_userdata($s_data);
                 redirect('college');
             }elseif(in_array('applicant',$myArray)){
