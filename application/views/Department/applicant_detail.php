@@ -171,13 +171,16 @@
            ?>
           </p>
           <div class="col-md-12 pd">
-              <a href="#" data-toggle="modal" data-target="#upload"><button class="col-md-12 btn btn-xs btn-info">
-                <span class="glyphicon glyphicon-cloud-upload" ></span> Upload Admission Criteria
-            </button>
+              <a href="#" data-toggle="modal" data-target="#upload">
+                  <button class="col-md-12 btn btn-xs btn-info">
+                     <span class="glyphicon glyphicon-cloud-upload" ></span> Upload Admission Criteria
+                  </button>
                </a>
           </div>
           <div class="col-md-12 pd">
-              <button class="col-md-12 btn btn-xs btn-info">Register recommendation</button>
+              <a href="#" data-toggle="modal" data-target="#recomend">
+                   <button class="col-md-12 btn btn-xs btn-info">Register recommendation</button>
+              </a>
           </div>
           <div class="col-md-12 pd">
               <button class="col-md-12 btn btn-xs btn-info">View recommendation</button>
@@ -193,8 +196,37 @@
             </div>
             <div class="modal-body">
                 <form >
-                    <input type="file" name="" class="form-control">
-                    <button class="btn btn-xs btn-info">Upload</button>
+                    <table class="table">
+                        <tr>
+                            <td>Choose file to upload</td>
+                            <td><input type="file" name=""></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn btn-xs btn-info">Upload</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+       
+       
+       <div class="modal fade" id="recomend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h6 class="modal-title" id="myModalLabel">Recommendation</h6>
+            </div>
+            <div class="modal-body">
+                <form >
+                    
                 </form>
             </div>
             <div class="modal-footer">
