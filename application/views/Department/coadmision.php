@@ -38,6 +38,43 @@
                     ?>
                     </tbody>
                 </table>
+                <div class="col-md-12">
+              <a href="#" data-toggle="modal" data-target="#upload">
+                  <button class="col-md-4 btn btn-xs btn-info">
+                     <span class="glyphicon glyphicon-cloud-upload" ></span> Upload Admission Criteria
+                  </button>
+               </a>
+          </div>
+                
+                <div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h6 class="modal-title" id="myModalLabel">Upload Admission Criteria</h6>
+                        </div>
+                        <div class="modal-body">
+                            <form >
+                                <table class="table">
+                                    <tr>
+                                        <td>Choose file to upload</td>
+                                        <td><input type="file" name=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button class="btn btn-xs btn-info">Upload</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
             </div>
 
             <div class="checked in tab-pane <?php if(isset($active1)){echo'active';}?>">

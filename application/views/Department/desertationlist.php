@@ -1,4 +1,10 @@
-<?php include_once 'Headerlogin.php'; ?>
+<?php 
+if ($this->session->userdata('user_role')==='department coordinator') {
+             include_once 'Headerlogin.php';
+}elseif ($this->session->userdata('user_role')==='head of department') {
+             include_once 'Headerloginsuper.php';
+}
+ ?>
 <div id="page-wrapper">
     <div class="col-md-12">
         <div class="well-sm alert-info">
@@ -27,10 +33,21 @@
                             <td class="col-md-2"><?php echo $project->registration_id;?></td>
                             <td class="col-md-8"><?php echo $project->project_title;?></td>
                             <td class="col-md-3">
-                                <a href="<?php echo site_url('department_Coordinator/registerFeedback/'.$project->registration_id); ?>">
+                                <?php
+                                if ($this->session->userdata('user_role')==='department coordinator') {
+                                     echo '<a href="'.site_url('department_Coordinator/registerFeedback/'.$project->registration_id).'">
                                     <button type="button" class="btn btn-info btn-xs">feedback</button>
-                                </a>
-                                <a href="<?php echo site_url('department_Coordinator/studentVerdicts/'.$project->id); ?>">
+                                </a>';
+                                   }
+                                ?>
+                                
+                                <a href="<?php
+                                if ($this->session->userdata('user_role')==='department coordinator') {
+                                                echo site_url('department_Coordinator/studentVerdicts/'.$project->id);
+                                   }elseif ($this->session->userdata('user_role')==='head of department') {
+                                               echo site_url('headDepartment/studentVerdicts/'.$project->id);
+                                   }
+                                 ?>">
                                    <button type="button" class="btn btn-info btn-xs">View</button> 
                                 </a>
                             </td>
