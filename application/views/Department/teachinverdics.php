@@ -1,4 +1,10 @@
-<?php include_once 'Headerlogin.php';?>
+<?php 
+if ($this->session->userdata('user_role')==='department coordinator') {
+             include_once 'Headerlogin.php';
+}elseif ($this->session->userdata('user_role')==='head of department') {
+             include_once 'Headerloginsuper.php';
+}
+ ?>
 <div id="page-wrapper">
     <?php
     if($this->session->userdata('user_role')==='Teaching staff'){
