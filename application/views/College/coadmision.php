@@ -44,40 +44,109 @@
             </div>
         
             <div class="checked in tab-pane <?php if(isset($active1)){echo'active';}?>">
+             <?php
+                if(isset($msgfr)){
+                    echo ' <div class="alert alert-success fade in alert-message">
+                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                    Successfully forwarded
+                    </div>';
+                }
+                ?>   
                 
-                <table class="table table-striped table-condensed" id="mytable1">
-        <thead>
-            <tr>
-              <th>Mark/Unmark</th>
-              <th>Application id</th>
-              <th>Username</th>    
-              <th>Other names</th>
-              <th>Sur name</th>
-              <th>Action<b class="caret"></b></th>  
-            </tr>
-        </thead>
-        
-        <?php
-        if(isset($query1)){
-           
-          foreach ($query1 as $row1){
-                echo '<tr>';
-                echo'<td><input type="checkbox" name="ckbx" class="checkbox"></td>';
-                echo '<td>'.$row1->app_id.'</td>';
-                echo '<td>'.$row1->userid.'</td>';
-                echo '<td>'.$row1->other_name.'</td>';
-                echo '<td>'.$row1->surname.'</td>';
-                echo  '<td><a href="'.site_url('department_Coordinator/admit/'.$row1->userid).'" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus">admission letter</span></a></td>';
-                echo '</tr>';
-            }
-        }
-      
-        ?>
-    </table>
+   <script>
+    window.setTimeout(function() {
+    $(".alert-message").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove(); 
+    });}, 5000);
+</script>             
+            <table class="table table-striped table-condensed" id="mytable1">
+                    <thead>
+                        <tr>
+                          <th>Username</th>    
+                          <th>Other names</th>
+                          <th>Sur name</th>
+                          <th>View Recommendation<b class="caret"></b></th>  
+                        </tr>
+                    </thead>
+
+                    <?php
+                    if(isset($query1)){
+
+                      foreach ($query1 as $row1){
+                            echo '<tr>';
+                            echo '<td>'.$row1->userid.'</td>';
+                            echo '<td>'.$row1->other_name.'</td>';
+                            echo '<td>'.$row1->surname.'</td>';
+                            echo  '<td>';?>
+                            <button class="btn btn-info btn-xs"  onclick="viewrecomd('<?php echo $row1->userid;?>')" data-toggle="modal" data-target="#viedeprec">
+                               Department
+                            </button>
+                             <button class="btn btn-info btn-xs"  onclick="viewrecomdcol('<?php echo $row1->userid;?>')" data-toggle="modal" data-target="#viedepreccol">
+                               College
+                            </button>
+                              <?php
+                            echo '</td></tr>';
+                        }
+                    }
+
+                    ?>
+           </table>
                 
             </div>
         </div>
     </div>
 </div>
+<div class="modal fade" id="viedeprec" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h6 class="modal-title" id="myModalLabel">Department Admission Recommendation</h6>
+            </div>
+              <div class="modal-body" id="recview">
+               
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
+
+   <div class="modal fade" id="viedepreccol" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h6 class="modal-title" id="myModalLabel">College Admission Recommendation</h6>
+            </div>
+              <div class="modal-body" id="recview1">
+               
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>     
+  <script>
+    function viewrecomd(id) {
+   
+        var url = "<?php echo site_url('college_Coordinator/viewRecomendation'); ?>";
+        var url2 = url + '/' + id;
+        $.get(url2, function(data) {
+            $('#recview').html(data);
+        });
+    }
+    
+    function viewrecomdcol(id) {
+   
+        var url = "<?php echo site_url('college_Coordinator/viewRecomendationcol'); ?>";
+        var url2 = url + '/' + id;
+        $.get(url2, function(data) {
+            $('#recview1').html(data);
+        });
+    }
+ </script>
 <?php include_once 'footer.php';?>

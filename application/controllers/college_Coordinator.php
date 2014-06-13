@@ -18,17 +18,23 @@ class College_Coordinator extends CI_Controller{
     }
     
     function index(){
-        $dat = array( 'submited'=>'yes');
-        $dat1 = array( 'appl_status'=>'no'); 
-        $this->db->where($dat1);
-        $this->db->order_by('app_id','asc');
-        $query1 = $this->db->get_where('tb_app_personal_info', $dat);
-        $data['query']=$query1->result();
+        
+        $data['query']=  $this->uncheckedApp();
         $data['query1']=  $this->checkedApplications();
         $data['active']=TRUE;
         $this->load->view('College/coadmision',$data);
      
     }
+    
+    function uncheckedApp(){
+        $dat = array('submited' => 'yes');
+        $dat1 = array('depchek' => 'yes','colcheck' => 'no');
+        $this->db->where($dat1);
+        $this->db->order_by('app_id', 'asc');
+        $query1 = $this->db->get_where('tb_app_personal_info', $dat);
+        return $query1->result();
+    }
+    
     
     function applicant_details($userid){
             
@@ -118,7 +124,7 @@ class College_Coordinator extends CI_Controller{
         }
         
         function checkedApplications(){
-           $dat = array( 'appl_status'=>'yes');
+           $dat = array('depchek' => 'yes','colcheck' => 'yes');
            $query1 = $this->db->get_where('tb_app_personal_info', $dat);
            return $query1->result();
         }
@@ -244,4 +250,89 @@ class College_Coordinator extends CI_Controller{
                 pdf_create($doc,$file,TRUE);
          
      }
+     
+       function recommendation($id){
+        $this->form_validation->set_rules('rec', 'Recommendation', 'required|xss_clean');
+        if($this->input->post('rec')==='Do not admit'){
+             $this->form_validation->set_rules('reason', 'Reason for not admit', 'required|xss_clean|'); 
+        }
+        $this->form_validation->run();
+       if ($this->form_validation->run() == FALSE) {
+           echo form_error('rec','<div class="error">' ,'</div>');
+           echo form_error('reason','<div class="error">' ,'</div>');
+       }  else {
+           $this->load->model('admision_model');
+           Admision_model::recommendationCol($id);
+       }
+    }
+    
+    function applicationFoward($id){
+           $this->load->model('admision_model');
+           Admision_model::applicationFowardCol($id);
+            $data['query'] = $this->uncheckedApp();
+            $data['query1'] = $this->checkedApplications();
+            $data['active1'] = TRUE;
+            $data['msgfr']=TRUE;
+            $this->load->view('Department/coadmision', $data);
+    }
+    
+    function viewRecomendation($id){
+                 $check = array(
+                            'userid' => $id,
+                            'level' => 'department'
+                          );
+                $requery = $this->db->get_where('tb_admission_recomendation',$check);
+                if($requery->num_rows()>0){
+                    foreach ($requery->result() as $rereslt){
+                        $recmdtn=$rereslt->recomendation;
+                        $comment=$rereslt->comment;
+                    }
+                    if($recmdtn === 'Admit'){
+                       echo '<div class="alert alert-success">
+                         Applicant recomended for admission
+                          </div>' ; 
+                    }else{
+                        echo '<div class="alert alert-danger">
+                         Applicant not recomended for admission
+                          </div>'; 
+                        echo '<div>Reason</div>';
+                        echo '<div class="well well-sm">'.$comment.'</div>';
+                    }
+                    
+                }  else {
+                   echo '<div class="alert alert-warning">
+                         No any recommendation given yet
+                          </div>' ;
+                }
+   }
+  
+   function viewRecomendationcol($id){
+                 $check = array(
+                            'userid' => $id,
+                            'level' => 'college'
+                          );
+                $requery = $this->db->get_where('tb_admission_recomendation',$check);
+                if($requery->num_rows()>0){
+                    foreach ($requery->result() as $rereslt){
+                        $recmdtn=$rereslt->recomendation;
+                        $comment=$rereslt->comment;
+                    }
+                    if($recmdtn === 'Admit'){
+                       echo '<div class="alert alert-success">
+                         Applicant recomended for admission
+                          </div>' ; 
+                    }else{
+                        echo '<div class="alert alert-danger">
+                         Applicant not recomended for admission
+                          </div>'; 
+                        echo '<div>Reason</div>';
+                        echo '<div class="well well-sm">'.$comment.'</div>';
+                    }
+                    
+                }  else {
+                   echo '<div class="alert alert-warning">
+                         No any recommendation given yet
+                          </div>' ;
+                }
+   }
  }

@@ -74,4 +74,82 @@ class Admision_model extends CI_Model{
         $this->db->where('userid', $this->session->userdata('userid'));
         $this->db->update('tb_user', $data); 
     }
+    
+    function admisionCrt($filename){
+        $data = array(
+               'admision_criteria' => $filename
+            );
+         $this->db->update('tb_system_setting', $data);
+    }
+    
+    function recommendation($id){
+        
+        $mydata1 = array
+            (
+            'userid' => $id,
+            'recomendation' => $this->input->post('rec'),
+            'comment' => $this->input->post('reason'),
+            'level' => 'department'
+        );
+        $check = array(
+            'userid' => $id,
+            'level' => 'department'
+        );
+        $query = $this->db->get_where('tb_admission_recomendation',$check);
+
+        if ($query->num_rows() == 1) {
+            $this->db->where($check);
+            $this->db->update('tb_admission_recomendation', $mydata1);
+            echo '<div class="alert alert-success">Successfully Updated</div>';
+        } else {
+            $this->db->insert('tb_admission_recomendation', $mydata1);
+            echo '<div class="alert alert-success">Successfully recorded</div>';
+        }
+    }
+    
+    
+      function recommendationCol($id){
+        
+        $mydata1 = array
+            (
+            'userid' => $id,
+            'recomendation' => $this->input->post('rec'),
+            'comment' => $this->input->post('reason'),
+            'level' => 'college'
+        );
+        $check = array(
+            'userid' => $id,
+            'level' => 'college'
+        );
+        $query = $this->db->get_where('tb_admission_recomendation',$check);
+
+        if ($query->num_rows() == 1) {
+            $this->db->where($check);
+            $this->db->update('tb_admission_recomendation', $mydata1);
+            echo '<div class="alert alert-success">Successfully Updated</div>';
+        } else {
+            $this->db->insert('tb_admission_recomendation', $mydata1);
+            echo '<div class="alert alert-success">Successfully recorded</div>';
+        }
+    }
+    
+    
+    
+    function applicationFoward($id){
+        $check = array(
+            'userid' => $id
+        );
+        $mydata1=array('depchek'=>'yes');
+         $this->db->where($check);
+         $this->db->update('tb_app_personal_info', $mydata1);
+    }
+    
+    function applicationFowardCol($id){
+        $check = array(
+            'userid' => $id
+        );
+        $mydata1=array('colcheck'=>'yes');
+         $this->db->where($check);
+         $this->db->update('tb_app_personal_info', $mydata1);
+    }
 }

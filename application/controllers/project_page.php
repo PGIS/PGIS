@@ -79,7 +79,7 @@
              $date_sub=  $this->input->post('date_sub');
              $document=  base_url().'project_document/'.pg_escape_string($_FILES['userfile']['name']);
              $this->project_model->project_prog($sn,$internal,$external,$document,$date_sub);
-             $data['smgsuc']='<p class="alert alert-success">You project has sent.!</p>';
+             $data['smgsuc']='<p class="alert alert-success">You project has been sent.!</p>';
              $this->load->view('academic/project_view',$data);
              }  else {
                $data['data']='<p class="alert alert-danger">You havent assigned a supervisor</p>';
