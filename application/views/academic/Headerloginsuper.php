@@ -51,8 +51,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li><button class="mybtn btn-primary" style="margin-left: 4px;">
-                                <span class="glyphicon glyphicon-dashboard"></span>  PROJECT COORDINATOR</button></li>
+                        <li><button class="mybtn btn-primary btn-block" style="margin-left: 4px;">
+                                <span class="glyphicon glyphicon-dashboard"></span> HEAD DEPARTMENT</button></li>
                         <li><a href="<?php echo site_url('supervisor'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
                                 Unsigned supervisor</a>
                         </li>

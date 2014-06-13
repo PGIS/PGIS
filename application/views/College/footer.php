@@ -14,6 +14,12 @@
         $('#mytable1').dataTable(); 
         $('#tbx').dataTable(); 
     });
+    $(document).ready(function(){ 
+        $('#mytables').dataTable(); 
+    });
+    $(document).ready(function(){ 
+        $('#mytablesa').dataTable(); 
+    });
 </script>
    <script>
         $('#pop').popover();

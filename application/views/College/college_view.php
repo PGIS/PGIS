@@ -7,7 +7,7 @@
             </ul>
             <div class="tab-content" style="display: block">
               <div class="checked in tab-pane <?php if(isset($active1)){echo'active';}?>">
-                    <div class="pantop"><legend class="text text-info" style="padding-top: 20px;"><p>Records of assigned internal examiners</p></legend></div>
+                    <div class="pantop"><legend class="text text-info" style="padding-top: 20px;"><p>Records of assigned internal examiner</p></legend></div>
                     <table class="table table-striped" id="mytablesa">
                         <thead>
                             <tr>
@@ -26,7 +26,7 @@
                                        . '<td>'.$row1->surname.'</td>'
                                        . '<td>'.$row1->other_name.'</td>'
                                        . '<td>'.$row1->internal_examiner.'</td>'
-                                       . '<td>'.anchor('college/recent_detail/'.$row1->id,'<button class="btn btn-primary btn-xs">Details</button>').'</td>'
+                                       . '<td>'.anchor('college/recent_detail/'.$row1->registrationID,'<button class="btn btn-primary btn-xs">Details</button>').'</td>'
                                    . '</tr>';
                               }
                         }

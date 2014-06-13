@@ -13,11 +13,11 @@
      function index(){
          $data['query']=  $this->index2();
          $data['active1']=TRUE;
-         $this->load->view('academic/college_view',$data);   
+         $this->load->view('College/college_view',$data);   
      }
      function index2(){
-         $res1=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
-                 ->where(array('status'=>'assigned'))->get();
+         $res1=  $this->db->select('*')->from('tb_examiner_desert')->join('tb_student','tb_student.registrationID = tb_examiner_desert.registrationID')
+                 ->join('tb_project','tb_project.registration_id = tb_examiner_desert.registrationID')->where(array('statuz'=>'assigned'))->get();
          if($res1->num_rows()>0){
             return $res1;
             }
@@ -150,11 +150,17 @@
      }
      function external(){
          $data['query']=  $this->index2();
-         $this->load->view('academic/college_external',$data);
+         $this->load->view('College/college_external',$data);
      }
      function extendz($id){
-         $data['dit']=$id;
+         $res=  $this->db->get_where('tb_project',array('id'=>$id),1);
+         foreach ($res->result() as $row){
+             $data=array(
+                 'registid'=>$row->registration_id
+             );
+             unset($row);
          $this->load->view('academic/internal_assign',$data);
+         }
      }
     function record_entry($id){
          $query=  $this->db->get_where('tb_project',array('id'=>$id));
@@ -169,6 +175,64 @@
           echo '<p class="alert alert-danger">Oops something went wrong.</p>'; 
          }
      }
- }
-     
+     function assigned(){
+         $data['query']=  $this->index2();
+         $data['active']=TRUE;
+         $res=   $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                        ->where(array('status'=>'unassigned'))->get();
+          if($res->num_rows()>0){
+                $data['records']= $res;
+                $this->load->view('College/college_view_sup',$data);
+                 }  else {
+                  $this->load->view('College/college_view_sup',$data);   
+                 }
+     }
+     public function assign($id){
+      $data=  $this->project_display($id);
+      $data['teach']=  $this->teaching();
+      $this->load->view('College/college_assign',$data);
+     }
+ 
+ public function teaching(){
+         $res=  $this->db->select('*')->from('tb_user')->join('tb_staff','tb_staff.staffId = tb_user.userid')
+                 ->where(array('designation'=>'Teaching staff'))->get();
+         if($res->num_rows()>0){
+             return $res;
+         }
+     }
+
+     public function project_display($id) {
+      $res=$this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+              ->where(array('id'=>$id))->get();
+        if($res->num_rows()===1){
+            foreach ($res->result() as $row){
+                $array_data=array(
+                    'id'=>$row->id,
+                    'registrationID'=>$row->registration_id,
+                    'project_title'=>$row->project_title,
+                    'project_description'=>$row->project_description,
+                    'internal_supervisor'=>$row->Internal_supervisor,
+                    'surname'=>$row->surname,
+                    'lastname'=>$row->other_name
+                );
+            }
+            $this->session->set_userdata($array_data);
+            unset($row);
+            return $array_data;
+      }
+     }
+    function record_internal($userid){
+         $query=  $this->db->get_where('tb_project',array('registration_id'=>$userid));
+         if($query->num_rows()===1){
+             $row=$query->row();
+         $this->load->model('supervisor_model');
+         $external=  $this->input->post('assign');
+         $userid=$row->registration_id;
+         $this->supervisor_model->insert_supervisor($userid,$external);
+         echo '<p class="alert alert-success">Successifully assigned.</p>';
+         }  else {
+          echo '<p class="alert alert-danger">Oops something went wrong.</p>'; 
+         }
+     } 
+ }   
  
