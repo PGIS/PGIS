@@ -7,7 +7,7 @@
          $this->load->model('supervisor_event_model');
          if(!$this->session->userdata('logged_in')){
              redirect('logout');
-         }elseif ($this->session->userdata('userid')=='Supervisor') {
+         }elseif ($this->session->userdata('user_role')!=='Head department') {
              redirect('logout');
         }
      }

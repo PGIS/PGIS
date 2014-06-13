@@ -3,19 +3,18 @@
      function __construct() {
          parent::__construct();
      }
-     public function insert_supervisor($id,$external,$comment){
+     public function insert_supervisor($userid,$internal){
          $data=array(
-               'id'=>$id,
-               'external_supervisor'=>$external,
-               'comments'=>$comment,
-               'status'=>'assigned'
+               'registrationID'=>$userid,
+               'internal_examiner'=>$internal,
+               'statuz'=>'assigned'
            );
-           $res=  $this->db->get_where('tb_project',array('id'=>$id));
+           $res=  $this->db->get_where('tb_examiner_desert',array('registrationID'=>$userid));
            if($res->num_rows()===1){
-               $this->db->where('id',$id);
-               $this->db->update('tb_project',$data);
+               $this->db->where('registrationID',$userid);
+               $this->db->update('tb_examiner_desert',$data);
            }  else {
-               return FALSE; 
+               $this->db->insert('tb_examiner_desert',$data);
            }
      }
      function supervisor_assign($id,$email){

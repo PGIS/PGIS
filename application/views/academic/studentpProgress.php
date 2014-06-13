@@ -9,7 +9,7 @@
             <div class="tab-pane active" id="home">
                 <br>
                 <div class="col-md-6">
-                    <?php 
+                   <?php 
                     $res=  $this->db->get_where('tb_student',array('department'=>$this->session->userdata('mydepartment')));
                     if($res->num_rows()>0){
                         echo 
@@ -50,7 +50,6 @@
                        echo ' </tbody></table>';
                     }
                     ?>
-                        
                 </div>
                 <div class="col-md-6">
                     <div class="panel panel-success">

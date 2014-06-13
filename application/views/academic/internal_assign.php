@@ -1,6 +1,6 @@
 <div class="succ">
 <p class="alert alert-warning"><span class="glyphicon glyphicon-info-sign"></span> List of Staff Present to be assigned</p>
-<?php echo form_open('college/record_entry/'.$dit,array('id'=>'ajax'));?>
+<?php echo form_open('college/record_internal/'.$registid,array('id'=>'ajax'));?>
 <table class="table table-condensed table-striped" id="dist">
       <thead><tr><th>CHOOSE</th><th>FULL NAME</th><th>EMAIL</th></tr></thead>
       <tbody>
