@@ -140,7 +140,22 @@
                           <h6 class="modal-title" id="myModalLabel"><?php echo $value;?></h6>
                         </div>
                         <div class="modal-body">
-                            <img src="<?php echo base_url('uploads/'.$userid.'/'.$value);?>" alt="some_text">
+                             <?php
+                            $fiarray=array('image/jpeg','image/pjpeg','image/png',
+                                    'image/gif','image/bmp','image/tiff','image/svg+xml','image/vnd.microsoft.icon');
+                             if(in_array(get_mime_by_extension($value), $fiarray)){
+                            ?>
+                            <img src="<?php echo base_url('uploads/'.$userid.'/'.$value);?>" alt="some_text">  
+                                <?php  
+                                }  else {
+                                  ?>
+                            <iframe id="viewer"
+                                src = "<?php echo base_url();?>ViewerJS/#<?php echo base_url('uploads/'.$userid.'/'.$value);?>" width='100%' height='500'
+                                allowfullscreen webkitallowfullscreen>
+                             </iframe>
+                              <?php  
+                                }
+                              ?>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -386,17 +401,30 @@
               <h6 class="modal-title" id="myModalLabel">View admission Criteria</h6>
             </div>
             <div class="modal-body">
-                 <img src="<?php
+                 <?php
                  $this->db->select('admision_criteria');
                  $crquery = $this->db->get('tb_system_setting');
                     if($crquery->num_rows()>0){
                         foreach($crquery->result()as $crt){
                             $ctrfile=$crt->admision_criteria;
                         }
-                        echo $ctrfile;
                     }
-                
-                ?>" alt="some_text">
+                    $fiarray=array('image/jpeg','image/pjpeg','image/png',
+                        'image/gif','image/bmp','image/tiff','image/svg+xml','image/vnd.microsoft.icon');
+                    if(in_array(get_mime_by_extension($ctrfile), $fiarray)){
+                    ?>
+                      <img src="<?php echo $ctrfile;?>" alt="some_text">  
+                    <?php  
+                    }  else {
+                      ?>
+                <iframe id="viewer"
+                    src = "<?php echo base_url();?>ViewerJS/#<?php echo $ctrfile;?>" width='100%' height='500'
+                    allowfullscreen webkitallowfullscreen>
+                 </iframe>
+                  <?php  
+                    }
+                  ?>
+                 
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
