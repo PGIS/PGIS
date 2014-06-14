@@ -12,6 +12,7 @@
      }
      function index(){
          $data['query']=  $this->index2();
+         $data['query1']=  $this->external_unass();
          $data['active1']=TRUE;
          $this->load->view('College/college_view',$data);   
      }
@@ -32,7 +33,7 @@
 
      public function recent_detail($id){
          $data['recent']=$id;
-         $this->load->view('academic/college_recent_detail',$data);
+         $this->load->view('College/college_recent_detail',$data);
      }
      function details($id){
          $this->db->select('*');
@@ -263,6 +264,52 @@
          }
          $this->db->where('registration_id',$userid);
          $this->db->update('tb_project',array('internal_ex_status'=>'assigned'));
-     } 
+     }
+     function presentationFeedback(){
+         $this->load->view('College/desertationlist');
+     }
+     function studentVerdicts($id){
+         $this->db->select('*');
+         $this->db->from('tb_project');
+         $this->db->where('id',$id);
+         $this->db->join('tb_student','tb_student.registrationID = tb_project.registration_id');
+         $ver =$this->db->get();
+         foreach ($ver->result() as $list){
+             $data=array(
+                 'student_id'=>$list->registrationID,
+                 'ptitle'=>$list->project_title,
+                 'lname'=>$list->surname,
+                 'sname'=>$list->other_name,
+             );
+         }
+         
+         $this->load->view('College/superverdlist',$data); 
+     }
+     function viewVerdicts($id){
+     $this->db->select('*');
+     $this->db->from('tb_verdicts');
+     $this->db->where('ver_id',$id);
+     $this->db->join('tb_student','tb_student.registrationID = tb_verdicts.registrationId');
+     $this->db->join('tb_project','tb_project.id = tb_verdicts.project_id');
+     $verdic =$this->db->get();
+     foreach ($verdic->result()as $ver){
+         $data=array(
+                    'type'=>$ver->type,
+                    'registrationid'=>$ver->registrationID,
+                    'level'=>$ver->level,
+                    'comments'=>$ver->comment,
+                    'verdict'=>$ver->verdicts,
+                    'panel'=>$ver->panel,
+                    'lname'=>$ver->surname,
+                    'sname'=>$ver->other_name,
+                    'department'=>$ver->department,
+                    'programe'=>$ver->program,
+                    'title'=>$ver->project_title,
+                     'prdate'=>$ver->pr_date
+                );
+            }
+            unset($ver);
+     $this->load->view('College/teachinverdics',$data);
+    }
  }   
  

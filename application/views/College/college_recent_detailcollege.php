@@ -10,7 +10,7 @@ if($this->session->userdata('user_role')==='college coordinator'){
         <div class="col-lg-12">
             <?php
                 $res=$this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
-                        ->where(array('registration_id'=>$recent))->get();
+                        ->where(array('id'=>$recent))->get();
                 if($res->num_rows()===1){
                     foreach ($res->result() as $row){
                     ?>

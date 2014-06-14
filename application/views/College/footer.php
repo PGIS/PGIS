@@ -18,7 +18,9 @@
         $('#mytables').dataTable(); 
     });
     $(document).ready(function(){ 
-        $('#mytablesa').dataTable(); 
+        $('#mytablesa').dataTable();
+        $('#mytablesz').dataTable();
+        $('#verlist').dataTable();
     });
 </script>
    <script>

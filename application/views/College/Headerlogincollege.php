@@ -56,11 +56,12 @@
                         <li><a href="<?php echo site_url('college/assigned'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
                                 Unsigned supervisor</a>
                         </li>
-                        <li><a href="<?php echo site_url('college/external'); ?>"><span class="glyphicon glyphicon-align-center"></span><span class="glyphicon glyphicon-circle-arrow-right pull-right"></span>
-                                assign examiner</a>
-                        </li>
                         <li><a href="<?php echo site_url('college'); ?>"><span class="glyphicon glyphicon-align-justify"></span>
+                                <span class="glyphicon glyphicon-circle-arrow-right pull-right"></span>
                                 assigned examiner</a>
+                        </li>
+                        <li>    
+                            <a href="<?php echo site_url('college/presentationFeedback'); ?>"><span class="glyphicon glyphicon-retweet"></span>   Presentation Feedback</a>
                         </li>
                         <li>    
                             <a href="<?php echo site_url('collegStudentManage'); ?>"><span class="glyphicon glyphicon-road"></span>   Students Progress</a>

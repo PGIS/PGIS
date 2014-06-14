@@ -19,7 +19,7 @@
                             . '<tr><td>'.$row->registration_id.'</td>'
                             . '<td>'.$row->surname.' '.$row->other_name.'</td>'
                             . '<td>'.$row->project_title.'</td>'
-                            . '<td class="text-center">'.anchor('college_Coordinator/pr_feed/'.$row->registration_id,'<button class="btn btn-success btn-xs">feedback</button>').'  '.anchor('college_Coordinator/recent_detail/'.$row->id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share"></span>view</button>').'</td></tr></tbody>';
+                            . '<td class="text-center">'.anchor('college_Coordinator/pr_feed/'.$row->registration_id,'<button class="btn btn-success btn-xs">feedback</button>').'  '.anchor('college_Coordinator/recent_detailcollege/'.$row->id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-share"></span>view</button>').'</td></tr></tbody>';
                         }
                         
                     }
