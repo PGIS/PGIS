@@ -45,19 +45,31 @@
                                 <th>Student Name</th>
                                 <th>Project Tittle</th>
                                 <th>Supervisor</th>
+                                <th>Second Supervisor</th>
                                 <th>Status<b class="caret"></b></th>
                             </tr></thead>
                         <tbody>
                             <?php if(isset($query)){
                               foreach ($query->result() as $row1){
-                              
+                                  if(($row1->sec_internal_supervisor)!=='' && ($row1->sec_internal_supervisor)!==NULL){
                                echo '<tr>'
                                        . '<td>'.$row1->registration_id.'</td>'
                                        . '<td>'.$row1->surname.' '.$row1->other_name.'</td>'
                                        . '<td>'.$row1->project_title.'</td>'
                                        . '<td>'.$row1->Internal_supervisor.'</td>'
-                                       . '<td class="text text-info"><b class="glyphicon glyphicon-ok"></b>assigned</td>'
+                                       . '<td>'.$row1->sec_internal_supervisor.'</td>'
+                                       . '<td class="text text-info" title="assigned at both departmet  and college level"><b class="glyphicon glyphicon-ok"></b>assigned <span class="badge">2</span></td>'
                                      . '</tr>';
+                                  } else {
+                                      echo '<tr>'
+                                       . '<td>'.$row1->registration_id.'</td>'
+                                       . '<td>'.$row1->surname.' '.$row1->other_name.'</td>'
+                                       . '<td>'.$row1->project_title.'</td>'
+                                       . '<td>'.$row1->Internal_supervisor.'</td>'
+                                       . '<td>'.$row1->sec_internal_supervisor.'</td>'
+                                       . '<td class="text text-info" title="assigned at departmet level"><b class="glyphicon glyphicon-ok"></b>assigned <span class="badge">1</span></td>'
+                                     . '</tr>';
+                                  }
                               }
                             }
                         
@@ -68,6 +80,9 @@
         </div>    
         </div>
     </div>
+    <script>
+        $(document).tooltip();
+    </script>
 </div>
 <?php include_once 'footer.php';?>
 

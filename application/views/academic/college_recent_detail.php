@@ -4,18 +4,22 @@
         <div class="col-lg-12">
             <?php
                 $res=$this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
-                        ->where(array('registration_id'=>$recent))->get();
+                       ->join('tb_examiner_desert','tb_examiner_desert.registrationID = tb_project.registration_id')->where(array('registration_id'=>$recent))->get();
                 if($res->num_rows()===1){
                     foreach ($res->result() as $row){
                     ?>
-                <div class="alert alert-info">
-                <p><label>Student Full name: <?php echo ''.$row->surname .' '.$row->other_name ;?>
-                    </label><label class="text-primary pull-right">Registration #:<?php echo ''.$row->registration_id;?></label></p>
-                <p><label>Department: <?php echo ''.$row->department;?></label></p>
-                <p><label>Program:<?php echo ''.$row->program;?></label></p>
-                <p><label>Dissertation Title:<?php echo ''.$row->project_title;?></label></p>
-                <p><label>Internal supervisor:<?php echo ''.$row->Internal_supervisor;?></label></p>
-                
+            <div class="col-lg-12 alert alert-info">
+            <div class="col-lg-6">
+                <p><label>Student Full name: <?php echo ' '.$row->surname .' '.$row->other_name ;?>
+                </label><label class="text-primary pull-left">Registration #:<?php echo ' '.$row->registration_id;?></label></p>
+                <p><label>Department: <?php echo ' '.$row->department;?></label></p>
+                <p><label>Program:<?php echo ' '.$row->program;?></label></p>
+                <p><label>Dissertation Title:<?php echo ' '.$row->project_title;?></label></p>
+                <p><label>Internal supervisor:<?php echo ' '.$row->Internal_supervisor;?></label></p>
+              </div>
+            <div class="col-lg-6">
+                <p><label>Internal examiner:<?php echo ' '.$row->internal_examiner;?></label></p>
+            </div>
             </div>
             <div class="col-md-6">
                 <div class="well well-sm"><label>Student presentation feedback</label></div>

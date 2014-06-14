@@ -94,7 +94,7 @@
                  foreach ($res->result() as $row){
                  $array=array(
                      'internal'=>$row->Internal_supervisor,
-                     'external'=>$row->external_supervisor
+                     'external'=>$row->sec_internal_supervisor
                  );
              }
              unset($row);
@@ -114,7 +114,7 @@
                     foreach ($res->result() as $row){
                         $array_data=array(
                             'supervisor'=>$row->Internal_supervisor,
-                            'external'=>$row->external_supervisor
+                            'external'=>$row->sec_internal_supervisor
                         );
                     }
                     unset($row);

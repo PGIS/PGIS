@@ -460,7 +460,7 @@ class Application extends CI_Controller {
                       <head><title></title></head>
                       <body>';
         $message .='<p> Dear '.$salt.' your have been chosen to be on behalf of the  ' . $this->session->userdata('userid') . ' as the referee </p>';
-        $message .='<p> Please follow this link to finish your tasks <strong><a href="'.base_url().'referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
+        $message .='<p> Please follow this link to finish your tasks <strong><a href="'.base_url().'index.php/referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
         $message .='<p> Please find the the attached file for more description</p>';
         $message .='<p> Thanks !!</p>';
         $message .='<p> PGIS TEAM</p>';
@@ -494,7 +494,7 @@ class Application extends CI_Controller {
                       <head><title></title></head>
                       <body>';
         $message .='<p> Dear '.$salt.' your have been chosen to be on behalf of the  ' . $this->session->userdata('userid') . ' as the referee </p>';
-        $message .='<p> Please follow this link to finish your tasks <strong><a href="'.base_url().'referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
+        $message .='<p> Please follow this link to finish your tasks <strong><a href="'.base_url().'index.php/referee_page/referee_form/'.$this->session->userdata('userid').'/'.$salt.'"> click here..!</a></strong></p>';
         $message .='<p> Please find the the attached file for more description</p>';
         $message .='<p> Thanks !!</p>';
         $message .='<p> PGIS TEAM</p>';
@@ -592,6 +592,162 @@ class Application extends CI_Controller {
             $this->load->view('application/capplication', $data);
         } else {
             $data['upload_data'] = "Uploading was successful";
+            $this->load->view('application/capplication', $data);
+        }
+    }
+    function do_upload1() {
+        $data1 = $this->show_User_data();
+        $data4 = $this->applifinan_data();
+        $data2 = $this->show_user_history();
+        $data3 = $this->referee_spon_data();
+        $data = $data2 + $data1 + $data3 + $data4;
+        $data['active7'] = TRUE;
+        if (!is_dir('uploads/' . $this->session->userdata('userid'))) {
+            mkdir('./uploads/' . $this->session->userdata('userid'), 0777, TRUE);
+        }
+
+        $config['upload_path'] = './uploads/' . $this->session->userdata('userid');
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['max_size'] = '2048';
+        $config['remove_spaces'] = TRUE;
+        $config['overwrite'] = true;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if(!$this->upload->do_upload()) {
+            $data['error1'] = $this->upload->display_errors();
+            $this->load->view('application/capplication', $data);
+         } else {
+            $data['upload_data1'] = "Uploading was successful";
+            $this->load->view('application/capplication', $data);
+        }
+    }
+    function do_upload2() {
+        $data1 = $this->show_User_data();
+        $data4 = $this->applifinan_data();
+        $data2 = $this->show_user_history();
+        $data3 = $this->referee_spon_data();
+        $data = $data2 + $data1 + $data3 + $data4;
+        $data['active7'] = TRUE;
+        if (!is_dir('uploads/' . $this->session->userdata('userid'))) {
+            mkdir('./uploads/' . $this->session->userdata('userid'), 0777, TRUE);
+        }
+
+        $config['upload_path'] = './uploads/' . $this->session->userdata('userid');
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['max_size'] = '2048';
+        $config['remove_spaces'] = TRUE;
+        $config['overwrite'] = true;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if(!$this->upload->do_upload()) {
+            $data['error2'] = $this->upload->display_errors();
+            $this->load->view('application/capplication', $data);
+        } else {
+            $data['upload_data2'] = "Uploading was successful";
+            $this->load->view('application/capplication', $data);
+        }
+    }
+    function do_upload3() {
+        $data1 = $this->show_User_data();
+        $data4 = $this->applifinan_data();
+        $data2 = $this->show_user_history();
+        $data3 = $this->referee_spon_data();
+        $data = $data2 + $data1 + $data3 + $data4;
+        $data['active7'] = TRUE;
+        if (!is_dir('uploads/' . $this->session->userdata('userid'))) {
+            mkdir('./uploads/' . $this->session->userdata('userid'), 0777, TRUE);
+        }
+
+        $config['upload_path'] = './uploads/' . $this->session->userdata('userid');
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['max_size'] = '2048';
+        $config['remove_spaces'] = TRUE;
+        $config['overwrite'] = true;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if(!$this->upload->do_upload()) {
+            $data['error3'] = $this->upload->display_errors();
+            $this->load->view('application/capplication', $data);
+        } else {
+            $data['upload_data3'] = "Uploading was successful";
+            $this->load->view('application/capplication', $data);
+        }
+    }
+    function do_upload4() {
+        $data1 = $this->show_User_data();
+        $data4 = $this->applifinan_data();
+        $data2 = $this->show_user_history();
+        $data3 = $this->referee_spon_data();
+        $data = $data2 + $data1 + $data3 + $data4;
+        $data['active7'] = TRUE;
+        if (!is_dir('uploads/' . $this->session->userdata('userid'))) {
+            mkdir('./uploads/' . $this->session->userdata('userid'), 0777, TRUE);
+        }
+
+        $config['upload_path'] = './uploads/' . $this->session->userdata('userid');
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['max_size'] = '2048';
+        $config['remove_spaces'] = TRUE;
+        $config['overwrite'] = true;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if(!$this->upload->do_upload()) {
+            $data['error4'] = $this->upload->display_errors();
+            $this->load->view('application/capplication', $data);
+        } else {
+            $data['upload_data4'] = "Uploading was successful";
+            $this->load->view('application/capplication', $data);
+        }
+    }
+    function do_upload5() {
+        $data1 = $this->show_User_data();
+        $data4 = $this->applifinan_data();
+        $data2 = $this->show_user_history();
+        $data3 = $this->referee_spon_data();
+        $data = $data2 + $data1 + $data3 + $data4;
+        $data['active7'] = TRUE;
+        if (!is_dir('uploads/' . $this->session->userdata('userid'))) {
+            mkdir('./uploads/' . $this->session->userdata('userid'), 0777, TRUE);
+        }
+
+        $config['upload_path'] = './uploads/' . $this->session->userdata('userid');
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['max_size'] = '2048';
+        $config['remove_spaces'] = TRUE;
+        $config['overwrite'] = true;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if(!$this->upload->do_upload()) {
+            $data['error5'] = $this->upload->display_errors();
+            $this->load->view('application/capplication', $data);
+        } else {
+            $data['upload_data5'] = "Uploading was successful";
+            $this->load->view('application/capplication', $data);
+        }
+    }
+    function do_upload6() {
+        $data1 = $this->show_User_data();
+        $data4 = $this->applifinan_data();
+        $data2 = $this->show_user_history();
+        $data3 = $this->referee_spon_data();
+        $data = $data2 + $data1 + $data3 + $data4;
+        $data['active7'] = TRUE;
+        if (!is_dir('uploads/' . $this->session->userdata('userid'))) {
+            mkdir('./uploads/' . $this->session->userdata('userid'), 0777, TRUE);
+        }
+
+        $config['upload_path'] = './uploads/' . $this->session->userdata('userid');
+        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['max_size'] = '2048';
+        $config['remove_spaces'] = TRUE;
+        $config['overwrite'] = true;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if(!$this->upload->do_upload()) {
+            $data['error6'] = $this->upload->display_errors();
+            $this->load->view('application/capplication', $data);
+        } else {
+            $data['upload_data6'] = "Uploading was successful";
             $this->load->view('application/capplication', $data);
         }
     }

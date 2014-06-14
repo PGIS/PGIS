@@ -22,6 +22,14 @@
             return $res1;
             }
      }
+     function external_unass(){
+        $res1=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                 ->where(array('internal_ex_status'=>'unassigned'))->get();
+         if($res1->num_rows()>0){
+            return $res1;
+            } 
+     }
+
      public function recent_detail($id){
          $data['recent']=$id;
          $this->load->view('academic/college_recent_detail',$data);
@@ -149,7 +157,7 @@
          $this->load->view('academic/college_presentation_feedback',$data);
      }
      function external(){
-         $data['query']=  $this->index2();
+         $data['query']=  $this->external_unass();
          $this->load->view('College/college_external',$data);
      }
      function extendz($id){
@@ -165,21 +173,41 @@
     function record_entry($id){
          $query=  $this->db->get_where('tb_project',array('id'=>$id));
          if($query->num_rows()===1){
+             $row=$query->row();
          $this->load->model('supervisor_model');
          $email=  $this->input->post('assign');
-         $this->supervisor_model->supervisor_assign($id,$email);
+         if($row->Internal_supervisor===$email){
+             echo '<p class="alert alert-danger">Already assigned as the first supervisor</p>';
+         }  else {
+         $this->supervisor_model->sec_supervisor_assign($id,$email);
          $this->db->where('id',$id);
          $this->db->update('tb_project',array('status'=>'assigned'));
          echo '<p class="alert alert-success">Successifully assigned.</p>';
-         }  else {
+         }
+         }else {
           echo '<p class="alert alert-danger">Oops something went wrong.</p>'; 
          }
      }
-     function assigned(){
-         $data['query']=  $this->index2();
+     function index3(){
+         $res1=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                 ->where(array('status_by_principle'=>'assigned'))->get();
+         $res2=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                 ->where(array('status'=>'assigned'))->get();
+         $res3=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
+                 ->where(array('status'=>'assigned','status_by_principle'=>'assigned'))->get();
+         if($res1->num_rows()>0){
+            return $res1;
+            }elseif ($res2->num_rows()>0) {
+             return $res2;
+        }elseif ($res3->num_rows()>0) {
+            return $res3;
+        } 
+     }
+        function assigned(){
+         $data['query']=  $this->index3();
          $data['active']=TRUE;
          $res=   $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
-                        ->where(array('status'=>'unassigned'))->get();
+                        ->where(array('status_by_principle'=>'unassigned'))->get();
           if($res->num_rows()>0){
                 $data['records']= $res;
                 $this->load->view('College/college_view_sup',$data);
@@ -233,6 +261,8 @@
          }  else {
           echo '<p class="alert alert-danger">Oops something went wrong.</p>'; 
          }
+         $this->db->where('registration_id',$userid);
+         $this->db->update('tb_project',array('internal_ex_status'=>'assigned'));
      } 
  }   
  
