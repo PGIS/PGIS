@@ -41,6 +41,8 @@ class Change_form extends CI_Controller {
              $this->load->view('College/chang_pwd');
        }elseif ($this->session->userdata('user_role') === 'alumni') {
             $this->load->view('alumni/chang_pwd');
+       }elseif ($this->session->userdata('user_role') === 'postgraduate director') {
+            $this->load->view('Directorate/chang_pwd');
         }
     }
 
@@ -95,7 +97,9 @@ class Change_form extends CI_Controller {
              $this->load->view('College/chang_pwd',$data);
        }elseif ($this->session->userdata('user_role')==='head of department') {
              $this->load->view('Department/chang_pwd_1',$data);
-       }
+       }elseif ($this->session->userdata('user_role') === 'postgraduate director') {
+            $this->load->view('Directorate/chang_pwd',$data);
+        }
     }
 
 }

@@ -160,21 +160,243 @@
            </div>
        </div>
        <div class="col-md-4 pull-right">
-           <p><?php
+           <div class="col-md-12 pd"><?php
            $this->db->where('userid', $userid);
             $thquery = $this->db->get_where('tb_finance_application', array('appl_status' =>'accepted'));
             if($thquery->num_rows()==1){
-               echo '<button type="button" class="btn btn-success btn-sm">Application fee Valid</button>';
+               echo '<button type="button" class="col-md-12 btn btn-success btn-xs">Application fee Valid</button>';
             }  else {
-            echo '<button type="button" class="btn btn-warning btn-sm">Application fee not yet Verified</button>';    
+            echo '<button type="button" class="col-md-12 btn btn-warning btn-xs">Application fee not yet Verified</button>';    
             }
-           ?>
-           </p>
-            <p><button class="btn btn-sm btn-info">View department Recommendation</button></p>
-           <p><button class="btn btn-sm btn-info">Register recommendation</button></p>
-           <p><button class="btn btn-sm btn-info">View recommendation</button></p>
+            ?>
+          </div>
            
+            <div class="col-md-12 pd">
+              <a href="#" data-toggle="modal" data-target="#recomenddepartmt">
+                   <button class="col-md-12 btn btn-xs btn-info">View department Recommendation</button>
+              </a>
+           </div>
+           <div class="col-md-12 pd">
+              <a href="#" data-toggle="modal" data-target="#recomend">
+                   <button class="col-md-12 btn btn-xs btn-info">Give recommendation</button>
+              </a>
+          </div>
+            <div class="col-md-12 pd">
+              <a href="#" data-toggle="modal" data-target="#viewrecom">
+                 <button class="col-md-12 btn btn-xs btn-info">View recommendation</button> 
+              </a>
+              
+          </div>
+           
+           <div class="col-md-12 pd">
+               <a href="#" data-toggle="modal" data-target="#viewcrit">
+                   <button class="col-md-12 btn btn-xs btn-info">View admission criteria</button>
+               </a>
+          </div>
+            
+           <?php
+           $check1 = array(
+                            'userid' => $userid,
+                            'level' => 'college'
+                          );
+                $requery1 = $this->db->get_where('tb_admission_recomendation',$check1);
+                if($requery1->num_rows()>0){
+                    echo '<div class="col-md-12 pd">
+                            <a href="'.site_url('college_Coordinator/applicationFoward/'. $userid).'">
+                            <button class="col-md-12 btn btn-xs btn-info">Forward Applications</button>
+                            </a>
+                           </div>';
+                }
+           ?>
        </div>
       
     </div>
+
+<div class="modal fade" id="recomend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <center>
+                  <h6 class="modal-title" id="myModalLabel">Recommendation</h6>
+              </center>
+            </div>
+              <div class="modal-body" >
+                <form id="recomendation">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Recommendation
+                            </td>
+                            <td>
+                                <select class="form-control" id="cy" name="rec">
+                                    <option></option>
+                                    <option>Admit</option>
+                                    <option>Do not admit</option>
+                                </select>
+                            </td> 
+                          </tr>
+                          <tr>
+                              <td colspan="2" id="InputsWrapper">
+                                  
+                              </td>
+                          </tr>
+                          <tr>
+                              <td colspan="2">
+                                  <button class="btn btn-xs btn-info" type="submit">
+                                      Submit recommendation
+                                  </button>
+                              </td>
+                          </tr>                                                                     
+                    </table>
+                </form>
+                  <div class="col-md-12" id="recomid">
+                      
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+           
+           <script>
+                $("#recomendation").submit(function(event) {
+                event.preventDefault();
+                var url = "<?php echo site_url('college_Coordinator/recommendation/'. $userid); ?>";
+                var fdata = $('#recomendation').serializeArray();
+                $.post(url, fdata, function(data) {
+                $('#recomid').html(data);
+             });
+             });
+         </script>
+      </div>
+<div class="modal fade" id="viewrecom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <center><h4 class="modal-title" id="myModalLabel">College recommendation for Admission</h4></center>
+            </div>
+            <div class="modal-body">
+                <?php
+                 $check = array(
+                            'userid' => $userid,
+                            'level' => 'college'
+                          );
+                $requery = $this->db->get_where('tb_admission_recomendation',$check);
+                if($requery->num_rows()>0){
+                    foreach ($requery->result() as $rereslt){
+                        $recmdtn=$rereslt->recomendation;
+                        $comment=$rereslt->comment;
+                    }
+                    if($recmdtn === 'Admit'){
+                       echo '<div class="alert alert-success">
+                         Applicant recomended for admission
+                          </div>' ; 
+                    }else{
+                        echo '<div class="alert alert-danger">
+                         Applicant not recomended for admission
+                          </div>'; 
+                        echo '<div>Reason</div>';
+                        echo '<div class="well well-sm">'.$comment.'</div>';
+                    }
+                    
+                }  else {
+                   echo '<div class="alert alert-warning">
+                         No any recommendation given yet
+                          </div>' ;
+                }
+                ?> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="modal fade" id="recomenddepartmt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <center><h4 class="modal-title" id="myModalLabel">Department recommendation for Admission</h4></center>
+            </div>
+            <div class="modal-body">
+                <?php
+                 $check = array(
+                            'userid' => $userid,
+                            'level' => 'department'
+                          );
+                $requery = $this->db->get_where('tb_admission_recomendation',$check);
+                if($requery->num_rows()>0){
+                    foreach ($requery->result() as $rereslt){
+                        $recmdtn=$rereslt->recomendation;
+                        $comment=$rereslt->comment;
+                    }
+                    if($recmdtn === 'Admit'){
+                       echo '<div class="alert alert-success">
+                         Applicant recomended for admission
+                          </div>' ; 
+                    }else{
+                        echo '<div class="alert alert-danger">
+                         Applicant not recomended for admission
+                          </div>'; 
+                        echo '<div>Reason</div>';
+                        echo '<div class="well well-sm">'.$comment.'</div>';
+                    }
+                    
+                }  else {
+                   echo '<div class="alert alert-warning">
+                         No any recommendation given yet
+                          </div>' ;
+                }
+                ?> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+ <div class="modal fade" id="viewcrit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h6 class="modal-title" id="myModalLabel">View admission Criteria</h6>
+            </div>
+            <div class="modal-body">
+                 <img src="<?php
+                 $this->db->select('admision_criteria');
+                 $crquery = $this->db->get('tb_system_setting');
+                    if($crquery->num_rows()>0){
+                        foreach($crquery->result()as $crt){
+                            $ctrfile=$crt->admision_criteria;
+                        }
+                        echo $ctrfile;
+                    }
+                
+                ?>" alt="some_text">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<script>
+    $("#cy").change(function() {
+    var f = document.getElementById("cy").value;
+    if(f==='Do not admit'){
+        $('#InputsWrapper').append('<p class="rm">Reason for not admit<textarea name="reason" class="form-control" rows="8"></textarea></p>');
+                
+    }
+    if(f==='Admit'){
+        $('.rm').replaceWith('');
+    }
+});
+</script>
 <?php include_once 'footer.php';?>

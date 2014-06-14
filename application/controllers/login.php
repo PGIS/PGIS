@@ -99,6 +99,10 @@ class login extends CI_Controller {
                 $s_data=array('user_role'=>'department coordinator');
                 $this->session->set_userdata($s_data);
                 redirect('department_Coordinator');
+            }elseif(in_array('postgraduate director',$myArray)){
+                $s_data=array('user_role'=>'postgraduate director');
+                $this->session->set_userdata($s_data);
+                redirect('directorPgis');
             }elseif(in_array('head of department',$myArray)){
                 $s_data=array('user_role'=>'head of department');
                 $this->session->set_userdata($s_data);
