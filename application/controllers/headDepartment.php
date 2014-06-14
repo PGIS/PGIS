@@ -197,4 +197,41 @@ class HeadDepartment extends CI_Controller {
                 pdf_create($doc,$file,TRUE);
          
      }
+     
+     function applicantsAdmission(){
+        $dat = array('depchek' => 'yes');
+        $query1 = $this->db->get_where('tb_app_personal_info', $dat);
+        $data['query1']= $query1->result();
+        $this->load->view('Department/depHeadViewAdmission', $data);
+     }
+     
+      function viewRecomendation($id){
+                 $check = array(
+                            'userid' => $id,
+                            'level' => 'department'
+                          );
+                $requery = $this->db->get_where('tb_admission_recomendation',$check);
+                if($requery->num_rows()>0){
+                    foreach ($requery->result() as $rereslt){
+                        $recmdtn=$rereslt->recomendation;
+                        $comment=$rereslt->comment;
+                    }
+                    if($recmdtn === 'Admit'){
+                       echo '<div class="alert alert-success">
+                         Applicant recomended for admission
+                          </div>' ; 
+                    }else{
+                        echo '<div class="alert alert-danger">
+                         Applicant not recomended for admission
+                          </div>'; 
+                        echo '<div>Reason</div>';
+                        echo '<div class="well well-sm">'.$comment.'</div>';
+                    }
+                    
+                }  else {
+                   echo '<div class="alert alert-warning">
+                         No any recommendation given yet
+                          </div>' ;
+                }
+   }
 }
