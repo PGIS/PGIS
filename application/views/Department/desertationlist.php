@@ -58,5 +58,5 @@ if ($this->session->userdata('user_role')==='department coordinator') {
                 ?>
             </tbody>
         </table>
-    </div>
+   </div>
   <?php include_once 'footer.php'; ?>

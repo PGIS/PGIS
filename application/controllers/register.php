@@ -85,7 +85,7 @@ class Register extends CI_Controller {
                     <head><title></title></head>
                     <body>';
            $message.='<p>Dear'.' '.$email.'</p>';
-           $message.='<p>To change your password please <strong><a href="http://localhost/pgis/index.php/register/password_lost/'.$email.'">click here</a></strong> to retrive lost password</p>';
+           $message.='<p>To change your password please <strong><a href="'.base_url().'index.php/register/password_lost/'.$email.'">click here</a></strong> to retrive lost password</p>';
            $message.='<p>Thanks !!!!</p>';
            $message.='<p>PGIS TEAM</p>';
            $message.='</body>';

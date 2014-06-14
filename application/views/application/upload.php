@@ -2,64 +2,206 @@
     <div class='pantop'><h4>Document Upload</h4></div>
     <p >
       
-       <h5>Documents to upload</h5>
-       
-        <table class="mytable" border='1'>
-       
-        <?php
-            if(isset($error)){
-                 echo '<div class="alert alert-danger">'.$error.'</div>';
+    <h5 class="text-info">Documents to upload</h5>
+       <table class="mytable table-bordered">
+          <?php if(isset($error)){
+                  echo'<div class="alert fade in">
+                        <a type="button" class="close" data-dismiss="alert">&times;</a>
+                       <div class="alert alert-danger">'.$error.'</div>
+                        </div>';
+                  
+                 }elseif (isset ($error1)) {
+                       echo'<div class="alert fade in">
+                        <a type="button" class="close" data-dismiss="alert">&times;</a>
+                       <div class="alert alert-danger">'.$error1.'</div>
+                        </div>';
+                   }elseif (isset ($error2)) {
+                echo'<div class="alert fade in">
+                        <a type="button" class="close" data-dismiss="alert">&times;</a>
+                       <div class="alert alert-danger">'.$error2.'</div>
+                        </div>';
+                   }elseif (isset ($error3)) {
+               echo'<div class="alert fade in">
+                        <a type="button" class="close" data-dismiss="alert">&times;</a>
+                       <div class="alert alert-danger">'.$error3.'</div>
+                        </div>';
+                  }elseif (isset ($error4)) {
+               echo'<div class="alert fade in">
+                        <a type="button" class="close" data-dismiss="alert">&times;</a>
+                       <div class="alert alert-danger">'.$error4.'</div>
+                        </div>';
+                 }elseif (isset ($error5)) {
+                  echo'<div class="alert fade in">
+                        <a type="button" class="close" data-dismiss="alert">&times;</a>
+                       <div class="alert alert-danger">'.$error5.'</div>
+                        </div>';
+               }elseif (isset ($error6)) {
+                 echo'<div class="alert fade in">
+                        <a type="button" class="close" data-dismiss="alert">&times;</a>
+                       <div class="alert alert-danger">'.$error6.'</div>
+                        </div>';
+               }
+                        
+                        ?>
+         <tr>
+             <td>Copies of Secondary School Certificates.<span class="pull-right">
+            <?php
+             if(isset($error)){
+                 echo '<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-sign"></span></button>';
+             }elseif (isset ($upload_data)){
+                 echo '<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>';
              }
-        ?>
-         <tr>
-            <td colspan=2>Copies of Secondary School Certificates.</td>
+             ?></span></td>
+            <?php echo form_open_multipart('application/do_upload');?>
+            <td><input type="file" name="userfile" class="pull-right"></td><td><input type="submit" value="upload" class="btn btn-info btn-xs"></td>
+            <?php echo form_close();?>
          </tr>
          <tr>
-            <td colspan=2>Copy of Birth Certificate.</td>
+             <td>Copy of Birth Certificate<span class="pull-right">.
+            <?php
+             if(isset($error1)){
+                 echo '<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-sign"></span></button>';
+             }elseif (isset ($upload_data1)){
+                 echo '<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>';
+             }
+             ?>
+                 </span></td>
+            <?php echo form_open_multipart('application/do_upload1');?>
+            <td><input type="file" name="userfile" class="pull-right"></td><td><input type="submit" value="upload" class="btn btn-info btn-xs"></td>
+            <?php echo form_close();?>
          </tr>
          <tr>
-            <td colspan=2>Copies of Diploma / Advanced Diploma / Postgraduate Diploma Degree Academic Transcripts and
+            <td>Copies of Diploma / Advanced Diploma / Postgraduate Diploma Degree Academic Transcripts and
             Certificates. Successful applicants will be required to bring the originals for verification at
-            the time of registration.</td>
+            the time of registration.
+            <span class="pull-right">.
+            <?php
+             if(isset($error2)){
+                 echo '<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-sign"></span></button>';
+             }elseif (isset ($upload_data2)){
+                 echo '<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>';
+             }
+             ?>
+                 </span>
+            </td>
+            <?php echo form_open_multipart('application/do_upload2');?>
+            <td><input type="file" name="userfile" class="pull-right"></td><td><input type="submit" value="upload" class="btn btn-info btn-xs"></td>
+            <?php echo form_close();?>
          </tr>
          <tr>
-            <td colspan=2>CV detailing employment and self-employment experience.</td>
+            <td>CV detailing employment and self-employment experience.
+            <span class="pull-right">.
+            <?php
+             if(isset($error3)){
+                 echo '<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-sign"></span></button>';
+             }elseif (isset ($upload_data3)){
+                 echo '<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>';
+             }
+             ?>
+                 </span>
+            </td>
+            <?php echo form_open_multipart('application/do_upload3');?>
+            <td><input type="file" name="userfile" class="pull-right"></td><td><input type="submit" value="upload" class="btn btn-info btn-xs"></td>
+            <?php echo form_close();?>
          </tr>
          <tr>
-            <td colspan=2>Brief Statement of Purpose for pursuing the postgraduate programme (maximum 1 page).</td>
+            <td>Brief Statement of Purpose for pursuing the postgraduate programme (maximum 1 page).
+            <span class="pull-right">.
+            <?php
+             if(isset($error4)){
+                 echo '<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-sign"></span></button>';
+             }elseif (isset ($upload_data4)){
+                 echo '<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>';
+             }
+             ?>
+                 </span>
+            </td>
+            <?php echo form_open_multipart('application/do_upload4');?>
+            <td><input type="file" name="userfile" class="pull-right"></td><td><input type="submit" value="upload" class="btn btn-info btn-xs"></td>
+            <?php echo form_close();?>
          </tr>
          <tr>
-            <td colspan=2>An original receipt (Bank Pay-in-Slip) indicating payment of the non-refundable admission fee</td>
+            <td>An original receipt (Bank Pay-in-Slip) indicating payment of the non-refundable admission fee
+            <span class="pull-right">.
+            <?php
+             if(isset($error5)){
+                 echo '<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-sign"></span></button>';
+             }elseif (isset ($upload_data5)){
+                 echo '<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>';
+             }
+             ?>
+                 </span>
+            </td>
+            <?php echo form_open_multipart('application/do_upload5');?>
+            <td><input type="file" name="userfile" class="pull-right"></td><td><input type="submit" value="upload" class="btn btn-info btn-xs"></td>
+            <?php echo form_close();?>
          </tr>
          <tr>
-            <td colspan=2>A letter from employer indicating willingness to release you if admitted (if employed).</td>
+            <td>A letter from employer indicating willingness to release you if admitted (if employed).
+            <span class="pull-right">.
+            <?php
+             if(isset($error6)){
+                 echo '<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-sign"></span></button>';
+             }elseif (isset ($upload_data6)){
+                 echo '<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>';
+             }
+             ?>
+                 </span>
+            </td>
+            <?php echo form_open_multipart('application/do_upload6');?>
+            <td><input type="file" name="userfile" class="pull-right"></td><td><input type="submit" value="upload" class="btn btn-info btn-xs"></td>
+            <?php echo form_close();?>
          </tr>
          <tr>
            
             
          </tr>
         </table>
-        <div class="well">
-          <?php echo form_open_multipart('application/do_upload');?>
-          <table>
-            <tr>
-                <td><input type="file" name="userfile" size="20"  class="dvc"/>
-                </td>
-                <span class="filepdf"></span>
-               <td> <span class="glyphicon glyphicon-circle-arrow-up"></span><input type="submit" value="upload" /></td>
-            </tr>
-          </table>
- 
-          </form>
-        </div>
-         
-          <?php
+        <?php
             if(isset($upload_data)){
-            echo '<div class="alert alert-success">'.$upload_data.'</div>';
-            }
+            echo '<div class="alert fade in">'
+                .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
+                . '<div class="alert alert-success">'.$upload_data1.'</div>'
+                . '</div>';
+            }elseif(isset($upload_data1)){
+            echo '<div class="alert fade in">'
+                .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
+                . '<div class="alert alert-success">'.$upload_data1.'</div>'
+                . '</div>';
+            }elseif (isset ($upload_data1)) {
+             echo '<div class="alert fade in">'
+                .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
+                . '<div class="alert alert-success">'.$upload_data2.'</div>'
+                . '</div>';
+            }elseif (isset ($upload_data2)) {
+           echo '<div class="alert fade in">'
+                .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
+                . '<div class="alert alert-success">'.$upload_data3.'</div>'
+                . '</div>';
+             }elseif (isset ($upload_data3)) {
+    echo '<div class="alert fade in">'
+                .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
+                . '<div class="alert alert-success">'.$upload_data4.'</div>'
+                . '</div>';
+          }elseif (isset ($upload_data4)) {
+       echo '<div class="alert fade in">'
+                .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
+                . '<div class="alert alert-success">'.$upload_data5.'</div>'
+                . '</div>';
+           }elseif (isset ($upload_data5)) {
+        echo '<div class="alert fade in">'
+                .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
+                . '<div class="alert alert-success">'.$upload_data5.'</div>'
+                . '</div>';
+   }elseif (isset ($upload_data6)) {
+    echo '<div class="alert fade in">'
+                .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
+                . '<div class="alert alert-success">'.$upload_data6.'</div>'
+                . '</div>';
+}
             ?>
         <table class='mytable table-hover' >
-         <h5>Uploaded Documents</h5>
+            <h5 class="btn btn-success btn-xs">Uploaded Documents</h5>
              <?php
             $user=$this->session->userdata('userid');
             $this->load->helper('directory');

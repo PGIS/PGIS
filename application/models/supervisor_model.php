@@ -29,6 +29,19 @@
              $this->db->insert('tb_project',$data_ass);    
          }
      }
+     function sec_supervisor_assign($id,$email){
+         $data_ass=array(
+             'sec_internal_supervisor'=>$email,
+             'status_by_principle'=>'assigned'
+         );
+         $res=  $this->db->get_where('tb_project',array('id'=>$id));
+         if($res->num_rows()===1){
+             $this->db->where('id',$id);
+             $this->db->update('tb_project',$data_ass);
+         }  else {
+             $this->db->insert('tb_project',$data_ass);    
+         }
+     }
      function saveVerdicts($reg,$projid,$super){
          $mydata = array
             (

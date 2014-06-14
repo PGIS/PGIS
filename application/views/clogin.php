@@ -64,14 +64,6 @@
             $('.valid').html(data);
         });
     });
-    $('.password').keyup(function(){
-        var password=$(this).val();
-        var url="<?php echo site_url('login/ajaxpassord');?>";
-        var url2=url+'/'+password;
-        $.post(url2,password,function(data){
-            $('.validz').html(data);
-        });
-    });
     
 </script>
 <?php include 'include/footer.php';?>

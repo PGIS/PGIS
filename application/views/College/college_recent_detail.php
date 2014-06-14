@@ -8,16 +8,15 @@
                 if($res->num_rows()===1){
                     foreach ($res->result() as $row){
                     ?>
-                <div class="alert alert-info">
+               <div class="alert alert-info">
                 <p><label>Student Full name: <?php echo ''.$row->surname .' '.$row->other_name ;?>
                     </label><label class="text-primary pull-right">Registration #:<?php echo ''.$row->registration_id;?></label></p>
                 <p><label>Department: <?php echo ''.$row->department;?></label></p>
                 <p><label>Program:<?php echo ''.$row->program;?></label></p>
                 <p><label>Dissertation Title:<?php echo ''.$row->project_title;?></label></p>
                 <p><label>Internal supervisor:<?php echo ''.$row->Internal_supervisor;?></label></p>
-                
-            </div>
-            <div class="col-md-6">
+               </div>
+           <div class="col-md-6">
                 <div class="well well-sm"><label>Student presentation feedback</label></div>
                 <table class="table table-condensed table-striped">
                 <?php
