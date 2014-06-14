@@ -193,6 +193,10 @@ class College_Coordinator extends CI_Controller{
          $data['recent']=$id;
          $this->load->view('College/college_recent_detail',$data);
      }
+     public function recent_detailcollege($id){
+         $data['recent']=$id;
+         $this->load->view('College/college_recent_detailcollege',$data);
+     }
      
         function details($id){
          $this->db->select('*');
