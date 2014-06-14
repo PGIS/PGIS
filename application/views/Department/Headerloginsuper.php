@@ -63,6 +63,11 @@
                          <li>    
                             <a href="<?php echo site_url('departStudentManage'); ?>"><span class="glyphicon glyphicon-road"></span>   Students Progress</a>
                          </li>
+                         <li>
+                             <a href="<?php echo site_url('headDepartment/applicantsAdmission'); ?>">
+                                 <span class="glyphicon glyphicon-list"></span> Applicants Admission
+                             </a>
+                         </li>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
                         <?php

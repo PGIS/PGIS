@@ -171,11 +171,6 @@
             ?>
           </div>
            
-            <div class="col-md-12 pd">
-              <a href="#" data-toggle="modal" data-target="#recomenddepartmt">
-                   <button class="col-md-12 btn btn-xs btn-info">View department Recommendation</button>
-              </a>
-           </div>
            <div class="col-md-12 pd">
               <a href="#" data-toggle="modal" data-target="#recomend">
                    <button class="col-md-12 btn btn-xs btn-info">Give recommendation</button>
@@ -185,7 +180,6 @@
               <a href="#" data-toggle="modal" data-target="#viewrecom">
                  <button class="col-md-12 btn btn-xs btn-info">View recommendation</button> 
               </a>
-              
           </div>
            
            <div class="col-md-12 pd">
@@ -197,12 +191,12 @@
            <?php
            $check1 = array(
                             'userid' => $userid,
-                            'level' => 'college'
+                            'level' => 'directorate'
                           );
                 $requery1 = $this->db->get_where('tb_admission_recomendation',$check1);
                 if($requery1->num_rows()>0){
                     echo '<div class="col-md-12 pd">
-                            <a href="'.site_url('college_Coordinator/applicationFoward/'. $userid).'">
+                            <a href="'.site_url('directorPgis/applicationFoward/'. $userid).'">
                             <button class="col-md-12 btn btn-xs btn-info">Forward Applications</button>
                             </a>
                            </div>';
@@ -263,7 +257,7 @@
            <script>
                 $("#recomendation").submit(function(event) {
                 event.preventDefault();
-                var url = "<?php echo site_url('college_Coordinator/recommendation/'. $userid); ?>";
+                var url = "<?php echo site_url('directorPgis/recommendation/'. $userid); ?>";
                 var fdata = $('#recomendation').serializeArray();
                 $.post(url, fdata, function(data) {
                 $('#recomid').html(data);
@@ -276,21 +270,24 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <center><h4 class="modal-title" id="myModalLabel">College recommendation for Admission</h4></center>
+              <center><h4 class="modal-title" id="myModalLabel">Admission recommendation</h4></center>
             </div>
             <div class="modal-body">
+                <div class=" alert-info">
+                    <center>DIRECTORATE RECOMMENDATION</center>
+                </div>
                 <?php
-                 $check = array(
+                 $che = array(
                             'userid' => $userid,
-                            'level' => 'college'
+                            'level' => 'directorate'
                           );
-                $requery = $this->db->get_where('tb_admission_recomendation',$check);
-                if($requery->num_rows()>0){
-                    foreach ($requery->result() as $rereslt){
-                        $recmdtn=$rereslt->recomendation;
-                        $comment=$rereslt->comment;
+                $requ = $this->db->get_where('tb_admission_recomendation',$che);
+                if($requ->num_rows()>0){
+                    foreach ($requ->result() as $rere1){
+                        $recmdtn1=$rere1->recomendation;
+                        $comment1=$rere1->comment;
                     }
-                    if($recmdtn === 'Admit'){
+                    if($recmdtn1 === 'Admit'){
                        echo '<div class="alert alert-success">
                          Applicant recomended for admission
                           </div>' ; 
@@ -299,7 +296,7 @@
                          Applicant not recomended for admission
                           </div>'; 
                         echo '<div>Reason</div>';
-                        echo '<div class="well well-sm">'.$comment.'</div>';
+                        echo '<div class="well well-sm">'.$comment1.'</div>';
                     }
                     
                 }  else {
@@ -308,22 +305,42 @@
                           </div>' ;
                 }
                 ?> 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<div class="modal fade" id="recomenddepartmt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <center><h4 class="modal-title" id="myModalLabel">Department recommendation for Admission</h4></center>
-            </div>
-            <div class="modal-body">
+                 <div class=" alert-info">
+                    <center>COLLEGE RECOMMENDATION</center>
+                </div>
+                <?php
+                 $chec = array(
+                            'userid' => $userid,
+                            'level' => 'college'
+                          );
+                $reque = $this->db->get_where('tb_admission_recomendation',$chec);
+                if($reque->num_rows()>0){
+                    foreach ($reque->result() as $reres){
+                        $recmdtn2=$reres->recomendation;
+                        $comment2=$reres->comment;
+                    }
+                    if($recmdtn2 === 'Admit'){
+                       echo '<div class="alert alert-success">
+                         Applicant recomended for admission
+                          </div>' ; 
+                    }else{
+                        echo '<div class="alert alert-danger">
+                         Applicant not recomended for admission
+                          </div>'; 
+                        echo '<div>Reason</div>';
+                        echo '<div class="well well-sm">'.$comment2.'</div>';
+                    }
+                    
+                }  else {
+                   echo '<div class="alert alert-warning">
+                         No any recommendation given yet
+                          </div>' ;
+                }
+                ?> 
+                
+                 <div class=" alert-info">
+                    <center>DEPARTMENT RECOMMENDATION</center>
+                </div>
                 <?php
                  $check = array(
                             'userid' => $userid,
@@ -360,6 +377,7 @@
           </div>
         </div>
       </div>
+
  <div class="modal fade" id="viewcrit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">

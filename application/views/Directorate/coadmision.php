@@ -65,7 +65,7 @@
                           <th>Username</th>    
                           <th>Other names</th>
                           <th>Sur name</th>
-                          <th>View Recommendation<b class="caret"></b></th>  
+                          <th>Action</th>  
                         </tr>
                     </thead>
 
@@ -79,11 +79,9 @@
                             echo '<td>'.$row1->surname.'</td>';
                             echo  '<td>';?>
                             <button class="btn btn-info btn-xs"  onclick="viewrecomd('<?php echo $row1->userid;?>')" data-toggle="modal" data-target="#viedeprec">
-                               Department
+                               View Recommendation
                             </button>
-                             <button class="btn btn-info btn-xs"  onclick="viewrecomdcol('<?php echo $row1->userid;?>')" data-toggle="modal" data-target="#viedepreccol">
-                               College
-                            </button>
+                            
                               <?php
                             echo '</td></tr>';
                         }
@@ -101,7 +99,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h6 class="modal-title" id="myModalLabel">Department Admission Recommendation</h6>
+              <center><h4 class="modal-title" id="myModalLabel">Admission Recommendations</h4></center>
             </div>
               <div class="modal-body" id="recview">
                
@@ -112,24 +110,7 @@
           </div>
         </div>
       </div>
-
-
-   <div class="modal fade" id="viedepreccol" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h6 class="modal-title" id="myModalLabel">College Admission Recommendation</h6>
-            </div>
-              <div class="modal-body" id="recview1">
-               
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>     
+       
   <script>
     function viewrecomd(id) {
    
@@ -137,15 +118,6 @@
         var url2 = url + '/' + id;
         $.get(url2, function(data) {
             $('#recview').html(data);
-        });
-    }
-    
-    function viewrecomdcol(id) {
-   
-        var url = "<?php echo site_url('directorPgis/viewRecomendationcol'); ?>";
-        var url2 = url + '/' + id;
-        $.get(url2, function(data) {
-            $('#recview1').html(data);
         });
     }
  </script>

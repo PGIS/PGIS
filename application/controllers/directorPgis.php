@@ -32,7 +32,7 @@ class DirectorPgis extends CI_Controller {
 
     function uncheckedApp() {
         $dat = array('submited' => 'yes');
-        $dat1 = array('depchek' => 'yes', 'colcheck' => 'yes');
+        $dat1 = array('depchek' => 'yes', 'colcheck' => 'yes','pgcheck' => 'no');
         $this->db->where($dat1);
         $this->db->order_by('app_id', 'asc');
         $query1 = $this->db->get_where('tb_app_personal_info', $dat);
@@ -124,7 +124,7 @@ class DirectorPgis extends CI_Controller {
     }
 
     function checkedApplications() {
-        $dat = array('depchek' => 'yes', 'pgcheck' => 'yes');
+        $dat = array('depchek' => 'yes','colcheck' => 'yes', 'pgcheck' => 'yes');
         $query1 = $this->db->get_where('tb_app_personal_info', $dat);
         return $query1->result();
     }
@@ -141,32 +141,35 @@ class DirectorPgis extends CI_Controller {
            echo form_error('reason','<div class="error">' ,'</div>');
        }  else {
            $this->load->model('admision_model');
-           Admision_model::recommendationCol($id);
+           Admision_model::recommendationPg($id);
        }
     }
     
     function applicationFoward($id){
            $this->load->model('admision_model');
-           Admision_model::applicationFowardCol($id);
+           Admision_model::applicationFowardPg($id);
             $data['query'] = $this->uncheckedApp();
             $data['query1'] = $this->checkedApplications();
             $data['active1'] = TRUE;
             $data['msgfr']=TRUE;
-            $this->load->view('Department/coadmision', $data);
+            $this->load->view('Directorate/coadmision', $data);
     }
     
     function viewRecomendation($id){
-                 $check = array(
+            echo    ' <div class=" alert-info">
+                    <center>DIRECTORATE RECOMMENDATION</center>
+                </div>';
+                 $che = array(
                             'userid' => $id,
-                            'level' => 'department'
+                            'level' => 'directorate'
                           );
-                $requery = $this->db->get_where('tb_admission_recomendation',$check);
-                if($requery->num_rows()>0){
-                    foreach ($requery->result() as $rereslt){
-                        $recmdtn=$rereslt->recomendation;
-                        $comment=$rereslt->comment;
+                $requ = $this->db->get_where('tb_admission_recomendation',$che);
+                if($requ->num_rows()>0){
+                    foreach ($requ->result() as $rere1){
+                        $recmdtn1=$rere1->recomendation;
+                        $comment1=$rere1->comment;
                     }
-                    if($recmdtn === 'Admit'){
+                    if($recmdtn1 === 'Admit'){
                        echo '<div class="alert alert-success">
                          Applicant recomended for admission
                           </div>' ; 
@@ -175,7 +178,7 @@ class DirectorPgis extends CI_Controller {
                          Applicant not recomended for admission
                           </div>'; 
                         echo '<div>Reason</div>';
-                        echo '<div class="well well-sm">'.$comment.'</div>';
+                        echo '<div class="well well-sm">'.$comment1.'</div>';
                     }
                     
                 }  else {
@@ -183,12 +186,44 @@ class DirectorPgis extends CI_Controller {
                          No any recommendation given yet
                           </div>' ;
                 }
-   }
-  
-   function viewRecomendationcol($id){
-                 $check = array(
+                
+              echo  ' <div class=" alert-info">
+                    <center>COLLEGE RECOMMENDATION</center>
+                </div>';
+                 $chec = array(
                             'userid' => $id,
                             'level' => 'college'
+                          );
+                $reque = $this->db->get_where('tb_admission_recomendation',$chec);
+                if($reque->num_rows()>0){
+                    foreach ($reque->result() as $reres){
+                        $recmdtn2=$reres->recomendation;
+                        $comment2=$reres->comment;
+                    }
+                    if($recmdtn2 === 'Admit'){
+                       echo '<div class="alert alert-success">
+                         Applicant recomended for admission
+                          </div>' ; 
+                    }else{
+                        echo '<div class="alert alert-danger">
+                         Applicant not recomended for admission
+                          </div>'; 
+                        echo '<div>Reason</div>';
+                        echo '<div class="well well-sm">'.$comment2.'</div>';
+                    }
+                    
+                }  else {
+                   echo '<div class="alert alert-warning">
+                         No any recommendation given yet
+                          </div>' ;
+                }
+                
+               echo ' <div class=" alert-info">
+                    <center>DEPARTMENT RECOMMENDATION</center>
+                </div>';
+                 $check = array(
+                            'userid' => $id,
+                            'level' => 'department'
                           );
                 $requery = $this->db->get_where('tb_admission_recomendation',$check);
                 if($requery->num_rows()>0){
