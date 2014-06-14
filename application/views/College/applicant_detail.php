@@ -171,11 +171,6 @@
             ?>
           </div>
            
-            <div class="col-md-12 pd">
-              <a href="#" data-toggle="modal" data-target="#recomenddepartmt">
-                   <button class="col-md-12 btn btn-xs btn-info">View department Recommendation</button>
-              </a>
-           </div>
            <div class="col-md-12 pd">
               <a href="#" data-toggle="modal" data-target="#recomend">
                    <button class="col-md-12 btn btn-xs btn-info">Give recommendation</button>
@@ -279,18 +274,21 @@
               <center><h4 class="modal-title" id="myModalLabel">College recommendation for Admission</h4></center>
             </div>
             <div class="modal-body">
+                <div class=" alert-info">
+                    <center>COLLEGE RECOMMENDATION</center>
+                </div>
                 <?php
-                 $check = array(
+                 $chec = array(
                             'userid' => $userid,
                             'level' => 'college'
                           );
-                $requery = $this->db->get_where('tb_admission_recomendation',$check);
-                if($requery->num_rows()>0){
-                    foreach ($requery->result() as $rereslt){
-                        $recmdtn=$rereslt->recomendation;
-                        $comment=$rereslt->comment;
+                $reque = $this->db->get_where('tb_admission_recomendation',$chec);
+                if($reque->num_rows()>0){
+                    foreach ($reque->result() as $reres){
+                        $recmdtn2=$reres->recomendation;
+                        $comment2=$reres->comment;
                     }
-                    if($recmdtn === 'Admit'){
+                    if($recmdtn2 === 'Admit'){
                        echo '<div class="alert alert-success">
                          Applicant recomended for admission
                           </div>' ; 
@@ -299,7 +297,7 @@
                          Applicant not recomended for admission
                           </div>'; 
                         echo '<div>Reason</div>';
-                        echo '<div class="well well-sm">'.$comment.'</div>';
+                        echo '<div class="well well-sm">'.$comment2.'</div>';
                     }
                     
                 }  else {
@@ -308,22 +306,10 @@
                           </div>' ;
                 }
                 ?> 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<div class="modal fade" id="recomenddepartmt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <center><h4 class="modal-title" id="myModalLabel">Department recommendation for Admission</h4></center>
-            </div>
-            <div class="modal-body">
+                
+                 <div class=" alert-info">
+                    <center>DEPARTMENT RECOMMENDATION</center>
+                </div>
                 <?php
                  $check = array(
                             'userid' => $userid,
@@ -352,7 +338,7 @@
                          No any recommendation given yet
                           </div>' ;
                 }
-                ?> 
+                ?>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
