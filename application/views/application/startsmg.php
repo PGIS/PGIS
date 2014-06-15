@@ -7,7 +7,16 @@
             <div>
                 <pre>You did not finish  the Application as some of the important information are still missing
                 Make sure that you finish the Application before deadline
-                Application will be closed on  June 2014.
+                Application will be closed on 
+                   <?php 
+                    $query = $this->db->get('tb_system_setting');
+                       if($query->num_rows()>0){
+                           foreach ($query->result() as $row){
+                             $closedate=$row->appdeadline;
+                          }
+                          echo $closedate;
+                       }
+                   ?>
                 </pre>
             </div> 
             <?php

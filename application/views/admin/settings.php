@@ -17,20 +17,29 @@
                       </a>
                     </h4>
                   </div>
-                  <div id="collapseOne" class="panel-collapse collapse ">
+                  <div id="collapseOne" class="panel-collapse collapse <?php if(isset($openapp1)){echo 'in';}?>">
                     <div class="panel-body">
                         <ul class="nav nav-tabs">
-                            <li><a href="#home" data-toggle="tab">Current Details</a></li>
-                            <li><a href="#profile" data-toggle="tab">Update Details</a></li>
+                            <li class="<?php if(!isset($shw)){echo 'active';}?>"><a href="#home" data-toggle="tab">Current Details</a></li>
+                            <li class="<?php if(isset($shw)){echo 'active';}?>"><a href="#profile" data-toggle="tab">Update Details</a></li>
                         </ul>
                           <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane active" id="home">
+                            <div class="tab-pane <?php if(!isset($shw)){echo 'active';}?>" id="home">
                                 <br>
+                                <?php if(isset($suc)){
+                                    echo '<div class="alert alert-success">Successfully updated</div>';
+                                    
+                                }?>
                                 <table class="table">
                                     <tr>
                                         <td>
-                                          Academic year  
+                                          Academic year:
+                                          <?php
+                                                if(isset($accyear)){
+                                                    echo "<strong class='dts'>".$accyear."</strong>";
+                                                }
+                                            ?>
                                         </td>
                                         <td>
                                             
@@ -38,7 +47,12 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                          Semester  
+                                          Semester  :
+                                          <?php
+                                            if(isset($semester)){
+                                                echo "<strong class='dts'>".$semester."</strong>";
+                                            }
+                                        ?>
                                         </td>
                                         <td>
                                             
@@ -46,14 +60,15 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="tab-pane" id="profile">
+                            <div class="tab-pane <?php if(isset($shw)){echo 'active';}?>" id="profile">
                                 <div class="col-md-12">
                                     <br>
-                                   <form>
+                                   <?php echo form_open('admin_page/changeAccYear');?>
                                     <table class="table">
                                         <tr >
                                             <td>
                                              Academic year  
+                                             <?php echo form_error('acy','<div class="error">', '</div>'); ?>
                                             </td>
                                             <td>
                                                 <select name="acy" class="form-control" required>
@@ -70,6 +85,7 @@
                                         <tr>
                                             <td>
                                                Semester 
+                                               <?php echo form_error('seme','<div class="error">', '</div>'); ?>
                                             </td>
                                             <td>
                                                 <select name="seme" class="form-control">
@@ -107,20 +123,47 @@
                         <table class="table">
                             <tr class="info">
                                 <td>
-                                  Application status :Open  
+                                  Application status :
+                                  <?php
+                                   if(isset($closedate)){
+                                      if(strtotime(date('Y/m/d')) < strtotime(date($closedate))){
+                                          echo '<b>OPEN</b>';
+                                      }  else {
+                                          echo '<b>CLOSED</b>';
+                                      }
+                                   }
+                                  ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     Close date:
+                                        <?php
+                                        if(isset($closedate)){
+                                            echo "<strong class='dts'>".$closedate."</strong>";
+                                        }
+                                        ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
+                                    <?php if(isset($suc1)){
+                                    echo '<div class="alert alert-success">Successfully updated</div>';
+                                    
+                                     }?>
                                      <?php echo form_open('admin_page/systemSettingsOpenApp');?>
+                                     <?php echo form_error('chdate','<div class="error">', '</div>'); ?>
                                         <div id="thisInputsWrapper">
-                                            <button  class="btn btn-sm btn-info" id="changeDeadLine" type="button">Change close date</button>  
+                                            <div class="col-md-12">Change close date</div>
+                                            
+                                            <div class="col-md-4">
+                                               <input name="chdate" type="text" class="form-control datepicker"> 
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button class="btn btn-info">Update</button>
+                                            </div>
                                         </div>
+                                       
                                            
                                     </form>
                                 </td>
@@ -133,4 +176,7 @@
         </div>
     </div>
 </div>
+<script>
+    $('.datepicker').datepicker();
+</script>
 <?php include_once 'footer.php'; ?>

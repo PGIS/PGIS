@@ -194,4 +194,30 @@ class Admin extends CI_Model {
             $this->db->update('tb_user',$record);
         }
     }
+    
+    function changeaccyear(){
+        $sts = array(
+            'academic_year' => $this->input->post('acy'),
+            'Semester' => $this->input->post('seme')
+        );
+        $query = $this->db->get('tb_system_setting');
+        if($query->num_rows()>0){
+           $this->db->update('tb_system_setting',$sts); 
+        }  else {
+          $this->db->insert('tb_system_setting',$sts);  
+        }
+    }
+    
+    function changeclosedate(){
+         $sts = array(
+            'appdeadline' => $this->input->post('chdate')
+        );
+         $query = $this->db->get('tb_system_setting');
+        if($query->num_rows()>0){
+           $this->db->update('tb_system_setting',$sts); 
+        }  else {
+          $this->db->insert('tb_system_setting',$sts);  
+        }
+    }
 }
+
