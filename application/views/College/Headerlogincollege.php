@@ -17,8 +17,8 @@
         <link href="<?php echo base_url('assets/css/jquery.ui.all.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/pgis.css') ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/jquery-ui.css')?>" rel="stylesheet">
-        <script src="<?php echo base_url('assets/js/datepicker.js')?>"></script>
+        <link href="<?php echo base_url('assets/css/jquery-ui.css') ?>" rel="stylesheet">
+        <script src="<?php echo base_url('assets/js/datepicker.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/jquery-2.0.3.min.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/jquery-1.10.2.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap-modal.js') ?>"></script>
@@ -51,8 +51,15 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
+
                         <li><button class="mybtn btn-primary btn-block" style="margin-left: 4px;">
-                                <span class="glyphicon glyphicon-dashboard"></span>  COLLEGE PRINCIPLE</button></li>
+                                <span class="glyphicon glyphicon-dashboard"></span>  COLLEGE PRINCIPLE</button>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('college/applicantsAdmission'); ?>">
+                                <span class="glyphicon glyphicon-list"></span> Applicants Admission
+                            </a>
+                        </li>
                         <li><a href="<?php echo site_url('college/assigned'); ?>"><span class="glyphicon glyphicon-eye-open"></span>
                                 Unsigned supervisor</a>
                         </li>
@@ -66,7 +73,7 @@
                         <li>    
                             <a href="<?php echo site_url('collegStudentManage'); ?>"><span class="glyphicon glyphicon-road"></span>   Students Progress</a>
                         </li>
-                        <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
+                        <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
                         <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                     </ul>
