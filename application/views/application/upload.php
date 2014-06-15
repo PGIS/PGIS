@@ -161,7 +161,7 @@
             if(isset($upload_data)){
             echo '<div class="alert fade in">'
                 .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
-                . '<div class="alert alert-success">'.$upload_data1.'</div>'
+                . '<div class="alert alert-success">'.$upload_data.'</div>'
                 . '</div>';
             }elseif(isset($upload_data1)){
             echo '<div class="alert fade in">'

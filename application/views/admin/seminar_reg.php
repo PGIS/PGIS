@@ -57,7 +57,7 @@
                <tr><td colspan="1"></td><td><button class="btn btn-primary btn-sm pull-right">submit</button></td></tr>
            </table>
            <?php echo form_close();?>
-      </div>  
+      </div>
   </div>
       <script>
       function courescode(id){
@@ -86,6 +86,6 @@
           });
       });
       </script>
-      
  </div>
+ 
 <?php include_once 'footer.php';

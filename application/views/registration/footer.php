@@ -1,6 +1,7 @@
 
 <div class="col-md-12"><footer class='footer'><p><strong><i>&copy;  PGIS rights Reserved</i></strong></p></footer></div>
 </div><!-- /#wrapper -->
+<script src="<?php echo base_url('assets/js/datepicker.js')?>"></script>
 <script>
     window.brunch = window.brunch || {};
     window.brunch['auto-reload'] = {
