@@ -213,8 +213,23 @@
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                           <h6 class="modal-title" id="myModalLabel"><?php echo $value;?></h6>
                         </div>
-                        <div class="modal-body">
-                            <img src="<?php echo base_url('uploads/'.$user.'/'.$value);?>" alt="some_text">
+                        <div class="modal-body ">
+                            <?php
+                            $fiarray=array('image/jpeg','image/pjpeg','image/png',
+                                    'image/gif','image/bmp','image/tiff','image/svg+xml','image/vnd.microsoft.icon');
+                             if(in_array(get_mime_by_extension($value), $fiarray)){
+                            ?>
+                            <img src="<?php echo base_url('uploads/'.$user.'/'.$value);?>" alt="some_text">  
+                                <?php  
+                                }  else {
+                                  ?>
+                            <iframe id="viewer"
+                                src = "<?php echo base_url();?>ViewerJS/#<?php echo base_url('uploads/'.$user.'/'.$value);?>" width='100%' height='500'
+                                allowfullscreen webkitallowfullscreen>
+                             </iframe>
+                              <?php  
+                                }
+                              ?>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

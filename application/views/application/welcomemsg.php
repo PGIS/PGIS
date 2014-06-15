@@ -18,7 +18,20 @@
 
 NOTE::Application which miss any of the following won't be processed
            </pre>
-            
+    <div class="col-md-6 ">
+        <button class="btn btn-block btn-info">
+            Application dead line:
+            <?php 
+          $query = $this->db->get('tb_system_setting');
+             if($query->num_rows()>0){
+                 foreach ($query->result() as $row){
+                   $closedate=$row->appdeadline;
+                }
+                echo $closedate;
+             }
+            ?>
+        </button>
+    </div>   
     <div class='app'>
         <a href="<?php echo site_url('application/apply');?>">
             <button type="button" class="mybtn btn-primary">Start online application
