@@ -167,7 +167,9 @@ class login extends CI_Controller {
                 redirect();
             }  elseif (strtolower($role)==='admision staff') {
                 redirect('financeadmin');
-            }
+            }elseif ($role==='head of department') {
+                redirect('headDepartment');
+        }
         }
         function supervisorDepartment($username){
             $detquery = $this->db->get_where('tb_user', array('userid' => $username), 1);

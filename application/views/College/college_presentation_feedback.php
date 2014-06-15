@@ -73,8 +73,6 @@
         </form> 
 
     </div>
-    <script>
-    $('.datepicker').datepicker();
-    </script>
+    
 </div>
 <?php include_once 'footer.php'; ?>
