@@ -17,8 +17,9 @@ class Application extends CI_Controller {
 
     function index() {
         $this->load->model('Application_form');
-
-        if (Application_form::redirect_message() == 'submited') {
+        if($this->applicationststus()){
+            $this->load->view('application/closedapplication');
+        }elseif (Application_form::redirect_message() == 'submited') {
             $data['lisubmited'] = FALSE;
             $this->load->view('application/submitmsg', $data);
         } elseif (Application_form::redirect_message() == 'started') {
@@ -27,11 +28,29 @@ class Application extends CI_Controller {
             $this->load->view('application/welcomemsg');
         }
     }
-
-    function apply() {
+    
+    function applicationststus(){
+        $query = $this->db->get('tb_system_setting');
+       if($query->num_rows()>0){
+         foreach ($query->result() as $row){
+                $closedate=$row->appdeadline;
+        }
+         if(strtotime(date('Y/m/d')) < strtotime(date($closedate))){
+             return FALSE;
+          }  else {
+             return TRUE; 
+          }
+    }else{
+        return FALSE;
+    }
+    }
+    
+     function apply() {
 
         $this->load->model('Application_form');
-        if (Application_form::redirect_message() == 'submited') {
+        if($this->applicationststus()){
+           redirect('application');
+        }elseif (Application_form::redirect_message() == 'submited') {
             $data['lisubmited'] = FALSE;
             redirect('application');
         }
