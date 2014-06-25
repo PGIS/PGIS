@@ -31,17 +31,17 @@
                         <?php echo form_error('datebirth','<div class="error">', '</div>'); ?>
                        <table class="table">
                            <tr><td><select class=" form-control " name="datebirth1">
-                                       <option></option>
-                                       <option>1</option>
-                                       <option>2</option>
-                                       <option>3</option>
-                                       <option>4</option>
-                                       <option>5</option>
-                                       <option>6</option>
-                                       <option>7</option>
-                                       <option>8</option>
-                                       <option>9</option>
-                                       <option>10</option>
+                                       <option value="<?php echo substr($datebirth, 0,2);?>"><?php echo substr($datebirth, 0,2);?></option>
+                                       <option value="01">1</option>
+                                       <option value="02">2</option>
+                                       <option value="03">3</option>
+                                       <option value="04">4</option>
+                                       <option value="05">5</option>
+                                       <option value="06">6</option>
+                                       <option value="07">7</option>
+                                       <option value="08">8</option>
+                                       <option value="09">9</option>
+                                       <option value="10">10</option>
                                        <option>11</option>
                                        <option>12</option>
                                        <option>13</option>
@@ -65,23 +65,57 @@
                                        <option>31</option>
                                    </select></td>
                                    <td><select class=" form-control" name="datebirth2">
-                                       <option></option>
-                                       <option>Jan</option>
-                                       <option>Feb</option>
-                                       <option>March</option>
-                                       <option>April</option>
-                                       <option>May</option>
-                                       <option>June</option>
-                                       <option>July</option>
-                                       <option>August</option>
-                                       <option>September</option>
-                                       <option>October</option>
-                                       <option>November</option>
-                                       <option>December</option>
+                                           <option value="<?php echo substr($datebirth, 3,2);?>"><?php echo substr($datebirth, 3,2);?></option>
+                                       <option value="01">Jan</option>
+                                       <option value="02">Feb</option>
+                                       <option value="03">March</option>
+                                       <option value="04">April</option>
+                                       <option value="05">May</option>
+                                       <option value="06">June</option>
+                                       <option value="07">July</option>
+                                       <option value="08">August</option>
+                                       <option value="09">September</option>
+                                       <option value="10">October</option>
+                                       <option value="11">November</option>
+                                       <option value="12">December</option>
                                        </select></td>
                                        <td>
-                                     <input name="datebirth" type="text" class="form-control datepicker1" id="7"
-                               value="<?php display_input('datebirth',$datebirth);?>">
+                                           <select class=" form-control " name="datebirth">
+                                       <option value="<?php echo substr($datebirth, 6,11);?>"><?php echo substr($datebirth, 6,11);?></option>
+                                       <option>1990</option>
+                                       <option>1989</option>
+                                       <option>1988</option>
+                                       <option>1987</option>
+                                       <option>1986</option>
+                                       <option>1985</option>
+                                       <option>1984</option>
+                                       <option>1983</option>
+                                       <option>1982</option>
+                                       <option>1981</option>
+                                       <option>1980</option>
+                                       <option>1979</option>
+                                       <option>1978</option>
+                                       <option>1977</option>
+                                       <option>1976</option>
+                                       <option>1975</option>
+                                       <option>1974</option>
+                                       <option>1973</option>
+                                       <option>1972</option>
+                                       <option>1971</option>
+                                       <option>1970</option>
+                                       <option>1969</option>
+                                       <option>1968</option>
+                                       <option>1967</option>
+                                       <option>1966</option>
+                                       <option>1965</option>
+                                       <option>1964</option>
+                                       <option>1963</option>
+                                       <option>1962</option>
+                                       <option>1961</option>
+                                       <option>1960</option>
+                                       <option>1959</option>
+                                   </select>
+                                     
                                        </td>
                            </tr>
                        </table>

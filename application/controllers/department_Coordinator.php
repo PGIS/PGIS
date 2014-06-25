@@ -251,6 +251,7 @@ class Department_Coordinator extends CI_Controller {
     }
 
     function do_upload() {
+        $data['query']=  $this->uncheckedApp();
         $data['in1'] = 'in';
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'jpg|xlsx|ods|xls|pdf';
@@ -260,16 +261,16 @@ class Department_Coordinator extends CI_Controller {
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $data['view'] = TRUE;
-        if (!$this->upload->do_upload()) {
+        if (!$this->upload->do_upload()&&$this->form_validation->run()===FALSE) {
             $data['error'] = $this->upload->display_errors();
             $data['query1'] = $this->checkedApplications();
             $this->load->view('Department/coadmision', $data);
         } else {
-            $document=  base_url().'uploads/'.pg_escape_string($_FILES['userfile']['name']);
-            $this->load->model('admision_model');
-            Admision_model::admisionCrt($document);
-            $data['arra'] = "admision criteria file uploaded successfully";
-            $this->load->view('Department/coadmision', $data);
+           $document=  base_url().'uploads/'.pg_escape_string($_FILES['userfile']['name']);
+           $this->load->model('admision_model');
+           Admision_model::admisionCrt($document);
+           $data['arra'] = "admision criteria file uploaded successfully";
+           $this->load->view('Department/coadmision', $data);
         }
     }
     

@@ -45,7 +45,7 @@ class Application_form extends CI_Model {
     
      
     function insert_other_info() {
-
+             
         $mydata = array
             (
             'surname' => $this->input->post('surname'),
@@ -53,7 +53,7 @@ class Application_form extends CI_Model {
             'cob' => strtolower($this->input->post('coun_birth')),
             'nationality' => strtolower($this->input->post('nation')),
             'disability' => $this->input->post('disab'),
-            'dob' => $this->input->post('datebirth1').'-'.$this->input->post('datebirth2').'-'.$this->input->post('datebirth'),
+            'dob' => $this->input->post('datebirth1').'/'.$this->input->post('datebirth2').'/'.$this->input->post('datebirth'),
             'mobile_no' => $this->input->post('mobile'),
             'landline_no' => $this->input->post('landline'),
             'fax_no' => $this->input->post('fax'),
@@ -62,6 +62,7 @@ class Application_form extends CI_Model {
             'email' => $this->input->post('email'),
             'disab_nature' => $this->input->post('disab_nature')
         );
+        
         $this->db->where('userid', $this->session->userdata('userid'));
         $this->db->update('tb_app_personal_info', $mydata);
     }

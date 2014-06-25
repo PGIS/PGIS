@@ -77,11 +77,9 @@
    }
    function comment($id){
        $res=  $this->db->get_where('tb_student_desert',array('id'=>$id),1);
-            $row=$res->row();
-           if($res->num_rows()===1){
-         $this->db->where('id',$id);
-         $this->db->update('tb_student_desert',array('status'=>'replied','read'=>'yes'));
-            foreach ($res->result() as $rec){
+       $row=$res->row();
+       if($res->num_rows()===1){
+               foreach ($res->result() as $rec){
                 $data=array(
                     'id'=>$rec->id,
                     'registration'=>$rec->registrationID,
@@ -100,7 +98,9 @@
        if((!$this->upload->do_upload())&&$this->form_validation->run()===FALSE){
          $data['error']=  $this->upload->display_errors();
          $this->load->view('academic/teaching_comment',$data);  
-       }  else {
+         }  else {
+          $this->db->where('id',$id);
+          $this->db->update('tb_student_desert',array('status'=>'replied','read'=>'yes'));
            $this->load->model('project_model');
            $header=  $this->input->post('com');
            $content=  $this->input->post('desc');
@@ -110,8 +110,9 @@
            $this->project_model->comment($reg_id,$header,$content,$date,$documents);
            $data['success']='<p class="alert alert-success">Comment has sent.!</p>';
            $this->load->view('academic/teaching_comment',$data);
+          
+           }
        
-       }
        }
    }
    function replied(){

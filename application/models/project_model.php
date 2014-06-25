@@ -39,12 +39,12 @@
      }
      function set_session(){
          $sn=  $this->session->userdata('registration_id');
-         $res=  $this->db->select('Internal_supervisor,external_supervisor')->from('tb_project')->where(array('registration_id'=>$sn,'status'=>'assigned'),1)->limit(1)->get();
+         $res=  $this->db->select('Internal_supervisor,sec_internal_supervisor')->from('tb_project')->where(array('registration_id'=>$sn,'status'=>'assigned'),1)->limit(1)->get();
          $row=$res->row();
          if($res->num_rows()===1){
              $data=array(
                  'internal'=>$row->Internal_supervisor,
-                 'external'=>$row->external_supervisor
+                 'external'=>$row->sec_internal_supervisor
              );
              $this->session->set_userdata($data);
            }  else {

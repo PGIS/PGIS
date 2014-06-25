@@ -122,10 +122,11 @@
                             
                         </table>
                         </div>
+                             <div id="loader"><?php if(!empty($smgsuc)){ echo $smgsuc;}?></div>
                         </div>
                              </div>
                     </div>
-                    <div id="loader"><?php if(!empty($smgsuc)){ echo $smgsuc;}?></div>
+                    
                 </fieldset>
             </div>
 </div>
