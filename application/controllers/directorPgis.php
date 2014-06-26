@@ -252,16 +252,29 @@ class DirectorPgis extends CI_Controller {
    
      function admitted_applicants(){
           $dat = array('depchek' => 'yes','colcheck' => 'yes', 'pgcheck' => 'yes','appl_status'=>'yes');
-          
            $query1 = $this->db->get_where('tb_app_personal_info', $dat);
-           $data['query']=$query1->result();
+           if($query1->num_rows()>0){
+            $data['query']=$query1->result();   
+           }
+           $data['query2']=  $this->rejected_applicants();
+           $data['active']=TRUE;
            $this->load->view('Directorate/admited_applicants',$data);
+        }
+        
+        function rejected_applicants(){
+          $dat = array('depchek' => 'yes','colcheck' => 'yes', 'pgcheck' => 'yes','appl_status'=>'rejected');
+           $query2 = $this->db->get_where('tb_app_personal_info', $dat);
+            if($query2->num_rows()>0){
+            return $query2->result();  
+           }  else {
+               return NULL;
+           }
         }
         
          function  admit($userid=''){
            $que = $this->db->get_where('tb_app_personal_info', array('userid' => $userid),1);
            if($que->num_rows()==0){
-               redirect('admision');
+               redirect('directorPgis');
            }
            $data=$this->appl_detils($userid);
           if(isset($_POST['send'])){
@@ -355,4 +368,58 @@ class DirectorPgis extends CI_Controller {
           $this->db->update('tb_app_prev_info', $array); 
           $this->load->view('Directorate/verify_notifi',$data);
       }
+      
+      function pending($userid){
+              $data=$this->appl_detils($userid);
+              $data['userid']=$userid;
+              $this->load->model('admision_model');
+              Admision_model::rejectapplicant($userid);
+              $this->load->view('Directorate/denied_appl_message',$data);
+        }
+        
+        function rejectsms($userid=''){
+             $que = $this->db->get_where('tb_app_personal_info', array('userid' => $userid),1);
+           if($que->num_rows()==0){
+               redirect('directorPgis');
+           }
+           $data=$this->appl_detils($userid);
+            
+            if(isset($_POST['send'])){
+           $this->form_validation->set_rules('subject', 'Subject', 'required|max_length[80]|xss_clean');
+           $this->form_validation->set_rules('to', 'Receiver', 'required|max_length[40]|xss_clean');
+           $this->form_validation->set_rules('msgbody', 'Message body', 'required|xss_clean');
+           $this->form_validation->run();
+                if($this->form_validation->run() == TRUE){
+                    $to=$this->input->post('to');
+                  $this->load->model('messaging');
+                  Messaging::add_message();
+                  $data['sent']='Message sent';
+                  if(isset($_POST['tomail'])){
+                      $alah=$this->rejsend_email($this->find_sender_email($to), $this->input->post('subject'), $this->input->post('msgbody'),$to);
+                      if($alah){
+                          $data['toemail']='message sent to email';
+                      }else{
+                          $data['ntoemail']='not sent to email';
+                      }
+                  }
+                   }
+                }
+                
+                $this->load->view('Directorate/denied_appl_message',$data);
+        }
+        
+         function rejsend_email($to,$subject,$message,$file){
+                $this->load->library('email');
+                $this->email->set_newline("\r\n");
+                $this->email->from('pgis@gmail.com','PGIS TEAM');
+                $this->email->to($to);
+                $this->email->subject($subject);
+                $this->email->message($message);
+                $this->email->attach($file);
+                if (@$this->email->send()){
+                    return TRUE; 
+                }  else {
+                    return FALSE;
+                }
+        }
 }

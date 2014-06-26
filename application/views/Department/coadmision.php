@@ -61,7 +61,8 @@
                           <th>Username</th>    
                           <th>Other names</th>
                           <th>Sur name</th>
-                          <th>Action<b class="caret"></b></th>  
+                          <th>Action</th>
+                          <th>Admission status</th>
                         </tr>
                     </thead>
 
@@ -72,13 +73,24 @@
                             echo '<tr>';
                             echo '<td>'.$row1->userid.'</td>';
                             echo '<td>'.$row1->other_name.'</td>';
-                            echo '<td>'.$row1->surname.'</td>';
-                            echo  '<td>';?>
-                            <button class="btn btn-info btn-xs"  onclick="viewrecomd('<?php echo $row1->userid;?>')" data-toggle="modal" data-target="#viedeprec">
+                            echo '<td>'.$row1->surname.'</td>';?>
+                            <td><button class="btn btn-info btn-xs"  onclick="viewrecomd('<?php echo $row1->userid;?>')" data-toggle="modal" data-target="#viedeprec">
                                View recommendation
                             </button>
+                            </td>
+                            <td>
+                             <?php
+                             if($row1->appl_status==='yes'){
+                                 echo '<div class="alert-success">admitted</div>';
+                             }  elseif($row1->appl_status==='rejected') {
+                                 echo '<div class="alert-danger">Not admitted</div>';
+                             }  else {
+                                 echo '<div class="alert-warning">Unchecked</div>';
+                             }
+                             ?>  
+                            </td>
                                    <?php
-                            echo '</td></tr>';
+                            echo '</tr>';
                         }
                     }
 
@@ -137,13 +149,15 @@
                                       <td>
                                         <?php
                                         foreach($crquery->result() as $cr){
-                                            $crtfile=  substr($cr->admision_criteria, 30);
+                                            $crtfile=  substr($cr->admision_criteria, 31);
                                         }
                                         echo $crtfile;
                                         ?> 
                                       </td>
                                       <td>
-                                          <button class="btn btn-xs btn-info">View</button> 
+                                          <a href="#" data-toggle="modal" data-target="#viewcrit">
+                                                <button class="col-md-12 btn btn-xs btn-info">View admission criteria</button>
+                                          </a>
                                       </td>
                                   </tr>
                               </table>
@@ -160,6 +174,45 @@
             </div>
               <div class="modal-body" id="recview">
                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+         <div class="modal fade" id="viewcrit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h6 class="modal-title" id="myModalLabel">View admission Criteria</h6>
+            </div>
+            <div class="modal-body">
+                 <?php
+                 $this->db->select('admision_criteria');
+                 $crquery = $this->db->get('tb_system_setting');
+                    if($crquery->num_rows()>0){ 
+                        foreach($crquery->result()as $crt){
+                            $ctrfile=$crt->admision_criteria;
+                        }
+                    }
+                    $fiarray=array('image/jpeg','image/pjpeg','image/png',
+                        'image/gif','image/bmp','image/tiff','image/svg+xml','image/vnd.microsoft.icon');
+                    if(in_array(get_mime_by_extension($ctrfile), $fiarray)){
+                    ?>
+                      <img src="<?php echo $ctrfile;?>" alt="some_text">  
+                    <?php  
+                    }  else {
+                      ?>
+                <iframe id="viewer"
+                    src = "<?php echo base_url();?>ViewerJS/#<?php echo $ctrfile;?>" width='100%' height='500'
+                    allowfullscreen webkitallowfullscreen>
+                 </iframe>
+                  <?php  
+                    }
+                  ?>
+                 
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>

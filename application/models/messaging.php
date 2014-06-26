@@ -10,7 +10,9 @@ class Messaging extends CI_Model{
               $sender=$this->session->userdata('user_role');
           }elseif ($this->session->userdata('user_role')=='administrator') {
             $sender=$this->session->userdata('user_role');
-          }  else {
+          }elseif ($this->session->userdata('user_role')=='postgraduate director') {
+            $sender='PG Directorate';
+          }else {
               $sender=$this->session->userdata('userid');
           }
           

@@ -83,9 +83,10 @@
                             </button>
                             <a href="<?php echo site_url('directorPgis/admit/'.$row1->userid.'');?>">
                                 <button class="btn btn-xs btn-info">Admit</button>
-                            </a>    
-                                        <button class="btn btn-xs btn-warning">Don't Admit</button>
-                            
+                            </a> 
+                            <a href="<?php echo site_url('directorPgis/pending/'.$row1->userid.'');?>">
+                               <button class="btn btn-xs btn-warning">Don't Admit</button>
+                            </a>
                               <?php
                             echo '</td></tr>';
                         }

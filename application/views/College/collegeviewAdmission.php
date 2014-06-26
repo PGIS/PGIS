@@ -27,7 +27,8 @@
                           <th>Username</th>    
                           <th>Other names</th>
                           <th>Sur name</th>
-                          <th>Action<b class="caret"></b></th>  
+                          <th>Action</th>
+                          <th>Admission status</th>
                         </tr>
                     </thead>
 
@@ -38,13 +39,25 @@
                             echo '<tr>';
                             echo '<td>'.$row1->userid.'</td>';
                             echo '<td>'.$row1->other_name.'</td>';
-                            echo '<td>'.$row1->surname.'</td>';
-                            echo  '<td>';?>
+                            echo '<td>'.$row1->surname.'</td>';?>
+                            <td>
                             <button class="btn btn-info btn-xs"  onclick="viewrecomd('<?php echo $row1->userid;?>')" data-toggle="modal" data-target="#viedeprec">
                                View recommendation
                             </button>
+                            </td>
+                            <td>
+                                 <?php
+                             if($row1->appl_status==='yes'){
+                                 echo '<div class="alert-success">admitted</div>';
+                             }  elseif($row1->appl_status==='rejected') {
+                                 echo '<div class="alert-danger">Not admitted</div>';
+                             }  else {
+                                 echo '<div class="alert-warning">Unchecked</div>';
+                             }
+                             ?>    
+                            </td>
                                    <?php
-                            echo '</td></tr>';
+                            echo '</tr>';
                         }
                     }
 

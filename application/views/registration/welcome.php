@@ -54,7 +54,7 @@
         <?php
         $query = $this->db->get_where('tb_event_extend', array('registration_ID	' => $this->session->userdata('registration_id'),'status'=>NULL));
         $query1 = $this->db->get_where('tb_event_freez', array('registration_ID	' => $this->session->userdata('registration_id'),'status'=>NULL));
-        $query2 = $this->db->get_where('tb_event_postpone', array('registration_ID	' => $this->session->userdata('registration_id'),'status'=>NULL));
+        $query2 = $this->db->get_where('tb_event_postpone', array('registration_ID' => $this->session->userdata('registration_id'),'status'=>NULL));
         if($query->num_rows()>0){
             
            foreach ($query->result() as $fr){

@@ -189,4 +189,10 @@ class Admision_model extends CI_Model{
          $this->db->where($check);
          $this->db->update('tb_app_personal_info', $mydata1);
     }
+    
+    function rejectapplicant($id){
+          $data1=array('appl_status'=>'rejected');
+                $this->db->where('userid',$id);
+                $this->db->update('tb_app_personal_info', $data1); 
+      }
 }
