@@ -327,12 +327,14 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('surname', 'surname', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('other_name', 'Other name', 'required|max_length[40]|xss_clean');
         $this->form_validation->set_rules('title', 'title', 'required|max_length[10]|xss_clean');
-        $this->form_validation->set_rules('datebirth', 'birth date', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('datebirth', 'Year', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('datebirth1', 'Date', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('datebirth2', 'Month', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('disab', 'disable', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('perm_address', 'Permanet Address', 'required|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('landline', 'landline', 'trim|max_length[20]|alpha_numeric|xss_clean');
+        $this->form_validation->set_rules('landline', 'landline', 'trim|exact_length[10]|numeric|xss_clean|callback_landline_check');
         $this->form_validation->set_rules('mobile', 'mobile', 'required|exact_length[10]|numeric|xss_clean');
-        $this->form_validation->set_rules('fax', 'fax', '|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('fax', 'fax', 'min_length[14]|max_length[16]|alpha_dash|xss_clean|callback_fax_check');
         $this->form_validation->set_rules('email', 'email', 'required|max_length[40]|valid_email|xss_clean');
         $this->form_validation->set_rules('coun_birth', 'country', 'required|max_length[80]|xss_clean');
         $this->form_validation->set_rules('nation', 'nationality', 'required|max_length[40]|xss_clean');
@@ -350,9 +352,13 @@ class Application extends CI_Controller {
                 $this->load->view('application/capplication', $data);
             }
         } elseif (isset($_POST['save'])) {
+            if($this->form_validation->run() == FALSE){
+              $this->load->view('application/capplication', $data);  
+            }  else {
             $this->load->model('Application_form');
             Application_form::insert_other_info();
             $this->load->view('application/capplication', $data);
+            }
         } elseif(isset($_POST['back'])){
             $data['active1'] = TRUE;
             unset($data['active2']);
@@ -361,8 +367,23 @@ class Application extends CI_Controller {
             $this->load->view('application/capplication', $data);
         }
     }
-
-    function employement() {
+    function landline_check($str){
+        if($str){
+           $this->form_validation->set_message('landline_check'); 
+            return FALSE;
+        }  else {
+            return TRUE;
+        }
+    }
+    function fax_check($length){
+        if($length){
+            $this->form_validation->set_message('fax_check');
+            return FALSE;
+        }  else {
+            return TRUE; 
+        }
+    }
+         function employement() {
         $data1 = $this->show_User_data();
         $data4 = $this->applifinan_data();
         $data2 = $this->show_user_history();
@@ -383,10 +404,13 @@ class Application extends CI_Controller {
             $this->form_validation->set_rules('to', 'To', 'required|max_length[20]|xss_clean');
             $this->form_validation->set_rules('from', 'From', 'required|max_length[20]|xss_clean');
             $this->form_validation->run();
-
+             if($this->form_validation->run()===FALSE){
+                 $this->load->view('application/capplication', $data);
+             }else{
             $this->load->model('Application_form');
             Application_form::insert_hist_info();
             $this->load->view('application/capplication', $data);
+             }
         } elseif (isset($_POST['back'])){
             $data['active2'] = TRUE;
             unset($data['active3']);
@@ -425,9 +449,13 @@ class Application extends CI_Controller {
                 $this->load->view('application/capplication', $data);
             }
         } elseif (isset($_POST['save'])) {
+            if($this->form_validation->run()===FALSE){
+               $this->load->view('application/capplication', $data); 
+            }else{
             $this->load->model('Application_form');
             Application_form::insert_acca_info();
             $this->load->view('application/capplication', $data);
+            }
         } elseif (isset($_POST['back'])) {
                 $data['active3'] = TRUE;
                 unset($data['active4']);
@@ -460,9 +488,9 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('em', 'E-mail', 'trim|required|valid_email|xss_clean');
         $this->form_validation->set_rules('em1', 'E-mail', 'trim|required|valid_email|xss_clean');
         $this->form_validation->set_rules('em2', 'E-mail', 'trim|required|valid_email|xss_clean');
-        $this->form_validation->set_rules('ad', 'Address', 'trim|required|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('ad1', 'Address', 'trim|required|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('ad2', 'Address', 'trim|required|max_length[30]|xss_clean');
+        $this->form_validation->set_rules('ad', 'Address', 'trim|required|exact_length[10]|numeric|xss_clean');
+        $this->form_validation->set_rules('ad1', 'Address', 'trim|required|exact_length[10]|numeric|xss_clean');
+        $this->form_validation->set_rules('ad2', 'Address', 'trim|required|exact_length[10]|numeric|xss_clean');
         $this->form_validation->run();
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
@@ -568,9 +596,13 @@ class Application extends CI_Controller {
                 $this->load->view('application/capplication', $data);
             }
         } elseif (isset($_POST['save'])) {
+            if($this->form_validation->run()===FALSE){
+             $this->load->view('application/capplication', $data);   
+            }else{
             $this->load->model('Application_form');
             Application_form::insert_addition();
             $this->load->view('application/capplication', $data);
+            }
         } elseif (isset($_POST['back'])){
                 $data['active5'] = TRUE;
                 unset($data['active6']);

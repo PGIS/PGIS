@@ -168,35 +168,35 @@
                 .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
                 . '<div class="alert alert-success">'.$upload_data1.'</div>'
                 . '</div>';
-            }elseif (isset ($upload_data1)) {
+            }elseif (isset ($upload_data2)) {
              echo '<div class="alert fade in">'
                 .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
                 . '<div class="alert alert-success">'.$upload_data2.'</div>'
                 . '</div>';
-            }elseif (isset ($upload_data2)) {
+            }elseif (isset ($upload_data3)) {
            echo '<div class="alert fade in">'
                 .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
                 . '<div class="alert alert-success">'.$upload_data3.'</div>'
                 . '</div>';
-             }elseif (isset ($upload_data3)) {
+             }elseif (isset ($upload_data4)) {
     echo '<div class="alert fade in">'
                 .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
                 . '<div class="alert alert-success">'.$upload_data4.'</div>'
                 . '</div>';
-          }elseif (isset ($upload_data4)) {
+          }elseif (isset ($upload_data5)) {
        echo '<div class="alert fade in">'
                 .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
                 . '<div class="alert alert-success">'.$upload_data5.'</div>'
                 . '</div>';
-           }elseif (isset ($upload_data5)) {
+           }elseif (isset ($upload_data6)) {
         echo '<div class="alert fade in">'
                 .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
-                . '<div class="alert alert-success">'.$upload_data5.'</div>'
+                . '<div class="alert alert-success">'.$upload_data6.'</div>'
                 . '</div>';
-   }elseif (isset ($upload_data6)) {
+   }elseif (isset ($upload_data7)) {
     echo '<div class="alert fade in">'
                 .'<a type="button" class="close" data-dismiss="alert">&times;</a>'
-                . '<div class="alert alert-success">'.$upload_data6.'</div>'
+                . '<div class="alert alert-success">'.$upload_data7.'</div>'
                 . '</div>';
 }
             ?>

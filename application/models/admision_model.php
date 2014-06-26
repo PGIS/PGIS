@@ -79,7 +79,12 @@ class Admision_model extends CI_Model{
         $data = array(
                'admision_criteria' => $filename
             );
-         $this->db->update('tb_system_setting', $data);
+        $res=  $this->db->get_where('tb_system_setting',array('admision_criteria'=>$filename));
+        if($res->num_rows()===1){
+         $this->db->update('tb_system_setting', $data);  
+        }  else {
+         $this->db->insert('tb_system_setting',$data);   
+        }
     }
     
     function recommendation($id){

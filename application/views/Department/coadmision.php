@@ -100,7 +100,7 @@
                           <table class="table">
                               <tr>
                                  <td>
-                                     <?php if(isset($error)){echo '<div class="error">'.$this->upload->display_errors('<p>', '</p>').'</div>';}?>
+                                     <?php if(isset($error)){echo '<div class="error">'.$error.'</div>';}?>
                                      <input type="file" name="userfile" size="40" /></td>
                                  <td>
 
@@ -137,7 +137,7 @@
                                       <td>
                                         <?php
                                         foreach($crquery->result() as $cr){
-                                            $crtfile=$cr->admision_criteria;
+                                            $crtfile=  substr($cr->admision_criteria, 30);
                                         }
                                         echo $crtfile;
                                         ?> 

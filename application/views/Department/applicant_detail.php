@@ -291,7 +291,7 @@
                  <?php
                  $this->db->select('admision_criteria');
                  $crquery = $this->db->get('tb_system_setting');
-                    if($crquery->num_rows()>0){
+                    if($crquery->num_rows()>0){ 
                         foreach($crquery->result()as $crt){
                             $ctrfile=$crt->admision_criteria;
                         }

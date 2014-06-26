@@ -75,8 +75,8 @@
              if($res->num_rows()===1){
               $row=$res->row();
              $internal= $row->Internal_supervisor;
-             $external= $row->external_supervisor;
-             $date_sub=  $this->input->post('date_sub');
+             $external= $row->sec_internal_supervisor;
+             $date_sub= date('m/d/Y');
              $document=  base_url().'project_document/'.pg_escape_string($_FILES['userfile']['name']);
              $this->project_model->project_prog($sn,$internal,$external,$document,$date_sub);
              $data['smgsuc']='<p class="alert alert-success">You project has been sent.!</p>';
