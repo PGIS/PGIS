@@ -17,7 +17,7 @@ class DirectorPgis extends CI_Controller {
         $this->load->library(array('form_validation', 'session', 'javascript', 'pagination'));
         if (!$this->session->userdata('logged_in')) {
             redirect('logout');
-        } elseif ($this->session->userdata('user_role') != 'postgraduate director') {
+        } elseif ($this->session->userdata('user_role')!= 'postgraduate director') {
             redirect('logout');
         }
     }
@@ -124,7 +124,7 @@ class DirectorPgis extends CI_Controller {
     }
 
     function checkedApplications() {
-        $dat = array('depchek' => 'yes','colcheck' => 'yes', 'pgcheck' => 'yes');
+        $dat = array('depchek' => 'yes','colcheck' => 'yes', 'pgcheck' => 'yes','appl_status'=>'no');
         $query1 = $this->db->get_where('tb_app_personal_info', $dat);
         return $query1->result();
     }
@@ -249,4 +249,110 @@ class DirectorPgis extends CI_Controller {
                           </div>' ;
                 }
    }
+   
+     function admitted_applicants(){
+          $dat = array('depchek' => 'yes','colcheck' => 'yes', 'pgcheck' => 'yes','appl_status'=>'yes');
+          
+           $query1 = $this->db->get_where('tb_app_personal_info', $dat);
+           $data['query']=$query1->result();
+           $this->load->view('Directorate/admited_applicants',$data);
+        }
+        
+         function  admit($userid=''){
+           $que = $this->db->get_where('tb_app_personal_info', array('userid' => $userid),1);
+           if($que->num_rows()==0){
+               redirect('admision');
+           }
+           $data=$this->appl_detils($userid);
+          if(isset($_POST['send'])){
+           $this->form_validation->set_rules('subject', 'Subject', 'required|max_length[80]|xss_clean');
+           $this->form_validation->set_rules('to', 'Receiver', 'required|max_length[40]|xss_clean');
+           $this->form_validation->set_rules('msgbody', 'Message body', 'required|xss_clean');
+           $this->form_validation->run();
+                if($this->form_validation->run() == TRUE){
+                    $to=$this->input->post('to');
+                  $this->load->model('messaging');
+                  Messaging::add_message();
+                  $data['sent']='Message sent';
+                  if(isset($_POST['tomail'])){
+                      $alah=$this->send_email($this->find_sender_email($to), $this->input->post('subject'), $this->input->post('msgbody'),$to);
+                      if($alah){
+                          $data['toemail']='message sent to email';
+                      }else{
+                          $data['ntoemail']='not sent to email';
+                      }
+                  }
+                   }
+                }
+          
+        $z = $this->db->count_all('tb_admision')+10;
+      
+        if($this->count_digit($z)==2){
+            $k='000'.$z;
+        }elseif ($this->count_digit($z)==3) {
+              $k='00'.$z;
+        }
+        elseif ($this->count_digit($z)==4) {
+            $k='0'.$z;
+        }elseif ($this->count_digit($z)==5) {
+            $k=''.$z;
+        }
+        $reg= ''.date('Y').'-06-'.$k;
+         $this->load->model('admision_model');
+            Admision_model::admit($data['appid'],$reg,$userid,$data['Ucourse'],$data['sname'],$data['other_nam'],$data['nationalt'],$data['department']);
+            Admision_model::verify_form($userid);
+        $this->load->view('Directorate/verify_notifi',$data);
+        
+        }
+        
+        function count_digit($number) {
+            return strlen((string) $number);
+        }
+        
+         function creating_pdf($userid){
+             $data=$this->appl_detils($userid);
+             $html = $this->load->view('Directorate/admissionletter',$data,TRUE);
+		
+		$pdf_filename  = $userid.'.pdf';
+		$this->load->library('dompdf_lib');
+                $this->dompdf_lib->convert_html_to_pdf($html,$userid,$pdf_filename, TRUE);
+                 
+        }
+        
+        function send_email($to,$subject,$message,$file){
+                $this->load->library('email');
+                $this->email->set_newline("\r\n");
+                $this->email->from('pgis@gmail.com','PGIS TEAM');
+                $this->email->to($to);
+                $this->email->subject($subject);
+                $this->email->message($message);
+                $path = $this->config->item('server_root');
+                $file = $path . './attachments/admission_letter/'.$file.'.pdf';
+                $this->email->attach($file);
+                if (@$this->email->send()){
+                    return TRUE; 
+                }  else {
+                    return FALSE;
+                }
+        }
+        
+        function find_sender_email($to){
+            $this->db->select('email');
+           $query = $this->db->get_where('tb_user', array('userid' => $to),1);
+            foreach ($query->result() as $email){
+                return $email->email;
+            }
+            
+        }
+        
+        function sendadmission($userid){
+          $data=$this->appl_detils($userid);
+          $array = array(
+               'admision_letter' => 'sent'
+            );
+          $data['appsent']='admission letter Sent';
+          $this->db->where('app_id', $userid);
+          $this->db->update('tb_app_prev_info', $array); 
+          $this->load->view('Directorate/verify_notifi',$data);
+      }
 }

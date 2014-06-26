@@ -59,7 +59,7 @@
              </a>
             </li>
             <li>    
-               <a href="<?php echo site_url('directorPgis/feedback'); ?>"><span class="glyphicon glyphicon-retweet"></span>   Presentation Feedback</a>
+               <a href="<?php echo site_url('directorPgis/admitted_applicants'); ?>"><span class="glyphicon glyphicon-list-alt"></span> Admitted Applicants</a>
              </li>
              <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>
