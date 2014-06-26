@@ -327,7 +327,9 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('surname', 'surname', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('other_name', 'Other name', 'required|max_length[40]|xss_clean');
         $this->form_validation->set_rules('title', 'title', 'required|max_length[10]|xss_clean');
-        $this->form_validation->set_rules('datebirth', 'birth date', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('datebirth', 'Year', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('datebirth1', 'Date', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('datebirth2', 'Month', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('disab', 'disable', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('perm_address', 'Permanet Address', 'required|max_length[30]|xss_clean');
         $this->form_validation->set_rules('landline', 'landline', 'trim|exact_length[10]|numeric|xss_clean|callback_landline_check');
