@@ -8,7 +8,8 @@
         </ol>
         <div class="col-md-6">
             <div class="ajx text-center" style="margin-bottom: 10px;"></div>
-           <table class="table">
+           <table class="table" id="managez">
+               <thead><tr><th>Course</th><th>Options</th></tr></thead>
            <?php
            $res=$this->db->get('tb_course');
            if($res->num_rows()>0){
@@ -45,5 +46,6 @@
         });
     }
     </script>
+    
 </div>
 <?php include_once 'footer.php';?>

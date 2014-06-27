@@ -24,7 +24,9 @@
     }
     
     $(document).ready(function(){ 
-        $('#course').dataTable(); 
+        $('#course').dataTable();
+        $('#managez').dataTable();
+        $('#sem').dataTable();
     });
 </script>
 <script>
@@ -66,5 +68,6 @@
   <script>
   $('.datepicker').datepicker();
   </script>
+  
 </body>
 </html>

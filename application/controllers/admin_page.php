@@ -243,20 +243,25 @@ class Admin_page extends CI_Controller {
     }
 
     function courseadds($id) {
+        $data['add']=$id;
         $res = $this->db->get_where('tb_programmes', array('prog_id' => $id));
         if ($res->num_rows() === 1) {
             $row = $res->row();
             $this->form_validation->set_rules('csname', 'course name', 'trim|required|xss_clean');
             $this->form_validation->set_rules('cdname', 'course code', 'trim|required|xss_clean');
+            $this->form_validation->run();
+            if(isset($_POST['save'])){
             if ($this->form_validation->run() === FALSE) {
-                echo '<p class="label label-danger">Cant be empty...</p>';
+                $this->load->view('admin/addcourse_form', $data);
             } else {
                 $this->load->model('admin');
                 $prog_name = $row->programme_name;
                 $course_name = $this->input->post('csname');
                 $course_code = $this->input->post('cdname');
                 $this->admin->courseaddz($prog_name, $course_name, $course_code);
-                echo '<p class="label label-success">Course added...</p>';
+                $data['succ']='<p class="alert alert-success">Course added...</p>';
+                $this->load->view('admin/addcourse_form', $data);
+            }
             }
         }
     }
@@ -280,19 +285,24 @@ class Admin_page extends CI_Controller {
     }
 
     function updatecourse($manage) {
+        $data['manage']=$manage;
         $this->form_validation->set_rules('pgname', 'Programme name', 'trim|required|xss_clean');
         $this->form_validation->set_rules('csname', 'course name', 'trim|required|xss_clean');
         $this->form_validation->set_rules('cdname', 'course code', 'trim|required|xss_clean');
+        $this->form_validation->run();
+        if(isset($_POST['save'])){
         if ($this->form_validation->run() === FALSE) {
-            echo '<label class="label label-danger">Cant be empty</label>';
+            $this->load->view('admin/course_info', $data);
         } else {
             $this->load->model('admin');
             $prog_name = $this->input->post('pgname');
             $course_name = $this->input->post('csname');
             $course_code = $this->input->post('cdname');
             $this->admin->courseupdate($manage, $prog_name, $course_name, $course_code);
-            echo '<label class="label label-success">updated successifully..</label>';
+            $data['sms']= '<p class="alert alert-success">updated successifully..</p>';
+            $this->load->view('admin/course_info', $data);
         }
+    }
     }
 
     function systemSettings() {
@@ -361,17 +371,22 @@ class Admin_page extends CI_Controller {
     }
 
     function form_edit($id) {
+        $data['edit']=$id;
         $this->form_validation->set_rules('us', 'Username', 'trim|required|xss_clean');
         $this->form_validation->set_rules('em', 'Email-address', 'trim|required|valid_email|xss_clean');
+        $this->form_validation->run();
+        if(isset($_POST['save'])){
         if ($this->form_validation->run() === FALSE) {
-
-            echo '<p class="alert alert-danger">Something went wrong</p>';
+            $this->load->view('admin/adminloads',$data);
         } else {
             $this->load->model('admin');
             $username = $this->input->post('us');
             $email = $this->input->post('em');
             $this->admin->admin_edit($id, $username, $email);
-            echo'<p class="alert alert-success">Row updated.</p>';
+            $data['sms']='<p class="alert alert-success">successifully updated.</p>';
+            $this->load->view('admin/adminloads',$data);
+            
+        }
         }
     }
 
@@ -408,21 +423,23 @@ class Admin_page extends CI_Controller {
         $this->load->view('admin/staff_edit', $data);
     }
 
-    function staff_edits($userid) {
+    function staff_edits($userid,$id) {
+        $data['taff']=$id;
         $this->form_validation->set_rules('us', 'Username', 'trim|required|xss_clean');
         $this->form_validation->set_rules('em', 'Email-address', 'trim|required|valid_email|xss_clean');
         $this->form_validation->set_rules('ds', 'Designation', 'trim|required|xss_clean');
+        if(isset($_POST['save'])){
         if ($this->form_validation->run() === FALSE) {
-
-            echo '<p class="alert alert-danger">Something went wrong</p>';
+        $this->load->view('admin/staff_edit', $data);
         } else {
             $this->load->model('admin');
             $username = $this->input->post('us');
             $email = $this->input->post('em');
             $design = $this->input->post('ds');
             $this->admin->staff_edit($userid, $username, $email, $design);
-            echo'<p class="alert alert-success">Row updated.</p>';
+            $data['succ']='<p class="alert alert-success">successifully updated.</p>';
+            $this->load->view('admin/staff_edit', $data);
         }
     }
-
+    }
 }
