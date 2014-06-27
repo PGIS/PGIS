@@ -324,8 +324,8 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active2'] = TRUE;
 
-        $this->form_validation->set_rules('surname', 'surname', 'required|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('other_name', 'Other name', 'required|max_length[40]|xss_clean');
+        $this->form_validation->set_rules('surname', 'surname', 'required|max_length[20]|alpha|xss_clean');
+        $this->form_validation->set_rules('other_name', 'Other name', 'required|max_length[40]|alpha|xss_clean');
         $this->form_validation->set_rules('title', 'title', 'required|max_length[10]|xss_clean');
         $this->form_validation->set_rules('datebirth', 'Year', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('datebirth1', 'Date', 'required|max_length[20]|xss_clean');
@@ -398,9 +398,9 @@ class Application extends CI_Controller {
             $this->load->view('application/capplication', $data);
         } elseif (isset($_POST['save'])) {
 
-            $this->form_validation->set_rules('current_employer', 'Employer', 'required|max_length[80]|xss_clean');
+            $this->form_validation->set_rules('current_employer', 'Employer', 'required|max_length[80]|alpha|xss_clean');
             $this->form_validation->set_rules('responsbility', 'responsbility', 'required|max_length[255]|xss_clean');
-            $this->form_validation->set_rules('position', 'position', 'required|max_length[255]|xss_clean');
+            $this->form_validation->set_rules('position', 'position', 'required|max_length[255]|alpha|xss_clean');
             $this->form_validation->set_rules('to', 'To', 'required|max_length[20]|xss_clean');
             $this->form_validation->set_rules('from', 'From', 'required|max_length[20]|xss_clean');
             $this->form_validation->run();
@@ -429,10 +429,10 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active4'] = TRUE;
 
-        $this->form_validation->set_rules('high_acade', 'accademic', 'required|max_length[40]|xss_clean');
-        $this->form_validation->set_rules('institution', 'institution', 'required|max_length[40]|xss_clean');
-        $this->form_validation->set_rules('graduation', 'graduation', 'required|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('specialization', 'specialization', 'required|max_length[40]|xss_clean');
+        $this->form_validation->set_rules('high_acade', 'accademic', 'required|max_length[40]|alpha|xss_clean');
+        $this->form_validation->set_rules('institution', 'institution', 'required|max_length[40]|alpha|xss_clean');
+        $this->form_validation->set_rules('graduation', 'graduation', 'required|exact_length[4]|numeric|xss_clean');
+        $this->form_validation->set_rules('specialization', 'specialization', 'required|max_length[225]|alpha|xss_clean');
         $this->form_validation->set_rules('gpa', 'GPA', 'required|exact_length[3]|numeric|xss_clean');
         $this->form_validation->set_rules('other_ac_prof', 'other Accademic Proffession', 'required|max_length[80]|xss_clean');
         $this->form_validation->run();
@@ -482,9 +482,9 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active5'] = TRUE;
 
-        $this->form_validation->set_rules('nm', 'Name', 'trim|required|max_length[80]|xss_clean');
-        $this->form_validation->set_rules('nm1', 'Name', 'trim|required|max_length[80]|xss_clean');
-        $this->form_validation->set_rules('nm2', 'Name', 'trim|required|max_length[80]|xss_clean');
+        $this->form_validation->set_rules('nm', 'Name', 'trim|required|max_length[80]|alpha|xss_clean');
+        $this->form_validation->set_rules('nm1', 'Name', 'trim|required|max_length[80]|alpha|xss_clean');
+        $this->form_validation->set_rules('nm2', 'Name', 'trim|required|max_length[80]|alpha|xss_clean');
         $this->form_validation->set_rules('em', 'E-mail', 'trim|required|valid_email|xss_clean');
         $this->form_validation->set_rules('em1', 'E-mail', 'trim|required|valid_email|xss_clean');
         $this->form_validation->set_rules('em2', 'E-mail', 'trim|required|valid_email|xss_clean');
@@ -582,8 +582,8 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active6'] = TRUE;
 
-        $this->form_validation->set_rules('namsponsor', 'Sponsor name', 'required|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('addr_spons', 'Sponsor adress', 'required|max_length[30]xss_clean|');
+        $this->form_validation->set_rules('namsponsor', 'Sponsor name', 'required|max_length[30]|alpha|xss_clean');
+        $this->form_validation->set_rules('addr_spons', 'Sponsor adress', 'required|max_length[30]alpha_numeric|xss_clean|');
         $this->form_validation->run();
         if (isset($_POST['savcont'])) {
             if ($this->form_validation->run() == FALSE) {
