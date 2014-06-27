@@ -21,7 +21,7 @@ class Dompdf_lib {
 		//$this->_dompdf->stream($filename,array("Attachment" => 0));
                     $pdf = $this->_dompdf->output(array("Attachment" => 0));
                    file_put_contents('attachments/admission_letter/'.$filename,  $pdf);
-                   redirect('admision/admit/'.$userid);
+                   redirect('directorPgis/admit/'.$userid);
                    exit(0);
 		} else {
 			return $this->_dompdf->output();

@@ -81,7 +81,12 @@
                             <button class="btn btn-info btn-xs"  onclick="viewrecomd('<?php echo $row1->userid;?>')" data-toggle="modal" data-target="#viedeprec">
                                View Recommendation
                             </button>
-                            
+                            <a href="<?php echo site_url('directorPgis/admit/'.$row1->userid.'');?>">
+                                <button class="btn btn-xs btn-info">Admit</button>
+                            </a> 
+                            <a href="<?php echo site_url('directorPgis/pending/'.$row1->userid.'');?>">
+                               <button class="btn btn-xs btn-warning">Don't Admit</button>
+                            </a>
                               <?php
                             echo '</td></tr>';
                         }

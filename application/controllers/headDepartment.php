@@ -206,6 +206,71 @@ class HeadDepartment extends CI_Controller {
      }
      
       function viewRecomendation($id){
+            echo    ' <div class=" alert-info">
+                    <center>DIRECTORATE RECOMMENDATION</center>
+                </div>';
+                 $che = array(
+                            'userid' => $id,
+                            'level' => 'directorate'
+                          );
+                $requ = $this->db->get_where('tb_admission_recomendation',$che);
+                if($requ->num_rows()>0){
+                    foreach ($requ->result() as $rere1){
+                        $recmdtn1=$rere1->recomendation;
+                        $comment1=$rere1->comment;
+                    }
+                    if($recmdtn1 === 'Admit'){
+                       echo '<div class="alert alert-success">
+                         Applicant recomended for admission
+                          </div>' ; 
+                    }else{
+                        echo '<div class="alert alert-danger">
+                         Applicant not recomended for admission
+                          </div>'; 
+                        echo '<div>Reason</div>';
+                        echo '<div class="well well-sm">'.$comment1.'</div>';
+                    }
+                    
+                }  else {
+                   echo '<div class="alert alert-warning">
+                         No any recommendation given yet
+                          </div>' ;
+                }
+                
+              echo  ' <div class=" alert-info">
+                    <center>COLLEGE RECOMMENDATION</center>
+                </div>';
+                 $chec = array(
+                            'userid' => $id,
+                            'level' => 'college'
+                          );
+                $reque = $this->db->get_where('tb_admission_recomendation',$chec);
+                if($reque->num_rows()>0){
+                    foreach ($reque->result() as $reres){
+                        $recmdtn2=$reres->recomendation;
+                        $comment2=$reres->comment;
+                    }
+                    if($recmdtn2 === 'Admit'){
+                       echo '<div class="alert alert-success">
+                         Applicant recomended for admission
+                          </div>' ; 
+                    }else{
+                        echo '<div class="alert alert-danger">
+                         Applicant not recomended for admission
+                          </div>'; 
+                        echo '<div>Reason</div>';
+                        echo '<div class="well well-sm">'.$comment2.'</div>';
+                    }
+                    
+                }  else {
+                   echo '<div class="alert alert-warning">
+                         No any recommendation given yet
+                          </div>' ;
+                }
+                
+               echo ' <div class=" alert-info">
+                    <center>DEPARTMENT RECOMMENDATION</center>
+                </div>';
                  $check = array(
                             'userid' => $id,
                             'level' => 'department'
