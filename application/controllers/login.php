@@ -98,7 +98,7 @@ class login extends CI_Controller {
             }elseif(in_array('department coordinator',$myArray)){
                 $s_data=array('user_role'=>'department coordinator');
                 $this->session->set_userdata($s_data);
-                redirect('department_Coordinator');
+                redirect('department_Coordinator/welcome');
             }elseif(in_array('postgraduate director',$myArray)){
                 $s_data=array('user_role'=>'postgraduate director');
                 $this->session->set_userdata($s_data);
