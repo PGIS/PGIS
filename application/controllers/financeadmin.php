@@ -25,6 +25,10 @@ class Financeadmin extends CI_Controller {
     function index() {
         $this->load->view('finance/finance');
     }
+    
+    function welcome(){
+        $this->load->view('finance/welcome');
+    }
 
     function applidetails($userid) {
         $data = $this->usdetail($userid);

@@ -38,7 +38,10 @@ class DirectorPgis extends CI_Controller {
         $query1 = $this->db->get_where('tb_app_personal_info', $dat);
         return $query1->result();
     }
-
+    
+    function welcome(){
+        $this->load->view('Directorate/welcome');
+    }
     function applicant_details($userid) {
 
         $data = $data = $this->appl_detils($userid) + $this->edu($userid) + $this->additional_data($userid);

@@ -41,9 +41,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li><button  class="mybtn btn-primary btn-block">
+                        <li><a class="link" href="<?php echo site_url('financeadmin/welcome');?>"><button  class="mybtn btn-primary btn-block">
+                             
                                 <span class="glyphicon glyphicon-dashboard"></span> FINANCE PANEL
-                            </button>
+                            
+                            </button></a>
                         </li>
                         <li><a href="<?php echo site_url('financeadmin'); ?>">
                                 <span class="glyphicon glyphicon-usd"></span> Finance Management</a>

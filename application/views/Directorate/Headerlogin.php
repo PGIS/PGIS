@@ -51,7 +51,9 @@
           <ul class="nav navbar-nav side-nav">
               <li>
                     <button  class="mybtn btn-primary">
-                         POSTGRADUATE DIRECTOR
+                         <a class="link" href="<?php echo site_url('directorPgis/welcome');?>">
+                            POSTGRADUATE DIRECTOR
+                        </a>
                     </button>
               </li> 
             <li><a href="<?php echo site_url('directorPgis');?>"><span class="glyphicon glyphicon-list"></span>

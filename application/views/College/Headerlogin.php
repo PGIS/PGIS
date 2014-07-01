@@ -52,7 +52,9 @@
           <ul class="nav navbar-nav side-nav">
               <li>
                     <button  class="mybtn btn-primary">
-                        <span class="glyphicon glyphicon-dashboard"></span> COLLEGE COORDINATOR
+                       <a class="link" href="<?php echo site_url('college_Coordinator/welcome');?>">
+                      <span class="glyphicon glyphicon-dashboard"></span> COLLEGE COORDINATOR
+                       </a> 
                     </button>
               </li> 
             <li><a href="<?php echo site_url('college_Coordinator');?>"><span class="glyphicon glyphicon-list"></span>
