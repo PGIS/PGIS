@@ -101,8 +101,8 @@
             <div class="criteria in tab-pane <?php if(isset($view)){echo'active';}?>">
                 <?php
                 $this->db->select('admision_criteria');
-                $crquery = $this->db->get('tb_system_setting');
-                if($crquery->num_rows()>0){
+                $crquery1 = $this->db->get('tb_system_setting');
+                if($crquery1->num_rows()>0){
                     $exist=TRUE;
                 }
                 
