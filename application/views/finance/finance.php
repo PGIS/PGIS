@@ -1,16 +1,10 @@
 <?php include 'Headerlogin.php'; ?>
 
 <div id="page-wrapper">
-    <ul id="myTab" class="nav nav-tabs">
-        <li  class="dropdown">
-            <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Applicants fee<b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-                <li ><a href="#appl" tabindex="-1" data-toggle="tab">Fee verification</a></li>
-                <li><a href="#aplist" tabindex="-1" data-toggle="tab">Payed fee</a></li>
-            </ul>
-        </li>   
-        <li ><a href="#reg" data-toggle="tab">Tuition fee</a></li>
-        <li><a href="#inst" data-toggle="tab">instructors’ payment</a></li>
+    <ul id="myTab" class="nav nav-tabs nav-justified nav-tabs-justified">
+        <li class="active"><a href="#appl" data-toggle="tab">Fee verification</a></li>
+        <li><a href="#reg" data-toggle="tab">Tuition fee</a></li>
+        <li><a href="#inst" data-toggle="tab">Valid application fee</a></li>
     </ul>
 
     <div class="tab-content">
@@ -18,7 +12,7 @@
             <div class="col-md-12">
                 <div class="col-md-6">
                     <table class="table table-condensed table-striped" id="mytable">
-                        <thead><h5>List of applicants need verification</h5>
+                        <thead><h4>Verification for Application fee</h4>
                         <th>Applicant Name</th>
                         <th>Action</th>
                         </thead>
@@ -54,39 +48,10 @@
             </div>
         </div>
 
-        <div class="tab-pane" id="aplist">
-            <div class="col-md-8">
-                <p><h5>Applicant with valid Application fee payment information</p></h5>
-                <table class="table table-striped" id="appfeevalid">
-                    <thead>
-                        <tr>
-                            <th>User name</th>
-                            <th>payment date</th>
-                            <th>Application id</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $myquery = $this->db->get_where('tb_finance_application', array('appl_status' =>'accepted'));
-                        if($myquery->num_rows()>0){
-                            foreach ($myquery->result() as $thsapp){
-                                echo '<tr>';
-                                echo '<td>'.$thsapp->userid.'</td>';
-                                echo '<td>'.$thsapp->payment_date.'</td>';
-                                echo '<td>'.$thsapp->app_id.'</td>';
-                                echo '</tr>';
-                            }
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div >
-
         <div class="tab-pane" id="reg">
             <div class="col-md-12">
                 <div class="col-md-6">
-                    <div class="tp">Verification for registration fee</div>
+                    <div class="tp"><h4>Verification for registration fee</h4></div>
                     <table class="table table-responsive table-striped" id="mytable1">
                         <thead>
                             <tr>
@@ -121,10 +86,31 @@
         </div>
 
         <div class="tab-pane" id="inst">
-            <div class="col-md-12">
-                Instructor payments information
-                <table>
-                   
+            <div class="col-md-10">
+                <p><h4>Applicant with valid Application fee payment information</p></h4>
+                <table class="table table-striped" id="appfeevalid">
+                    <thead>
+                        <tr>
+                            <th>Applicant Name</th>
+                            <th>payment date</th>
+                            <th>Application id</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $res=  $this->db->select('*')->where('tb_finance_application.appl_status','accepted')->from('tb_finance_application')
+                                ->join('tb_app_personal_info', 'tb_app_personal_info.userid = tb_finance_application.userid')->get();
+                        if($res->num_rows()>0){
+                            foreach ($res->result() as $thsapp){
+                                echo '<tr>';
+                                echo '<td>'.$thsapp->surname.' '.$thsapp->other_name.'</td>';
+                                echo '<td>'.$thsapp->payment_date.'</td>';
+                                echo '<td>'.$thsapp->app_id.'</td>';
+                                echo '</tr>';
+                            }
+                        }
+                        ?>
+                    </tbody>
                 </table>
             </div>
         </div>

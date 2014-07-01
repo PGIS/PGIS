@@ -5,7 +5,7 @@
          <ul class="nav nav-tabs nav-justified nav-tabs-justified">
                 <li class="<?php if(isset($active)){echo'active';}?>"><a data-target=".unchecked" data-toggle="tab"><label class="glyphicon glyphicon-eye-open">Unchecked Applications</label></a></li>
                 <li class="<?php if(isset($active1)){echo'active';}?>"><a data-target=".checked" data-toggle="tab"><label class="glyphicon glyphicon-eye-close">Checked Applications</label></a></li>
-                 <li class="<?php if(isset($view)){echo'active';}?>"><a data-target=".criteria" data-toggle="tab"><label class="glyphicon glyphicon-upload">Admission criteria</label></a></li>
+                <li class="<?php if(isset($view)){echo'active';}?>"><a data-target=".criteria" data-toggle="tab"><label class="glyphicon glyphicon-upload">Admission criteria</label></a></li>
          </ul>
         <div class="tab-content" style="display: block">
             <div class="unchecked in tab-pane <?php if(isset($active)){echo'active';}?>">

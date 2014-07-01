@@ -19,7 +19,9 @@
     }elseif ($qx->num_rows()==1) {
          $desc='second postponement';
     }elseif($qx->num_rows()==2){
-        $quit=TRUE;
+          $desc='third postponement';
+    }elseif($qx->num_rows()==3){
+          $desc='third postponement';
     }
     
     if(!isset($quit)&& !isset($skip)){

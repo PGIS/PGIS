@@ -9,7 +9,7 @@
         <table class="table table-striped" id="fincedetail">
             <thead>
             <th>Registration #</th>
-            <th>Name #</th>
+            <th>Full Name</th>
             </thead>
             <tbody>
                 <?php
