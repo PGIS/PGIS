@@ -115,10 +115,10 @@ class login extends CI_Controller {
                 $s_data=array('user_role'=>'Finance staff');
                 $this->session->set_userdata($s_data);
                 redirect('financeadmin/welcome');
-            }elseif(in_array('Admision staff',$myArray)){
-                $s_data=array('user_role'=>'Admision staff');
+            }elseif(in_array('dvc academic',$myArray)){
+                $s_data=array('user_role'=>'dvc academic');
                 $this->session->set_userdata($s_data);
-                redirect('admision');
+                redirect('admissionUniversity');
             }elseif(in_array('administrator',$myArray)){
                 $s_data=array('user_role'=>'administrator');
                 $this->session->set_userdata($s_data);
