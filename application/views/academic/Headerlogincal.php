@@ -59,7 +59,22 @@
                          <li><a href="<?php echo site_url('messages'); ?>">
                                 <span class="glyphicon glyphicon-envelope"></span> Messages</a>
                         </li>
+                        <?php
+                        $res=$this->db->get_where('tb_app_personal_info',array('userid'=>$this->session->userdata('userid')));
+                        foreach ($res->result() as $row){
+                            if($row->prog_name ==='master of science in computer science'|| $row->prog_name ==='master of science in health infomatics'
+                                    ||$row->prog_name ==='master of science in computer science'||$row->prog_name ==='master of science in electronics engineering and information technology'
+                                    || $row->prog_name ==='master of telecommunication engineering'||$row->prog_name ==='master of science in electronics science and communication'
+                               ){
+                        ?>
                         <li><a href="<?php echo site_url('project_page'); ?>"><span class="glyphicon glyphicon-th"></span> Dissertation/Thesis</a></li>
+                        <?php
+                        } else {
+                        ?>
+                        <li><a href=""><span class="glyphicon glyphicon-th"></span> Thesis</a></li>
+                        <?php
+                        }
+                        }?>
                         <li><a href="<?php echo site_url('change_form'); ?>"><span class="glyphicon glyphicon-wrench"></span>
                                 Change password</a></li>
                         <li><a href="<?php echo site_url('logout'); ?>"><span class="glyphicon glyphicon-off"></span> Logout</a></li>

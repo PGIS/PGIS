@@ -4,14 +4,14 @@
     <div class="tab-content" style="display: block">
     <div class="col-md-12">
     <ul class="nav nav-tabs nav-justified nav-tabs-justified">
-        <li class="<?php if(isset($active)){echo'active';}?>"><a data-target=".project" data-toggle="tab"><label>Project</label></a></li>
+        <li class="<?php if(isset($active)){echo'active';}?>"><a data-target=".project" data-toggle="tab"><label>Dissertation</label></a></li>
         <li class="<?php if(isset($active1)){echo'active';}?>"><a data-target=".comment" data-toggle="tab"><label>Posted comments</label></a></li>
         <li class="<?php if(isset($active2)){echo'active';}?>"><a data-target=".post" data-toggle="tab"><label>Post Progress</label></a></li>
     </ul>
         <div class="tab-content" style="display: blocks">
             <div class="project in tab-pane <?php if(isset($active)){echo'active';}?>">
                 <fieldset>
-                    <div class="pantop"><legend style="padding-top: 20px;" class=" text text-center text-justify text-info">Project Proposal</legend></div>
+                    <div class="pantop"><legend style="padding-top: 20px;" class=" text text-center text-justify text-info">Dissertation Proposal</legend></div>
                     <div class="load1"></div>
                     <?php echo form_open('project_page/project_insert',array('id'=>'form'));?>
                     <div class="col-md-12">
@@ -35,13 +35,13 @@
             <div class="comment in tab-pane <?php if(isset($active1)){echo'active';}?>">
                 <div class=" tabcordion tabs-left tabbable">
                     <ul class=" nav nav-tabs nav-pills">
-                        <li class="<?php if(isset($actived1)){echo'active';}?>"><a data-target=".after" data-toggle="tab">Project progress</a></li>
+                        <li class="<?php if(isset($actived1)){echo'active';}?>"><a data-target=".after" data-toggle="tab">Dissertation progress</a></li>
                         <li class="<?php if(isset($actived2)){echo'active';}?>"><a data-target=".during" data-toggle="tab"> Presentation Feedback</a></li>
                     </ul>
                     <div class=" tab-content" style="display:block">
                         <div class="after in tab-pane <?php if(isset($actived1)){echo'active';}?>">
                             <fieldset>
-                                <div class="pantop"><legend style="padding-top:20px;" class=" text-center text-justify text-info">Project progress comments</legend></div>
+                                <div class="pantop"><legend style="padding-top:20px;" class=" text-center text-justify text-info">Dissertation progress comments</legend></div>
                                 <table class="table table-bordered tabs-left table-hover table-striped">
                                     <?php if(!empty($delete)){
                                         echo $delete;

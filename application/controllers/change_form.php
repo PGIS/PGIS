@@ -43,7 +43,13 @@ class Change_form extends CI_Controller {
             $this->load->view('alumni/chang_pwd');
        }elseif ($this->session->userdata('user_role') === 'postgraduate director') {
             $this->load->view('Directorate/chang_pwd');
-        }
+       }elseif ($this->session->userdata('user_role') === 'external examiner') {
+            $this->load->view('External/chang_pwd');
+      }elseif ($this->session->userdata('user_role') === 'external supervisor') {
+            $this->load->view('ExternalSup/chang_pwd');
+    }elseif ($this->session->userdata('user_role') === 'internal examiner') {
+            $this->load->view('Internal/chang_pwd');
+    }
     }
 
     function change() {
@@ -99,7 +105,13 @@ class Change_form extends CI_Controller {
              $this->load->view('Department/chang_pwd_1',$data);
        }elseif ($this->session->userdata('user_role') === 'postgraduate director') {
             $this->load->view('Directorate/chang_pwd',$data);
-        }
+       }elseif ($this->session->userdata('user_role') === 'external examiner') {
+            $this->load->view('External/chang_pwd',$data);
+       }elseif ($this->session->userdata('user_role') === 'external supervisor') {
+            $this->load->view('ExternalSup/chang_pwd',$data);
+    }elseif ($this->session->userdata('user_role') === 'internal examiner') {
+            $this->load->view('Internal/chang_pwd',$data);
+    }
     }
 
 }

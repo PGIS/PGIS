@@ -67,7 +67,9 @@
                                   <option value="college coordinator"<?php echo set_select('designation','college coordinator');?>>college coordinator</option>
                                   <option value="postgraduate director"<?php echo set_select('designation','postgraduate director');?>>postgraduate director</option>
                                   <option value="postgraduate associate director"<?php echo set_select('designation','postgraduate associate director');?>>postgraduate associate director</option>
-                                   <option value="dvc academic"<?php echo set_select('designation','dvc academic');?>>dvc academic</option>
+                                 <option value="dvc academic"<?php echo set_select('designation','dvc academic');?>>dvc academic</option>
+                                 <option value="external supervisor"<?php echo set_select('designation','external supervisor');?>>External supervisor</option>
+                                 <option value="external examiner"<?php echo set_select('designation','external examiner');?>>External examiner</option>
                                 </select>
                              </td>
                         </tr>
@@ -77,6 +79,14 @@
                             </td>
                             <td>
                                 <?php echo form_password(array('name'=>'password','placeholder'=>'password','class'=>'form-control'));?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password confirmation
+                                <?php echo form_error('password2','<div class="error">', '</div>'); ?>
+                            </td>
+                            <td>
+                                <?php echo form_password(array('name'=>'password2','placeholder'=>'password confirmation','class'=>'form-control'));?>
                             </td>
                         </tr>
                         <tr>

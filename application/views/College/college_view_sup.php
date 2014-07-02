@@ -58,7 +58,7 @@
                                        . '<td>'.$row1->project_title.'</td>'
                                        . '<td>'.$row1->Internal_supervisor.'</td>'
                                        . '<td>'.$row1->sec_internal_supervisor.'</td>'
-                                       . '<td class="text text-info" title="assigned at both departmet  and college level"><b class="glyphicon glyphicon-ok"></b>assigned <span class="badge">2</span></td>'
+                                       . '<td class="text text-info" title="assigned at both departmet  and college level">'.anchor('college/assign/'.$row1->id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span> assigned</button>').'</td>'
                                      . '</tr>';
                                   } else {
                                       echo '<tr>'
@@ -67,7 +67,7 @@
                                        . '<td>'.$row1->project_title.'</td>'
                                        . '<td>'.$row1->Internal_supervisor.'</td>'
                                        . '<td>'.$row1->sec_internal_supervisor.'</td>'
-                                       . '<td class="text text-info" title="assigned at departmet level"><b class="glyphicon glyphicon-ok"></b>assigned <span class="badge">1</span></td>'
+                                       . '<td class="text text-info" title="assigned at departmet level">'.anchor('college/assign/'.$row1->id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span> assigned</button>').'</td>'
                                      . '</tr>';
                                   }
                               }

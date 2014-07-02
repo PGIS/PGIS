@@ -57,7 +57,7 @@
                                        . '<td>'.$row1->surname.' '.$row1->other_name.'</td>'
                                        . '<td>'.$row1->project_title.'</td>'
                                        . '<td>'.$row1->Internal_supervisor.'</td>'
-                                       . '<td class="text text-info"><b class="glyphicon glyphicon-ok"></b>assigned</td>'
+                                       . '<td class="btn btn-default btn-sm"><b class="glyphicon glyphicon-ok"></b> assigned</td>'
                                      . '</tr>';
                               }
                             }

@@ -327,9 +327,7 @@ class Application extends CI_Controller {
         $this->form_validation->set_rules('surname', 'surname', 'required|max_length[20]|alpha|xss_clean');
         $this->form_validation->set_rules('other_name', 'Other name', 'required|max_length[40]|alpha|xss_clean');
         $this->form_validation->set_rules('title', 'title', 'required|max_length[10]|xss_clean');
-        $this->form_validation->set_rules('datebirth', 'Year', 'required|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('datebirth1', 'Date', 'required|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('datebirth2', 'Month', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('datebirth', 'Date of birth', 'trim|required|exact_length[10]|xss_clean');
         $this->form_validation->set_rules('disab', 'disable', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('perm_address', 'Permanet Address', 'required|max_length[30]|xss_clean');
         $this->form_validation->set_rules('landline', 'landline', 'trim|exact_length[10]|numeric|xss_clean|callback_landline_check');
@@ -341,22 +339,26 @@ class Application extends CI_Controller {
         $this->form_validation->run();
 
         if (isset($_POST['savcont'])) {
-            if ($this->form_validation->run() == FALSE) {
+            $datebirth=  $this->input->post('datebirth');
+            if ($this->form_validation->run() == FALSE || substr($datebirth, 6)>= date('Y')) {
+                $data['error']='<p>Your date of birth cant be that day please try again.</p>';
                 $this->load->view('application/capplication', $data);
             } else {
 
                 $data['active3'] = TRUE;
                 unset($data['active2']);
                 $this->load->model('Application_form');
-                Application_form::insert_other_info();
+                Application_form::insert_other_info($datebirth);
                 $this->load->view('application/capplication', $data);
             }
         } elseif (isset($_POST['save'])) {
-            if($this->form_validation->run() == FALSE){
+             $datebirth=  $this->input->post('datebirth');
+            if($this->form_validation->run() == FALSE ||substr($datebirth, 6) >= date('Y')){
+              $data['error']='<p>Your date of birth cant be that day please try again.</p>';
               $this->load->view('application/capplication', $data);  
             }  else {
             $this->load->model('Application_form');
-            Application_form::insert_other_info();
+            Application_form::insert_other_info($datebirth);
             $this->load->view('application/capplication', $data);
             }
         } elseif(isset($_POST['back'])){
@@ -374,6 +376,15 @@ class Application extends CI_Controller {
         }  else {
             return TRUE;
         }
+    }
+    function detebirth_check($date){
+        if($date){
+            $this->form_validation->set_message('datebirth_check','The %s cant be that day');
+            return FALSE;
+        }  else {
+            return TRUE;
+        }
+        
     }
     function fax_check($length){
         if($length){
