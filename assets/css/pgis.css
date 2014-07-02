@@ -160,3 +160,7 @@ table.calendar{
 a.link{
     color: white;
 }
+.lvl{
+    font-size: 14px;
+    line-height: 25px;
+}
