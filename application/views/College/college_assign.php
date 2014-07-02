@@ -8,26 +8,56 @@
                     <fieldset>
                         <div class="pantop"><p style="padding-top: 30px;" class="text text-justify text-info"><label>Details For: <?php echo ' '.$registrationID .' ('. ($surname).' )';?></label></p></div>
                         <div>
-                            <label>PROJECT TITLE</label>
+                            <label>DISSERTATION TITLE</label>
                             <p class="dts"><?php echo ''.$project_title;?></p>
                         </div>
                         <div>
                             
-                            <label>PROJECT DESCRIPTION</label>
+                            <label>DISSERTATION DESCRIPTION</label>
                             <p class="dts"><?php echo ''.$project_description;?></p>
                         </div>
                         <div>
-                            
-                            <label>PROPOSED INTERNAL SUPERVISOR</label>
+                        <label>PROPOSED INTERNAL SUPERVISOR</label>
                             <p class="dts"><?php echo ''.$internal_supervisor;?></p>
+                            <?php
+                            if($internal_supervisor===NULL|| $internal_supervisor===''){
+                           echo '<div><table class="table table-responsive">
+                             <tr><td class="acpt1"><button class="btn btn-primary acpt" data-target="#list" data-toggle="modal">allocate internal supervisor</button></td></tr>
+                            </table>'; 
+                            }  else {
+                           echo '<div><table class="table table-responsive">
+                             <tr><td class="acpt1"><button class="btn btn-primary acpt" data-target="#list" data-toggle="modal">edit internal supervisor</button></td></tr>
+                            </table>';
+                            }
+                            ?>
+                        
                         </div>
-                        <div><table class="table table-responsive">
-                                <tr><td class="acpt1"><button class="btn btn-primary acpt" data-target="#list" data-toggle="modal">allocate</button></td></tr>
-                            </table>
                         </div>
+                        <div>
+                            
+                            <label> EXTERNAL SUPERVISOR</label>
+                            <p class="dts"><?php echo ''.$external_supervisor;?></p>
+                        </div>
+                        <?php
+                            if($external_supervisor===NULL|| $external_supervisor===''){
+                           echo '<div><table class="table table-responsive">
+                             <tr><td class="acpt1"><button class="btn btn-primary" onclick="externalLocation(\''.$id.'\')">allocate external supervisor</button></td></tr>
+                            </table>'; 
+                            }  else {
+                           echo '<div><table class="table table-responsive">
+                             <tr><td class="acpt1"><button class="btn btn-primary" onclick="externalLocation(\''.$id.'\')">edit external supervisor</button></td></tr>
+                            </table>';
+                            }
+                            ?>
                     </fieldset>
                 </div>
                 <div class="col-lg-6">
+                    <div class="well well-sm">
+                        Assign External supervisor
+                    </div>
+                    <div class="external">
+                        
+                    </div>
                     <div class="modal fade" id="list" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-md">
                       <div class="modal-content">
@@ -75,6 +105,13 @@
                        },200);
                    });
                }); 
+               function externalLocation(id){
+                   var url="<?php echo site_url('college/externalList');?>";
+                   var url2=url+'/'+id;
+                   $.get(url2,function(data){
+                       $('.external').html(data);
+                   });
+               }
                </script>
 </div>
 </div>

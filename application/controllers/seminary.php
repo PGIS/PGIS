@@ -16,12 +16,16 @@ class Seminary extends CI_Controller{
         }
         
     function seminary_form($id) {
+        $data['record']=$id;
         $res=  $this->db->get_where('tb_seminar',array('id'=>$id));
         if($res->num_rows()===1){
           $row=$res->row();
       $this->form_validation->set_rules('smh', 'seminar hour', 'trim|required|xss_clean');
+      $this->form_validation->set_rules('smd', 'seminar Day', 'trim|required|xss_clean');
+      $this->form_validation->run();
+      if(isset($_POST['save'])){
       if($this->form_validation->run() === FALSE){
-      echo '<p class="alert alert-danger">Fields cant be empty plz try again</p>';
+      $this->load->view('academic/seminar_review',$data);
       }else{
            $this->load->model('seminar_register');
            $day = $this->input->post('smd');
@@ -31,10 +35,11 @@ class Seminary extends CI_Controller{
            $sn=  $this->session->userdata('userid');
            $username=  $this->session->userdata('registration_id');
            $this->seminar_register->insert_student($username,$course,$day,$hours,$sn,$venue);
-           echo '<p class="alert alert-success">Thanks for registrating to our seminar</p>';
+           $data['rec']='<p class="alert alert-success">Thanks for registrating to our seminar</p>';
+           $this->load->view('academic/seminar_review',$data);
            } 
         }
-            
+        }       
 }
 function table_data(){
    $this->form_validation->set_rules('day1', 'seminar_day', 'required');

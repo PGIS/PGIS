@@ -28,100 +28,14 @@
                        </select>  
                     </td>
                    <td>Date of Birth *<br>
-                        <table class="table">
-                           <tr><td><?php echo form_error('datebirth1','<div class="error">', '</div>'); ?>
-                                   <select class=" form-control " name="datebirth1">
-                                       <option value="<?php echo substr($datebirth, 0,2);?>"><?php echo substr($datebirth, 0,2);?></option>
-                                       <option value="01"<?php echo set_select('datebirth1','01');?>>1</option>
-                                       <option value="02"<?php echo set_select('datebirth1','02');?>>2</option>
-                                       <option value="03"<?php echo set_select('datebirth1','03');?>>3</option>
-                                       <option value="04"<?php echo set_select('datebirth1','04');?>>4</option>
-                                       <option value="05"<?php echo set_select('datebirth1','05');?>>5</option>
-                                       <option value="06"<?php echo set_select('datebirth1','06');?>>6</option>
-                                       <option value="07"<?php echo set_select('datebirth1','07');?>>7</option>
-                                       <option value="08"<?php echo set_select('datebirth1','08');?>>8</option>
-                                       <option value="09"<?php echo set_select('datebirth1','09');?>>9</option>
-                                       <option value="10"<?php echo set_select('datebirth1','10');?>>10</option>
-                                       <option <?php echo set_select('datebirth1','11');?>>11</option>
-                                       <option <?php echo set_select('datebirth1','12');?>>12</option>
-                                       <option <?php echo set_select('datebirth1','13');?>>13</option>
-                                       <option <?php echo set_select('datebirth1','14');?>>14</option>
-                                       <option <?php echo set_select('datebirth1','15');?>>15</option>
-                                       <option <?php echo set_select('datebirth1','16');?>>16</option>
-                                       <option <?php echo set_select('datebirth1','17');?>>17</option>
-                                       <option <?php echo set_select('datebirth1','18');?>>18</option>
-                                       <option <?php echo set_select('datebirth1','19');?>>19</option>
-                                       <option <?php echo set_select('datebirth1','20');?>>20</option>
-                                       <option <?php echo set_select('datebirth1','21');?>>21</option>
-                                       <option <?php echo set_select('datebirth1','22');?>>22</option>
-                                       <option <?php echo set_select('datebirth1','23');?>>23</option>
-                                       <option <?php echo set_select('datebirth1','24');?>>24</option>
-                                       <option <?php echo set_select('datebirth1','25');?>>25</option>
-                                       <option <?php echo set_select('datebirth1','26');?>>26</option>
-                                       <option <?php echo set_select('datebirth1','27');?>>27</option>
-                                       <option <?php echo set_select('datebirth1','28');?>>28</option>
-                                       <option <?php echo set_select('datebirth1','29');?>>29</option>
-                                       <option <?php echo set_select('datebirth1','30');?>>30</option>
-                                       <option <?php echo set_select('datebirth1','31');?>>31</option>
-                                   </select></td>
-                                   <td><?php echo form_error('datebirth2','<div class="error">', '</div>'); ?>
-                                       <select class=" form-control" name="datebirth2">
-                                           <option value="<?php echo substr($datebirth, 3,2);?>"><?php echo substr($datebirth, 3,2);?></option>
-                                       <option value="01"<?php echo set_select('datebirth2','01');?>>Jan</option>
-                                       <option value="02"<?php echo set_select('datebirth2','02');?>>Feb</option>
-                                       <option value="03"<?php echo set_select('datebirth2','03');?>>March</option>
-                                       <option value="04"<?php echo set_select('datebirth2','04');?>>April</option>
-                                       <option value="05"<?php echo set_select('datebirth2','05');?>>May</option>
-                                       <option value="06"<?php echo set_select('datebirth2','06');?>>June</option>
-                                       <option value="07"<?php echo set_select('datebirth2','07');?>>July</option>
-                                       <option value="08"<?php echo set_select('datebirth2','08');?>>August</option>
-                                       <option value="09"<?php echo set_select('datebirth2','09');?>>September</option>
-                                       <option value="10"<?php echo set_select('datebirth2','10');?>>October</option>
-                                       <option value="11"<?php echo set_select('datebirth2','11');?>>November</option>
-                                       <option value="12"<?php echo set_select('datebirth2','12');?>>December</option>
-                                       </select></td>
-                                       <td><?php echo form_error('datebirth','<div class="error">', '</div>'); ?>
-                                           <select class=" form-control " name="datebirth">
-                                       <option value="<?php echo substr($datebirth, 6,11);?>"><?php echo substr($datebirth, 6,11);?></option>
-                                       <option <?php echo set_select('datebirth','1990');?>>1990</option>
-                                       <option <?php echo set_select('datebirth','1989');?>>1989</option>
-                                       <option <?php echo set_select('datebirth','1988');?>>1988</option>
-                                       <option<?php echo set_select('datebirth','1987');?>>1987</option>
-                                       <option<?php echo set_select('datebirth','1986');?>>1986</option>
-                                       <option<?php echo set_select('datebirth','1985');?>>1985</option>
-                                       <option<?php echo set_select('datebirth','1984');?>>1984</option>
-                                       <option<?php echo set_select('datebirth','1983');?>>1983</option>
-                                       <option<?php echo set_select('datebirth','1982');?>>1982</option>
-                                       <option<?php echo set_select('datebirth','1981');?>>1981</option>
-                                       <option<?php echo set_select('datebirth','1980');?>>1980</option>
-                                       <option<?php echo set_select('datebirth','1979');?>>1979</option>
-                                       <option<?php echo set_select('datebirth','1978');?>>1978</option>
-                                       <option<?php echo set_select('datebirth','1977');?>>1977</option>
-                                       <option<?php echo set_select('datebirth','1976');?>>1976</option>
-                                       <option<?php echo set_select('datebirth','1975');?>>1975</option>
-                                       <option<?php echo set_select('datebirth','1974');?>>1974</option>
-                                       <option<?php echo set_select('datebirth','1973');?>>1973</option>
-                                       <option<?php echo set_select('datebirth','1972');?>>1972</option>
-                                       <option<?php echo set_select('datebirth','1971');?>>1971</option>
-                                       <option<?php echo set_select('datebirth','1970');?>>1970</option>
-                                       <option<?php echo set_select('datebirth','1969');?>>1969</option>
-                                       <option<?php echo set_select('datebirth','1968');?>>1968</option>
-                                       <option<?php echo set_select('datebirth','1967');?>>1967</option>
-                                       <option<?php echo set_select('datebirth','1966');?>>1966</option>
-                                       <option<?php echo set_select('datebirth','1965');?>>1965</option>
-                                       <option<?php echo set_select('datebirth','1964');?>>1964</option>
-                                       <option<?php echo set_select('datebirth','1963');?>>1963</option>
-                                       <option<?php echo set_select('datebirth','1962');?>>1962</option>
-                                       <option<?php echo set_select('datebirth','1961');?>>1961</option>
-                                       <option<?php echo set_select('datebirth','1960');?>>1960</option>
-                                       <option<?php echo set_select('datebirth','1959');?>>1959</option>
-                                   </select>
-                                     
-                                       </td>
-                           </tr>
-                       </table>
+                    <?php echo form_error('datebirth','<div class="error">', '</div>'); ?>
+                        <input name="datebirth" type="text" class="form-control datepicker" id="5"
+                        value="<?php display_input('datebirth',$datebirth);?>">
+                        <?php if(isset($error)){
+                             echo '<div class="error">'.$error.'</div>';
+                        }?>
                    </td>
-                </tr>
+                    </tr>
                 <tr>
                <td>Country of Birth *
                         <?php echo form_error('coun_birth','<div class="error">', '</div>'); ?>

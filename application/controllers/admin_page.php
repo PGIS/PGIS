@@ -34,6 +34,7 @@ class Admin_page extends CI_Controller {
         $this->form_validation->set_rules('mname', 'middle name', 'trim|required|xss_clean');
         $this->form_validation->set_rules('designation', 'designation', 'trim|required|xss_clean');
         $this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('password2', 'password confirmation', 'trim|required|matches[password]|xss_clean');
         $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|is_unique[tb_user.email]');
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('admin/add_page', $data);

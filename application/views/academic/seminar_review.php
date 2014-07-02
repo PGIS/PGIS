@@ -66,6 +66,9 @@
              </div>';
          }
         }else{
+            if(isset($rec)){
+                echo ''.$rec;
+            }
         echo form_open('seminary/seminary_form/'.$record, array('id'=>'sub'));
         echo '<table class="table table-condensed">';
         echo '<tr>
@@ -73,24 +76,24 @@
           </tr>';
         if(($row->seminar_day)!==NULL && ($row->seminar_day)!==0){
         echo '<tr>
-         <td>SEMINAR DAY</td><td class="dts">&nbsp;'.$row->seminar_day.'<input type="checkbox" name="smd" value="'. $row->seminar_day.'"></td>  
+         <td>SEMINAR DAY</td><td class="dts">&nbsp;'.$row->seminar_day.'<input type="checkbox" name="smd" value="'. $row->seminar_day.'">'.form_error('smd','<div class="error">','</div>').'</td>  
           </tr>';
          }
          echo '<tr>';
          echo '<td>SEMINAR HOURS</td>';
          echo '<td><table class="table table-bordered">';
         if(($row->morning_hour)!==NULL && ($row->morning_hour)!=='0' && ($row->morning_hour)!==''){
-        echo '<tr><td class="dts">&nbsp;&nbsp;'.$row->morning_hour.'<input type="radio" name="smh" value="'.$row->morning_hour.'" class="pull-right"></td></tr>';
+        echo '<tr><td class="dts">&nbsp;&nbsp;'.$row->morning_hour.'<input type="radio" name="smh" value="'.$row->morning_hour.'" class="pull-right">'.form_error('smh','<div class="error">','</div>').'</td></tr>';
            }  else {
            echo '';
            }
           if(($row->afternoon_hour)!=='0' && ($row->afternoon_hour)!==NULL && ($row->afternoon_hour)!==''){
-          echo '<tr><td class="dts">&nbsp;&nbsp;'.$row->afternoon_hour.'<input type="radio" name="smh" value="'.$row->afternoon_hour.'" class="pull-right"></td></tr>'; 
+          echo '<tr><td class="dts">&nbsp;&nbsp;'.$row->afternoon_hour.'<input type="radio" name="smh" value="'.$row->afternoon_hour.'" class="pull-right">'.form_error('smh','<div class="error">','</div>').'</td></tr>'; 
             }  else {
                 echo ''; 
             }
         if(($row->evening_hour)!=='0' && ($row->evening_hour)!==NULL && ($row->evening_hour)!==''){
-                   echo '<tr><td class="dts">&nbsp;&nbsp;'.$row->evening_hour.'<input type="radio" name="smh" value="'.$row->evening_hour.'" class="pull-right"></td></tr>'; 
+                   echo '<tr><td class="dts">&nbsp;&nbsp;'.$row->evening_hour.'<input type="radio" name="smh" value="'.$row->evening_hour.'" class="pull-right">'.form_error('smh','<div class="error">','</div>').'</td></tr>'; 
             }  else {
              echo ''; 
             }
@@ -111,7 +114,7 @@
          </tr>';
        echo'<tr>
            <td colspan="2">
-           <button class="btn btn-primary btn-sm">register</button>
+           <button class="btn btn-primary btn-sm" name="save">register</button>
            </td>
        
         </tr>';
@@ -131,8 +134,9 @@
         e.preventDefault();
         var formz=$(this).serializeArray();
         var url=$(this).attr('action');
+        formz.push({"name": "save", "value": " "});
         $.post(url,formz,function(data){
-            $('.jahaz').html(data);
+            $('#load').html(data);
         });
     });
 </script>

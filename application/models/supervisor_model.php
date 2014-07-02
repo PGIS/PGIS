@@ -57,5 +57,43 @@
             );
          $this->db->insert('tb_verdicts',$mydata);
      }
+     function savedCollege($id,$external_exa){
+         $data_rec=array(
+             'external_examiner'=>$external_exa,
+             'ex_status'=>'yes'
+         );
+         $res=  $this->db->get_where('tb_examiner_desert',array('pr_id'=>$id));
+         if($res->num_rows()===1){
+             $this->db->where('pr_id',$id);
+             $this->db->update('tb_examiner_desert',$data_rec);
+         }
+     }
+     function sevedExternal($id,$external_sup){
+         $data_arry=array(
+             'external_supervisor'=>$external_sup
+         );
+      $res=  $this->db->get_where('tb_project',array('id'=>$id));
+         if($res->num_rows()===1){
+             $this->db->where('id',$id);
+             $this->db->update('tb_project',$data_arry);
+         }   
+     }
+     function external_feedback($document,$regstrationid,$comment,$conclusion,$feedbackdate){
+         $data_array=array(
+             'registration_fedID'=>$regstrationid,
+             'ext_document'=>$document,
+             'comment'=>$comment,
+             'conclusion'=>$conclusion,
+             'feedback_date'=>$feedbackdate
+         );
+         $res=  $this->db->get_where('tb_ext_feedback',array('feedback_date'=>$feedbackdate,'registraion_fedID'=>$regstrationid));
+         if($res->num_rows()===1){
+             $this->db->where(array('feedback_date'=>$feedbackdate,'registration_fedID'=>$regstrationid));
+             $this->db->update('tb_ext_feedback',$data_array);
+         }  else {
+             $this->db->insert('tb_ext_feedback',$data_array);
+         }
+         
+     }
  }
 

@@ -13,6 +13,7 @@
      function index(){
          $data['query']=  $this->index2();
          $data['query1']=  $this->external_unass();
+         $data['ext']=  $this->external_exer();
          $data['active1']=TRUE;
          $this->load->view('College/college_view',$data);   
      }
@@ -23,19 +24,29 @@
             return $res1;
             }
      }
-     function external_unass(){
+     function external_exer(){
+         $res1=  $this->db->select('*')->from('tb_examiner_desert')->join('tb_student','tb_student.registrationID = tb_examiner_desert.registrationID')
+                 ->join('tb_project','tb_project.registration_id = tb_examiner_desert.registrationID')->where(array('ex_status'=>'no','statuz'=>'assigned'))->get();
+         if($res1->num_rows()>0){
+            return $res1;
+            }
+     }
+        function external_unass(){
         $res1=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
                  ->where(array('internal_ex_status'=>'unassigned'))->get();
          if($res1->num_rows()>0){
             return $res1;
             } 
      }
-
-     public function recent_detail($id){
+       public function recent_detail($id){
          $data['recent']=$id;
          $this->load->view('College/college_recent_detail',$data);
      }
-     function details($id){
+     function studentDetail($id){
+         $data['st']=$id;
+         $this->load->view('College/studentInfo',$data);
+     }
+       function details($id){
          $this->db->select('*');
             $this->db->from('tb_verdicts');
             $this->db->where('tb_verdicts.ver_id',$id);
@@ -227,10 +238,13 @@
                  ->where(array('designation'=>'Teaching staff'))->get();
          if($res->num_rows()>0){
              return $res;
+//            foreach ($res->result() as $n){
+//                   $edata =$n->designation;
+//                }
+            } 
+           //explode(',', $edata);
          }
-     }
-
-     public function project_display($id) {
+ public function project_display($id) {
       $res=$this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
               ->where(array('id'=>$id))->get();
         if($res->num_rows()===1){
@@ -242,7 +256,8 @@
                     'project_description'=>$row->project_description,
                     'internal_supervisor'=>$row->Internal_supervisor,
                     'surname'=>$row->surname,
-                    'lastname'=>$row->other_name
+                    'lastname'=>$row->other_name,
+                    'external_supervisor'=>$row->external_supervisor
                 );
             }
             $this->session->set_userdata($array_data);
@@ -412,6 +427,46 @@
                          No any recommendation given yet
                           </div>' ;
                 }
+   }
+   function examinerTest($res){
+       $data['rest']=$res;
+       $this->load->view('College/recordsExternal',$data);
+       }
+       function externalAssign($id){
+           $data['rest']=$id;
+           $this->form_validation->set_rules('examiner','select','trim|required|xss_clean');
+           $this->form_validation->run();
+           if(isset($_POST['save'])){
+               if($this->form_validation->run()===FALSE){
+                   $this->load->view('College/recordsExternal',$data);
+               }  else {
+                 $this->load->model('supervisor_model');
+                 $external_exa=  $this->input->post('examiner');
+                 $this->supervisor_model->savedCollege($id,$external_exa);
+                 $data['smz']='<p class="alert alert-success">Examiner assigned</p>';
+                 $this->load->view('College/recordsExternal',$data);
+               }
+           }
+   }
+   function externalList($id){
+       $data['ext']=$id;
+       $this->load->view('College/supervisor_list',$data);
+   }
+   function externalAllocation($id){
+       $data['ext']=$id;
+       $this->form_validation->set_rules('super','Select','required|xss_clean');
+       $this->form_validation->run();
+       if(isset($_POST['save'])){
+           if($this->form_validation->run()===FALSE){
+               $this->load->view('College/supervisor_list',$data);
+           }  else {
+               $this->load->model('supervisor_model');
+               $external_sup=  $this->input->post('super');
+               $this->supervisor_model->sevedExternal($id,$external_sup);
+               $data['success']='<p class="alert alert-success">Assigned successifully</p>';
+               $this->load->view('College/supervisor_list',$data);
+           }
+       }
    }
  }   
  

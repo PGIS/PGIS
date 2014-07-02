@@ -35,6 +35,7 @@ class login extends CI_Controller {
                 } elseif ($query->num_rows() == 1) {
                     $s_data = array('userid' => $username, 'logged_in' => TRUE,'email'=>$email);
                     $this->session->set_userdata($s_data);
+                    $this->departmentsession($username);
                     $this->studentsession($username);
                     $this->supervisorDepartment($username);
                     $this->detailLogiSession($username);
@@ -56,7 +57,19 @@ class login extends CI_Controller {
                 }
             } 
         }
-        function findusername($email){
+        function departmentsession($id){
+            $res=  $this->db->get_where('tb_student',array('applicationID'=>$id),1);
+            if($res->num_rows()===1){
+                foreach ($res->result() as $row){
+                    $sess_data=array(
+                        'program'=>$row->program,
+                        'department'=>$row->department
+                    );
+                    $this->session->set_userdata($sess_data);
+                }
+            }
+        }
+         function findusername($email){
           $usqury = $this->db->get_where('tb_user', array('email' => $email), 1); 
           if($usqury->num_rows() == 1){
                 foreach ($usqury->result() as $un){
@@ -134,7 +147,19 @@ class login extends CI_Controller {
             }elseif(in_array('college coordinator',$myArray)){
                 $s_data=array('user_role'=>'college coordinator');
                 $this->session->set_userdata($s_data);
-                redirect('college_Coordinator/welcome');
+                redirect('college_Coordinator');
+            }elseif (in_array('external examiner', $myArray)) {
+                $s_data=array('user_role'=>'external examiner');
+                $this->session->set_userdata($s_data);
+                redirect('external');
+            }elseif (in_array('internal examiner', $myArray)) {
+                $s_data=array('user_role'=>'internal examiner');
+                $this->session->set_userdata($s_data);
+                redirect('internal');
+            }elseif (in_array('external supervisor', $myArray)) {
+                $s_data=array('user_role'=>'external supervisor');
+                $this->session->set_userdata($s_data);
+                redirect('externalSup');
             }elseif(in_array('Student',$myArray)){
                 $s_data=array('user_role'=>'Student');
                 $this->session->set_userdata($s_data);
@@ -161,14 +186,16 @@ class login extends CI_Controller {
         function redirectChangedrole($role){
             if(strtolower($role)==='supervisor'){
                 redirect('supervisor'); 
-            }  elseif (strtolower($role)==='teaching staff') {
+            }elseif (strtolower($role)==='teaching staff') {
                redirect('teaching');
-            }  elseif (strtolower($role)==='finance staff') {
+            }elseif (strtolower($role)==='finance staff') {
                 redirect();
-            }  elseif (strtolower($role)==='admision staff') {
+            }elseif (strtolower($role)==='admision staff') {
                 redirect('financeadmin');
             }elseif ($role==='head of department') {
                 redirect('headDepartment');
+            }elseif ($role==='internal examiner') {
+                redirect('internal');
         }
         }
         function supervisorDepartment($username){

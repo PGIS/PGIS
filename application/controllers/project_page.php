@@ -76,9 +76,10 @@
               $row=$res->row();
              $internal= $row->Internal_supervisor;
              $external= $row->sec_internal_supervisor;
+             $external_sup=$row->external_supervisor;
              $date_sub= date('m/d/Y');
              $document=  base_url().'project_document/'.pg_escape_string($_FILES['userfile']['name']);
-             $this->project_model->project_prog($sn,$internal,$external,$document,$date_sub);
+             $this->project_model->project_prog($sn,$internal,$external,$document,$date_sub,$external_sup);
              $data['smgsuc']='<p class="alert alert-success">You project has been sent.!</p>';
              $this->load->view('academic/project_view',$data);
              }  else {

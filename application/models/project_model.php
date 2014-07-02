@@ -19,14 +19,15 @@
              $this->db->insert('tb_project',$array_data);    
          }
      }
-     function project_prog($sn,$internal,$external,$document,$date_sub){
+     function project_prog($sn,$internal,$external,$document,$date_sub,$external_sup){
             $this->set_session();
                  $data=array(
                  'registrationID'=>$sn,
                  'supervisor'=>$internal,
                  'external_examiner'=>$external,
                  'document'=>$document,
-                 'submission_date'=>$date_sub
+                 'submission_date'=>$date_sub,
+                  'external_supervisor'=>$external_sup
              );
              $this->session->set_userdata($data);
              $query=  $this->db->get_where('tb_student_desert',array('registrationID'=>$sn,'submission_date'=>$date_sub));

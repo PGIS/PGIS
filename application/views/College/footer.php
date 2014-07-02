@@ -7,7 +7,7 @@
    <script src="<?php echo base_url('assets/js/datepicker.js')?>"></script>
 <script> 
     $(document).ready(function(){ 
-        $('#mytable').dataTable(); 
+        $('#mytable').dataTable();
     });
     
      $(document).ready(function(){ 
@@ -21,6 +21,7 @@
         $('#mytablesa').dataTable();
         $('#mytablesz').dataTable();
         $('#verlist').dataTable();
+        
     });
 </script>
    <script>

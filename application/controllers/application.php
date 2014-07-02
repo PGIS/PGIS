@@ -324,12 +324,10 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active2'] = TRUE;
 
-        $this->form_validation->set_rules('surname', 'surname', 'required|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('other_name', 'Other name', 'required|max_length[40]|xss_clean');
+        $this->form_validation->set_rules('surname', 'surname', 'required|max_length[20]|alpha|xss_clean');
+        $this->form_validation->set_rules('other_name', 'Other name', 'required|max_length[40]|alpha|xss_clean');
         $this->form_validation->set_rules('title', 'title', 'required|max_length[10]|xss_clean');
-        $this->form_validation->set_rules('datebirth', 'Year', 'required|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('datebirth1', 'Date', 'required|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('datebirth2', 'Month', 'required|max_length[20]|xss_clean');
+        $this->form_validation->set_rules('datebirth', 'Date of birth', 'trim|required|exact_length[10]|xss_clean');
         $this->form_validation->set_rules('disab', 'disable', 'required|max_length[20]|xss_clean');
         $this->form_validation->set_rules('perm_address', 'Permanet Address', 'required|max_length[30]|xss_clean');
         $this->form_validation->set_rules('landline', 'landline', 'trim|exact_length[10]|numeric|xss_clean|callback_landline_check');
@@ -341,22 +339,26 @@ class Application extends CI_Controller {
         $this->form_validation->run();
 
         if (isset($_POST['savcont'])) {
-            if ($this->form_validation->run() == FALSE) {
+            $datebirth=  $this->input->post('datebirth');
+            if ($this->form_validation->run() == FALSE || substr($datebirth, 6)>= date('Y')) {
+                $data['error']='<p>Your date of birth cant be that day please try again.</p>';
                 $this->load->view('application/capplication', $data);
             } else {
 
                 $data['active3'] = TRUE;
                 unset($data['active2']);
                 $this->load->model('Application_form');
-                Application_form::insert_other_info();
+                Application_form::insert_other_info($datebirth);
                 $this->load->view('application/capplication', $data);
             }
         } elseif (isset($_POST['save'])) {
-            if($this->form_validation->run() == FALSE){
+             $datebirth=  $this->input->post('datebirth');
+            if($this->form_validation->run() == FALSE ||substr($datebirth, 6) >= date('Y')){
+              $data['error']='<p>Your date of birth cant be that day please try again.</p>';
               $this->load->view('application/capplication', $data);  
             }  else {
             $this->load->model('Application_form');
-            Application_form::insert_other_info();
+            Application_form::insert_other_info($datebirth);
             $this->load->view('application/capplication', $data);
             }
         } elseif(isset($_POST['back'])){
@@ -374,6 +376,15 @@ class Application extends CI_Controller {
         }  else {
             return TRUE;
         }
+    }
+    function detebirth_check($date){
+        if($date){
+            $this->form_validation->set_message('datebirth_check','The %s cant be that day');
+            return FALSE;
+        }  else {
+            return TRUE;
+        }
+        
     }
     function fax_check($length){
         if($length){
@@ -398,9 +409,9 @@ class Application extends CI_Controller {
             $this->load->view('application/capplication', $data);
         } elseif (isset($_POST['save'])) {
 
-            $this->form_validation->set_rules('current_employer', 'Employer', 'required|max_length[80]|xss_clean');
+            $this->form_validation->set_rules('current_employer', 'Employer', 'required|max_length[80]|alpha|xss_clean');
             $this->form_validation->set_rules('responsbility', 'responsbility', 'required|max_length[255]|xss_clean');
-            $this->form_validation->set_rules('position', 'position', 'required|max_length[255]|xss_clean');
+            $this->form_validation->set_rules('position', 'position', 'required|max_length[255]|alpha|xss_clean');
             $this->form_validation->set_rules('to', 'To', 'required|max_length[20]|xss_clean');
             $this->form_validation->set_rules('from', 'From', 'required|max_length[20]|xss_clean');
             $this->form_validation->run();
@@ -429,10 +440,10 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active4'] = TRUE;
 
-        $this->form_validation->set_rules('high_acade', 'accademic', 'required|max_length[40]|xss_clean');
-        $this->form_validation->set_rules('institution', 'institution', 'required|max_length[40]|xss_clean');
-        $this->form_validation->set_rules('graduation', 'graduation', 'required|max_length[20]|xss_clean');
-        $this->form_validation->set_rules('specialization', 'specialization', 'required|max_length[40]|xss_clean');
+        $this->form_validation->set_rules('high_acade', 'accademic', 'required|max_length[40]|alpha|xss_clean');
+        $this->form_validation->set_rules('institution', 'institution', 'required|max_length[40]|alpha|xss_clean');
+        $this->form_validation->set_rules('graduation', 'graduation', 'required|exact_length[4]|numeric|xss_clean');
+        $this->form_validation->set_rules('specialization', 'specialization', 'required|max_length[225]|alpha|xss_clean');
         $this->form_validation->set_rules('gpa', 'GPA', 'required|exact_length[3]|numeric|xss_clean');
         $this->form_validation->set_rules('other_ac_prof', 'other Accademic Proffession', 'required|max_length[80]|xss_clean');
         $this->form_validation->run();
@@ -482,9 +493,9 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active5'] = TRUE;
 
-        $this->form_validation->set_rules('nm', 'Name', 'trim|required|max_length[80]|xss_clean');
-        $this->form_validation->set_rules('nm1', 'Name', 'trim|required|max_length[80]|xss_clean');
-        $this->form_validation->set_rules('nm2', 'Name', 'trim|required|max_length[80]|xss_clean');
+        $this->form_validation->set_rules('nm', 'Name', 'trim|required|max_length[80]|alpha|xss_clean');
+        $this->form_validation->set_rules('nm1', 'Name', 'trim|required|max_length[80]|alpha|xss_clean');
+        $this->form_validation->set_rules('nm2', 'Name', 'trim|required|max_length[80]|alpha|xss_clean');
         $this->form_validation->set_rules('em', 'E-mail', 'trim|required|valid_email|xss_clean');
         $this->form_validation->set_rules('em1', 'E-mail', 'trim|required|valid_email|xss_clean');
         $this->form_validation->set_rules('em2', 'E-mail', 'trim|required|valid_email|xss_clean');
@@ -582,8 +593,8 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active6'] = TRUE;
 
-        $this->form_validation->set_rules('namsponsor', 'Sponsor name', 'required|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('addr_spons', 'Sponsor adress', 'required|max_length[30]xss_clean|');
+        $this->form_validation->set_rules('namsponsor', 'Sponsor name', 'required|max_length[30]|alpha|xss_clean');
+        $this->form_validation->set_rules('addr_spons', 'Sponsor adress', 'required|max_length[30]alpha_numeric|xss_clean|');
         $this->form_validation->run();
         if (isset($_POST['savcont'])) {
             if ($this->form_validation->run() == FALSE) {
