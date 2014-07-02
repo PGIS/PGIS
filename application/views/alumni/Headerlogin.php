@@ -53,13 +53,14 @@
                         <li><a href="<?php echo site_url('alumni'); ?>">
                                 <span class="glyphicon glyphicon-calendar"></span> Events</a>
                         </li>
+                        <li><a href="<?php echo site_url('alumni/updatecontacts'); ?>">
+                                <span class="glyphicon glyphicon-edit"></span> Update Contacts</a>
+                        </li>
                        
                         <li><a href="<?php echo site_url('change_form'); ?>">
                                 <span class="glyphicon glyphicon-wrench"></span> Change password</a>
                         </li>
-                        <li><a href="<?php echo site_url('alumni/updatecontacts'); ?>">
-                                <span class="glyphicon glyphicon-edit"></span> Update Contacts</a>
-                        </li>
+                        
                         <li><a href="<?php echo site_url('logout'); ?>">
                                 <span class="glyphicon glyphicon-off"></span> Logout</a>
                         </li>
