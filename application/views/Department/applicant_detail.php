@@ -262,11 +262,15 @@
                   </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger btn-xs upfr" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
-           
+            <script>
+                $(".upfr").click(function() {
+                     location.reload(true);
+                 });
+            </script>
            <script>
                 $("#recomendation").submit(function(event) {
                 event.preventDefault();

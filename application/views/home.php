@@ -1,57 +1,41 @@
 <?php include 'include/header.php';?>
 
 <div id="page-wrapper">
-    <div>
-	<button type="button" class="mybtn btn-primary">Postgraduate Course Advertisement</button>
-	<div>
-	    For more information about the postgraduate courses offered,minimum requirement for the course and the collage in which the course
-	    is offered please visit the <a href='http://postgraduate.udsm.ac.tz/' target="_blank">Directorate of postgraduate studies</a>
-	</div>
+    <div  class="lvl">
+        
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title"><center>About Postgraduate Information System</center></h3>
+            </div>
+            <div class="panel-body">
+              <div> 
+	    Postgraduate Information system is a web based system that help in managing issues related to
+            postgraduate studies. Recently the College of Information and Communication Technology (COICT)of University of Dar es salaam is used as the
+            pilot.<br>
+            Postgraduate information system provide the tool for managing academic and finance issues related 
+            to postgraduate studies . 
+            The system aim at simplifying the following.<br>
+            <ul>
+                <li>Program Application (provide online application platform)</li>
+                <li>Admission procedures</li>
+                <li>Tracking of Academic progress(Include dissertation and thesis progress tracking)</li>
+                <li>Tracking of Finance related issues</li>
+            </ul>
+         </div>
+            </div>
+            <div class="panel-footer col-md-12">
+               <div class='pull-right'>
+                    <a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Register Now <span class="glyphicon glyphicon-registration-mark"></span></button></a>
+                 </div>
+                 <div class='pull-left'>
+                    <a href="<?php echo site_url('login');?>"><button type="button" class="mybtn btn-primary">Login <span class="glyphicon glyphicon-log-in"></span></button></a>
+                 </div>
+            </div>
+        </div>
+	
+	
     </div>
-    <div>
-	<button type="button" class="mybtn btn-primary">Basic aplication instruction sand supported documents  </button>
-	<div>
-	    <p>
-		 In order to apply online for postgraduate course one must first Create account with unique username,then you can be able
-	    to login into the system and continue with course application
-	    </p>
-	    
-		<strong>Non refundable application fees:</strong> 
-                <ol type='i'>
-                    <li>
-                      T.shs 50,000/= for Tanzanians applying for admission into Postgraduate Diploma and
-                      Masters Programmes.
-                    </li>
-                    <li>
-                       US $ 50.00 for Non Tanzanians applying for admission into Postgraduate Diploma 
-                        and Masters Programmes.
-                    </li>
-                    <li>
-                        T.shs 50,000/= for Tanzanians applying for admission into Ph.D. Programmes.
-                    </li>
-                    <li>
-                        US $ 50.00 for Non Tanzanians applying for admission into Ph.D. Programmes.
-                    </li>
-                </ol>
-                    All application fees should be paid through the bank as follows: <strong>Bank name: NBC Bank</strong>, 
-                    Mlimani Branch.A/C Name: <strong>University of Dar es Salaam</strong>. <strong>A/C Number: 040103001709</strong>.
-	    
-	    in addition to the submission of a completed application form and the application fee, the following materials will be required
-	    to be uploaded.
-	<ul>
-	    <li>Transcript(s) of previous higher education</li>
-	    <li>Application fee recept</li>
-	    <li>OTher certificates like birth certificate </li>
-	    <li>Statement of purpose/research proposal</li>
-	</ul>
-	</div>
-    </div>
-    <div class='pull-right'>
-	<a href="<?php echo site_url('register');?>"><button type="button" class="mybtn btn-primary">Register Now <span class="glyphicon glyphicon-registration-mark"></span></button></a>
-    </div>
-    <div class='pull-left'>
-	<a href="<?php echo site_url('login');?>"><button type="button" class="mybtn btn-primary">Login <span class="glyphicon glyphicon-log-in"></span></button></a>
-    </div>
+   
 </div><!-- /#page-wrapper -->
 
 <?php include 'include/footer.php';?>	

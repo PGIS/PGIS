@@ -163,6 +163,31 @@ class Admision_model extends CI_Model{
         }
     }
     
+    function recommendationUni($id){
+        
+        $mydata1 = array
+            (
+            'userid' => $id,
+            'recomendation' => $this->input->post('rec'),
+            'comment' => $this->input->post('reason'),
+            'level' => 'university'
+        );
+        $check = array(
+            'userid' => $id,
+            'level' => 'university'
+        );
+        $query = $this->db->get_where('tb_admission_recomendation',$check);
+
+        if ($query->num_rows() == 1) {
+            $this->db->where($check);
+            $this->db->update('tb_admission_recomendation', $mydata1);
+            echo '<div class="alert alert-success">Successfully Updated</div>';
+        } else {
+            $this->db->insert('tb_admission_recomendation', $mydata1);
+            echo '<div class="alert alert-success">Successfully recorded</div>';
+        }
+    }
+    
     function applicationFoward($id){
         $check = array(
             'userid' => $id
@@ -186,6 +211,15 @@ class Admision_model extends CI_Model{
             'userid' => $id
         );
         $mydata1=array('pgcheck'=>'yes');
+         $this->db->where($check);
+         $this->db->update('tb_app_personal_info', $mydata1);
+    }
+    
+    function applicationFowardUni($id){
+        $check = array(
+            'userid' => $id
+        );
+        $mydata1=array('unicheck'=>'yes');
          $this->db->where($check);
          $this->db->update('tb_app_personal_info', $mydata1);
     }

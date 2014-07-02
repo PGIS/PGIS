@@ -157,3 +157,10 @@ table.calendar{
 .pd{
     padding: 1px;
 }
+a.link{
+    color: white;
+}
+.lvl{
+    font-size: 14px;
+    line-height: 25px;
+}

@@ -35,6 +35,9 @@ class College_Coordinator extends CI_Controller{
         return $query1->result();
     }
     
+    function welcome(){
+        $this->load->view('College/welcome');
+    }
     
     function applicant_details($userid){
             

@@ -90,7 +90,7 @@
                             </tr>
                             <tr>
                                 <td >
-                                    Mode of Payment
+                                    Installment
                                 </td>
                                 <td>
                                     <font class="alert-danger"><?php echo form_error('pay_mode');?></font>

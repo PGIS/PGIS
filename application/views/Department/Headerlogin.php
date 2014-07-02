@@ -50,8 +50,11 @@
             
           <ul class="nav navbar-nav side-nav">
               <li>
+                  
                     <button  class="mybtn btn-primary">
-                        DEPARTMENT COORDINATOR
+                        <a class="link" href="<?php echo site_url('department_Coordinator/welcome');?>">
+                            DEPARTMENT COORDINATOR
+                        </a>
                     </button>
               </li> 
             <li>

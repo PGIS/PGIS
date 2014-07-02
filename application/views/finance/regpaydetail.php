@@ -1,4 +1,4 @@
-<div >
+<div>
     <p>
       <div class="well well-sm">
             Registration fee detail for <strong><?php echo $title.' '.$sname.' '.$other_nam;?></strong>

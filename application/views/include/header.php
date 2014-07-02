@@ -42,6 +42,8 @@
           <ul class="nav navbar-nav side-nav">
             <li><a href="<?php echo site_url('frontpage');?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
             <li><a href="<?php echo site_url('register');?>"><span class="glyphicon glyphicon-pencil"></span> Create account</a></li>
+            <li><a href="<?php echo site_url('frontpage/howtoapply');?>"><span class="glyphicon glyphicon-exclamation-sign"></span> How to apply</a></li>
+           
             <li><a href="<?php echo site_url('login');?>"><span class="glyphicon glyphicon-user"></span> Login</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->

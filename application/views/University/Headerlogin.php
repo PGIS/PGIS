@@ -52,16 +52,16 @@
               <li>
                     <button  class="mybtn btn-primary">
                          <a class="link" href="<?php echo site_url('directorPgis/welcome');?>">
-                            POSTGRADUATE DIRECTOR
+                          UNIVERSITY DVC ACADEMIC
                         </a>
                     </button>
               </li> 
-            <li><a href="<?php echo site_url('directorPgis');?>"><span class="glyphicon glyphicon-list"></span>
+            <li><a href="<?php echo site_url('admissionUniversity');?>"><span class="glyphicon glyphicon-list"></span>
                 Applicants Admission
              </a>
             </li>
             <li>    
-               <a href="<?php echo site_url('directorPgis/admitted_applicants'); ?>"><span class="glyphicon glyphicon-list-alt"></span> Admitted Applicants</a>
+               <a href="<?php echo site_url('admissionUniversity/admitted_applicants'); ?>"><span class="glyphicon glyphicon-list-alt"></span> Admitted Applicants</a>
              </li>
              <li><a href="<?php echo site_url('change_form');?>"><span class="glyphicon glyphicon-wrench"></span>
 	    Change password</a></li>

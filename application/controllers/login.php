@@ -111,11 +111,11 @@ class login extends CI_Controller {
             }elseif(in_array('department coordinator',$myArray)){
                 $s_data=array('user_role'=>'department coordinator');
                 $this->session->set_userdata($s_data);
-                redirect('department_Coordinator');
+                redirect('department_Coordinator/welcome');
             }elseif(in_array('postgraduate director',$myArray)){
                 $s_data=array('user_role'=>'postgraduate director');
                 $this->session->set_userdata($s_data);
-                redirect('directorPgis');
+                redirect('directorPgis/welcome');
             }elseif(in_array('head of department',$myArray)){
                 $s_data=array('user_role'=>'head of department');
                 $this->session->set_userdata($s_data);
@@ -127,11 +127,11 @@ class login extends CI_Controller {
             }elseif(in_array('Finance staff',$myArray)){
                 $s_data=array('user_role'=>'Finance staff');
                 $this->session->set_userdata($s_data);
-                redirect('financeadmin');
-            }elseif(in_array('Admision staff',$myArray)){
-                $s_data=array('user_role'=>'Admision staff');
+                redirect('financeadmin/welcome');
+            }elseif(in_array('dvc academic',$myArray)){
+                $s_data=array('user_role'=>'dvc academic');
                 $this->session->set_userdata($s_data);
-                redirect('admision');
+                redirect('admissionUniversity');
             }elseif(in_array('administrator',$myArray)){
                 $s_data=array('user_role'=>'administrator');
                 $this->session->set_userdata($s_data);
