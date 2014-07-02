@@ -28,7 +28,7 @@
                             <td>Recept no :<?php echo '<i id="dtl">'.$detail->receipt_no.'</i>'; ?></td>
                         </tr>
                         <tr>
-                            <td>Payment mode :<?php echo '<i id="dtl">'.$detail->mode_payment.'</i>'; ?></td>
+                            <td>Installment :<?php echo '<i id="dtl">'.$detail->mode_payment.'</i>'; ?></td>
                             <td>Payment status :<?php echo '<i id="dtl">'.$detail->regstatus.'</i>'; ?></td>
                         </tr>
                     </tbody>
@@ -43,7 +43,7 @@
         echo '<div class="well-sm alert-danger">
         Outstanding payment:In this academic year is';
         if($outammount>0){
-            echo '  <b>'.$outammount.'</b>';
+            echo '  <b>'.$outammount.' '.$natnlty.'</b>';
         }  else {
             echo '<b>  Cleared</b>';
         }
@@ -55,7 +55,7 @@
         No any Payment has been done so far
     </div>'; 
        echo '<div class="well-sm alert-danger">
-            Outstanding payment:In this academic year is <b>'.$requiredAmnt.'</b>
+            Outstanding payment:In this academic year is <b>'.$requiredAmnt.' '.$natnlty.'</b>
     </div>'; 
   }
         ?>
