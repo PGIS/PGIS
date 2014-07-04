@@ -74,8 +74,10 @@ class Admin extends CI_Model {
     }
 
     function pgdelete($id) {
+         $programme = array(
+            'status' => 'disabled');
         $this->db->where('prog_id', $id);
-        $this->db->delete('tb_programmes');
+        $this->db->update('tb_programmes', $programme);
     }
     
     function saveventpost(){

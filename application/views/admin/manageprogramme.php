@@ -24,6 +24,7 @@
                     <tr>
                         <th>Programme name</th>
                         <th>Action</th>
+                        <th>status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,9 +40,14 @@
                                     <span class="glyphicon glyphicon-edit"></span> Edit
                                     </button>
                                     <?php
-                                   echo ' <a href="'.site_url('admin_page/deleteprograme/'.$prog->prog_id).'" onclick="return confirm(\'Are you sure you want to delete ?\');"><button class="btn btn-danger btn-xs" >'
-                                    . '<span class="glyphicon glyphicon-trash"></span> Delete</button></td></a>'.
-                                '</tr>';
+                                   echo ' <a href="'.site_url('admin_page/deleteprograme/'.$prog->prog_id).'" onclick="return confirm(\'Are you sure you want to Diable ?\');"><button class="btn btn-danger btn-xs" >'
+                                    . '<span class="glyphicon glyphicon-trash"></span> Disable</button></td></a>';
+                                ?>
+                <td><?php if($prog->status===''.'on')
+                    {echo 'Active';}  else {
+                echo $prog->status ;
+                }?></td>
+            </tr><?php
                         }
                     }
                     ?>

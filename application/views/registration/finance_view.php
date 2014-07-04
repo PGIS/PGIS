@@ -39,7 +39,7 @@
                       
                         <table class="table table-condensed table-striped">
                             <tr>
-                                <td>
+                                <td><?php echo form_error('acy','<div class="error">', '</div>'); ?>
                                     Academic Year:
                                 </td>
                                 <td>
@@ -61,6 +61,7 @@
                        
                             <tr>
                                 <td>
+                                    <?php echo form_error('reg_fees','<div class="error">', '</div>'); ?>
                                     Payment For:
                                 </td>
                                 <td>
@@ -73,6 +74,7 @@
                             </tr>
                             <tr>
                                  <td>
+                                     <?php echo form_error('amnt','<div class="error">', '</div>'); ?>
                                   Amount payed
                                 </td>
                                 <td>
@@ -82,7 +84,9 @@
                                
                             </tr>
                             <tr>
-                                <td>Recept number/Transaction id</td>
+                                <td>
+                                    <?php echo form_error('rescpt','<div class="error">', '</div>'); ?>
+                                    Recept number/Transaction id</td>
                                 <td>
                                     <input type="text" class="form-control" placeholder="ReceiptNo" required name="rescpt"
                                          value="<?php if(isset($recept_no)){echo $recept_no;}?>">
@@ -90,6 +94,7 @@
                             </tr>
                             <tr>
                                 <td >
+                                    <?php echo form_error('pay_mode','<div class="error">', '</div>'); ?>
                                     Installment
                                 </td>
                                 <td>
@@ -103,6 +108,7 @@
                             </tr>
                             <tr>
                                 <td>
+                                    <?php echo form_error('date_payment','<div class="error">', '</div>'); ?>
                                     Date of payment
                                 </td>
                                 <td>
@@ -203,7 +209,7 @@
                                     <font class="alert-danger"><?php echo form_error('pay_mode');?></font>
                                     <select name="pay_mode" class="form-control" required>
                                         <?php 
-                                         for($i=1;$i<10;$i++){
+                                         for($i=3;$i<12;$i++){
                                              echo ' <option >'.$i;
                                              if($i>1){
                                                  echo ' Months';

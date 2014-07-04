@@ -18,8 +18,7 @@
                           <th>Application id</th>
                           <th>Username</th>    
                           <th>Other names</th>
-                          <th>Sur name</th>
-                          <th>Action<b class="caret"></b></th>  
+                          <th>Sur name</th>  
                         </tr>
                     </thead>
 
@@ -33,7 +32,7 @@
                             echo '<td>'.$row->userid.'</td>';
                             echo '<td>'.$row->other_name.'</td>';
                             echo '<td>'.$row->surname.'</td>';
-                            echo  '<td><a href="'.site_url('directorPgis/admit/'.$row->userid).'" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus">admission letter</span></a></td>';
+                            
                             echo '</tr>';
                         }
                     }

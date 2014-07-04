@@ -903,7 +903,7 @@ class Application extends CI_Controller {
     }
     function courses($coll){
       $course= str_replace('%20', ' ',$coll);
-      $tquery = $this->db->get_where('tb_programmes', array('programme_college' => $course));
+      $tquery = $this->db->get_where('tb_programmes', array('programme_college' => $course,'status'=>'on'));
       if($tquery->num_rows()>0){
           foreach ($tquery->result() as $courlist) {
               echo '<option>'.$courlist->programme_name.'</option>';
