@@ -71,7 +71,7 @@
                         <?php
                         } else {
                         ?>
-                        <li><a href=""><span class="glyphicon glyphicon-th"></span> Thesis</a></li>
+                         <li><a href="<?php echo site_url('project_page'); ?>"><span class="glyphicon glyphicon-th"></span> Dissertation/Thesis</a></li>
                         <?php
                         }
                         }?>

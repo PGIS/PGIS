@@ -27,7 +27,7 @@ class Finance_page extends CI_Controller{
         $config['allowed_types']='jpg|png|gif|pdf|jpeg';
         $config['overwrite']=TRUE;
         $this->load->library('upload',$config);
-        $this->form_validation->set_rules('amnt','Amount','trim|required|xss_clean');
+        $this->form_validation->set_rules('amnt','Amount','trim|numeric|required|xss_clean');
         $this->form_validation->set_rules('rescpt','Receipt','trim|required|xss_clean');
         $this->form_validation->set_rules('reg_fees','Registration year','trim|required|xss_clean');
         $this->form_validation->set_rules('date_payment','Date of payment','trim|required|xss_clean');
