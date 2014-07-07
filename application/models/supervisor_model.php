@@ -129,5 +129,27 @@
                $this->db->insert('tb_forward_examiner',$array_data);
            }
      }
+     function toMessage($message,$username,$sender){
+            $data_message=array(
+                'sender'=>$sender,
+                'receiver'=>$username,
+                'message_body'=>$message
+            );
+            $this->db->insert('tb_messeges',$data_message);
+     }
+     function toAlumni($registration,$email,$number){
+             $data_alumni=array(
+                 'registrationID'=>$registration,
+                 'email'=>$email,
+                 'mobile1'=>$number
+             );
+             $res=  $this->db->get_where('tb_alumni',array('registrationID'=>$registration));
+             if($res->num_rows()===1){
+                 $this->db->where('registrationID',$registration);
+                 $this->db->update('tb_alumni',$data_alumni);
+             }  else {
+                 $this->db->insert('tb_alumni',$data_alumni);
+             }
+     }
  }
 

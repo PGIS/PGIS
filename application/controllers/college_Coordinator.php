@@ -411,6 +411,7 @@ class College_Coordinator extends CI_Controller{
        $data['active']=TRUE;
        $data['internal']=  $this->internal_result();
        $data['external']=  $this->external_result();
+       $data['comb']=  $this->combinedBoth();
        $this->load->view('College/examiner_output',$data);
    }
    function internal_result(){
@@ -435,7 +436,18 @@ class College_Coordinator extends CI_Controller{
            return $res;
        } 
    }
-   function internaldownload($id){
+   function combinedBoth(){
+        $this->db->select('*');
+        $this->db->from('tb_ext_feedback');
+        $this->db->join('tb_int_feedback','tb_int_feedback.registration_fedId = tb_ext_feedback.registration_fedID');
+        $this->db->join('tb_student','tb_student.registrationID = tb_ext_feedback.registration_fedID');
+        $this->db->where(array('status'=>'yes','statud'=>'yes'));
+        $res=  $this->db->get();
+        if($res->num_rows()>0){
+            return $res;
+        }
+   }
+     function internaldownload($id){
        $this->load->helper('download');
        $res=  $this->db->get_where('tb_int_feedback',array('int_id'=>$id));
        if($res->num_rows()===1){
@@ -466,5 +478,97 @@ class College_Coordinator extends CI_Controller{
    function studentGrade($id){
        $data['grads']=$id;
        $this->load->view('College/studentGraduates',$data);
+   }
+   function sendMessage($regist){
+       $config = array(
+            'protocol' => 'smtp',
+            'smtp_host'=> 'ssl://smtp.gmail.com',
+            'smtp_port'=> 465,
+            'mailtype' => 'html',
+            'smtp_user'=> 'tuzoengelbert@gmail.com',
+            'smtp_pass'=> 'ngelageze',
+            'charset' => 'iso-8859-1'
+        );
+       $data['grads']=$regist;
+       $res=  $this->db->select('*')->from('tb_student')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_student.applicationID')
+               ->where(array('registrationID'=>$regist))->get();
+       if($res->num_rows()===1){
+           $row=$res->row();
+       $this->form_validation->set_rules('message','Message body','trim|required|xss_clean');
+       $this->form_validation->run();
+       $this->load->library('email', $config);
+       $this->email->set_newline("\r\n");
+       $this->email->from('pgis@gmail.com', 'PGIS TEAM');
+       if(isset($_POST['save'])){
+          if($this->form_validation->run()===FALSE){
+              $this->load->view('College/studentGraduates',$data);
+          }  else {
+              $this->load->model('supervisor_model');
+              $message=  $this->input->post('message');
+              $email=$row->email;
+              $username=$row->userid;
+              $number=$row->mobile_no;
+              $registration=$regist;
+              $sender=  $this->session->userdata('email');
+              $this->supervisor_model->toMessage($message,$username,$sender);
+              $this->supervisor_model->toAlumni($registration,$email,$number);
+              $this->email->to($email);
+              $this->email->subject('PGIS MESSAGE');
+              $this->email->message($message);
+              if(@$this->email->send()){
+              $data['success']='<p class="alert alert-info"> You have added this student to alumni</p>'
+                         . '<p class="alert alert-success"> Congurations..! you have sent message for PGIS account wishing good success</p>'
+                         . '<p class="alert alert-info"> Message has been sent to email account</p>'; 
+                 $this->load->view('College/studentGraduates',$data);
+              }
+          }
+       }
+   }
+   }
+   function studentNotGrade($id){
+     $data['grads']=$id;
+     $this->load->view('College/studentNotGraduates',$data); 
+   }
+   function sendNotMessage($regist){
+     $config = array(
+            'protocol' => 'smtp',
+            'smtp_host'=> 'ssl://smtp.gmail.com',
+            'smtp_port'=> 465,
+            'mailtype' => 'html',
+            'smtp_user'=> 'tuzoengelbert@gmail.com',
+            'smtp_pass'=> 'ngelageze',
+            'charset' => 'iso-8859-1'
+        );
+       $data['grads']=$regist;
+       $res=  $this->db->select('*')->from('tb_student')->join('tb_app_personal_info','tb_app_personal_info.userid = tb_student.applicationID')
+               ->where(array('registrationID'=>$regist))->get();
+       if($res->num_rows()===1){
+           $row=$res->row();
+       $this->form_validation->set_rules('message','Message body','trim|required|xss_clean');
+       $this->form_validation->run();
+       $this->load->library('email', $config);
+       $this->email->set_newline("\r\n");
+       $this->email->from('pgis@gmail.com', 'PGIS TEAM');
+       if(isset($_POST['save'])){
+          if($this->form_validation->run()===FALSE){
+              $this->load->view('College/studentNotGraduates',$data);
+          }  else {
+              $this->load->model('supervisor_model');
+              $message=  $this->input->post('message');
+              $email=$row->email;
+              $username=$row->userid;
+              $sender=  $this->session->userdata('email');
+              $this->supervisor_model->toMessage($message,$username,$sender);
+              $this->email->to($email);
+              $this->email->subject('PGIS MESSAGE');
+              $this->email->message($message);
+              if(@$this->email->send()){
+              $data['success']='<p class="alert alert-success"> Message is sent for his/her PGIS account wishing good success</p>'
+                               . '<p class="alert alert-info"> Message has been sent to email account</p>'; 
+                 $this->load->view('College/studentNotGraduates',$data);
+              }
+          }
+       }
+   }  
    }
  }

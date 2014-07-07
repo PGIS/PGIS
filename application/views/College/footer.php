@@ -15,6 +15,7 @@
         $('#tbx').dataTable();
         $('#internaz').dataTable();
         $('#externaz').dataTable();
+        $('#gradz').dataTable();
     });
     $(document).ready(function(){ 
         $('#mytables').dataTable(); 
