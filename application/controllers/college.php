@@ -234,15 +234,14 @@
      }
  
  public function teaching(){
-         $res=  $this->db->select('*')->from('tb_user')->join('tb_staff','tb_staff.staffId = tb_user.userid')
-                 ->where(array('designation'=>'Teaching staff'))->get();
+     $this->db->select('*');
+     $this->db->from('tb_user');
+     $this->db->join('tb_staff','tb_staff.staffId = tb_user.userid');
+     $this->db->like('designation','Teaching staff');
+     $res= $this->db->get();
          if($res->num_rows()>0){
              return $res;
-//            foreach ($res->result() as $n){
-//                   $edata =$n->designation;
-//                }
-            } 
-           //explode(',', $edata);
+          } 
          }
  public function project_display($id) {
       $res=$this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')

@@ -493,9 +493,9 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active5'] = TRUE;
 
-        $this->form_validation->set_rules('nm', 'Name', 'trim|required|max_length[80]|alpha|xss_clean');
-        $this->form_validation->set_rules('nm1', 'Name', 'trim|required|max_length[80]|alpha|xss_clean');
-        $this->form_validation->set_rules('nm2', 'Name', 'trim|required|max_length[80]|alpha|xss_clean');
+        $this->form_validation->set_rules('nm', 'Name', 'trim|required|max_length[80]|xss_clean');
+        $this->form_validation->set_rules('nm1', 'Name', 'trim|required|max_length[80]|xss_clean');
+        $this->form_validation->set_rules('nm2', 'Name', 'trim|required|max_length[80]|xss_clean');
         $this->form_validation->set_rules('em', 'E-mail', 'trim|required|valid_email|xss_clean');
         $this->form_validation->set_rules('em1', 'E-mail', 'trim|required|valid_email|xss_clean');
         $this->form_validation->set_rules('em2', 'E-mail', 'trim|required|valid_email|xss_clean');
@@ -529,7 +529,6 @@ class Application extends CI_Controller {
         $path = $this->config->item('server_root');
         $file = $path . './attachments/refereeinfo.txt';
         $this->email->attach($file);
-                    
                 if (@$this->email->send()) {
                     $this->load->model('Application_form');
                     Application_form::insert_referee_sponsor_details();
@@ -593,7 +592,7 @@ class Application extends CI_Controller {
         $data = $data2 + $data1 + $data3 + $data4;
         $data['active6'] = TRUE;
 
-        $this->form_validation->set_rules('namsponsor', 'Sponsor name', 'required|max_length[30]|alpha|xss_clean');
+        $this->form_validation->set_rules('namsponsor', 'Sponsor name', 'required|max_length[30]|xss_clean');
         $this->form_validation->set_rules('addr_spons', 'Sponsor adress', 'required|max_length[30]alpha_numeric|xss_clean|');
         $this->form_validation->run();
         if (isset($_POST['savcont'])) {

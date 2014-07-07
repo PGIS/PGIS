@@ -91,7 +91,7 @@
          $this->db->where(array('internal_examiner'=>  $this->session->userdata('email')));
          $res=  $this->db->get();
          if($res->num_rows()>0){
-          $data['given']=$res;
+         $data['given']=$res;
          $this->load->view('Internal/internal_feedback',$data);
          }  else {
          $this->load->view('Internal/internal_feedback');
@@ -102,7 +102,7 @@
          $this->load->view('Internal/studentFeedback',$data);
      }
      function comment($id){
-         $data['feed']=$id;
+       $data['feed']=$id;
        $res=  $this->db->get_where('tb_examiner_desert',array('pr_id'=>$id),1);
        $row=$res->row();
        if($res->num_rows()===1){
@@ -114,23 +114,26 @@
        $this->form_validation->set_rules('com','comments','trim|required|xss_clean');
        $this->form_validation->set_rules('desc','Conclusion','trim|required|xss_clean');
        $this->form_validation->set_rules('dtz','Date','trim|required|xss_clean');
-       $this->form_validation->run();
-       if(isset($_POST['save'])){
-       if($this->form_validation->run()===FALSE){
+       if(!($this->upload->do_upload())&&$this->form_validation->run()===FALSE){
+           $data['error']=  $this->upload->display_errors();
          $this->load->view('Internal/studentFeedback',$data);  
          }  else {
          $this->load->model('supervisor_model');
-           $comment=  $this->input->post('com');
+         $comment=  $this->input->post('com');
            $conclusion=  $this->input->post('desc');
            $feedbackdate=  $this->input->post('dtz');
            $document=  base_url().'project_feedback/'.pg_escape_string($_FILES['userfile']['name']);
            $regstrationid=$row->registrationID;
-           $this->supervisor_model->external_feedback($document,$regstrationid,$comment,$conclusion,$feedbackdate);
+           $this->supervisor_model->internal_feedback($document,$regstrationid,$comment,$conclusion,$feedbackdate);
            $data['success']='<p class="alert alert-success">Comment has sent.!</p>';
            $this->load->view('Internal/studentFeedback',$data); 
           
            }
        }
-       }
+      }
+      function inputFeedbackDetails($id){
+         $data['back']=$id;
+         $this->load->view('Internal/student_inputFeedback',$data);
+      }
    }
- }
+ 

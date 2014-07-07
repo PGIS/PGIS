@@ -99,7 +99,7 @@
             </div>
             <div class="post in tab-pane <?php if(isset($active2)){echo'active';}?>">
                 <fieldset>
-                    <div class="pantop"><legend style="padding-top: 20px;" class="text text-justify text-primary">Send project progress</legend></div>
+                    <div class="pantop"><legend style="padding-top: 20px;" class="text text-justify text-primary">Send Dissertation progress</legend></div>
                     <div class="form">
                         <div class="error"><?php if(!empty($error)){ 
                             echo $error;
@@ -116,7 +116,7 @@
                             <?php echo form_error('ext');?>
                             <tr><td><label>Internal supervisor</label></td><td class="dts"><?php if(isset($internal)){echo''.$internal;}?></td></tr>
                             <tr><td><label>Submission date</label></td><td><input type="text" name="date_sub" class="form-control datepicker" id="tds" disabled value="<?php echo date('m/d/Y');?>"></td></tr>
-                            <tr><td><label>Project Document</label></td><td><input type="file" name="userfile" class="load"></td></tr>
+                            <tr><td><label>Dissertation Document</label></td><td><input type="file" name="userfile" class="load"></td></tr>
                             <tr><td colspan="1"></td><td align="right"><button name="btd" class="btn btn-primary btd">upload</button></td></tr>
                             <?php echo form_close();?>
                             

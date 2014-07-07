@@ -19,12 +19,11 @@
          $this->load->view('academic/teaching_view',$data);
       }
          function posted_project(){
-         $sn=  $this->session->userdata('userid');
-         $sn1=  $this->session->userdata('email');
+         $sn=  $this->session->userdata('email');
          $res=  $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
-                 ->where(array('supervisor'=>$sn,'status'=>'not replied'))->get();
+                 ->join('tb_project','tb_project.registration_id = tb_student_desert.registrationID')->where(array('supervisor'=>$sn,'statuz'=>'not replied'))->get();
          $res1=  $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
-                 ->where(array('supervisor'=>$sn1,'status'=>'not replied'))->get();
+                 ->join('tb_project','tb_project.registration_id = tb_student_desert.registrationID')->where(array('sec_internal_supervisor'=>$sn,'sec_status'=>'no'))->get();
          if($res->num_rows()>0){
          return $res;
          }elseif ($res1->num_rows()>0) {
@@ -32,12 +31,11 @@
         }
    }
    function assigned(){
-       $sn=  $this->session->userdata('userid');
-       $sn1=$this->session->userdata('email');
+       $sn=  $this->session->userdata('email');
        $res=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
                ->where(array('Internal_supervisor'=>$sn,'status'=>'assigned'))->get();
        $res1=  $this->db->select('*')->from('tb_project')->join('tb_student','tb_student.registrationID = tb_project.registration_id')
-               ->where(array('Internal_supervisor'=>$sn1,'status'=>'assigned'))->get();
+               ->where(array('sec_internal_supervisor'=>$sn,'status'=>'assigned'))->get();
        if($res->num_rows()>0){
            return $res; 
        }  elseif($res1->num_rows()>0) {
@@ -45,28 +43,39 @@
        }  
    }
      function view($id){
-     $res=  $this->db->get_where('tb_student_desert',array('id'=>$id,'status'=>'not replied'));
-            $rd=$res->row();
+     $res=  $this->db->get_where('tb_student_desert',array('supervisor'=>  $this->session->userdata('email'),'st_id'=>$id,'statuz'=>'not replied'));
+     $res1=  $this->db->select('*')->from('tb_student_desert')->join('tb_project','tb_project.registration_id = tb_student_desert.registrationID')
+             ->where(array('sec_internal_supervisor'=>  $this->session->userdata('email'),'st_id'=>$id,'sec_status'=>'no'))->get();
      if($res->num_rows()>0){
           foreach ($res->result() as $row){
               $magic_here=array(
-                  'id'=>$row->id,
+                  'id'=>$row->st_id,
                   'registration'=>$row->registrationID,
                   'document'=>$row->document
               );
           }
          unset($row);
          $this->load->view('academic/teaching_comment',$magic_here);
-      }
+      }elseif ($res1->num_rows()>0) {
+          foreach ($res1->result() as $row1){
+              $magic_here=array(
+                  'id'=>$row1->st_id,
+                  'registration'=>$row1->registrationID,
+                  'document'=>$row1->document
+              );
+          }
+         unset($row1);
+         $this->load->view('academic/teaching_comment',$magic_here);  
+        }
     }
    function comment_view($reg_id){
-     $res=  $this->db->get_where('tb_student_desert',array('registrationID'=>$reg_id,'status'=>'not replied'));
+     $res=  $this->db->get_where('tb_student_desert',array('registrationID'=>$reg_id,'statuz'=>'not replied'));
      if($res->num_rows()>0){
          $this->db->where('registrationID',$reg_id);
-         $this->db->update('tb_student_desert',array('status'=>'replied'));
+         $this->db->update('tb_student_desert',array('statuz'=>'replied'));
           foreach ($res->result() as $row){
               $magic_here=array(
-                  'id'=>$row->id,
+                  'id'=>$row->st_id,
                   'registration'=>$row->registrationID,
                   'document'=>$row->document
               );
@@ -76,12 +85,12 @@
       }
    }
    function comment($id){
-       $res=  $this->db->get_where('tb_student_desert',array('id'=>$id),1);
+       $res=  $this->db->get_where('tb_student_desert',array('st_id'=>$id),1);
        $row=$res->row();
        if($res->num_rows()===1){
                foreach ($res->result() as $rec){
                 $data=array(
-                    'id'=>$rec->id,
+                    'id'=>$rec->st_id,
                     'registration'=>$rec->registrationID,
                     'document'=>$rec->document
                 );
@@ -99,8 +108,8 @@
          $data['error']=  $this->upload->display_errors();
          $this->load->view('academic/teaching_comment',$data);  
          }  else {
-          $this->db->where('id',$id);
-          $this->db->update('tb_student_desert',array('status'=>'replied','read'=>'yes'));
+          $this->db->where('st_id',$id);
+          $this->db->update('tb_student_desert',array('statuz'=>'replied','read'=>'yes'));
            $this->load->model('project_model');
            $header=  $this->input->post('com');
            $content=  $this->input->post('desc');
@@ -117,11 +126,18 @@
    }
    function replied(){
        $res= $this->db->select('*')->from('tb_student_desert')->join('tb_student','tb_student.registrationID = tb_student_desert.registrationID')
-               ->where(array('status'=>'replied'))->get();
-       if($res->num_rows()>0){
+               ->where(array('statuz'=>'replied','supervisor'=>  $this->session->userdata('email')))->get();
+       $res1=  $this->db->select('*')->from('tb_student_desert')->join('tb_project','tb_project.registration_id = tb_student_desert.registrationID')
+               ->where(array('sec_internal_supervisor'=>  $this->session->userdata('email'),'sec_status'=>'yes'))->get();
+        if($res->num_rows()>0){
            $data['replied']=$res;
            $this->load->view('academic/teaching_replied',$data);
-       }  else {
+       }elseif ($res1->num_rows()>0) {
+            $data['sec']=$res1;
+            $this->load->view('acedemic/teaching_replied',$data);   
+        }  
+       
+       else {
            $data['noreplied']='<p class="alert alert-warning">No one has been replied</p>';
            $this->load->view('academic/teaching_replied',$data);
        }
@@ -152,7 +168,7 @@
            
    function download($reg_id){
        $this->load->helper('download');
-       $res=  $this->db->get_where('tb_student_desert',array('id'=>$reg_id));
+       $res=  $this->db->get_where('tb_student_desert',array('st_id'=>$reg_id));
        if($res->num_rows()>0){
            $row=$res->row();
        $data=  file_get_contents('project_document/'.substr($row->document,39));

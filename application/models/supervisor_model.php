@@ -84,9 +84,10 @@
              'ext_document'=>$document,
              'comment'=>$comment,
              'conclusion'=>$conclusion,
-             'feedback_date'=>$feedbackdate
+             'feedback_date'=>$feedbackdate,
+             'status'=>'yes'
          );
-         $res=  $this->db->get_where('tb_ext_feedback',array('feedback_date'=>$feedbackdate,'registraion_fedID'=>$regstrationid));
+         $res=  $this->db->get_where('tb_ext_feedback',array('feedback_date'=>$feedbackdate,'registration_fedID'=>$regstrationid));
          if($res->num_rows()===1){
              $this->db->where(array('feedback_date'=>$feedbackdate,'registration_fedID'=>$regstrationid));
              $this->db->update('tb_ext_feedback',$data_array);
@@ -94,6 +95,39 @@
              $this->db->insert('tb_ext_feedback',$data_array);
          }
          
+     }
+     function internal_feedback($document,$regstrationid,$comment,$conclusion,$feedbackdate){
+         $data_array=array(
+             'registration_fedId'=>$regstrationid,
+             'int_document'=>$document,
+             'comment'=>$comment,
+             'conclusion'=>$conclusion,
+             'feedback_date'=>$feedbackdate,
+             'statud'=>'yes'
+         );
+         $res=  $this->db->get_where('tb_int_feedback',array('feedback_date'=>$feedbackdate,'registration_fedId'=>$regstrationid));
+         if($res->num_rows()===1){
+             $this->db->where(array('feedback_date'=>$feedbackdate,'registration_fedId'=>$regstrationid));
+             $this->db->update('tb_int_feedback',$data_array);
+         }  else {
+             $this->db->insert('tb_int_feedback',$data_array);
+         }
+         
+     }
+     function feedbackAttach($document,$inserter_name,$registration_number){
+           $array_data=array(
+               'registration_exID'=>$registration_number,
+               'ex_document'=>$document,
+               'forward_name'=>$inserter_name,
+               'ex_status'=>'yes'
+           );
+           $res=  $this->db->get_where('tb_forward_examiner',array('forward_name'=>$inserter_name,'registration_exID'=>$registration_number));
+           if($res->num_rows()===1){
+               $this->db->where('registration_exID',$registration_number);
+               $this->db->update('tb_forward_examiner',$array_data);
+           }  else {
+               $this->db->insert('tb_forward_examiner',$array_data);
+           }
      }
  }
 

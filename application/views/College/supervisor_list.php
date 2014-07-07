@@ -12,7 +12,7 @@
         <thead><tr><th>Full name</th><th>Email</th><th>Choose</th><th>Action</th></tr></thead>
         <tbody>
         <?php
-        $res=$this->db->get_where('tb_user',array('designation'=>'external supervisor'));
+        $res=$this->db->select('*')->from('tb_user')->like('designation','external supervisor')->get();
         if($res->num_rows()>0){
             foreach ($res->result() as $row){
                 echo '<tr><td>'.ucfirst($row->fname).' '.ucfirst($row->mname).'</td><td>'.$row->email.'</td><td>'.form_error('super','<div class="error">','</div>').'<input type="radio" name="super" value="'.$row->email.'"></td>'

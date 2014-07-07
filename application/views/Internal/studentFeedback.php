@@ -1,3 +1,17 @@
+<?php include_once 'Headerlogininternal.php';?>
+<div id="page-wrapper">
+    <div class="well well-sm">
+        <?php
+        $res=$this->db->select('*')->from('tb_examiner_desert')->join('tb_project','tb_project.registration_id = tb_examiner_desert.registrationID')
+                ->join('tb_student','tb_student.registrationID = tb_project.registration_id')->where('pr_id',$feed)->get();
+        if($res->num_rows()===1){
+            foreach ($res->result() as $row){
+                echo '<div class="label-info"> Feedback For :  '.' '.$row->surname.'  '.$row->other_name.'  '.'('.$row->registrationID.')'.'</div>';
+            }
+        }
+        ?>
+    </div>
+    <div class="col-lg-7 col-lg-offset-2">
 <div class="panel panel-default">
 <div class="panel-heading"><label>Examiner Feedback</label></div>
 <div class="panel-body">
@@ -15,22 +29,14 @@
             <tr><td>Conclusion</td><td><?php echo form_error('desc','<div class="error">','</div>');?><input type="text" class="form-control" cols="3" name="desc"></td></tr>
             <tr><td>Date</td><td><?php echo form_error('dtz','<div class="error">','</div>');?></label><input class="form-control datepicker" name="dtz" value="<?php echo date('m/d/Y');?>"></td></tr>
             <tr><td>Feedback Document<label>(Option*)</label></td><td><input type="file" name="userfile"></td></tr>
-            <tr><td></td><td><button class="btn btn-primary" name="save">grade</button></td></tr>
+            <tr><td></td><td><button class="btn btn-primary btn-xs" name="save"><span class="glyphicon glyphicon-comment"></span> grade</button></td></tr>
         </table>
     <?php echo form_close();?>
         </div>
+</div>
 <script>
     $('.datepicker').datepicker();
 </script>
-<script>
-    $('#jay').submit(function(e){
-        e.preventDefault();
-        var formz=$(this).serializeArray();
-        var url=$(this).attr('action');
-        formz.push({"name": "save","value": ""});
-        $.post(url,formz,function(data){
-            $('.feedback').html(data);
-        });
-    });
-</script>
 </div>
+</div>
+<?php include_once 'footer.php';?>

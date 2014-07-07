@@ -30,8 +30,8 @@ class College_Coordinator extends CI_Controller{
         $dat = array('submited' => 'yes');
         $dat1 = array('depchek' => 'yes','colcheck' => 'no');
         $this->db->where($dat1);
-        $this->db->order_by('app_id', 'asc');
-        $query1 = $this->db->get_where('tb_app_personal_info', $dat);
+        $this->db->order_by('app_id','asc');
+        $query1 = $this->db->get_where('tb_app_personal_info',$dat);
         return $query1->result();
     }
     
@@ -377,5 +377,94 @@ class College_Coordinator extends CI_Controller{
                           </div>' ;
                 }
    }
- 
+   function forward($registration){
+       $data['registration_id']=$registration;
+       $res=  $this->db->select('*')->from('tb_project')->join('tb_student',' tb_student.registrationID = tb_project.registration_id')
+               ->where(array('registration_id'=>$registration))->get();
+       if($res->num_rows()===1){
+           $data['forward']=$res;
+           $this->load->view('College/forward_toExaminer',$data);
+       }
+   }
+   function feedBackAttach($registId){
+       $data['registration_id']=$registId;
+       $config['upload_path']= './project_feedback/';
+       $config['allowed_types']='pdf|doc|docx';
+       $config['overwrite']=TRUE;
+       $config['remove_spaces']=FALSE;
+       $this->load->library('upload',$config);
+       if(!$this->upload->do_upload()){
+           $data['error']=  $this->upload->display_errors();
+         $this->load->view('College/forward_toExaminer',$data); 
+         }  else {
+         $this->load->model('supervisor_model');
+           $registration_number=  $registId;
+           $inserter_name= $this->session->userdata('email');
+           $document=  base_url().'project_feedback/'.pg_escape_string($_FILES['userfile']['name']);
+           $this->supervisor_model->feedbackAttach($document,$inserter_name,$registration_number);
+           $data['success']='<p class="alert alert-success">Document has sent to examiners.!</p>';
+           $this->load->view('College/forward_toExaminer',$data); 
+          
+           }
+   }
+   function examiners(){
+       $data['active']=TRUE;
+       $data['internal']=  $this->internal_result();
+       $data['external']=  $this->external_result();
+       $this->load->view('College/examiner_output',$data);
+   }
+   function internal_result(){
+       $this->db->select('*');
+       $this->db->from('tb_int_feedback');
+       $this->db->join('tb_student','tb_student.registrationID = tb_int_feedback.registration_fedId');
+       $this->db->join('tb_examiner_desert','tb_examiner_desert.registrationID = tb_int_feedback.registration_fedId');
+       $this->db->where('statud','yes');
+       $res=  $this->db->get();
+       if($res->num_rows()>0){
+           return $res;
+       }
+   }
+   function external_result(){
+      $this->db->select('*');
+       $this->db->from('tb_ext_feedback');
+       $this->db->join('tb_student','tb_student.registrationID = tb_ext_feedback.registration_fedID');
+       $this->db->join('tb_examiner_desert','tb_examiner_desert.registrationID = tb_ext_feedback.registration_fedID');
+       $this->db->where('status','yes');
+       $res=  $this->db->get();
+       if($res->num_rows()>0){
+           return $res;
+       } 
+   }
+   function internaldownload($id){
+       $this->load->helper('download');
+       $res=  $this->db->get_where('tb_int_feedback',array('int_id'=>$id));
+       if($res->num_rows()===1){
+           $row=$res->row();
+           $name=  file_get_contents('project_feedback/'.  substr($row->int_document, 39));
+           $data=  substr($row->int_document, 39);
+           force_download($data,$name);
+       }
+   }
+   function externaldownload($id){
+       $this->load->helper('download');
+       $res=  $this->db->get_where('tb_ext_feedback',array('feed_id'=>$id));
+       if($res->num_rows()===1){
+           $row=$res->row();
+           $name=  file_get_contents('project_feedback/'.  substr($row->ext_document, 39));
+           $data=  substr($row->ext_document, 39);
+           force_download($data,$name);
+       }
+   }
+   function viewInternalComment($id){
+       $data['com']=$id;
+       $this->load->view('College/internalComments',$data);
+   }
+   function viewExternalfd($id){
+       $data['comz']=$id;
+       $this->load->view('College/externalComments',$data);
+   }
+   function studentGrade($id){
+       $data['grads']=$id;
+       $this->load->view('College/studentGraduates',$data);
+   }
  }

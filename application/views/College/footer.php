@@ -12,7 +12,9 @@
     
      $(document).ready(function(){ 
         $('#mytable1').dataTable(); 
-        $('#tbx').dataTable(); 
+        $('#tbx').dataTable();
+        $('#internaz').dataTable();
+        $('#externaz').dataTable();
     });
     $(document).ready(function(){ 
         $('#mytables').dataTable(); 

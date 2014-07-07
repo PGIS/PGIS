@@ -16,7 +16,11 @@
                  foreach ($replied->result() as $rec){
                      echo '<tr><td>'.$rec->registrationID.'</td><td>'.$rec->surname.'</td><td>'.$rec->other_name.'</td><td>'.substr($rec->document,39).'</td><td>'.$rec->submission_date.'</td><td>'.anchor('teaching/details2/'.$rec->registrationID,'<span class="badge">Recent documents</span>').'</td></tr>';
                  }
-                }  
+                }elseif (isset($sec)) {
+                    foreach ($rec->result() as $row){
+                        echo '<tr><td>'.$row->registrationID.'</td><td>'.$row->surname.'</td><td>'.$row->other_name.'</td><td>'.substr($row->document,39).'</td><td>'.$rec->submission_date.'</td><td>'.anchor('teaching/details2/'.$row->registrationID,'<span class="badge">Recent documents</span>').'</td></tr>';
+                    }
+}  
                 ?>
                 </tbody>
             </table>

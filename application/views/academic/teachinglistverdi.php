@@ -10,6 +10,8 @@
         <div class="col-md-8">
             <?php
             $query = $this->db->get_where('tb_verdicts', array('supervisor'=>$this->session->userdata('email')));
+            $query1=$this->db->select('*')->from('tb_verdicts')->join('tb_project','tb_project.registration_id = tb_verdicts.registrationId')
+                    ->where(array('sec_internal_supervisor'=>$this->session->userdata('email')))->get();
             if($query->num_rows()>0){
                 echo '<table class="table">'
                 . '<thead><tr>'
@@ -34,7 +36,32 @@
                    <?php
                 }
                 echo '</table>';
-            }else{
+            }elseif ($query1->num_rows()>0) {
+             echo '<table class="table">'
+                . '<thead><tr>'
+                        . '<th>Registration number</th>'
+                        . '<th>Presentation date</th>'
+                        . '<th>View</th>'
+                        . '</tr></thead>';
+                foreach ($query1->result() as $row){
+                   ?>
+            <tr>
+                        <td><?php echo $row->registrationId;?></td>
+                        <td><?php echo $row->pr_date;?></td>
+                        <td><a href="<?php echo site_url('teaching/viewVerdicts/'.$row->ver_id);?>">
+                            <button type="button" class="btn btn-info btn-xs">View Feedback</button>
+                            </a>
+                        </td>
+                        <td><a href="<?php echo site_url('teaching/downloadpdf/'.$row->ver_id);?>">
+                                <button type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download"> Download pdf</span></button>
+                            </a>
+                        </td>
+            </tr>
+            <?php
+               }
+               echo '</table>';
+            }
+            else{
                 echo '<div class="alert alert-warning">No any presentation feedback</div>';
             }
             ?>

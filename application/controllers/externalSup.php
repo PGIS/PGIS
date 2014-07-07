@@ -35,7 +35,7 @@ class ExternalSup extends CI_Controller{
     }
     function download($reg_id){
        $this->load->helper('download');
-       $res=  $this->db->get_where('tb_student_desert',array('id'=>$reg_id));
+       $res=  $this->db->get_where('tb_student_desert',array('st_id'=>$reg_id));
        if($res->num_rows()>0){
            $row=$res->row();
        $data=  file_get_contents('project_document/'.substr($row->document,39));
@@ -48,11 +48,11 @@ class ExternalSup extends CI_Controller{
        }
    }
    function view($id){
-     $res=  $this->db->get_where('tb_student_desert',array('id'=>$id,'ext_status'=>'no'));
+     $res=  $this->db->get_where('tb_student_desert',array('st_id'=>$id,'ext_status'=>'no'));
      if($res->num_rows()>0){
           foreach ($res->result() as $row){
               $magic_here=array(
-                  'id'=>$row->id,
+                  'id'=>$row->st_id,
                   'registration'=>$row->registrationID,
                   'document'=>$row->document
               );
@@ -70,12 +70,12 @@ class ExternalSup extends CI_Controller{
        }  
    }
    function comment($id){
-       $res=  $this->db->get_where('tb_student_desert',array('id'=>$id),1);
+       $res=  $this->db->get_where('tb_student_desert',array('st_id'=>$id),1);
        $row=$res->row();
        if($res->num_rows()===1){
                foreach ($res->result() as $rec){
                 $data=array(
-                    'id'=>$rec->id,
+                    'id'=>$rec->st_id,
                     'registration'=>$rec->registrationID,
                     'document'=>$rec->document
                 );
@@ -93,7 +93,7 @@ class ExternalSup extends CI_Controller{
          $data['error']=  $this->upload->display_errors();
          $this->load->view('ExternalSup/external_comment',$data);  
          }  else {
-          $this->db->where('id',$id);
+          $this->db->where('st_id',$id);
           $this->db->update('tb_student_desert',array('status'=>'replied','read'=>'yes'));
            $this->load->model('project_model');
            $header=  $this->input->post('com');

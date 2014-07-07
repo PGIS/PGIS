@@ -202,7 +202,7 @@ class HeadDepartment extends CI_Controller {
         $dat = array('depchek' => 'yes');
         $query1 = $this->db->get_where('tb_app_personal_info', $dat);
         $data['query1']= $query1->result();
-        $this->load->view('Department/depHeadViewAdmission', $data);
+        $this->load->view('Department/depHeadViewAdmission',$data);
      }
      
       function viewRecomendation($id){

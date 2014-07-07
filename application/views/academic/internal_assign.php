@@ -6,8 +6,11 @@
       <tbody>
 
           <?php
-          $res=  $this->db->select('*')->from('tb_user')->join('tb_staff','tb_staff.staffId = tb_user.userid')
-                 ->where(array('designation'=>'Teaching staff'))->get();
+        $this->db->select('*');
+        $this->db->from('tb_user');
+        $this->db->join('tb_staff','tb_staff.staffId = tb_user.userid');
+        $this->db->like('designation','Teaching staff');
+        $rea=$this->db->get();
           foreach ($res->result() as $row){
              echo '<tr><td><input type="radio" name="assign" class="form-control" required value="'.$row->email.'"></td><td>'.$row->fullName.'</td><td>'.$row->email.'</td></tr>';
             }

@@ -14,10 +14,10 @@
                     <?php if(isset($data)){
                         foreach ($data->result() as $row){
                             if($row->ext_status==='no'){
-                       echo '<tr><td>'.$row->registrationID.'</td><td>'.substr($row->document, 39).'</td><td>'.$row->submission_date.'</td><td>'.anchor('externalSup/download/'.$row->id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt"></span> Download</button>').'</td>'
-                               . '<td>'.anchor('externalSup/view/'.$row->id,'<span class="badge"> View & comment</span>').'</td></tr>';
+                       echo '<tr><td>'.$row->registrationID.'</td><td>'.substr($row->document, 39).'</td><td>'.$row->submission_date.'</td><td>'.anchor('externalSup/download/'.$row->st_id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt"></span> Download</button>').'</td>'
+                               . '<td>'.anchor('externalSup/view/'.$row->st_id,'<span class="badge"> View & comment</span>').'</td></tr>';
                     }  else {
-                       echo '<tr><td>'.$row->registrationID.'</td><td>'.substr($row->document, 39).'</td><td>'.$row->submission_date.'</td><td>'.anchor('externalSup/download/'.$row->id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt"></span> Download</button>').'</td>'
+                       echo '<tr><td>'.$row->registrationID.'</td><td>'.substr($row->document, 39).'</td><td>'.$row->submission_date.'</td><td>'.anchor('externalSup/download/'.$row->st_id,'<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-download-alt"></span> Download</button>').'</td>'
                                . '<td><span class="glyphicon glyphicon-ok"> commented</span></td></tr>'; 
                     }
                     }
