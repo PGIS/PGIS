@@ -16,7 +16,7 @@
             if(isset($prdelete)){
             echo '<div class="alert alert-warning fade in">
                 <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                The programme has been deleted
+                The programme has been diactivated
             </div>';}
               ?>
             <table class="table">
@@ -40,7 +40,7 @@
                                     <span class="glyphicon glyphicon-edit"></span> Edit
                                     </button>
                                     <?php
-                                   echo ' <a href="'.site_url('admin_page/deleteprograme/'.$prog->prog_id).'" onclick="return confirm(\'Are you sure you want to Diable ?\');"><button class="btn btn-danger btn-xs" >'
+                                   echo ' <a href="'.site_url('admin_page/deleteprograme/'.$prog->prog_id).'" onclick="return confirm(\'Are you sure you want to Disable ?\');"><button class="btn btn-danger btn-xs" >'
                                     . '<span class="glyphicon glyphicon-trash"></span> Disable</button></td></a>';
                                 ?>
                 <td><?php if($prog->status===''.'on')

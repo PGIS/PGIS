@@ -1,4 +1,6 @@
-<div class="span12">
+<div class="panel panel-default">
+    <div class="panel-heading">Staff Edit</div>
+    <div class="panel-body">
     <?php if(isset($succ)){
      echo ''.$succ;
     }?>
@@ -33,6 +35,7 @@
  <?php
    }
    ?>
+</div>
 </div>
 <script>
     $('#load').submit(function(e){

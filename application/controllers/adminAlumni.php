@@ -69,4 +69,14 @@ class AdminAlumni extends CI_Controller {
        
         $this->load->view('admin/manageevent',$data);
     }
+    function alumniList(){
+        $res=  $this->db->select('*')->from('tb_alumni')->join('tb_student','tb_student.registrationID = tb_alumni.registrationID')
+                ->get();
+        if($res->num_rows()>0){
+            $data['alumn']=$res;
+            $this->load->view('admin/alumniList',$data);
+        }  else {
+            $this->load->view('admin/alumniList');
+        }
+    }
 }

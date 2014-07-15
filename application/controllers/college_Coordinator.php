@@ -511,7 +511,7 @@ class College_Coordinator extends CI_Controller{
               $registration=$regist;
               $sender=  $this->session->userdata('email');
               $this->supervisor_model->toMessage($message,$username,$sender);
-              $this->supervisor_model->toAlumni($registration,$email,$number);
+              $this->supervisor_model->toAlumni($registration,$email,$number,$username);
               $this->email->to($email);
               $this->email->subject('PGIS MESSAGE');
               $this->email->message($message);

@@ -74,10 +74,19 @@ class Admin extends CI_Model {
     }
 
     function pgdelete($id) {
+        $res=  $this->db->get_where('tb_programmes',array('prog_id'=>$id));
+        $row=$res->row();
+         if($row->status==='on'){
          $programme = array(
             'status' => 'disabled');
         $this->db->where('prog_id', $id);
         $this->db->update('tb_programmes', $programme);
+     }  elseif($row->status==='disabled') {
+        $programmez = array(
+            'status' => 'on');
+        $this->db->where('prog_id', $id);
+        $this->db->update('tb_programmes', $programmez);
+    }
     }
     
     function saveventpost(){

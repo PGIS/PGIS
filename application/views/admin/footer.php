@@ -12,6 +12,7 @@
 <script>
     $(document).ready(function() {
     $('#adminstaff').dataTable();
+    $('#alumni').dataTable();
     });
 </script>
 <script>

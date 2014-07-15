@@ -510,8 +510,8 @@ class Application extends CI_Controller {
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('application/capplication', $data);
             } else {
-        $das=array(set_value('em'), set_value('em1'),  set_value('em2'));
-        foreach ($das as $salt){
+        $daz=array(set_value('em'), set_value('em1'),  set_value('em2'));
+        foreach ($daz as $salt){
         $this->email->to($salt);
         $this->email->subject('NOTIFICATION SMS');
         $message = '<html>
@@ -525,20 +525,22 @@ class Application extends CI_Controller {
         $message .='</body>';
         $message .='</html>';
         $this->email->message($message);
-        }
         $path = $this->config->item('server_root');
         $file = $path . './attachments/refereeinfo.txt';
         $this->email->attach($file);
-                if (@$this->email->send()) {
-                    $this->load->model('Application_form');
-                    Application_form::insert_referee_sponsor_details();
-                    $yes['smg'] = '<font color=blue>They Email addresses has been sent to their email acount.</font>';
-                    $this->load->view('application/capplication', $data, $yes);
+        @$this->email->send();
+        }
+        if (@$this->email->send()) {
+        $this->load->model('Application_form');
+        Application_form::insert_referee_sponsor_details();
+        $yes['smg'] = '<font color=blue>They Email addresses has been sent to their email acount.</font>';
+        $this->load->view('application/capplication', $data, $yes);
                 } else {
                     $data['problem'] = 'There is Conectivity problem.Please check the connection and try again letter';
                     $this->load->view('application/capplication', $data);
                 }
             }
+         
         } elseif (isset($_POST['savcont'])) {
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('application/capplication', $data);
@@ -558,15 +560,16 @@ class Application extends CI_Controller {
         $message .='</body>';
         $message .='</html>';
         $this->email->message($message);
-        }
         $path = $this->config->item('server_root');
         $file = $path . './attachments/refereeinfo.txt';
         $this->email->attach($file);
-                if (@$this->email->send()) {
+        @$this->email->send();
+        }
+         if (@$this->email->send()) {
+                   $this->load->model('Application_form');
+                    Application_form::insert_referee_sponsor_details();
                     $data['active6'] = TRUE;
                     unset($data['active5']);
-                    $this->load->model('Application_form');
-                    Application_form::insert_referee_sponsor_details();
                     $yes['smg'] = '<font color=blue>They Email addresses has been sent to their email acount.</font>';
                     $this->load->view('application/capplication', $data, $yes);
                 } else {

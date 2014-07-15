@@ -137,11 +137,12 @@
             );
             $this->db->insert('tb_messeges',$data_message);
      }
-     function toAlumni($registration,$email,$number){
+     function toAlumni($registration,$email,$number,$username){
              $data_alumni=array(
                  'registrationID'=>$registration,
                  'email'=>$email,
-                 'mobile1'=>$number
+                 'mobile1'=>$number,
+                 'userid'=>$username
              );
              $res=  $this->db->get_where('tb_alumni',array('registrationID'=>$registration));
              if($res->num_rows()===1){

@@ -1,4 +1,6 @@
-<div class="span12">
+<div class="panel panel-default">
+    <div class="panel-heading">Edit Applicants</div>
+    <div class="panel-body">
     <?php if(isset($sms)){
      echo ''.$sms;
     }?>
@@ -26,6 +28,7 @@
    }
    ?>
 </div>
+</div>
 <script>
     $('#load').submit(function(e){
         e.preventDefault();
@@ -34,6 +37,9 @@
         datz.push({"name": "save","value": ""});
         $.post(url,datz,function(data){
             $('.loads').html(data);
+            setTimeout(function(){
+            location.reload();
+            },2000);
         });
     });
 </script>

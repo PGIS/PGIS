@@ -1,6 +1,7 @@
 <?php include_once 'Headerlogin.php'; ?>
 <div id="page-wrapper">
     <ol class="breadcrumb">
+        <li ><a href="<?php echo site_url('adminAlumni/alumniList'); ?>">List of alumni</a></li>
         <li ><a href="<?php echo site_url('adminAlumni'); ?>">Add event</a></li>
         <li class="active"><a href="<?php echo site_url('adminAlumni/eventManage'); ?>">Event management</a></li>
      </ol>

@@ -123,16 +123,15 @@ class Application_form extends CI_Model {
             'third_email' => $this->input->post('em2'),
             'third_address' => $this->input->post('ad2')
         );
-        if (isset($_POST['save'])) {
+        
             $query = $this->db->get_where('tb_referee', array('referee_id' => $this->session->userdata('userid')));
-
             if ($query->num_rows() == 1) {
                 $this->db->where('referee_id', $this->session->userdata('userid'));
                 $this->db->update('tb_referee', $redata);
             } elseif ($query->num_rows() == 0) {
                 $this->db->insert('tb_referee', $redata);
             }
-        }
+        
     }
 
     function insert_addition() {
