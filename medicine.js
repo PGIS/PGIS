@@ -254,7 +254,7 @@ $(document).ready(function() {
     enableAndDisableFieldsOnSelectActionsAccordingly();
     // Event trigger on Orgunit/Period Switching
     $( 'body' ).bind( 'dhis-web-dataentry-form-loaded', function() {
-        console.log('Tracer Medicine Form Loaded Completely');
+        alert('Tracer Medicine Form Loaded Completely');
         enableAndDisableFieldsOnSelectActionsAccordingly();
     } );
 });
