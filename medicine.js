@@ -3,8 +3,8 @@ $(document).ready(function() {
         {
             "eligible":'#HKYab4TIAXs-uGIJ6IdkP7Q-val',
             "available":'#sA9bxsRppLr-uGIJ6IdkP7Q-val',
-            "notAvailable":[ '#cCoaev12dkA-lxM1zKPHql2-val', '#cCoaev12dkA-BQrHxULahIt-val', '#cCoaev12dkA-TrmsDE6SUZI-val' ]
-        },
+            "notAvailable":[ '#cCoaev12dkA-lxM1zKPHql2-val', '#cCoaev12dkA-BQrHxULahIt-val', '#cCoaev12dkA-TrmsDE6SUZI-val' ]     
+            },
         {
             "eligible":'#P6nVr0o4O8O-uGIJ6IdkP7Q-val',
             "available":'#cCCL5yNl301-uGIJ6IdkP7Q-val',
