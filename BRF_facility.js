@@ -1,22 +1,24 @@
- $(document).ready(function(){
- $("table > tbody >tr").each(function(trIndex,trValue){
-    $(this).find("input[data-info='used']").attr("readonly","readonly");
+$(document).ready(function(){
+$("table > tbody >tr").each(function(trIndex,trValue){
+	$(this).find("input[data-info='used']").attr("readonly","readonly");
     $(this).find("option[value='']").remove();
     $(this).find("option[value='true']").html("Applicable");
     $(this).find("option[value='false']").html("Not applicable");
     $(this).find("td:nth-child(4)").each(function(row,val){
+    var trPossiblePrev=$(trValue).find("td:nth-child(3)").html();
+    var trObtainedPrev=$(val).find("input[name='entryfield']").val(); 
     var selectedOpt=$(val).find("select option:selected").val();
       if(selectedOpt=='false'){
             $(trValue).find("td:nth-child(3)").text("0");
             $(val).find("input[name='entryfield']").attr("disabled","disabled");
+            valueServer(val,trPossiblePrev,trObtainedPrev);
              }else if(selectedOpt=='true'){
                 $(val).find("input[name='entryfield']").removeAttr("disabled");
+                valueServer(val,trPossiblePrev,trObtainedPrev);
                  }
 
 
-     var trPossiblePrev=$(trValue).find("td:nth-child(3)").html();
-     var trObtainedPrev=$(val).find("input[name='entryfield']").val(); 
-     $(this).find("select").bind("change",function(){
+    $(this).find("select").bind("change",function(){
           if($(this).val()=="false"){
             $(val).find("input[name='entryfield']").attr("disabled","disabled");
             $(trValue).find("td:nth-child(3)").text("0");
@@ -94,7 +96,15 @@
             $(val).find("input[name='entryfield']").removeAttr("disabled");
             $(val).find("input[name='entryfield']").val(trObtainedPrev);
             $(trValue).find("td:nth-child(3)").html(trPossiblePrev); 
-             var OtbainedTotal=parseInt($("div#cde table tbody tr:last td:nth-child(4)").find("input[name='indicator']").val());
+              valueServer(val,trPossiblePrev,trObtainedPrev);
+           
+}
+});
+});
+});
+});
+ function valueServer(val,trPossiblePrev,trObtainedPrev){
+	   var OtbainedTotal=parseInt($("div#cde table tbody tr:last td:nth-child(4)").find("input[name='indicator']").val());
              var id = $( val ).find("input[name='entryfield']").attr( 'id' );
              var idPerc = $("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']").attr( 'id' );
              var currentNumber = $("div#cde table tbody tr:last td:nth-child(3)").text();
@@ -162,11 +172,4 @@
                              
                         }
                     });
-                    
-           
-}
-
-});
-});
-});
-});
+	 }
