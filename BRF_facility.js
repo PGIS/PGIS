@@ -28,9 +28,9 @@ $("table > tbody >tr").each(function(trIndex,trValue){
              var currentNumber = $("div#cde table tbody tr:last td:nth-child(3)").text();
                     $("div#cde table tbody tr:last td:nth-child(3)").text(parseInt(currentNumber)+parseInt(trPossiblePrev));
              var TotalMaxPoints=parseInt($("div#cde table tbody tr:last td:nth-child(3)").html());
-              console.log(TotalMaxPoints);
-              var parcentageServed=(OtbainedTotal/TotalMaxPoints)*100;
-              var split = dhis2.de.splitFieldId( id );
+               var parcentageServed=(OtbainedTotal/TotalMaxPoints)*100;
+               ($("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']")).val(parcentageServed);
+               var split = dhis2.de.splitFieldId( id );
               var splitPerc = dhis2.de.splitFieldId( idPerc );
                     var ou = dhis2.de.getCurrentOrganisationUnit();
                     var pe = $( '#selectedPeriodId' ).val();
@@ -110,8 +110,8 @@ $("table > tbody >tr").each(function(trIndex,trValue){
              var currentNumber = $("div#cde table tbody tr:last td:nth-child(3)").text();
                     $("div#cde table tbody tr:last td:nth-child(3)").text(parseInt(currentNumber)+parseInt(trPossiblePrev));
              var TotalMaxPoints=parseInt($("div#cde table tbody tr:last td:nth-child(3)").html());
-              console.log(TotalMaxPoints);
-             var parcentageServed=(OtbainedTotal/TotalMaxPoints)*100;
+              var parcentageServed=(OtbainedTotal/TotalMaxPoints)*100;
+             ($("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']")).val(parcentageServed);
              var split = dhis2.de.splitFieldId( id );
              var splitPerc = dhis2.de.splitFieldId( idPerc );
                     var ou = dhis2.de.getCurrentOrganisationUnit();
