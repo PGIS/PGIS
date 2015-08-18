@@ -26,7 +26,7 @@ $("table > tbody >tr").each(function(trIndex,trValue){
              var OtbainedTotal=parseInt($("div#cde table tbody tr:last td:nth-child(4)").find("input[name='indicator']").val());
              var idPerc = $("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']").attr( 'id' );
              var currentNumber = $("div#cde table tbody tr:last td:nth-child(3)").text();
-                    $("div#cde table tbody tr:last td:nth-child(3)").text(parseInt(currentNumber)+parseInt(trPossiblePrev));
+                    $("div#cde table tbody tr:last td:nth-child(3)").text(parseInt(currentNumber)-parseInt(trPossiblePrev));
              var TotalMaxPoints=parseInt($("div#cde table tbody tr:last td:nth-child(3)").html());
                var parcentageServed=(OtbainedTotal/TotalMaxPoints)*100;
                ($("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']")).val(parcentageServed);
@@ -96,7 +96,7 @@ $("table > tbody >tr").each(function(trIndex,trValue){
             $(val).find("input[name='entryfield']").removeAttr("disabled");
             $(val).find("input[name='entryfield']").val(trObtainedPrev);
             $(trValue).find("td:nth-child(3)").html(trPossiblePrev); 
-              valueServer(val,trPossiblePrev,trObtainedPrev);
+            valueServer(val,trPossiblePrev,trObtainedPrev);
            
 }
 });
