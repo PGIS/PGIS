@@ -152,7 +152,7 @@
                         {
                             ($("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']")).val(parcentageServed);
                              dhis2.de.updateIndicators();
-                             dhis2.de.updateDataElementTotals( dataElementId );
+                             dhis2.de.updateDataElementTotals( dataElementIdPerc );
                              console.log("Added successifly");
                              
                         },
