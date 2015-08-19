@@ -1,5 +1,6 @@
-$(document).ready(function(){
-$("table > tbody >tr").each(function(trIndex,trValue){
+ $(document).ready(function(){
+  var totalCol4=0;
+ $("table > tbody >tr:not(:last)").each(function(trIndex,trValue){
 	$(this).find("input[data-info='used']").attr("readonly","readonly");
     $(this).find("option[value='']").remove();
     $(this).find("option[value='true']").html("Applicable");
@@ -11,13 +12,15 @@ $("table > tbody >tr").each(function(trIndex,trValue){
       if(selectedOpt=='false'){
             $(trValue).find("td:nth-child(3)").text("0");
             $(val).find("input[name='entryfield']").attr("disabled","disabled");
-            valueServer(val,trPossiblePrev,trObtainedPrev);
+            var TotalMaxPoints=parseInt(totalCol4);
+            valueServer(val,trPossiblePrev,trObtainedPrev,TotalMaxPoints);
              }else if(selectedOpt=='true'){
                 $(val).find("input[name='entryfield']").removeAttr("disabled");
-                valueServer(val,trPossiblePrev,trObtainedPrev);
+                var TotalMaxPoints=parseInt(totalCol4);
+                valueServer(val,trPossiblePrev,trObtainedPrev,TotalMaxPoints);
                  }
 
-
+     
     $(this).find("select").bind("change",function(){
           if($(this).val()=="false"){
             $(val).find("input[name='entryfield']").attr("disabled","disabled");
@@ -25,10 +28,10 @@ $("table > tbody >tr").each(function(trIndex,trValue){
             var id = $( val ).find("input[name='entryfield']").attr( 'id' );
              var OtbainedTotal=parseInt($("div#cde table tbody tr:last td:nth-child(4)").find("input[name='indicator']").val());
              var idPerc = $("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']").attr( 'id' );
-             var currentNumber = $("div#cde table tbody tr:last td:nth-child(3)").text();
-                    $("div#cde table tbody tr:last td:nth-child(3)").text(parseInt(currentNumber)-parseInt(trPossiblePrev));
-             var TotalMaxPoints=parseInt($("div#cde table tbody tr:last td:nth-child(3)").html());
-               var parcentageServed=(OtbainedTotal/TotalMaxPoints)*100;
+              var TotalMaxPoints=parseInt(totalCol4-trPossiblePrev);
+              totalCol4=totalCol4-trPossiblePrev;
+              $("td#Total").html(totalCol4);
+              var parcentageServed=(OtbainedTotal/TotalMaxPoints)*100;
                ($("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']")).val(parcentageServed);
                var split = dhis2.de.splitFieldId( id );
               var splitPerc = dhis2.de.splitFieldId( idPerc );
@@ -96,21 +99,26 @@ $("table > tbody >tr").each(function(trIndex,trValue){
             $(val).find("input[name='entryfield']").removeAttr("disabled");
             $(val).find("input[name='entryfield']").val(trObtainedPrev);
             $(trValue).find("td:nth-child(3)").html(trPossiblePrev); 
-            valueServer(val,trPossiblePrev,trObtainedPrev);
+            var TotalMaxPoints=parseInt(totalCol4+(+trPossiblePrev));
+            totalCol4=totalCol4+trPossiblePrev;
+              $("td#Total").html(totalCol4);;
+            valueServer(val,trPossiblePrev,trObtainedPrev,TotalMaxPoints);
            
 }
 });
 });
+var col4 = parseFloat($(trValue).find('td:nth-child(3)').html()); 
+           totalCol4 += isNaN(col4) ? 0 : col4;
+
 });
-});
- function valueServer(val,trPossiblePrev,trObtainedPrev){
+$("td#Total").html(totalCol4);
+ console.log(totalCol4);
+ });
+ function valueServer(val,trPossiblePrev,trObtainedPrev,TotalMaxPoints){
 	   var OtbainedTotal=parseInt($("div#cde table tbody tr:last td:nth-child(4)").find("input[name='indicator']").val());
              var id = $( val ).find("input[name='entryfield']").attr( 'id' );
              var idPerc = $("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']").attr( 'id' );
-             var currentNumber = $("div#cde table tbody tr:last td:nth-child(3)").text();
-                    $("div#cde table tbody tr:last td:nth-child(3)").text(parseInt(currentNumber)+parseInt(trPossiblePrev));
-             var TotalMaxPoints=parseInt($("div#cde table tbody tr:last td:nth-child(3)").html());
-              var parcentageServed=(OtbainedTotal/TotalMaxPoints)*100;
+               var parcentageServed=(OtbainedTotal/TotalMaxPoints)*100;
              ($("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']")).val(parcentageServed);
              var split = dhis2.de.splitFieldId( id );
              var splitPerc = dhis2.de.splitFieldId( idPerc );
@@ -149,7 +157,7 @@ $("table > tbody >tr").each(function(trIndex,trValue){
                         },
                         error: function (jqXHR, textStatus, errorThrown)
                         {
-                          setHeaderDelayMessage("There is an error while inserting value");
+                          console.log("There is an error while inserting value");
                              
                         }
                     });
@@ -168,7 +176,7 @@ $("table > tbody >tr").each(function(trIndex,trValue){
                         },
                         error: function (jqXHR, textStatus, errorThrown)
                         {
-                          setHeaderDelayMessage("There is an error while inserting value");
+                          console.log("There is an error while inserting value");
                              
                         }
                     });
