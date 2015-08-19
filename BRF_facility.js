@@ -19,8 +19,6 @@
                     var pe = $( '#selectedPeriodId' ).val();
                     var dataElementId = split.dataElementId;
                     var optionComboId = split.optionComboId;
-                    var dataElementIdPerc = splitPerc.dataElementId;
-                    var optionComboIdPerc = splitPerc.optionComboId; 
                     var dataValue={
                         'de': dataElementId,
                         'co': optionComboId,
@@ -28,13 +26,7 @@
                         'pe': pe,
                         'value': ''
                     };
-                    var dataValuePerc={
-                        'de': dataElementIdPerc,
-                        'co': optionComboIdPerc,
-                        'ou': ou,
-                        'pe': pe,
-                        'value': parcentageServed
-                    };
+                     
                     $.ajax({
                         url: '../api/dataValues',
                         data: dataValue,
@@ -54,26 +46,7 @@
                             
                         }
                     });
-                    $.ajax({
-                        url: '../api/dataValues',
-                        data: dataValuePerc,
-                        dataType:"json",
-                        type: 'post',
-                        success: function(data, textStatus, jqXHR)
-                        {
-                            ($("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']")).val(parcentageServed);
-                             dhis2.de.updateIndicators();
-                             dhis2.de.updateDataElementTotals( dataElementIdPerc );
-                             console.log("Added successifly");
-                             
-                        },
-                        error: function (jqXHR, textStatus, errorThrown)
-                        {
-                          setHeaderDelayMessage("There is an error while inserting value");
-                             
-                        }
-                    });
-            var TotalMaxPoints=parseInt(totalCol4);
+             var TotalMaxPoints=parseInt(totalCol4);
             valueServer(val,trPossiblePrev,trObtainedPrev,TotalMaxPoints);
              }else if(selectedOpt=='true'){
                 $(val).find("input[name='entryfield']").removeAttr("disabled");
