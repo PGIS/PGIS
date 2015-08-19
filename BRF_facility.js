@@ -14,8 +14,7 @@
             $(val).find("input[name='entryfield']").attr("disabled","disabled");
              var id = $( val ).find("input[name='entryfield']").attr( 'id' );
              var split = dhis2.de.splitFieldId( id );
-               var splitPerc = dhis2.de.splitFieldId( idPerc );
-                    var ou = dhis2.de.getCurrentOrganisationUnit();
+                var ou = dhis2.de.getCurrentOrganisationUnit();
                     var pe = $( '#selectedPeriodId' ).val();
                     var dataElementId = split.dataElementId;
                     var optionComboId = split.optionComboId;
