@@ -12,8 +12,8 @@
       if(selectedOpt=='false'){
             $(trValue).find("td:nth-child(3)").text("0");
             $(val).find("input[name='entryfield']").attr("disabled","disabled");
-            var idPerc = $("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']").attr( 'id' );
-            var split = dhis2.de.splitFieldId( id );
+             var id = $( val ).find("input[name='entryfield']").attr( 'id' );
+             var split = dhis2.de.splitFieldId( id );
                var splitPerc = dhis2.de.splitFieldId( idPerc );
                     var ou = dhis2.de.getCurrentOrganisationUnit();
                     var pe = $( '#selectedPeriodId' ).val();
@@ -42,7 +42,7 @@
                         error: function (jqXHR, textStatus, errorThrown)
                         {
                              
-                                setHeaderDelayMessage("There is an error while deleting value");
+                                console.log("There is an error while deleting value");
                             
                         }
                     });
