@@ -11,8 +11,7 @@
     var selectedOpt=$(val).find("select option:selected").val();
       if(selectedOpt=='false'){
             $(trValue).find("td:nth-child(3)").text("0");
-            $(val).find("input[name='entryfield']").attr("disabled","disabled");
-             var id = $( val ).find("input[name='entryfield']").attr( 'id' );
+            var id = $( val ).find("input[name='entryfield']").attr( 'id' );
              var split = dhis2.de.splitFieldId( id );
                 var ou = dhis2.de.getCurrentOrganisationUnit();
                     var pe = $( '#selectedPeriodId' ).val();
@@ -45,6 +44,7 @@
                             
                         }
                     });
+              $(val).find("input[name='entryfield']").attr("disabled","disabled");
              var TotalMaxPoints=parseInt(totalCol4);
             valueServer(val,trPossiblePrev,trObtainedPrev,TotalMaxPoints);
              }else if(selectedOpt=='true'){
