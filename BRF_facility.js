@@ -132,9 +132,9 @@
             $(val).find("input[name='entryfield']").removeAttr("disabled");
             $(val).find("input[name='entryfield']").val(trObtainedPrev);
             $(trValue).find("td:nth-child(3)").html(trPossiblePrev); 
-            var TotalMaxPoints=parseInt(totalCol4+(+trPossiblePrev));
+            var TotalMaxPoints=parseInt(totalCol4+trPossiblePrev);
             totalCol4=totalCol4+(+trPossiblePrev);
-              $("td#Total").html(totalCol4);;
+              $("td#Total").html(totalCol4);
             valueServer(val,trPossiblePrev,trObtainedPrev,TotalMaxPoints);
            
 }
