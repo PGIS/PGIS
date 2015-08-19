@@ -12,6 +12,67 @@
       if(selectedOpt=='false'){
             $(trValue).find("td:nth-child(3)").text("0");
             $(val).find("input[name='entryfield']").attr("disabled","disabled");
+            var idPerc = $("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']").attr( 'id' );
+            var split = dhis2.de.splitFieldId( id );
+               var splitPerc = dhis2.de.splitFieldId( idPerc );
+                    var ou = dhis2.de.getCurrentOrganisationUnit();
+                    var pe = $( '#selectedPeriodId' ).val();
+                    var dataElementId = split.dataElementId;
+                    var optionComboId = split.optionComboId;
+                    var dataElementIdPerc = splitPerc.dataElementId;
+                    var optionComboIdPerc = splitPerc.optionComboId; 
+                    var dataValue={
+                        'de': dataElementId,
+                        'co': optionComboId,
+                        'ou': ou,
+                        'pe': pe,
+                        'value': ''
+                    };
+                    var dataValuePerc={
+                        'de': dataElementIdPerc,
+                        'co': optionComboIdPerc,
+                        'ou': ou,
+                        'pe': pe,
+                        'value': parcentageServed
+                    };
+                    $.ajax({
+                        url: '../api/dataValues',
+                        data: dataValue,
+                        dataType:"json",
+                        type: 'post',
+                        success: function(data, textStatus, jqXHR)
+                        {
+                             ($( val ).find("input[name='entryfield']")).val(data);
+                                dhis2.de.updateIndicators();
+                                dhis2.de.updateDataElementTotals( dataElementId );
+                                console.log("Added successifly");
+                        },
+                        error: function (jqXHR, textStatus, errorThrown)
+                        {
+                             
+                                setHeaderDelayMessage("There is an error while deleting value");
+                            
+                        }
+                    });
+                    $.ajax({
+                        url: '../api/dataValues',
+                        data: dataValuePerc,
+                        dataType:"json",
+                        type: 'post',
+                        success: function(data, textStatus, jqXHR)
+                        {
+                            ($("div#cde table tbody tr:last td:nth-child(5)").find("input[name='entryfield']")).val(parcentageServed);
+                             dhis2.de.updateIndicators();
+                             dhis2.de.updateDataElementTotals( dataElementIdPerc );
+                             console.log("Added successifly");
+                             
+                        },
+                        error: function (jqXHR, textStatus, errorThrown)
+                        {
+                          setHeaderDelayMessage("There is an error while inserting value");
+                             
+                        }
+                    });
             var TotalMaxPoints=parseInt(totalCol4);
             valueServer(val,trPossiblePrev,trObtainedPrev,TotalMaxPoints);
              }else if(selectedOpt=='true'){
